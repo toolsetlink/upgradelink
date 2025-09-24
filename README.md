@@ -42,10 +42,10 @@ UpgradeLink 是**全端支持的应用升级系统与应用升级分发平台**�
 ## 五、托管的开源项目
 | 项目名称      | 项目类型    | Star 数量 |
 |-----------|---------|---------|
-| note-gen  | AI 笔记软件 | 9.3     |
-| BongoCat  | 桌宠      | 10.1    |
-| MarkFlowy | MD 编辑器  | 1.5     |
-| lazyeat   | 手势控制    | 1.3     |
+| note-gen  | AI 笔记软件 | 9.4k    |
+| BongoCat  | 桌宠      | 10.1k   |
+| MarkFlowy | MD 编辑器  | 1.5k    |
+| lazyeat   | 手势控制    | 1.3k    |
 
 
 ## Contributors
