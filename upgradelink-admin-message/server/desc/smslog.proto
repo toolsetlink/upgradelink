@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+// SmsLog message
+
+message SmsLogInfo {
+  optional string id = 1;
+  optional int64 created_at = 2;
+  optional int64 updated_at = 3;
+  optional string phone_number = 4;
+  optional string content = 5;
+  optional uint32 send_status = 6;
+  optional string provider = 7;
+}
+
+message SmsLogListResp {
+  uint64 total = 1;
+  repeated SmsLogInfo data = 2;
+}
+
+message SmsLogListReq {
+  uint64 page = 1;
+  uint64 page_size = 2;
+  optional string phone_number = 3;
+  optional string content = 4;
+  optional string provider = 5;
+  optional uint32 send_status = 6;
+}
+
+
+service Mcms {
+
+  // SmsLog management
+  // group: smslog
+  rpc createSmsLog (SmsLogInfo) returns (BaseUUIDResp);
+  // group: smslog
+  rpc updateSmsLog (SmsLogInfo) returns (BaseResp);
+  // group: smslog
+  rpc getSmsLogList (SmsLogListReq) returns (SmsLogListResp);
+  // group: smslog
+  rpc getSmsLogById (UUIDReq) returns (SmsLogInfo);
+  // group: smslog
+  rpc deleteSmsLog (UUIDsReq) returns (BaseResp);
+
+
+}

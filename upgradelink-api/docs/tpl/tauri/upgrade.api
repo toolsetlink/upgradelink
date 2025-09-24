@@ -1,0 +1,149 @@
+syntax = "v1"
+
+info(
+    title: "API management"
+    desc: "API management is used to register APIs and manage APIs"
+    author: "toolsetlink"
+    email: "toolsetlink@163.com"
+    version: "v1.0"
+)
+
+import "../base.api"
+
+type (
+
+    GetTauriUpgradeInfoReq {
+
+        // X-AccessKey
+        AccessKey string `header:"X-AccessKey"`
+
+        // Tauri应用 唯一标识
+        TauriKey string `form:"tauriKey"`
+
+        // target
+        Target string `form:"target"`
+
+        // arch
+        Arch string `form:"arch"`
+
+        // 客户端应用版本名
+        VersionName string `form:"versionName"`
+
+        // 升级指定版本（可空，为空时是最新版本）
+        AppointVersionName string `form:"appointVersionName,optional,default="`
+
+        // 设备机型唯一标识
+        DevModelKey string `form:"devModelKey,optional,default="`
+
+        // 设备唯一标识
+        DevKey string `form:"devKey,optional,default="`
+    }
+
+    GetTauriUpgradeInfoResp {
+
+        // 必须是一个有效的 SemVer，带或不带 v，这意味着 1.0.0 和 v1.0.0 都是有效的。
+        Version string `json:"version,optional"`
+        // 如果存在日期，则必须按照 RFC 3339 规范格式化。
+        PubDate string `json:"pub_date,optional"`
+        // 这必须是的有效更新包 URL。
+        Url string `json:"url,optional"`
+        // 生成的 .sig 文件的内容，可能会随着每次构建而改变。路径或 URL 将不起作用！
+        Signature string `json:"signature,optional"`
+        // 更新说明。
+        Notes string `json:"notes,optional"`
+
+        // 升级类型 0：未知方式；1：提示升级；2：静默升级；3: 强制升级
+        UpgradeType int64 `json:"upgradeType,optional,default=0"`
+    }
+
+)
+
+
+
+type (
+
+    // 平台下载信息结构体（入参）
+    PlatformInfoRequest {
+        Signature string `json:"signature" form:"signature" validate:"required"`
+        Url       string `json:"url" form:"url" validate:"required,url"`
+    }
+
+    // 平台集合结构体（入参）
+    PlatformsRequest {
+        DarwinAarch64 PlatformInfoRequest `json:"darwin-aarch64,optional"`
+        DarwinX8664   PlatformInfoRequest `json:"darwin-x86_64,optional"`
+        LinuxX8664    PlatformInfoRequest `json:"linux-x86_64,optional"`
+        LinuxAarch64  PlatformInfoRequest `json:"linux-aarch64,optional"`
+        WindowsX8664  PlatformInfoRequest `json:"windows-x86_64,optional"`
+        WindowsAarch64  PlatformInfoRequest `json:"windows-aarch64,optional"`
+        WindowsI686  PlatformInfoRequest `json:"windows-i686,optional"`
+    }
+
+    // 版本信息结构体（入参）
+    PostTauriUploadReq {
+        // X-AccessKey
+        AccessKey string `header:"X-AccessKey"`
+        // Tauri应用 唯一标识
+        TauriKey string `form:"tauriKey"`
+        // github token
+        GithubToken string `form:"githubToken"`
+
+        Version   string              `json:"version" validate:"required"`
+        Notes     string              `json:"notes"`
+        PubDate   string              `json:"pub_date"`
+        Platforms PlatformsRequest    `json:"platforms"`
+    }
+
+    PostTauriUploadResp {
+        BaseMsgResp
+    }
+
+)
+
+// RateLimit 流量控制
+// ReplayAttack 防重放攻击
+// Signature 签名认证
+@server(
+    prefix: /v1/tauri
+    group: tauri
+    timeout: 600s
+    middleware: RateLimit
+)
+
+service api {
+    // 获取最新版本
+    @handler getTauriUpgradeInfo
+    get /upgrade (GetTauriUpgradeInfoReq) returns (GetTauriUpgradeInfoResp)
+}
+
+
+
+type (
+    GetTauriDownloadInfoReq {
+        // 下载类型， 1: 下载安装版本，2: 下载升级文件
+        DownloadType int64 `form:"downloadType,default=1"`
+        // Tauri应用 唯一标识
+        TauriKey string `form:"tauriKey"`
+        // 操作系统
+        Target string `form:"target,optional"`
+        // 机器架构
+        Arch string `form:"arch,optional"`
+        // 指定版本（可空，为空时是最新版本）
+        VersionCode int64 `form:"versionCode,default=0"`
+        // 指定版本id
+        VersionId int64 `form:"versionId,default=0"`
+    }
+)
+
+// RateLimit 流量控制
+@server(
+    group: download
+    prefix: /v1/tauri
+    timeout: 30s
+    middleware: CdnRateLimit
+)
+
+service api {
+    @handler getTauriDownloadInfo
+    get /download (GetTauriDownloadInfoReq) returns (*string)
+}

@@ -1,0 +1,77 @@
+import "../base.api"
+
+type (
+    // The data of upgrade dev group relation information | UpgradeDevGroupRelation信息
+    UpgradeDevGroupRelationInfo {
+        Id        *int    `json:"id,optional"`
+
+        // 设备id 
+        DevId  *int `json:"devId,optional"`
+
+        // 设备分组 id 
+        DevGroupId  *int `json:"devGroupId,optional"`
+    }
+
+    // The response data of upgrade dev group relation list | UpgradeDevGroupRelation信息列表数据
+    UpgradeDevGroupRelationListResp {
+        BaseDataInfo
+
+        // The upgrade dev group relation list data | UpgradeDevGroupRelation信息列表数据
+        Data UpgradeDevGroupRelationListInfo `json:"data"`
+    }
+
+    // The upgrade dev group relation list data | UpgradeDevGroupRelation信息列表数据
+    UpgradeDevGroupRelationListInfo {
+        BaseListInfo
+
+        // The upgrade dev group relation list data | UpgradeDevGroupRelation信息列表数据
+        Data  []UpgradeDevGroupRelationInfo  `json:"data"`
+    }
+
+    // Get upgrade dev group relation list request params | UpgradeDevGroupRelation信息列表请求参数
+    UpgradeDevGroupRelationListReq {
+        PageInfo
+
+        // 设备id 
+        DevId  *int `json:"devId,optional"`
+
+        // 设备分组 id 
+        DevGroupId  *int `json:"devGroupId,optional"`
+    }
+
+    // The upgrade dev group relation information response | UpgradeDevGroupRelation信息返回体
+    UpgradeDevGroupRelationInfoResp {
+        BaseDataInfo
+
+        // upgrade dev group relation information | UpgradeDevGroupRelation信息数据
+        Data UpgradeDevGroupRelationInfo `json:"data"`
+    }
+)
+
+@server(
+    jwt: Auth
+    group: upgrade_dev_group_relation
+    middleware: Authority
+)
+
+service Upgrade {
+    // Create upgrade dev group relation information | 创建UpgradeDevGroupRelation信息
+    @handler createUpgradeDevGroupRelation
+    post /upgrade_dev_group_relation/create (UpgradeDevGroupRelationInfo) returns (BaseMsgResp)
+
+    // Update upgrade dev group relation information | 更新UpgradeDevGroupRelation信息
+    @handler updateUpgradeDevGroupRelation
+    post /upgrade_dev_group_relation/update (UpgradeDevGroupRelationInfo) returns (BaseMsgResp)
+
+    // Delete upgrade dev group relation information | 删除UpgradeDevGroupRelation信息
+    @handler deleteUpgradeDevGroupRelation
+    post /upgrade_dev_group_relation/delete (IDsReq) returns (BaseMsgResp)
+
+    // Get upgrade dev group relation list | 获取UpgradeDevGroupRelation信息列表
+    @handler getUpgradeDevGroupRelationList
+    post /upgrade_dev_group_relation/list (UpgradeDevGroupRelationListReq) returns (UpgradeDevGroupRelationListResp)
+
+    // Get upgrade dev group relation by ID | 通过ID获取UpgradeDevGroupRelation信息
+    @handler getUpgradeDevGroupRelationById
+    post /upgrade_dev_group_relation (IDReq) returns (UpgradeDevGroupRelationInfoResp)
+}

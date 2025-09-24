@@ -1,0 +1,115 @@
+import "../base.api"
+
+type (
+    // The response data of cloud file information | 云文件信息
+    CloudFileInfo {
+        BaseUUIDInfo
+
+        // State | 状态
+        State  *bool `json:"state,optional"`
+
+        // Name | 名称
+        Name  *string `json:"name,optional"`
+
+        // Url | 网络地址
+        Url  *string `json:"url,optional"`
+
+        // RelativeSrc | 相对路径
+        RelativeSrc  *string `json:"relativeSrc,optional"`
+
+        // Size | 文件大小
+        Size  *uint64 `json:"size,optional"`
+
+        // File type | 文件类型
+        FileType  *uint8 `json:"fileType,optional"`
+
+        // User ID | 上传用户的 ID
+        UserId  *string `json:"userId,optional"`
+
+        // Provider ID | 提供商的 ID
+        ProviderId  *uint64 `json:"providerId,optional"`
+
+        // Tag ID | 标签 ID
+        TagIds []uint64 `json:"tagIds,optional,omitempty"`
+    }
+
+    // The response data of cloud file list | 云文件列表数据
+    CloudFileListResp {
+        BaseDataInfo
+
+        // CloudFile list data | 云文件列表数据
+        Data CloudFileListInfo `json:"data"`
+    }
+
+    // CloudFile list data | 云文件列表数据
+    CloudFileListInfo {
+        BaseListInfo
+
+        // The API list data | 云文件列表数据
+        Data  []CloudFileInfo  `json:"data"`
+    }
+
+    // Get cloud file list request params | 云文件列表请求参数
+    CloudFileListReq {
+        PageInfo
+
+        // Name | 文件名
+        Name  *string `json:"name,optional"`
+
+        // Provider ID | 提供商 ID
+        ProviderId  *uint64 `json:"providerId,optional"`
+
+        // Tag ID | 标签 ID
+        TagIds []uint64 `json:"tagIds,optional"`
+
+        // File type | 文件类型
+        FileType *uint8 `json:"fileType,optional"`
+    }
+
+    // CloudFile information response | 云文件信息返回体
+    CloudFileInfoResp {
+        BaseDataInfo
+
+        // CloudFile information | 云文件数据
+        Data CloudFileInfo `json:"data"`
+    }
+)
+
+@server(
+    jwt: Auth
+    group: cloudfile
+    middleware: Authority
+)
+
+service Fms {
+    // Create cloud file information | 创建云文件
+    @handler createCloudFile
+    post /cloud_file/create (CloudFileInfo) returns (BaseMsgResp)
+
+    // Update cloud file information | 更新云文件
+    @handler updateCloudFile
+    post /cloud_file/update (CloudFileInfo) returns (BaseMsgResp)
+
+    // Delete cloud file information | 删除云文件信息
+    @handler deleteCloudFile
+    post /cloud_file/delete (UUIDsReq) returns (BaseMsgResp)
+
+    // Get cloud file list | 获取CloudFile列表
+    @handler getCloudFileList
+    post /cloud_file/list (CloudFileListReq) returns (CloudFileListResp)
+
+    // Get cloud file by ID | 通过ID获取云文件
+    @handler getCloudFileById
+    post /cloud_file (UUIDReq) returns (CloudFileInfoResp)
+}
+
+@server(
+    jwt: Auth
+    group: cloudfile
+)
+
+service Fms {
+    // Cloud file upload | 上传文件
+    @handler upload
+    post /cloud_file/upload returns (CloudFileInfoResp)
+}

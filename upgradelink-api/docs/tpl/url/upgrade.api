@@ -1,0 +1,98 @@
+syntax = "v1"
+
+info(
+    title: "API management"
+    desc: "API management is used to register APIs and manage APIs"
+    author: "toolsetlink"
+    email: "toolsetlink@163.com"
+    version: "v1.0"
+)
+
+import "../base.api"
+
+type GetUrlUpgradeInfoRespData {
+
+    // url 应用 唯一标识
+    UrlKey string `json:"urlKey,optional"`
+
+    // 客户端应用版本名称
+    VersionName string `json:"versionName,optional"`
+
+    // 应用版本号
+    VersionCode int64 `json:"versionCode,optional"`
+
+    // 最新版本下载地址
+    UrlPath string `json:"urlPath,optional"`
+
+    // 升级类型 0：未知方式；1：提示升级；2：静默升级；3: 强制升级
+    UpgradeType int64 `json:"upgradeType,optional"`
+
+    // 提示升级描述内容
+    PromptUpgradeContent string `json:"promptUpgradeContent,optional"`
+}
+
+type (
+
+    GetUrlUpgradeInfoReq {
+        // url 应用 唯一标识
+        UrlKey string `json:"urlKey"`
+
+        // 客户端应用版本号
+        VersionCode int64 `json:"versionCode"`
+
+        // 升级指定版本（可空，为空时是最新版本）
+        AppointVersionCode int64 `json:"appointVersionCode,default=0"`
+
+        // 设备机型唯一标识
+        DevModelKey string `json:"devModelKey,optional"`
+
+        // 设备唯一标识
+        DevKey string `json:"devKey,optional"`
+    }
+
+    GetUrlUpgradeInfoResp {
+        BaseDataInfo
+
+        Data GetUrlUpgradeInfoRespData `json:"data"`
+    }
+)
+
+// RateLimit 流量控制
+// ReplayAttack 防重放攻击
+// Signature 签名认证
+@server(
+    prefix: /v1/url
+    group: url
+    timeout: 30s
+    middleware: RateLimit, ReplayAttack, Signature
+)
+
+service api {
+    // 获取升级
+    @handler getUrlUpgradeInfo
+    post /upgrade (GetUrlUpgradeInfoReq) returns (GetUrlUpgradeInfoResp)
+}
+
+type (
+    GetUrlDownloadInfoReq {
+        // url 应用 唯一标识
+        UrlKey string `form:"urlKey"`
+        // 指定版本（可空，为空时是最新版本）
+        VersionCode int64 `form:"versionCode,default=0"`
+        // 指定版本id
+        VersionId int64 `form:"versionId,default=0"`
+    }
+)
+
+// RateLimit 流量控制
+@server(
+    group: download
+    prefix: /v1/url
+    timeout: 30s
+    middleware: CdnRateLimit
+)
+
+service api {
+    @handler getUrlDownloadInfo
+    get /download (GetUrlDownloadInfoReq) returns (*string)
+}

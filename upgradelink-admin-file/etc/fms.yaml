@@ -1,0 +1,72 @@
+Name: fms.api
+Host: 0.0.0.0
+Port: 9102
+MaxBytes: 1073741824 # max content length : 1 gb | 所有类型单个文件最大大小
+Timeout: 600000 # bigger max bytes need longer timeout | 超时时间
+
+Auth:
+  AccessSecret: jS6VKDtsJf3z1n2VKDtsJf3z111
+  AccessExpire: 259200
+
+CROSConf:
+  Address: '*'
+
+Log:
+  ServiceName: fileManagerLogger
+  Mode: file
+  Path: ./logs/file/api
+  Level: info
+  Compress: false
+  KeepDays: 7
+  StackCoolDownMillis: 100
+
+RedisConf:
+  Host: redis.upgrade.toolsetlink.com:6379
+  Db: 0
+  Pass: sj13051570639
+
+I18nConf:
+  Dir:
+
+# DatabaseConf sets the database of file manager service.
+DatabaseConf:
+  Type: mysql
+  Host: rm-j6cx741ix46hwj4xa1o.mysql.cnhk.rds.aliyuncs.com
+  Port: 3306
+  DBName: upgrade-prod
+  Username: songang # set your username
+  Password: Sj13051570639! # set your password
+  MaxOpenConn: 100
+  SSLMode: disable # disable or require
+  CacheTime: 5
+  MysqlConfig: "&timeout=600s&readTimeout=600s&writeTimeout=600s"
+
+# CasbinDatabaseConf sets the core database if you use the Casbin of Core.
+CasbinDatabaseConf:
+  Type: mysql
+  Host: rm-j6cx741ix46hwj4xa1o.mysql.cnhk.rds.aliyuncs.com
+  Port: 3306
+  DBName: upgrade-prod
+  Username: songang # set your username
+  Password: Sj13051570639! # set your password
+  MaxOpenConn: 100
+  SSLMode: disable # disable or require
+  CacheTime: 5
+  MysqlConfig: "&timeout=600s&readTimeout=600s&writeTimeout=600s"
+  
+
+UploadConf:
+  MaxImageSize: 33554432  # 32 mb
+  MaxVideoSize: 33554432 # 1gb
+  MaxAudioSize: 33554432  # 32mb
+  MaxOtherSize: 5048576000  # 500 mb
+  PrivateStorePath: /home/data/file/private  # private
+  PublicStorePath: /home/data/file/public  # public path for every one access e.g. nginx path
+  ServerURL: "http://localhost:81"
+  DeleteFileWithCloud: true # whether to delete the cloud files when delete local data | 是否删除本地文件的同时删除云端文件
+
+# You can disable the core rpc if you have already initialized file manager's database.
+CoreRpc:
+  Target: rpc.core.upgrade.toolsetlink.com:9101
+#  Target: 0.0.0.0:9101
+  Enabled: true

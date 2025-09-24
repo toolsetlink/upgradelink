@@ -1,0 +1,8 @@
+import "base.api"
+import "./url/upgrade.api"
+import "./configuration/upgrade.api"
+import "./file/upgrade.api"
+import "./tauri/upgrade.api"
+import "./electron/upgrade.api"
+import "./app/report.api"
+import "./apk/upgrade.api"

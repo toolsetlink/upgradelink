@@ -1,0 +1,50 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "outDir": "dist/types", // 类型声明输出目录
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "types": ["vite/client", "element-plus/global"],
+    "sourceMap": true,
+    /* Strict Type-Checking Options */
+    "strict": false /* 不使用严格的类型检查. */,
+    "noImplicitAny": false /* 是否在表达式和声明上有隐含的any类型时报错. */,
+    "declarationDir": "dist/types",
+    "emitDeclarationOnly": true,
+    // "strictNullChecks": true,              /* Enable strict null checks. */
+    // "strictFunctionTypes": true,           /* Enable strict checking of function types. */
+    // "strictBindCallApply": true,           /* Enable strict 'bind', 'call', and 'apply' methods on functions. */
+    // "strictPropertyInitialization": true,  /* Enable strict checking of property initialization in classes. */
+    // "noImplicitThis": true,                /* Raise error on 'this' expressions with an implied 'any' type. */
+    // "alwaysStrict": true,                  /* Parse in strict mode and emit "use strict" for each source file. */
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "preserve",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "lib": ["ESNext", "DOM"],
+    "skipLibCheck": true,
+    "baseUrl": "./",
+    "paths": {
+      "@": ["src"],
+      "@/*": ["src/*"]
+    }
+  },
+  "files": ["vite.config.ts"],
+  "exclude": ["node_modules", "public/dist", "build/**/*.ts", "src/main.ts"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.vue",
+    "src/*.ts",
+    "src/**/*.js",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "vite.config.ts",
+    "./components.d.ts",
+    "./auto-imports.d.ts",
+    "merge-js-dts.js"
+  ]
+}

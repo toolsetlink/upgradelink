@@ -1,0 +1,609 @@
+syntax = "proto3";
+
+package core;
+option go_package = "./core";
+
+message ApiInfo {
+  optional uint64 id = 1;
+  optional int64 created_at = 2;
+  optional int64 updated_at = 3;
+  optional string path = 4;
+  optional string description = 5;
+  optional string api_group = 6;
+  optional string method = 7;
+  optional bool is_required = 8;
+  optional string service_name = 9;
+}
+
+message ApiListReq {
+  uint64 page = 1;
+  uint64 page_size = 2;
+  optional string path = 3;
+  optional string description = 4;
+  optional string api_group = 5;
+  optional string method = 6;
+  optional string is_default = 7;
+  optional string service_name = 8;
+}
+
+message ApiListResp {
+  uint64 total = 1;
+  repeated ApiInfo data = 2;
+}
+
+message BaseIDResp {
+  uint64 id = 1;
+  string msg = 2;
+}
+
+message BaseMsg {
+  string msg = 1;
+}
+
+message BaseResp {
+  string msg = 1;
+}
+
+message BaseUUIDResp {
+  string id = 1;
+  string msg = 2;
+}
+
+message CallbackReq {
+  string state = 1;
+  string code = 2;
+}
+
+message CompanyInfo {
+  optional uint64 id = 1;
+  optional int64 created_at = 2;
+  optional int64 updated_at = 3;
+  //  Company name | 公司名
+  optional string name = 4;
+}
+
+message CompanyListReq {
+  uint64 page = 1;
+  uint64 page_size = 2;
+  optional int64 created_at = 3;
+  optional int64 updated_at = 4;
+  optional string name = 5;
+}
+
+message CompanyListResp {
+  uint64 total = 1;
+  repeated CompanyInfo data = 2;
+}
+
+message CompanySecretInfo {
+  optional uint64 id = 1;
+  optional int64 created_at = 2;
+  optional int64 updated_at = 3;
+  //  Company ID | 公司ID
+  optional uint64 company_id = 4;
+  //  access_key | 密钥id
+  optional string access_key = 5;
+  //  secret_key | 密钥key
+  optional string secret_key = 6;
+}
+
+message CompanySecretListReq {
+  uint64 page = 1;
+  uint64 page_size = 2;
+  optional int64 created_at = 3;
+  optional int64 updated_at = 4;
+  optional uint64 company_id = 5;
+  optional string access_key = 6;
+  optional string secret_key = 7;
+}
+
+message CompanySecretListResp {
+  uint64 total = 1;
+  repeated CompanySecretInfo data = 2;
+}
+
+message ConfigurationInfo {
+  optional uint64 id = 1;
+  optional int64 created_at = 2;
+  optional int64 updated_at = 3;
+  //  Sort Number | 排序编号
+  optional uint32 sort = 4;
+  //  State true: normal false: ban | 状态 true 正常 false 禁用
+  optional bool state = 5;
+  //  Configurarion name | 配置名称
+  optional string name = 6;
+  //  Configuration key | 配置的键名
+  optional string key = 7;
+  //  Configuraion value | 配置的值
+  optional string value = 8;
+  //  Configuration category | 配置的分类
+  optional string category = 9;
+  //  Remark | 备注
+  optional string remark = 10;
+}
+
+message ConfigurationListReq {
+  uint64 page = 1;
+  uint64 page_size = 2;
+  optional string name = 3;
+  optional string key = 4;
+  optional string category = 5;
+  optional bool state = 6;
+}
+
+message ConfigurationListResp {
+  uint64 total = 1;
+  repeated ConfigurationInfo data = 2;
+}
+
+message DepartmentInfo {
+  optional uint64 id = 1;
+  optional int64 created_at = 2;
+  optional int64 updated_at = 3;
+  optional uint32 status = 4;
+  optional uint32 sort = 5;
+  optional string name = 6;
+  optional string ancestors = 7;
+  optional string leader = 8;
+  optional string phone = 9;
+  optional string email = 10;
+  optional string remark = 11;
+  optional uint64 parent_id = 12;
+}
+
+message DepartmentListReq {
+  uint64 page = 1;
+  uint64 page_size = 2;
+  optional string name = 3;
+  optional string leader = 4;
+}
+
+message DepartmentListResp {
+  uint64 total = 1;
+  repeated DepartmentInfo data = 2;
+}
+
+message DictionaryDetailInfo {
+  optional uint64 id = 1;
+  optional int64 created_at = 2;
+  optional int64 updated_at = 3;
+  optional uint32 status = 4;
+  optional string title = 5;
+  optional string key = 6;
+  optional string value = 7;
+  optional uint64 dictionary_id = 8;
+  optional uint32 sort = 9;
+}
+
+message DictionaryDetailListReq {
+  uint64 page = 1;
+  uint64 page_size = 2;
+  optional uint64 dictionary_id = 3;
+  optional string key = 4;
+}
+
+message DictionaryDetailListResp {
+  uint64 total = 1;
+  repeated DictionaryDetailInfo data = 2;
+}
+
+message DictionaryInfo {
+  optional uint64 id = 1;
+  optional int64 created_at = 2;
+  optional int64 updated_at = 3;
+  optional uint32 status = 4;
+  optional string title = 5;
+  optional string name = 6;
+  optional string desc = 7;
+}
+
+message DictionaryListReq {
+  uint64 page = 1;
+  uint64 page_size = 2;
+  optional string name = 3;
+}
+
+message DictionaryListResp {
+  uint64 total = 1;
+  repeated DictionaryInfo data = 2;
+}
+
+//  base message
+message Empty {}
+
+message IDReq {
+  uint64 id = 1;
+}
+
+message IDsReq {
+  repeated uint64 ids = 1;
+}
+
+message MenuInfo {
+  optional uint64 id = 1;
+  optional int64 created_at = 2;
+  optional int64 updated_at = 3;
+  optional uint32 level = 4;
+  optional uint64 parent_id = 5;
+  optional string path = 6;
+  optional string name = 7;
+  optional string redirect = 8;
+  optional string component = 9;
+  optional uint32 sort = 10;
+  optional bool disabled = 11;
+  optional Meta meta = 12;
+  optional uint32 menu_type = 13;
+  optional string service_name = 14;
+  optional string permission = 15;
+}
+
+message MenuInfoList {
+  uint64 total = 1;
+  repeated MenuInfo data = 2;
+}
+
+message MenuRoleInfo {
+  uint64 id = 1;
+  uint64 menu_id = 2;
+  uint64 role_id = 3;
+}
+
+message MenuRoleListResp {
+  uint64 total = 1;
+  repeated MenuRoleInfo data = 2;
+}
+
+message Meta {
+  optional string title = 1;
+  optional string icon = 2;
+  optional bool hide_menu = 3;
+  optional bool hide_breadcrumb = 4;
+  optional bool ignore_keep_alive = 5;
+  optional bool hide_tab = 6;
+  optional string frame_src = 7;
+  optional bool carry_param = 8;
+  optional bool hide_children_in_menu = 9;
+  optional bool affix = 10;
+  optional uint32 dynamic_level = 11;
+  optional string real_path = 12;
+}
+
+message OauthLoginReq {
+  string state = 1;
+  string provider = 2;
+}
+
+message OauthProviderInfo {
+  optional uint64 id = 1;
+  optional int64 created_at = 2;
+  optional int64 updated_at = 3;
+  optional string name = 4;
+  optional string client_id = 5;
+  optional string client_secret = 6;
+  optional string redirect_url = 7;
+  optional string scopes = 8;
+  optional string auth_url = 9;
+  optional string token_url = 10;
+  optional uint64 auth_style = 11;
+  optional string info_url = 12;
+}
+
+message OauthProviderListReq {
+  uint64 page = 1;
+  uint64 page_size = 2;
+  optional string name = 3;
+}
+
+message OauthProviderListResp {
+  uint64 total = 1;
+  repeated OauthProviderInfo data = 2;
+}
+
+message OauthRedirectResp {
+  string url = 1;
+}
+
+message PageInfoReq {
+  uint64 page = 1;
+  uint64 page_size = 2;
+}
+
+message PositionInfo {
+  optional uint64 id = 1;
+  optional int64 created_at = 2;
+  optional int64 updated_at = 3;
+  optional uint32 status = 4;
+  optional uint32 sort = 5;
+  optional string name = 6;
+  optional string code = 7;
+  optional string remark = 8;
+}
+
+message PositionListReq {
+  uint64 page = 1;
+  uint64 page_size = 2;
+  optional string name = 3;
+  optional string code = 4;
+  optional string remark = 5;
+}
+
+message PositionListResp {
+  uint64 total = 1;
+  repeated PositionInfo data = 2;
+}
+
+message RoleInfo {
+  optional uint64 id = 1;
+  optional int64 created_at = 2;
+  optional int64 updated_at = 3;
+  optional uint32 status = 4;
+  optional string name = 5;
+  optional string code = 6;
+  optional string default_router = 7;
+  optional string remark = 8;
+  optional uint32 sort = 9;
+}
+
+message RoleListReq {
+  uint64 page = 1;
+  uint64 page_size = 2;
+  optional string name = 3;
+  optional string code = 4;
+  optional string default_router = 5;
+}
+
+message RoleListResp {
+  uint64 total = 1;
+  repeated RoleInfo data = 2;
+}
+
+//  authorization message
+message RoleMenuAuthorityReq {
+  uint64 role_id = 1;
+  repeated uint64 menu_ids = 2;
+}
+
+//  return the role's authorization menu's ids
+message RoleMenuAuthorityResp {
+  repeated uint64 menu_ids = 1;
+}
+
+message TokenInfo {
+  optional string id = 1;
+  optional int64 created_at = 2;
+  optional int64 updated_at = 3;
+  optional uint32 status = 4;
+  optional string uuid = 5;
+  optional string token = 6;
+  optional string source = 7;
+  optional int64 expired_at = 8;
+  optional string username = 9;
+}
+
+message TokenListReq {
+  uint64 page = 1;
+  uint64 page_size = 2;
+  optional string username = 3;
+  optional string nickname = 4;
+  optional string email = 5;
+  optional string uuid = 6;
+}
+
+message TokenListResp {
+  uint64 total = 1;
+  repeated TokenInfo data = 2;
+}
+
+message UUIDReq {
+  string id = 1;
+}
+
+message UUIDsReq {
+  repeated string ids = 1;
+}
+
+message UserInfo {
+  optional string id = 1;
+  optional int64 created_at = 2;
+  optional int64 updated_at = 3;
+  optional uint32 status = 4;
+  optional string username = 5;
+  optional string password = 6;
+  optional string nickname = 7;
+  optional string description = 8;
+  optional string home_path = 9;
+  repeated uint64 role_ids = 10;
+  optional string mobile = 11;
+  optional string email = 12;
+  optional string avatar = 13;
+  optional uint64 department_id = 14;
+  repeated uint64 position_ids = 15;
+  repeated string role_codes = 16;
+  repeated string role_name = 17;
+  optional string department_name = 18;
+  optional uint64 company_id = 19;
+}
+
+message UserListReq {
+  uint64 page = 1;
+  uint64 page_size = 2;
+  optional string username = 3;
+  optional string nickname = 4;
+  optional string email = 5;
+  optional string mobile = 6;
+  repeated uint64 role_ids = 7;
+  optional uint64 department_id = 8;
+  repeated uint64 position_ids = 9;
+  optional string description = 10;
+}
+
+message UserListResp {
+  uint64 total = 1;
+  repeated UserInfo data = 2;
+}
+
+message UsernameReq {
+  string username = 1;
+}
+
+service Core {
+  //  API management
+  //  group: api
+  rpc createApi(ApiInfo) returns (BaseIDResp);
+  //  group: api
+  rpc updateApi(ApiInfo) returns (BaseResp);
+  //  group: api
+  rpc getApiList(ApiListReq) returns (ApiListResp);
+  //  group: api
+  rpc getApiById(IDReq) returns (ApiInfo);
+  //  group: api
+  rpc deleteApi(IDsReq) returns (BaseResp);
+  //  group: authority
+  rpc getMenuAuthority(IDReq) returns (RoleMenuAuthorityResp);
+  //  group: authority
+  rpc createOrUpdateMenuAuthority(RoleMenuAuthorityReq) returns (BaseResp);
+  //  group: base
+  rpc initDatabase(Empty) returns (BaseResp);
+  //  Company management
+  //  group: company
+  rpc createCompany(CompanyInfo) returns (BaseIDResp);
+  //  group: company
+  rpc updateCompany(CompanyInfo) returns (BaseResp);
+  //  group: company
+  rpc getCompanyList(CompanyListReq) returns (CompanyListResp);
+  //  group: company
+  rpc getCompanyById(IDReq) returns (CompanyInfo);
+  //  group: company
+  rpc deleteCompany(IDsReq) returns (BaseResp);
+  //  CompanySecret management
+  //  group: company_secret
+  rpc createCompanySecret(CompanySecretInfo) returns (BaseIDResp);
+  //  group: company_secret
+  rpc updateCompanySecret(CompanySecretInfo) returns (BaseResp);
+  //  group: company_secret
+  rpc getCompanySecretList(CompanySecretListReq) returns (CompanySecretListResp);
+  //  group: company_secret
+  rpc getCompanySecretById(IDReq) returns (CompanySecretInfo);
+  //  group: company_secret
+  rpc deleteCompanySecret(IDsReq) returns (BaseResp);
+  //  Configuration management
+  //  group: configuration
+  rpc createConfiguration(ConfigurationInfo) returns (BaseIDResp);
+  //  group: configuration
+  rpc updateConfiguration(ConfigurationInfo) returns (BaseResp);
+  //  group: configuration
+  rpc getConfigurationList(ConfigurationListReq) returns (ConfigurationListResp);
+  //  group: configuration
+  rpc getConfigurationById(IDReq) returns (ConfigurationInfo);
+  //  group: configuration
+  rpc deleteConfiguration(IDsReq) returns (BaseResp);
+  //  Department management
+  //  group: department
+  rpc createDepartment(DepartmentInfo) returns (BaseIDResp);
+  //  group: department
+  rpc updateDepartment(DepartmentInfo) returns (BaseResp);
+  //  group: department
+  rpc getDepartmentList(DepartmentListReq) returns (DepartmentListResp);
+  //  group: department
+  rpc getDepartmentById(IDReq) returns (DepartmentInfo);
+  //  group: department
+  rpc deleteDepartment(IDsReq) returns (BaseResp);
+  //  Dictionary management
+  //  group: dictionary
+  rpc createDictionary(DictionaryInfo) returns (BaseIDResp);
+  //  group: dictionary
+  rpc updateDictionary(DictionaryInfo) returns (BaseResp);
+  //  group: dictionary
+  rpc getDictionaryList(DictionaryListReq) returns (DictionaryListResp);
+  //  group: dictionary
+  rpc getDictionaryById(IDReq) returns (DictionaryInfo);
+  //  group: dictionary
+  rpc deleteDictionary(IDsReq) returns (BaseResp);
+  //  DictionaryDetail management
+  //  group: dictionarydetail
+  rpc createDictionaryDetail(DictionaryDetailInfo) returns (BaseIDResp);
+  //  group: dictionarydetail
+  rpc updateDictionaryDetail(DictionaryDetailInfo) returns (BaseResp);
+  //  group: dictionarydetail
+  rpc getDictionaryDetailList(DictionaryDetailListReq) returns (DictionaryDetailListResp);
+  //  group: dictionarydetail
+  rpc getDictionaryDetailById(IDReq) returns (DictionaryDetailInfo);
+  //  group: dictionarydetail
+  rpc deleteDictionaryDetail(IDsReq) returns (BaseResp);
+  //  group: dictionarydetail
+  rpc getDictionaryDetailByDictionaryName(BaseMsg) returns (DictionaryDetailListResp);
+  //  group: menu
+  rpc createMenu(MenuInfo) returns (BaseIDResp);
+  //  group: menu
+  rpc updateMenu(MenuInfo) returns (BaseResp);
+  //  group: menu
+  rpc deleteMenu(IDReq) returns (BaseResp);
+  //  group: menu
+  rpc getMenuListByRole(BaseMsg) returns (MenuInfoList);
+  //  group: menu
+  rpc getMenuList(PageInfoReq) returns (MenuInfoList);
+  //  OauthProvider management
+  //  group: oauthprovider
+  rpc createOauthProvider(OauthProviderInfo) returns (BaseIDResp);
+  //  group: oauthprovider
+  rpc updateOauthProvider(OauthProviderInfo) returns (BaseResp);
+  //  group: oauthprovider
+  rpc getOauthProviderList(OauthProviderListReq) returns (OauthProviderListResp);
+  //  group: oauthprovider
+  rpc getOauthProviderById(IDReq) returns (OauthProviderInfo);
+  //  group: oauthprovider
+  rpc deleteOauthProvider(IDsReq) returns (BaseResp);
+  //  group: oauthprovider
+  rpc oauthLogin(OauthLoginReq) returns (OauthRedirectResp);
+  //  group: oauthprovider
+  rpc oauthCallback(CallbackReq) returns (UserInfo);
+  //  Position management
+  //  group: position
+  rpc createPosition(PositionInfo) returns (BaseIDResp);
+  //  group: position
+  rpc updatePosition(PositionInfo) returns (BaseResp);
+  //  group: position
+  rpc getPositionList(PositionListReq) returns (PositionListResp);
+  //  group: position
+  rpc getPositionById(IDReq) returns (PositionInfo);
+  //  group: position
+  rpc deletePosition(IDsReq) returns (BaseResp);
+  //  Role management
+  //  group: role
+  rpc createRole(RoleInfo) returns (BaseIDResp);
+  //  group: role
+  rpc updateRole(RoleInfo) returns (BaseResp);
+  //  group: role
+  rpc getRoleList(RoleListReq) returns (RoleListResp);
+  //  group: role
+  rpc getRoleById(IDReq) returns (RoleInfo);
+  //  group: role
+  rpc deleteRole(IDsReq) returns (BaseResp);
+  //  Token management
+  //  group: token
+  rpc createToken(TokenInfo) returns (BaseUUIDResp);
+  //  group: token
+  rpc deleteToken(UUIDsReq) returns (BaseResp);
+  //  group: token
+  rpc getTokenList(TokenListReq) returns (TokenListResp);
+  //  group: token
+  rpc getTokenById(UUIDReq) returns (TokenInfo);
+  //  group: token
+  rpc blockUserAllToken(UUIDReq) returns (BaseResp);
+  //  group: token
+  rpc updateToken(TokenInfo) returns (BaseResp);
+  //  User management
+  //  group: user
+  rpc createUser(UserInfo) returns (BaseUUIDResp);
+  //  group: user
+  rpc updateUser(UserInfo) returns (BaseResp);
+  //  group: user
+  rpc getUserList(UserListReq) returns (UserListResp);
+  //  group: user
+  rpc getUserByUsername(UsernameReq) returns (UserInfo);
+  //  group: user
+  rpc getUserById(UUIDReq) returns (UserInfo);
+  //  group: user
+  rpc deleteUser(UUIDsReq) returns (BaseResp);
+}
+

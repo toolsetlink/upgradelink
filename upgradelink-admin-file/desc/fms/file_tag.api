@@ -1,0 +1,80 @@
+import "../base.api"
+
+type (
+    // The response data of file tag information | 文件标签信息
+    FileTagInfo {
+        BaseIDInfo
+
+        // Status
+        Status  *uint8 `json:"status,optional"`
+
+        // Name
+        Name  *string `json:"name,optional"`
+
+        // Remark
+        Remark  *string `json:"remark,optional"`
+    }
+
+    // The response data of file tag list | 文件标签列表数据
+    FileTagListResp {
+        BaseDataInfo
+
+        // FileTag list data | 文件标签列表数据
+        Data FileTagListInfo `json:"data"`
+    }
+
+    // FileTag list data | 文件标签列表数据
+    FileTagListInfo {
+        BaseListInfo
+
+        // The API list data | 文件标签列表数据
+        Data  []FileTagInfo  `json:"data"`
+    }
+
+    // Get file tag list request params | 文件标签列表请求参数
+    FileTagListReq {
+        PageInfo
+
+        // Name
+        Name  *string `json:"name,optional"`
+
+        // Remark
+        Remark  *string `json:"remark,optional"`
+    }
+
+    // FileTag information response | 文件标签信息返回体
+    FileTagInfoResp {
+        BaseDataInfo
+
+        // FileTag information | 文件标签数据
+        Data FileTagInfo `json:"data"`
+    }
+)
+
+@server(
+    jwt: Auth
+    group: filetag
+    middleware: Authority
+)
+
+service Fms {
+    // Create file tag information | 创建文件标签
+    @handler createFileTag
+    post /file_tag/create (FileTagInfo) returns (BaseMsgResp)
+
+    // Update file tag information | 更新文件标签
+    @handler updateFileTag
+    post /file_tag/update (FileTagInfo) returns (BaseMsgResp)
+
+    // Delete file tag information | 删除文件标签信息
+    @handler deleteFileTag
+    post /file_tag/delete (IDsReq) returns (BaseMsgResp)
+
+    // Get file tag list | 获取文件标签列表
+    @handler getFileTagList
+    post /file_tag/list (FileTagListReq) returns (FileTagListResp)
+
+    // Get file tag by ID | 通过ID获取文件标签
+    @handler getFileTagById
+    post /file_tag (IDReq) returns (FileTagInfoResp)
+}

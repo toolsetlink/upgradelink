@@ -1,0 +1,254 @@
+syntax = "v1"
+
+info(
+    title: "API management"
+    desc: "API management is used to register APIs and manage APIs"
+    author: "toolsetlink"
+    email: "toolsetlink@163.com"
+    version: "v1.0"
+)
+
+import "../base.api"
+
+type (
+
+    GetElectronUpgradeInfoReq {
+
+        // X-AccessKey
+        AccessKey string `header:"X-AccessKey"`
+
+        // Electron应用 唯一标识
+        ElectronKey string `form:"electronKey"`
+
+        // platform
+        Platform string `form:"platform"`
+
+        // arch
+        Arch string `form:"arch"`
+
+        // 客户端应用版本名
+        VersionName string `form:"versionName"`
+
+        // 升级指定版本（可空，为空时是最新版本）
+        AppointVersionName string `form:"appointVersionName,optional,default="`
+
+        // 设备机型唯一标识
+        DevModelKey string `form:"devModelKey,optional,default="`
+
+        // 设备唯一标识
+        DevKey string `form:"devKey,optional,default="`
+    }
+
+    GetElectronUpgradeInfoResp {
+        // 升级类型 0：未知方式；1：提示升级；2：静默升级；3: 强制升级
+        UpgradeType int64 `json:"upgradeType,optional"`
+        // 提示升级描述内容
+        PromptUpgradeContent string `json:"promptUpgradeContent,optional"`
+
+        //  1.0.0 和 v1.0.0
+        Version string `json:"version,optional"`
+
+        // 文件列表
+        Files []GetElectronUpgradeInfoFileResp `json:"files,optional"`
+
+        // 文件下载路径
+        Path string `json:"path,optional"`
+        // sha512
+        Sha512 string `json:"sha512,optional"`
+        // releaseDate
+        ReleaseDate string `json:"releaseDate,optional"`
+    }
+
+    GetElectronUpgradeInfoFileResp {
+        Url string `json:"url,optional"`
+        // sha512
+        Sha512 string `json:"sha512,optional"`
+        // SIZE
+        Size int64 `json:"size,optional"`
+    }
+
+)
+
+
+type (
+
+    // 数据源（入参）
+    ElectronPlatformsRequest {
+        Url       string `json:"url" form:"url" validate:"required,url"`
+    }
+
+    // 版本信息结构体（入参）
+    PostElectronUploadReq {
+        // X-AccessKey
+        AccessKey string `header:"X-AccessKey"`
+        // Electron应用 唯一标识
+        ElectronKey string `form:"electronKey"`
+        // github token
+        GithubToken string `form:"githubToken"`
+
+        Version   string              `json:"version" validate:"required"`
+        PromptUpgradeContent     string   `json:"promptUpgradeContent,optional"`
+        ReleaseDate   string          `json:"releaseDate,optional"`
+        Platforms ElectronPlatformsRequest    `json:"platforms,optional"`
+    }
+
+    PostElectronUploadResp {
+        BaseMsgResp
+    }
+
+)
+
+
+// RateLimit 流量控制
+// ReplayAttack 防重放攻击
+// Signature 签名认证
+@server(
+    prefix: /v1/electron
+    group: electron
+    timeout: 600s
+    middleware: RateLimit
+)
+
+service api {
+    // 获取最新版本
+    @handler getElectronUpgradeInfo
+    get /upgrade (GetElectronUpgradeInfoReq) returns (GetElectronUpgradeInfoResp)
+
+    // 获取最新版本 MAC
+    @handler getElectronUpgradeInfoByMacYml
+    get /upgrade/latest-mac.yml (GetElectronUpgradeInfoReq) returns (GetElectronUpgradeInfoResp)
+
+    // 获取最新版本 windows
+    @handler getElectronUpgradeInfoByWindowsYml
+    get /upgrade/latest.yml (GetElectronUpgradeInfoReq) returns (GetElectronUpgradeInfoResp)
+
+    // 获取最新版本 linux
+    @handler getElectronUpgradeInfoByLinuxYml
+    get /upgrade/latest-linux.yml (GetElectronUpgradeInfoReq) returns (GetElectronUpgradeInfoResp)
+
+    // 上传Electron版本,并开启升级
+    @handler postElectronUpload
+    post /github-aciton/upload (PostElectronUploadReq) returns (PostElectronUploadResp)
+}
+
+
+type (
+    GetElectronDownloadInfoReq {
+        // 下载类型， 1: 下载安装版本，2: 下载升级文件
+        DownloadType int64 `form:"downloadType,default=1"`
+        // Electron应用 唯一标识
+        ElectronKey string `form:"electronKey"`
+        // platform
+        Platform string `form:"platform,optional"`
+        // 机器架构
+        Arch string `form:"arch,optional"`
+        // 指定版本（可空，为空时是最新版本）
+        VersionCode int64 `form:"versionCode,default=0"`
+        // 指定版本id
+        VersionId int64 `form:"versionId,default=0"`
+    }
+)
+
+type (
+    GetElectronDownloadInfoDmgReq {
+        // Electron应用 唯一标识
+        ElectronKey string `form:"electronKey"`
+        // platform
+        Platform string `form:"platform,optional"`
+        // 机器架构
+        Arch string `form:"arch,optional"`
+        // 指定版本（可空，为空时是最新版本）
+        VersionCode int64 `form:"versionCode,default=0"`
+        // 指定版本id
+        VersionId int64 `form:"versionId,default=0"`
+    }
+)
+
+type (
+    GetElectronDownloadInfoZipReq {
+        // Electron应用 唯一标识
+        ElectronKey string `form:"electronKey"`
+        // platform
+        Platform string `form:"platform,optional"`
+        // 机器架构
+        Arch string `form:"arch,optional"`
+        // 指定版本（可空，为空时是最新版本）
+        VersionCode int64 `form:"versionCode,default=0"`
+        // 指定版本id
+        VersionId int64 `form:"versionId,default=0"`
+    }
+)
+
+type (
+    GetElectronDownloadInfoExeReq {
+        // Electron应用 唯一标识
+        ElectronKey string `form:"electronKey"`
+        // platform
+        Platform string `form:"platform,optional"`
+        // 机器架构
+        Arch string `form:"arch,optional"`
+        // 指定版本（可空，为空时是最新版本）
+        VersionCode int64 `form:"versionCode,default=0"`
+        // 指定版本id
+        VersionId int64 `form:"versionId,default=0"`
+    }
+)
+
+type (
+    GetElectronDownloadInfoAppImageReq {
+        // Electron应用 唯一标识
+        ElectronKey string `form:"electronKey"`
+        // platform
+        Platform string `form:"platform,optional"`
+        // 机器架构
+        Arch string `form:"arch,optional"`
+        // 指定版本（可空，为空时是最新版本）
+        VersionCode int64 `form:"versionCode,default=0"`
+        // 指定版本id
+        VersionId int64 `form:"versionId,default=0"`
+    }
+)
+
+type (
+    GetElectronDownloadInfoBlockmapReq {
+        // Electron应用 唯一标识
+        ElectronKey string `form:"electronKey"`
+        // platform
+        Platform string `form:"platform,optional"`
+        // 机器架构
+        Arch string `form:"arch,optional"`
+        // 指定版本（可空，为空时是最新版本）
+        VersionCode int64 `form:"versionCode,default=0"`
+        // 指定版本id
+        VersionId int64 `form:"versionId,default=0"`
+    }
+)
+
+// RateLimit 流量控制
+@server(
+    group: download
+    prefix: /v1/electron
+    timeout: 30s
+    middleware: CdnRateLimit
+)
+
+service api {
+    @handler getElectronDownloadInfo
+    get /download (GetElectronDownloadInfoReq) returns (*string)
+
+    @handler getElectronDownloadInfoDmg
+    get /download.dmg (GetElectronDownloadInfoDmgReq) returns (*string)
+
+    @handler getElectronDownloadInfoZip
+    get /download.zip (GetElectronDownloadInfoZipReq) returns (*string)
+
+    @handler getElectronDownloadInfoExe
+    get /download.exe (GetElectronDownloadInfoExeReq) returns (*string)
+
+    @handler getElectronDownloadInfoAppImage
+    get /download.AppImage (GetElectronDownloadInfoAppImageReq) returns (*string)
+
+//    @handler getElectronDownloadInfoBlockmap
+//    get /download.blockmap (GetElectronDownloadInfoBlockmapReq) returns (*string)
+
+}

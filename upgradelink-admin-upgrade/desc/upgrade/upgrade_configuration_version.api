@@ -1,0 +1,144 @@
+import "../base.api"
+
+type (
+    // The data of upgrade configuration version information | UpgradeConfigurationVersion信息
+    UpgradeConfigurationVersionInfo {
+        Id        *int    `json:"id,optional"`
+
+        // 配置ID
+        ConfigurationId  *int `json:"configurationId,optional"`
+
+        // 内容 
+        Content  *string `json:"content,optional"`
+
+        // 版本名 
+        VersionName  *string `json:"versionName,optional"`
+
+        // 版本号 
+        VersionCode  *int `json:"versionCode,optional"`
+
+        // 描述信息 
+        Description  *string `json:"description,optional"`
+
+        // 是否删除 0：正常；1：已删除 
+        IsDel  *int32 `json:"isDel,optional"`
+
+        // 创建时间 
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间 
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+    RespUpgradeConfigurationVersionInfo {
+        Id        *int    `json:"id,optional"`
+
+        // configuration应用ID
+        ConfigurationId  *int `json:"configurationId,optional"`
+
+        // configuration应用
+        ConfigurationName  *string `json:"configurationName,optional"`
+
+        // 内容
+        Content  *string `json:"content,optional"`
+
+        // 版本名
+        VersionName  *string `json:"versionName,optional"`
+
+        // 版本号
+        VersionCode  *int `json:"versionCode,optional"`
+
+        // 描述信息
+        Description  *string `json:"description,optional,default="`
+
+        // 是否删除 0：正常；1：已删除
+        IsDel  *int32 `json:"isDel,optional"`
+
+        // 创建时间
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+    // The response data of upgrade configuration version list | UpgradeConfigurationVersion信息列表数据
+    UpgradeConfigurationVersionListResp {
+        BaseDataInfo
+
+        // The upgrade configuration version list data | UpgradeConfigurationVersion信息列表数据
+        Data UpgradeConfigurationVersionListInfo `json:"data"`
+    }
+
+    // The upgrade configuration version list data | UpgradeConfigurationVersion信息列表数据
+    UpgradeConfigurationVersionListInfo {
+        BaseListInfo
+
+        // The upgrade configuration version list data | UpgradeConfigurationVersion信息列表数据
+        Data  []RespUpgradeConfigurationVersionInfo  `json:"data"`
+    }
+
+    // Get upgrade configuration version list request params | UpgradeConfigurationVersion信息列表请求参数
+    UpgradeConfigurationVersionListReq {
+        PageInfo
+
+        // 配置ID 
+        ConfigurationId  *int `json:"configurationId,optional"`
+
+        // 内容 
+        Content  *string `json:"content,optional"`
+
+        // 版本名 
+        VersionName  *string `json:"versionName,optional"`
+
+        // 版本号 
+        VersionCode  *int `json:"versionCode,optional"`
+
+        // 描述信息 
+        Description  *string `json:"description,optional"`
+
+        // 是否删除 0：正常；1：已删除 
+        IsDel  *int32 `json:"isDel,optional"`
+
+        // 创建时间 
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间 
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+    // The upgrade configuration version information response | UpgradeConfigurationVersion信息返回体
+    UpgradeConfigurationVersionInfoResp {
+        BaseDataInfo
+
+        // upgrade configuration version information | UpgradeConfigurationVersion信息数据
+        Data UpgradeConfigurationVersionInfo `json:"data"`
+    }
+)
+
+@server(
+    jwt: Auth
+    group: upgrade_configuration_version
+    middleware: Authority
+)
+
+service Upgrade {
+    // Create upgrade configuration version information | 创建UpgradeConfigurationVersion信息
+    @handler createUpgradeConfigurationVersion
+    post /upgrade_configuration_version/create (UpgradeConfigurationVersionInfo) returns (BaseMsgResp)
+
+    // Update upgrade configuration version information | 更新UpgradeConfigurationVersion信息
+    @handler updateUpgradeConfigurationVersion
+    post /upgrade_configuration_version/update (UpgradeConfigurationVersionInfo) returns (BaseMsgResp)
+
+    // Delete upgrade configuration version information | 删除UpgradeConfigurationVersion信息
+    @handler deleteUpgradeConfigurationVersion
+    post /upgrade_configuration_version/delete (IDsReq) returns (BaseMsgResp)
+
+    // Get upgrade configuration version list | 获取UpgradeConfigurationVersion信息列表
+    @handler getUpgradeConfigurationVersionList
+    post /upgrade_configuration_version/list (UpgradeConfigurationVersionListReq) returns (UpgradeConfigurationVersionListResp)
+
+    // Get upgrade configuration version by ID | 通过ID获取UpgradeConfigurationVersion信息
+    @handler getUpgradeConfigurationVersionById
+    post /upgrade_configuration_version (IDReq) returns (UpgradeConfigurationVersionInfoResp)
+}

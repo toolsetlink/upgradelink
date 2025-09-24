@@ -1,0 +1,34 @@
+{
+	"common": {
+		"success": "成功",
+		"failed": "失败",
+		"updateSuccess": "更新成功",
+		"updateFailed": "更新失败",
+		"createSuccess": "新建成功",
+		"createFailed": "新建失败",
+		"deleteSuccess": "删除成功",
+		"deleteFailed": "删除失败",
+		"changeStatusSuccess": "状态修改成功",
+		"changeStatusFailed": "状态修改失败",
+		"targetNotExist": "目标不存在",
+		"databaseError": "数据库错误",
+		"redisError": "Redis 错误",
+		"permissionDeny": "用户无权限访问此接口",
+		"constraintError": "操作失败: 数据冲突",
+		"validationError": "操作失败: 校验失败",
+		"notSingularError": "操作失败: 数据不唯一"
+	},
+	"file": {
+		"overSizeError": "文件大小超过限定值",
+		"wrongTypeError": "错误的文件类型",
+		"parseFormFailed": "无法处理提交数据"
+	},
+	"init": {
+		"initializeIsRunning": "正在初始化...",
+		"alreadyInit": "数据库已被初始化"
+	},
+	"storage_provider": {
+		"hasFileError": "该提供商存在云文件，请先删除该提供商的所有云文件才可删除提供商",
+		"StorageProviderNotExist": "云存储服务商不存在"
+	}
+}

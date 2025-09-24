@@ -1,0 +1,57 @@
+package dictionarydetail
+
+import (
+	"context"
+
+	"github.com/suyuan32/simple-admin-common/i18n"
+	"github.com/zeromicro/go-zero/core/errorx"
+
+	"upgradelink-admin-core/server/api/internal/logic/dictionary"
+	"upgradelink-admin-core/server/api/internal/svc"
+	"upgradelink-admin-core/server/api/internal/types"
+	"upgradelink-admin-core/server/rpc/types/core"
+
+	"github.com/zeromicro/go-zero/core/logx"
+)
+
+type UpdateDictionaryDetailLogic struct {
+	logx.Logger
+	ctx    context.Context
+	svcCtx *svc.ServiceContext
+}
+
+func NewUpdateDictionaryDetailLogic(ctx context.Context, svcCtx *svc.ServiceContext) *UpdateDictionaryDetailLogic {
+	return &UpdateDictionaryDetailLogic{
+		Logger: logx.WithContext(ctx),
+		ctx:    ctx,
+		svcCtx: svcCtx,
+	}
+}
+
+func (l *UpdateDictionaryDetailLogic) UpdateDictionaryDetail(req *types.DictionaryDetailInfo) (resp *types.BaseMsgResp, err error) {
+	data, err := l.svcCtx.CoreRpc.UpdateDictionaryDetail(l.ctx,
+		&core.DictionaryDetailInfo{
+			Id:           req.Id,
+			Status:       req.Status,
+			Title:        req.Title,
+			Key:          req.Key,
+			Value:        req.Value,
+			DictionaryId: req.DictionaryId,
+			Sort:         req.Sort,
+		})
+	if err != nil {
+		return nil, err
+	}
+
+	dict, err := dictionary.NewGetDictionaryByIdLogic(l.ctx, l.svcCtx).GetDictionaryById(&types.IDReq{Id: *req.DictionaryId})
+	if err != nil {
+		return nil, err
+	}
+
+	if err := l.svcCtx.Redis.Del(l.ctx, "DICTIONARY:"+*dict.Data.Name).Err(); err != nil {
+		logx.Errorw("failed to delete dictionary data in redis", logx.Field("detail", err))
+		return nil, errorx.NewCodeInternalError(i18n.RedisError)
+	}
+
+	return &types.BaseMsgResp{Msg: l.svcCtx.Trans.Trans(l.ctx, data.Msg)}, nil
+}

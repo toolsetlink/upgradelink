@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+// DictionaryDetail message
+
+message DictionaryDetailInfo {
+  optional uint64 id = 1;
+  optional int64 created_at = 2;
+  optional int64 updated_at = 3;
+  optional uint32 status = 4;
+  optional string title = 5;
+  optional string key = 6;
+  optional string value = 7;
+  optional uint64 dictionary_id = 8;
+  optional uint32 sort = 9;
+}
+
+message DictionaryDetailListResp {
+  uint64 total = 1;
+  repeated DictionaryDetailInfo data = 2;
+}
+
+message DictionaryDetailListReq {
+  uint64 page = 1;
+  uint64 page_size = 2;
+  optional uint64 dictionary_id = 3;
+  optional string key = 4;
+}
+
+
+service Core {
+
+  // DictionaryDetail management
+  // group: dictionarydetail
+  rpc createDictionaryDetail (DictionaryDetailInfo) returns (BaseIDResp);
+  // group: dictionarydetail
+  rpc updateDictionaryDetail (DictionaryDetailInfo) returns (BaseResp);
+  // group: dictionarydetail
+  rpc getDictionaryDetailList (DictionaryDetailListReq) returns (DictionaryDetailListResp);
+  // group: dictionarydetail
+  rpc getDictionaryDetailById (IDReq) returns (DictionaryDetailInfo);
+  // group: dictionarydetail
+  rpc deleteDictionaryDetail (IDsReq) returns (BaseResp);
+  // group: dictionarydetail
+  rpc getDictionaryDetailByDictionaryName (BaseMsg)  returns (DictionaryDetailListResp);
+
+}

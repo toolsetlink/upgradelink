@@ -1,0 +1,153 @@
+import "../base.api"
+
+type (
+    // The data of upgrade apk version information | UpgradeApkVersion信息
+    UpgradeApkVersionInfo {
+        Id        *int    `json:"id,optional"`
+
+        // 安卓应用ID
+        ApkId  *int `json:"apkId,optional"`
+
+        // 云文件id 
+        CloudFileId  *string `json:"cloudFileId,optional"`
+
+        // 版本名 
+        VersionName  *string `json:"versionName,optional"`
+
+        // 版本号 
+        VersionCode  *int `json:"versionCode,optional"`
+
+        // 版本文件大小
+        VersionFileSize  *string `json:"versionFileSize,optional"`
+
+        // 描述信息 
+        Description  *string `json:"description,optional"`
+
+        // 是否删除 0：正常；1：已删除 
+        IsDel  *int32 `json:"isDel,optional"`
+
+        // 创建时间 
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间 
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+    RespUpgradeApkVersionInfo {
+        Id   *int    `json:"id,optional"`
+
+        // 安卓应用ID
+        ApkId  *int `json:"apkId,optional"`
+
+        // 文件应用名称
+        ApkName  *string `json:"apkName,optional"`
+
+        // 云文件id
+        CloudFileId  *string `json:"cloudFileId,optional"`
+
+        // 云文件名称
+        CloudFileName  *string `json:"cloudFileName,optional"`
+
+        // 版本名
+        VersionName  *string `json:"versionName,optional"`
+
+        // 版本号
+        VersionCode  *int `json:"versionCode,optional"`
+
+        // 版本文件大小
+        VersionFileSize  *string `json:"versionFileSize,optional"`
+    
+        // 描述信息
+        Description  *string `json:"description,optional,default="`
+
+        // 是否删除 0：正常；1：已删除
+        IsDel  *int32 `json:"isDel,optional"`
+
+        // 创建时间
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+    // The response data of upgrade apk version list | UpgradeApkVersion信息列表数据
+    UpgradeApkVersionListResp {
+        BaseDataInfo
+
+        // The upgrade apk version list data | UpgradeApkVersion信息列表数据
+        Data UpgradeApkVersionListInfo `json:"data"`
+    }
+
+    // The upgrade apk version list data | UpgradeApkVersion信息列表数据
+    UpgradeApkVersionListInfo {
+        BaseListInfo
+
+        // The upgrade apk version list data | UpgradeApkVersion信息列表数据
+        Data  []RespUpgradeApkVersionInfo  `json:"data"`
+    }
+
+    // Get upgrade apk version list request params | UpgradeApkVersion信息列表请求参数
+    UpgradeApkVersionListReq {
+        PageInfo
+
+        // 安卓应用ID
+        ApkId  *int `json:"apkId,optional"`
+
+        // 云文件id 
+        CloudFileId  *string `json:"cloudFileId,optional"`
+
+        // 版本名 
+        VersionName  *string `json:"versionName,optional"`
+
+        // 版本号 
+        VersionCode  *int `json:"versionCode,optional"`
+
+        // 描述信息 
+        Description  *string `json:"description,optional"`
+
+        // 是否删除 0：正常；1：已删除 
+        IsDel  *int32 `json:"isDel,optional"`
+
+        // 创建时间 
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间 
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+    // The upgrade apk version information response | UpgradeApkVersion信息返回体
+    UpgradeApkVersionInfoResp {
+        BaseDataInfo
+
+        // upgrade apk version information | UpgradeApkVersion信息数据
+        Data RespUpgradeApkVersionInfo `json:"data"`
+    }
+)
+
+@server(
+    jwt: Auth
+    group: upgrade_apk_version
+    middleware: Authority
+)
+
+service Upgrade {
+    // Create upgrade apk version information | 创建UpgradeApkVersion信息
+    @handler createUpgradeApkVersion
+    post /upgrade_apk_version/create (UpgradeApkVersionInfo) returns (BaseMsgResp)
+
+    // Update upgrade apk version information | 更新UpgradeApkVersion信息
+    @handler updateUpgradeApkVersion
+    post /upgrade_apk_version/update (UpgradeApkVersionInfo) returns (BaseMsgResp)
+
+    // Delete upgrade apk version information | 删除UpgradeApkVersion信息
+    @handler deleteUpgradeApkVersion
+    post /upgrade_apk_version/delete (IDsReq) returns (BaseMsgResp)
+
+    // Get upgrade apk version list | 获取UpgradeApkVersion信息列表
+    @handler getUpgradeApkVersionList
+    post /upgrade_apk_version/list (UpgradeApkVersionListReq) returns (UpgradeApkVersionListResp)
+
+    // Get upgrade apk version by ID | 通过ID获取UpgradeApkVersion信息
+    @handler getUpgradeApkVersionById
+    post /upgrade_apk_version (IDReq) returns (UpgradeApkVersionInfoResp)
+}

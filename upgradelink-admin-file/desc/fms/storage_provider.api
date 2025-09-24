@@ -1,0 +1,101 @@
+import "../base.api"
+
+type (
+    // The response data of storage provider information | 服务提供商信息
+    StorageProviderInfo {
+        BaseIDInfo
+
+        // State | 状态
+        State  *bool `json:"state,optional"`
+
+        // Name | 云服务提供商名称
+        Name  *string `json:"name,optional"`
+
+        // Bucket | 存储桶
+        Bucket  *string `json:"bucket,optional"`
+
+        // Secret Id
+        SecretId  *string `json:"secretId,optional"`
+
+        // Secret Key
+        SecretKey  *string `json:"secretKey,optional"`
+
+        // Secret Key
+        Endpoint  *string `json:"endpoint,optional"`
+
+        // folder | folder
+        Folder  *string `json:"folder,optional"`
+
+        // Region | 地区
+        Region  *string `json:"region,optional"`
+
+        // Whether is Default | 是否为默认
+        IsDefault  *bool `json:"isDefault,optional"`
+
+        // Does it use CDN | 是否使用 CDN
+        UseCdn *bool `json:"useCdn,optional"`
+
+        // CDN URL | CDN 地址
+        CdnUrl *string `json:"cdnUrl,optional"`
+    }
+
+    // The response data of storage provider list | 服务提供商列表数据
+    StorageProviderListResp {
+        BaseDataInfo
+
+        // StorageProvider list data | 服务提供商列表数据
+        Data StorageProviderListInfo `json:"data"`
+    }
+
+    // StorageProvider list data | 服务提供商列表数据
+    StorageProviderListInfo {
+        BaseListInfo
+
+        // The API list data | 服务提供商列表数据
+        Data  []StorageProviderInfo  `json:"data"`
+    }
+
+    // Get storage provider list request params | 服务提供商列表请求参数
+    StorageProviderListReq {
+        PageInfo
+
+        // Name | 名称
+        Name  *string `json:"name,optional"`
+    }
+
+    // StorageProvider information response | 服务提供商信息返回体
+    StorageProviderInfoResp {
+        BaseDataInfo
+
+        // StorageProvider information | 服务提供商数据
+        Data StorageProviderInfo `json:"data"`
+    }
+)
+
+@server(
+    jwt: Auth
+    group: storageprovider
+    middleware: Authority
+)
+
+service Fms {
+    // Create storage provider information | 创建服务提供商
+    @handler createStorageProvider
+    post /storage_provider/create (StorageProviderInfo) returns (BaseMsgResp)
+
+    // Update storage provider information | 更新服务提供商
+    @handler updateStorageProvider
+    post /storage_provider/update (StorageProviderInfo) returns (BaseMsgResp)
+
+    // Delete storage provider information | 删除服务提供商信息
+    @handler deleteStorageProvider
+    post /storage_provider/delete (IDsReq) returns (BaseMsgResp)
+
+    // Get storage provider list | 获取服务提供商列表
+    @handler getStorageProviderList
+    post /storage_provider/list (StorageProviderListReq) returns (StorageProviderListResp)
+
+    // Get storage provider by ID | 通过ID获取服务提供商
+    @handler getStorageProviderById
+    post /storage_provider (IDReq) returns (StorageProviderInfoResp)
+}

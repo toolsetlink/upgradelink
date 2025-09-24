@@ -1,0 +1,22 @@
+Name: api
+Host: 0.0.0.0
+Port: 8888
+
+Log:
+  ServiceName: upgrade-api
+  Mode: file
+  Encoding: json
+  TimeFormat: "2006-01-02 15:04:05.000"
+  Path: "./logs"
+  Level: debug
+  KeepDays: 3
+  Rotation: daily
+
+MysqlConfig: "root:Rootroot123!@tcp(127.0.0.1:3306)/upgrade?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai"
+
+RedisConfig:
+  Host: 127.0.0.1:6379
+  Type: node
+  Pass: a123456
+  Tls: false
+  NonBlock: false

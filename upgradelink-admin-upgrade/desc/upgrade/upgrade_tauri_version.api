@@ -1,0 +1,195 @@
+import "../base.api"
+
+type (
+    // The data of upgrade tauri version information | UpgradeTauriVersion信息
+    UpgradeTauriVersionInfo {
+        Id        *int    `json:"id,optional"`
+
+        // tauri应用ID
+        TauriId  *int `json:"tauriId,optional"`
+
+        // 云文件id 
+        CloudFileId  *string `json:"cloudFileId,optional"`
+
+        // 云文件id 安装文件
+        InstallCloudFileId  *string `json:"installCloudFileId,optional"`
+
+        // 版本名 
+        VersionName  *string `json:"versionName,optional"`
+
+        // 版本号 
+        VersionCode  *int `json:"versionCode,optional"`
+
+        // 安装包文件大小
+        InstallVersionFileSize  *string `json:"installVersionFileSize,optional"`
+
+        // 升级包文件大小
+        UpgradeVersionFileSize  *string `json:"upgradeVersionFileSize,optional"`
+
+        // 操作系统:linux、darwin、windows 
+        Target  *string `json:"target,optional"`
+
+        // 机器架构:x86_64、i686、aarch64、armv7 
+        Arch  *string `json:"arch,optional"`
+
+        // 生成的 .sig 文件的内容，可能会随着每次构建而改变
+        Signature  *string `json:"signature,optional"`
+
+        // 描述信息 
+        Description  *string `json:"description,optional,default="`
+
+        // 是否删除 0：正常；1：已删除 
+        IsDel  *int32 `json:"isDel,optional"`
+
+        // 创建时间 
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间 
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+    RespUpgradeTauriVersionInfo {
+        Id   *int    `json:"id,optional"`
+
+        // tauri应用ID
+        TauriId  *int `json:"tauriId,optional"`
+
+        // tauri应用名称
+        TauriName  *string `json:"tauriName,optional"`
+
+        // 云文件id
+        CloudFileId  *string `json:"cloudFileId,optional"`
+
+        // 云文件名称
+        CloudFileName  *string `json:"cloudFileName,optional"`
+
+        // 云文件id 安装文件
+        InstallCloudFileId  *string `json:"installCloudFileId,optional"`
+    
+        // 云文件名称
+        InstallCloudFileName  *string `json:"InstallCloudFileName,optional"`
+
+        // 版本名
+        VersionName  *string `json:"versionName,optional"`
+
+        // 版本号
+        VersionCode  *int `json:"versionCode,optional"`
+
+        // 安装包文件大小
+        InstallVersionFileSize  *string `json:"installVersionFileSize,optional"`
+
+        // 升级包文件大小
+        UpgradeVersionFileSize  *string `json:"upgradeVersionFileSize,optional"`
+    
+        // 操作系统:linux、darwin、windows
+        Target  *string `json:"target,optional"`
+
+        // 机器架构:x86_64、i686、aarch64、armv7
+        Arch  *string `json:"arch,optional"`
+
+        // 生成的 .sig 文件的内容，可能会随着每次构建而改变
+        Signature  *string `json:"signature,optional"`
+
+        // 描述信息
+        Description  *string `json:"description,optional,default="`
+
+        // 是否删除 0：正常；1：已删除
+        IsDel  *int32 `json:"isDel,optional"`
+
+        // 创建时间
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+    // The response data of upgrade tauri version list | UpgradeTauriVersion信息列表数据
+    UpgradeTauriVersionListResp {
+        BaseDataInfo
+
+        // The upgrade tauri version list data | UpgradeTauriVersion信息列表数据
+        Data UpgradeTauriVersionListInfo `json:"data"`
+    }
+
+    // The upgrade tauri version list data | UpgradeTauriVersion信息列表数据
+    UpgradeTauriVersionListInfo {
+        BaseListInfo
+
+        // The upgrade tauri version list data | UpgradeTauriVersion信息列表数据
+        Data  []RespUpgradeTauriVersionInfo  `json:"data"`
+    }
+
+    // Get upgrade tauri version list request params | UpgradeTauriVersion信息列表请求参数
+    UpgradeTauriVersionListReq {
+        PageInfo
+
+        // tauri应用ID
+        TauriId  *int `json:"tauriId,optional"`
+
+        // 云文件id 
+        CloudFileId  *string `json:"cloudFileId,optional"`
+
+        // 云文件id 安装文件
+        InstallCloudFileId  *string `json:"installCloudFileId,optional"`
+
+        // 版本名 
+        VersionName  *string `json:"versionName,optional"`
+
+        // 版本号 
+        VersionCode  *int `json:"versionCode,optional"`
+
+        // 操作系统:linux、darwin、windows 
+        Target  *string `json:"target,optional"`
+
+        // 机器架构:x86_64、i686、aarch64、armv7 
+        Arch  *string `json:"arch,optional"`
+
+        // 描述信息 
+        Description  *string `json:"description,optional,default="`
+
+        // 是否删除 0：正常；1：已删除 
+        IsDel  *int32 `json:"isDel,optional"`
+
+        // 创建时间 
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间 
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+    // The upgrade tauri version information response | UpgradeTauriVersion信息返回体
+    UpgradeTauriVersionInfoResp {
+        BaseDataInfo
+
+        // upgrade tauri version information | UpgradeTauriVersion信息数据
+        Data RespUpgradeTauriVersionInfo `json:"data"`
+    }
+)
+
+@server(
+    jwt: Auth
+    group: upgrade_tauri_version
+    middleware: Authority
+)
+
+service Upgrade {
+    // Create upgrade tauri version information | 创建UpgradeTauriVersion信息
+    @handler createUpgradeTauriVersion
+    post /upgrade_tauri_version/create (UpgradeTauriVersionInfo) returns (BaseMsgResp)
+
+    // Update upgrade tauri version information | 更新UpgradeTauriVersion信息
+    @handler updateUpgradeTauriVersion
+    post /upgrade_tauri_version/update (UpgradeTauriVersionInfo) returns (BaseMsgResp)
+
+    // Delete upgrade tauri version information | 删除UpgradeTauriVersion信息
+    @handler deleteUpgradeTauriVersion
+    post /upgrade_tauri_version/delete (IDsReq) returns (BaseMsgResp)
+
+    // Get upgrade tauri version list | 获取UpgradeTauriVersion信息列表
+    @handler getUpgradeTauriVersionList
+    post /upgrade_tauri_version/list (UpgradeTauriVersionListReq) returns (UpgradeTauriVersionListResp)
+
+    // Get upgrade tauri version by ID | 通过ID获取UpgradeTauriVersion信息
+    @handler getUpgradeTauriVersionById
+    post /upgrade_tauri_version (IDReq) returns (UpgradeTauriVersionInfoResp)
+}

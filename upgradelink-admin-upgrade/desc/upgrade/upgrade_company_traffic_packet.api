@@ -1,0 +1,109 @@
+import "../base.api"
+
+type (
+
+    UpgradeCompanyTrafficPacketCreateInfo {
+        // 流量包唯一标识
+        Key  *string `json:"key"`
+    }
+
+    // The data of upgrade company traffic packet information | UpgradeCompanyTrafficPacket信息
+    UpgradeCompanyTrafficPacketInfo {
+        Id        *uint64    `json:"id,optional"`
+
+        // 公司ID 
+        CompanyId  *int `json:"companyId,optional"`
+
+        // 流量包ID 
+        PacketId  *int `json:"packetId,optional"`
+
+        // 流量包名称
+        Name  *string `json:"name,optional"`
+
+        // 流量包唯一标识
+        Key  *string `json:"key,optional"`
+
+        // 开始时间 
+        StartTime  *int64 `json:"startTime,optional"`
+
+        // 结束时间 
+        EndTime  *int64 `json:"endTime,optional"`
+
+        // 初始流量大小
+        InitialSize  *string `json:"initialSize,optional"`
+        // 剩余流量大小
+        RemainingSize  *string `json:"remainingSize,optional"`
+
+        // 状态: 1=有效, 0=已过期, 2=已用完 
+        Status  *int32 `json:"status,optional"`
+
+        // 兑换流量包时间 
+        ExchangeTime  *int64 `json:"exchangeTime,optional"`
+
+        // 创建时间 
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间 
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+    // The response data of upgrade company traffic packet list | UpgradeCompanyTrafficPacket信息列表数据
+    UpgradeCompanyTrafficPacketListResp {
+        BaseDataInfo
+
+        // The upgrade company traffic packet list data | UpgradeCompanyTrafficPacket信息列表数据
+        Data UpgradeCompanyTrafficPacketListInfo `json:"data"`
+    }
+
+    // The upgrade company traffic packet list data | UpgradeCompanyTrafficPacket信息列表数据
+    UpgradeCompanyTrafficPacketListInfo {
+        BaseListInfo
+
+        // The upgrade company traffic packet list data | UpgradeCompanyTrafficPacket信息列表数据
+        Data  []UpgradeCompanyTrafficPacketInfo  `json:"data"`
+    }
+
+    // Get upgrade company traffic packet list request params | UpgradeCompanyTrafficPacket信息列表请求参数
+    UpgradeCompanyTrafficPacketListReq {
+        PageInfo
+
+        // 状态: 1=有效, 0=已过期, 2=已用完
+        Status  *int32 `json:"status,optional"`
+    }
+
+    // The upgrade company traffic packet information response | UpgradeCompanyTrafficPacket信息返回体
+    UpgradeCompanyTrafficPacketInfoResp {
+        BaseDataInfo
+
+        // upgrade company traffic packet information | UpgradeCompanyTrafficPacket信息数据
+        Data UpgradeCompanyTrafficPacketInfo `json:"data"`
+    }
+)
+
+@server(
+    jwt: Auth
+    group: upgrade_company_traffic_packet
+    middleware: Authority
+)
+
+service Upgrade {
+    // Create upgrade company traffic packet information | 创建UpgradeCompanyTrafficPacket信息
+    @handler createUpgradeCompanyTrafficPacket
+    post /upgrade_company_traffic_packet/create (UpgradeCompanyTrafficPacketCreateInfo) returns (BaseMsgResp)
+
+    // Update upgrade company traffic packet information | 更新UpgradeCompanyTrafficPacket信息
+    @handler updateUpgradeCompanyTrafficPacket
+    post /upgrade_company_traffic_packet/update (UpgradeCompanyTrafficPacketInfo) returns (BaseMsgResp)
+
+    // Delete upgrade company traffic packet information | 删除UpgradeCompanyTrafficPacket信息
+    @handler deleteUpgradeCompanyTrafficPacket
+    post /upgrade_company_traffic_packet/delete (IDsReq) returns (BaseMsgResp)
+
+    // Get upgrade company traffic packet list | 获取UpgradeCompanyTrafficPacket信息列表
+    @handler getUpgradeCompanyTrafficPacketList
+    post /upgrade_company_traffic_packet/list (UpgradeCompanyTrafficPacketListReq) returns (UpgradeCompanyTrafficPacketListResp)
+
+    // Get upgrade company traffic packet by ID | 通过ID获取UpgradeCompanyTrafficPacket信息
+    @handler getUpgradeCompanyTrafficPacketById
+    post /upgrade_company_traffic_packet (IDReq) returns (UpgradeCompanyTrafficPacketInfoResp)
+}

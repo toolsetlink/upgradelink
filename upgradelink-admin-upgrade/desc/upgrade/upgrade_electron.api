@@ -1,0 +1,110 @@
+import "../base.api"
+
+type (
+    // The data of upgrade electron information | UpgradeElectron信息
+    UpgradeElectronInfo {
+        Id        *int    `json:"id,optional"`
+
+        // electron应用唯一标识
+        Key  *string `json:"key,optional"`
+
+        // electron应用名称 
+        Name  *string `json:"name,optional"`
+
+        // 描述信息 
+        Description  *string `json:"description,optional,default="`
+
+        // 开源项目 github 地址 
+        GithubUrl  *string `json:"githubUrl,optional"`
+
+        // 是否删除 0：正常；1：已删除 
+        IsDel  *int32 `json:"isDel,optional"`
+
+        // 创建时间 
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间 
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+    // The response data of upgrade electron list | UpgradeElectron信息列表数据
+    UpgradeElectronListResp {
+        BaseDataInfo
+
+        // The upgrade electron list data | UpgradeElectron信息列表数据
+        Data UpgradeElectronListInfo `json:"data"`
+    }
+
+    // The upgrade electron list data | UpgradeElectron信息列表数据
+    UpgradeElectronListInfo {
+        BaseListInfo
+
+        // The upgrade electron list data | UpgradeElectron信息列表数据
+        Data  []UpgradeElectronInfo  `json:"data"`
+    }
+
+    // Get upgrade electron list request params | UpgradeElectron信息列表请求参数
+    UpgradeElectronListReq {
+        PageInfo
+
+        // 公司ID 
+        CompanyId  *int `json:"companyId,optional"`
+
+        // electron应用唯一标识 
+        Key  *string `json:"key,optional"`
+
+        // electron应用名称 
+        Name  *string `json:"name,optional"`
+
+        // 描述信息 
+        Description  *string `json:"description,optional"`
+
+        // 开源项目 github 地址 
+        GithubUrl  *string `json:"githubUrl,optional"`
+
+        // 是否删除 0：正常；1：已删除 
+        IsDel  *int32 `json:"isDel,optional"`
+
+        // 创建时间 
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间 
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+    // The upgrade electron information response | UpgradeElectron信息返回体
+    UpgradeElectronInfoResp {
+        BaseDataInfo
+
+        // upgrade electron information | UpgradeElectron信息数据
+        Data UpgradeElectronInfo `json:"data"`
+    }
+)
+
+@server(
+    jwt: Auth
+    group: upgrade_electron
+    middleware: Authority
+)
+
+service Upgrade {
+    // Create upgrade electron information | 创建UpgradeElectron信息
+    @handler createUpgradeElectron
+    post /upgrade_electron/create (UpgradeElectronInfo) returns (BaseMsgResp)
+
+    // Update upgrade electron information | 更新UpgradeElectron信息
+    @handler updateUpgradeElectron
+    post /upgrade_electron/update (UpgradeElectronInfo) returns (BaseMsgResp)
+
+    // Delete upgrade electron information | 删除UpgradeElectron信息
+    @handler deleteUpgradeElectron
+    post /upgrade_electron/delete (IDsReq) returns (BaseMsgResp)
+
+    // Get upgrade electron list | 获取UpgradeElectron信息列表
+    @handler getUpgradeElectronList
+    post /upgrade_electron/list (UpgradeElectronListReq) returns (UpgradeElectronListResp)
+
+    // Get upgrade electron by ID | 通过ID获取UpgradeElectron信息
+    @handler getUpgradeElectronById
+    post /upgrade_electron (IDReq) returns (UpgradeElectronInfoResp)
+}

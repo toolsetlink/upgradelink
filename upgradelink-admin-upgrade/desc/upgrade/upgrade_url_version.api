@@ -1,0 +1,134 @@
+import "../base.api"
+
+type (
+    // The data of upgrade url version information | UpgradeUrlVersion信息
+    UpgradeUrlVersionInfo {
+        Id  *int `json:"id,optional"`
+
+        // url应用ID
+        UrlId  *int `json:"urlId,optional"`
+
+        // url链接
+        UrlPath  *string `json:"urlPath,optional"`
+
+        // 版本名 
+        VersionName  *string `json:"versionName,optional"`
+
+        // 版本号 
+        VersionCode  *int `json:"versionCode,optional"`
+
+        // 描述信息 
+        Description  *string `json:"description,optional,default="`
+
+        // 是否删除 0：正常；1：已删除 
+        IsDel  *int32 `json:"isDel,optional"`
+
+        // 创建时间 
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间 
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+
+    RespUpgradeUrlVersionInfo {
+        Id        *int    `json:"id,optional"`
+
+        // url应用ID
+        UrlId  *int `json:"urlId,optional"`
+
+        // url应用
+        UrlName  *string `json:"urlName,optional"`
+
+        // url链接
+        UrlPath  *string `json:"urlPath,optional"`
+
+        // 版本名
+        VersionName  *string `json:"versionName,optional"`
+
+        // 版本号
+        VersionCode  *int `json:"versionCode,optional"`
+
+        // 描述信息
+        Description  *string `json:"description,optional,default="`
+
+        // 是否删除 0：正常；1：已删除
+        IsDel  *int32 `json:"isDel,optional"`
+
+        // 创建时间
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+    // The response data of upgrade url version list | UpgradeUrlVersion信息列表数据
+    UpgradeUrlVersionListResp {
+        BaseDataInfo
+
+        // The upgrade url version list data | UpgradeUrlVersion信息列表数据
+        Data UpgradeUrlVersionListInfo `json:"data"`
+    }
+
+    // The upgrade url version list data | UpgradeUrlVersion信息列表数据
+    UpgradeUrlVersionListInfo {
+        BaseListInfo
+
+        // The upgrade url version list data | UpgradeUrlVersion信息列表数据
+        Data  []RespUpgradeUrlVersionInfo  `json:"data"`
+    }
+
+    // Get upgrade url version list request params | UpgradeUrlVersion信息列表请求参数
+    UpgradeUrlVersionListReq {
+        PageInfo
+
+        // url应用ID
+        UrlId  *int `json:"urlId,optional"`
+
+        // 版本名
+        VersionName  *string `json:"versionName,optional"`
+
+        // 版本号
+        VersionCode  *int `json:"versionCode,optional"`
+
+        // url链接
+        UrlPath  *string `json:"urlPath,optional"`
+
+    }
+
+    // The upgrade url version information response | UpgradeUrlVersion信息返回体
+    UpgradeUrlVersionInfoResp {
+        BaseDataInfo
+
+        // upgrade url version information | UpgradeUrlVersion信息数据
+        Data UpgradeUrlVersionInfo `json:"data"`
+    }
+)
+
+@server(
+    jwt: Auth
+    group: upgrade_url_version
+    middleware: Authority
+)
+
+service Upgrade {
+    // Create upgrade url version information | 创建UpgradeUrlVersion信息
+    @handler createUpgradeUrlVersion
+    post /upgrade_url_version/create (UpgradeUrlVersionInfo) returns (BaseMsgResp)
+
+    // Update upgrade url version information | 更新UpgradeUrlVersion信息
+    @handler updateUpgradeUrlVersion
+    post /upgrade_url_version/update (UpgradeUrlVersionInfo) returns (BaseMsgResp)
+
+    // Delete upgrade url version information | 删除UpgradeUrlVersion信息
+    @handler deleteUpgradeUrlVersion
+    post /upgrade_url_version/delete (IDsReq) returns (BaseMsgResp)
+
+    // Get upgrade url version list | 获取UpgradeUrlVersion信息列表
+    @handler getUpgradeUrlVersionList
+    post /upgrade_url_version/list (UpgradeUrlVersionListReq) returns (UpgradeUrlVersionListResp)
+
+    // Get upgrade url version by ID | 通过ID获取UpgradeUrlVersion信息
+    @handler getUpgradeUrlVersionById
+    post /upgrade_url_version (IDReq) returns (UpgradeUrlVersionInfoResp)
+}

@@ -1,0 +1,86 @@
+import "../base.api"
+
+type (
+    // The data of upgrade dev model information | UpgradeDevModel信息
+    UpgradeDevModelInfo {
+        Id        *int    `json:"id,optional"`
+
+        // 设备机型唯一标识
+        Key  *string `json:"key,optional"`
+
+        // 设备机型名称 
+        Name  *string `json:"name,optional"`
+
+        // 是否删除 0：正常；1：已删除 
+        IsDel  *int32 `json:"isDel,optional"`
+
+        // 创建时间 
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间 
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+    // The response data of upgrade dev model list | UpgradeDevModel信息列表数据
+    UpgradeDevModelListResp {
+        BaseDataInfo
+
+        // The upgrade dev model list data | UpgradeDevModel信息列表数据
+        Data UpgradeDevModelListInfo `json:"data"`
+    }
+
+    // The upgrade dev model list data | UpgradeDevModel信息列表数据
+    UpgradeDevModelListInfo {
+        BaseListInfo
+
+        // The upgrade dev model list data | UpgradeDevModel信息列表数据
+        Data  []UpgradeDevModelInfo  `json:"data"`
+    }
+
+    // Get upgrade dev model list request params | UpgradeDevModel信息列表请求参数
+    UpgradeDevModelListReq {
+        PageInfo
+
+        // 设备机型唯一标识
+        Key  *string `json:"key,optional"`
+
+        // 设备机型名称 
+        Name  *string `json:"name,optional"`
+    }
+
+    // The upgrade dev model information response | UpgradeDevModel信息返回体
+    UpgradeDevModelInfoResp {
+        BaseDataInfo
+
+        // upgrade dev model information | UpgradeDevModel信息数据
+        Data UpgradeDevModelInfo `json:"data"`
+    }
+)
+
+@server(
+    jwt: Auth
+    group: upgrade_dev_model
+    middleware: Authority
+)
+
+service Upgrade {
+    // Create upgrade dev model information | 创建UpgradeDevModel信息
+    @handler createUpgradeDevModel
+    post /upgrade_dev_model/create (UpgradeDevModelInfo) returns (BaseMsgResp)
+
+    // Update upgrade dev model information | 更新UpgradeDevModel信息
+    @handler updateUpgradeDevModel
+    post /upgrade_dev_model/update (UpgradeDevModelInfo) returns (BaseMsgResp)
+
+    // Delete upgrade dev model information | 删除UpgradeDevModel信息
+    @handler deleteUpgradeDevModel
+    post /upgrade_dev_model/delete (IDsReq) returns (BaseMsgResp)
+
+    // Get upgrade dev model list | 获取UpgradeDevModel信息列表
+    @handler getUpgradeDevModelList
+    post /upgrade_dev_model/list (UpgradeDevModelListReq) returns (UpgradeDevModelListResp)
+
+    // Get upgrade dev model by ID | 通过ID获取UpgradeDevModel信息
+    @handler getUpgradeDevModelById
+    post /upgrade_dev_model (IDReq) returns (UpgradeDevModelInfoResp)
+}

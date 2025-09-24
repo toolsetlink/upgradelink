@@ -1,0 +1,82 @@
+syntax = "v1"
+
+info(
+    title: "API management"
+    desc: "API management is used to register APIs and manage APIs"
+    author: "toolsetlink"
+    email: "toolsetlink@163.com"
+    version: "v1.0"
+)
+
+import "../base.api"
+
+type (
+
+    ReportReq {
+
+        // 事件类型
+        EventType string `json:"eventType"`
+
+        // 事件发生时间戳
+        Timestamp string `json:"timestamp"`
+
+        // 应用 唯一标识
+        AppKey string `json:"appKey"`
+
+        // 事件数据
+        EventData EventData `json:"eventData,optional"`
+
+    }
+
+    EventData {
+
+        // 客户端应用版本号
+        VersionCode int64 `json:"versionCode,optional"`
+
+        // 设备机型唯一标识
+        DevModelKey string `json:"devModelKey,optional"`
+
+        // 设备唯一标识
+        DevKey string `json:"devKey,optional"`
+
+        // 操作系统
+        Target string `json:"target,optional"`
+
+        // 机器架构
+        Arch string `json:"arch,optional"`
+
+        // 应用启动时间
+        LaunchTime string `json:"launchTime,optional"`
+
+        // 升级策略返回的升级版本 - 升级 下载事件
+        DownloadVersionCode int64 `json:"downloadVersionCode,optional"`
+
+        // 升级策略返回的升级版本 - 升级 升级事件
+        UpgradeVersionCode int64 `json:"upgradeVersionCode,optional"`
+
+        // code
+        Code int64 `json:"code,optional"`
+
+    }
+
+    ReportResp {
+        BaseMsgResp
+    }
+)
+
+// RateLimit 流量控制
+// ReplayAttack 防重放攻击
+// Signature 签名认证
+@server(
+    prefix: /v1/app
+    group: app
+    timeout: 30s
+    middleware: RateLimit, ReplayAttack, Signature
+)
+
+service api {
+    @handler report
+    post /report (ReportReq) returns (ReportResp)
+}
+
+

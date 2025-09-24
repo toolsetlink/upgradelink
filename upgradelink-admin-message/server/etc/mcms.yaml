@@ -1,0 +1,34 @@
+Name: mcms.rpc
+ListenOn: 0.0.0.0:9106
+Timeout: 5000
+
+DatabaseConf:
+  Type: mysql
+  Host: rm-j6cx741ix46hwj4xa1o.mysql.cnhk.rds.aliyuncs.com
+  Port: 3306
+  DBName: upgrade-prod
+  Username: songang # set your username
+  Password: Sj13051570639! # set your password
+  MaxOpenConn: 100
+  SSLMode: disable # disable or require
+  CacheTime: 5
+
+RedisConf:
+  Host: redis.upgrade.toolsetlink.com:6379
+  Db: 0
+  Pass: sj13051570639
+
+Log:
+  ServiceName: mcmsRpcLogger
+  Mode: file
+  Path: ./logs/mcms/rpc
+  Encoding: json
+  Level: info
+  Compress: false
+  KeepDays: 7
+  StackCoolDownMillis: 100
+
+Prometheus:
+  Host: 0.0.0.0
+  Port: 4006
+  Path: /metrics

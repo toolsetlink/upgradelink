@@ -1,0 +1,124 @@
+import "../base.api"
+
+type (
+    // The data of upgrade company income information | UpgradeCompanyIncome信息
+    UpgradeCompanyIncomeInfo {
+        Id        *int    `json:"id,optional"`
+
+        // 公司ID 
+        CompanyId  *int `json:"companyId,optional"`
+
+        // 收入类型：0 - 广告收入； 
+        IncomeType  *int8 `json:"incomeType,optional"`
+
+        // 收入金额（单位分） 
+        IncomeAmount  *int `json:"incomeAmount,optional"`
+
+        // 收入产生时间
+        IncomeTime  *int64 `json:"incomeTime,optional"`
+
+        // 备注 
+        Remark  *string `json:"remark,optional"`
+
+        // 收入状态：0 - 待结算；1 - 已结算；2 - 失效（如订单取消导致收入作废） 
+        Status  *int32 `json:"status,optional"`
+
+        // 是否删除 0：正常；1：已删除 
+        IsDel  *int32 `json:"isDel,optional"`
+
+        // 创建时间 
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间 
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+    // The response data of upgrade company income list | UpgradeCompanyIncome信息列表数据
+    UpgradeCompanyIncomeListResp {
+        BaseDataInfo
+
+        // The upgrade company income list data | UpgradeCompanyIncome信息列表数据
+        Data UpgradeCompanyIncomeListInfo `json:"data"`
+    }
+
+    // The upgrade company income list data | UpgradeCompanyIncome信息列表数据
+    UpgradeCompanyIncomeListInfo {
+        BaseListInfo
+
+        // 待结算金额
+        IncomeAmount  *int `json:"incomeAmount,optional"`
+        // 已结算金额
+        SettleAmount  *int `json:"settleAmount,optional"`
+
+        // The upgrade company income list data | UpgradeCompanyIncome信息列表数据
+        Data  []UpgradeCompanyIncomeInfo  `json:"data"`
+    }
+
+    // Get upgrade company income list request params | UpgradeCompanyIncome信息列表请求参数
+    UpgradeCompanyIncomeListReq {
+        PageInfo
+
+        // 公司ID 
+        CompanyId  *int `json:"companyId,optional"`
+
+        // 收入类型：0 - 广告收入； 
+        IncomeType  *int8 `json:"incomeType,optional"`
+
+        // 收入金额（单位分） 
+        IncomeAmount  *int `json:"incomeAmount,optional"`
+
+        // 收入产生时间
+        IncomeTime  *int64 `json:"incomeTime,optional"`
+
+        // 备注 
+        Remark  *string `json:"remark,optional"`
+
+        // 收入状态：0 - 待结算；1 - 已结算；2 - 失效（如订单取消导致收入作废） 
+        Status  *int32 `json:"status,optional"`
+
+        // 是否删除 0：正常；1：已删除 
+        IsDel  *int32 `json:"isDel,optional"`
+
+        // 创建时间 
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间 
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+    // The upgrade company income information response | UpgradeCompanyIncome信息返回体
+    UpgradeCompanyIncomeInfoResp {
+        BaseDataInfo
+
+        // upgrade company income information | UpgradeCompanyIncome信息数据
+        Data UpgradeCompanyIncomeInfo `json:"data"`
+    }
+)
+
+@server(
+    jwt: Auth
+    group: upgrade_company_income
+    middleware: Authority
+)
+
+service Upgrade {
+    // Create upgrade company income information | 创建UpgradeCompanyIncome信息
+    @handler createUpgradeCompanyIncome
+    post /upgrade_company_income/create (UpgradeCompanyIncomeInfo) returns (BaseMsgResp)
+
+    // Update upgrade company income information | 更新UpgradeCompanyIncome信息
+    @handler updateUpgradeCompanyIncome
+    post /upgrade_company_income/update (UpgradeCompanyIncomeInfo) returns (BaseMsgResp)
+
+    // Delete upgrade company income information | 删除UpgradeCompanyIncome信息
+    @handler deleteUpgradeCompanyIncome
+    post /upgrade_company_income/delete (IDsReq) returns (BaseMsgResp)
+
+    // Get upgrade company income list | 获取UpgradeCompanyIncome信息列表
+    @handler getUpgradeCompanyIncomeList
+    post /upgrade_company_income/list (UpgradeCompanyIncomeListReq) returns (UpgradeCompanyIncomeListResp)
+
+    // Get upgrade company income by ID | 通过ID获取UpgradeCompanyIncome信息
+    @handler getUpgradeCompanyIncomeById
+    post /upgrade_company_income (IDReq) returns (UpgradeCompanyIncomeInfoResp)
+}

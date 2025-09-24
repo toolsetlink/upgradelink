@@ -1,0 +1,107 @@
+import "../base.api"
+
+type (
+    // The data of upgrade apk information | UpgradeApk信息
+    UpgradeApkInfo {
+        Id        *int    `json:"id,optional"`
+
+        // 安卓应用唯一标识
+        Key  *string `json:"key,optional"`
+
+        // 安卓应用名称 
+        Name  *string `json:"name,optional"`
+
+        // 安卓应用包名 
+        PackageName  *string `json:"packageName,optional"`
+
+        // 描述信息 
+        Description  *string `json:"description,optional"`
+
+        // 是否删除 0：正常；1：已删除 
+        IsDel  *int32 `json:"isDel,optional"`
+
+        // 创建时间 
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间 
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+    // The response data of upgrade apk list | UpgradeApk信息列表数据
+    UpgradeApkListResp {
+        BaseDataInfo
+
+        // The upgrade apk list data | UpgradeApk信息列表数据
+        Data UpgradeApkListInfo `json:"data"`
+    }
+
+    // The upgrade apk list data | UpgradeApk信息列表数据
+    UpgradeApkListInfo {
+        BaseListInfo
+
+        // The upgrade apk list data | UpgradeApk信息列表数据
+        Data  []UpgradeApkInfo  `json:"data"`
+    }
+
+    // Get upgrade apk list request params | UpgradeApk信息列表请求参数
+    UpgradeApkListReq {
+        PageInfo
+
+        // 安卓应用唯一标识
+        Key  *string `json:"key,optional"`
+
+        // 安卓应用名称 
+        Name  *string `json:"name,optional"`
+
+        // 安卓应用包名 
+        PackageName  *string `json:"packageName,optional"`
+
+        // 描述信息 
+        Description  *string `json:"description,optional"`
+
+        // 是否删除 0：正常；1：已删除 
+        IsDel  *int32 `json:"isDel,optional"`
+
+        // 创建时间 
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间 
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+    // The upgrade apk information response | UpgradeApk信息返回体
+    UpgradeApkInfoResp {
+        BaseDataInfo
+
+        // upgrade apk information | UpgradeApk信息数据
+        Data UpgradeApkInfo `json:"data"`
+    }
+)
+
+@server(
+    jwt: Auth
+    group: upgrade_apk
+    middleware: Authority
+)
+
+service Upgrade {
+    // Create upgrade apk information | 创建UpgradeApk信息
+    @handler createUpgradeApk
+    post /upgrade_apk/create (UpgradeApkInfo) returns (BaseMsgResp)
+
+    // Update upgrade apk information | 更新UpgradeApk信息
+    @handler updateUpgradeApk
+    post /upgrade_apk/update (UpgradeApkInfo) returns (BaseMsgResp)
+
+    // Delete upgrade apk information | 删除UpgradeApk信息
+    @handler deleteUpgradeApk
+    post /upgrade_apk/delete (IDsReq) returns (BaseMsgResp)
+
+    // Get upgrade apk list | 获取UpgradeApk信息列表
+    @handler getUpgradeApkList
+    post /upgrade_apk/list (UpgradeApkListReq) returns (UpgradeApkListResp)
+
+    // Get upgrade apk by ID | 通过ID获取UpgradeApk信息
+    @handler getUpgradeApkById
+    post /upgrade_apk (IDReq) returns (UpgradeApkInfoResp)
+}

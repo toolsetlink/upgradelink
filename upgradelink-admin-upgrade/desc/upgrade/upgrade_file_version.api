@@ -1,0 +1,153 @@
+import "../base.api"
+
+type (
+    // The data of upgrade file version information | UpgradeFileVersion信息
+    UpgradeFileVersionInfo {
+        Id   *int    `json:"id,optional"`
+
+        // 文件应用id
+        FileId  *int `json:"fileId,optional"`
+
+        // 云文件id
+        CloudFileId  *string `json:"cloudFileId,optional"`
+
+        // 版本名 
+        VersionName  *string `json:"versionName,optional"`
+
+        // 版本号 
+        VersionCode  *int `json:"versionCode,optional"`
+
+        // 版本文件大小
+        VersionFileSize  *string `json:"versionFileSize,optional"`
+
+        // 描述信息 
+        Description  *string `json:"description,optional,default="`
+
+        // 是否删除 0：正常；1：已删除 
+        IsDel  *int32 `json:"isDel,optional"`
+
+        // 创建时间 
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间 
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+    RespUpgradeFileVersionInfo {
+        Id   *int    `json:"id,optional"`
+
+        // 文件应用id
+        FileId  *int `json:"fileId,optional"`
+
+        // 文件应用名称
+        FileName  *string `json:"fileName,optional"`
+
+        // 云文件id
+        CloudFileId  *string `json:"cloudFileId,optional"`
+
+        // 云文件名称
+        CloudFileName  *string `json:"cloudFileName,optional"`
+
+        // 版本名
+        VersionName  *string `json:"versionName,optional"`
+
+        // 版本号
+        VersionCode  *int `json:"versionCode,optional"`
+
+        // 版本文件大小
+        VersionFileSize  *string `json:"versionFileSize,optional"`
+
+        // 描述信息
+        Description  *string `json:"description,optional,default="`
+
+        // 是否删除 0：正常；1：已删除
+        IsDel  *int32 `json:"isDel,optional"`
+
+        // 创建时间
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+    // The response data of upgrade file version list | UpgradeFileVersion信息列表数据
+    UpgradeFileVersionListResp {
+        BaseDataInfo
+
+        // The upgrade file version list data | UpgradeFileVersion信息列表数据
+        Data UpgradeFileVersionListInfo `json:"data"`
+    }
+
+    // The upgrade file version list data | UpgradeFileVersion信息列表数据
+    UpgradeFileVersionListInfo {
+        BaseListInfo
+
+        // The upgrade file version list data | UpgradeFileVersion信息列表数据
+        Data  []RespUpgradeFileVersionInfo  `json:"data"`
+    }
+
+    // Get upgrade file version list request params | UpgradeFileVersion信息列表请求参数
+    UpgradeFileVersionListReq {
+        PageInfo
+
+        // 文件应用ID
+        FileId  *int `json:"fileId,optional"`
+
+        // 云文件id 
+        CloudFileId  *string `json:"cloudFileId,optional"`
+
+        // 版本名 
+        VersionName  *string `json:"versionName,optional"`
+
+        // 版本号 
+        VersionCode  *int `json:"versionCode,optional"`
+
+        // 描述信息 
+        Description  *string `json:"description,optional,default="`
+
+        // 是否删除 0：正常；1：已删除 
+        IsDel  *int32 `json:"isDel,optional"`
+
+        // 创建时间 
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间 
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+    // The upgrade file version information response | UpgradeFileVersion信息返回体
+    UpgradeFileVersionInfoResp {
+        BaseDataInfo
+
+        // upgrade file version information | UpgradeFileVersion信息数据
+        Data RespUpgradeFileVersionInfo `json:"data"`
+    }
+)
+
+@server(
+    jwt: Auth
+    group: upgrade_file_version
+    middleware: Authority
+)
+
+service Upgrade {
+    // Create upgrade file version information | 创建UpgradeFileVersion信息
+    @handler createUpgradeFileVersion
+    post /upgrade_file_version/create (UpgradeFileVersionInfo) returns (BaseMsgResp)
+
+    // Update upgrade file version information | 更新UpgradeFileVersion信息
+    @handler updateUpgradeFileVersion
+    post /upgrade_file_version/update (UpgradeFileVersionInfo) returns (BaseMsgResp)
+
+    // Delete upgrade file version information | 删除UpgradeFileVersion信息
+    @handler deleteUpgradeFileVersion
+    post /upgrade_file_version/delete (IDsReq) returns (BaseMsgResp)
+
+    // Get upgrade file version list | 获取UpgradeFileVersion信息列表
+    @handler getUpgradeFileVersionList
+    post /upgrade_file_version/list (UpgradeFileVersionListReq) returns (UpgradeFileVersionListResp)
+
+    // Get upgrade file version by ID | 通过ID获取UpgradeFileVersion信息
+    @handler getUpgradeFileVersionById
+    post /upgrade_file_version (IDReq) returns (UpgradeFileVersionInfoResp)
+}

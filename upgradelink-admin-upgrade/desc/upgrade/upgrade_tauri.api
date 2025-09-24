@@ -1,0 +1,107 @@
+import "../base.api"
+
+type (
+    // The data of upgrade tauri information | UpgradeTauri信息
+    UpgradeTauriInfo {
+        Id        *int    `json:"id,optional"`
+
+        // tauri应用唯一标识
+        Key  *string `json:"key,optional"`
+
+        // tauri应用名称 
+        Name  *string `json:"name,optional"`
+
+        // 描述信息
+        Description  *string `json:"description,optional,default="`
+
+        // github_url
+        GithubUrl  *string `json:"githubUrl,optional"`
+
+        // 是否删除 0：正常；1：已删除
+        IsDel  *int32 `json:"isDel,optional"`
+
+        // 创建时间 
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间 
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+    // The response data of upgrade tauri list | UpgradeTauri信息列表数据
+    UpgradeTauriListResp {
+        BaseDataInfo
+
+        // The upgrade tauri list data | UpgradeTauri信息列表数据
+        Data UpgradeTauriListInfo `json:"data"`
+    }
+
+    // The upgrade tauri list data | UpgradeTauri信息列表数据
+    UpgradeTauriListInfo {
+        BaseListInfo
+
+        // The upgrade tauri list data | UpgradeTauri信息列表数据
+        Data  []UpgradeTauriInfo  `json:"data"`
+    }
+
+    // Get upgrade tauri list request params | UpgradeTauri信息列表请求参数
+    UpgradeTauriListReq {
+        PageInfo
+
+        // 公司ID 
+        CompanyId  *int `json:"companyId,optional"`
+
+        // tauri应用唯一标识 
+        Key  *string `json:"key,optional"`
+
+        // tauri应用名称 
+        Name  *string `json:"name,optional"`
+
+        // github_url
+        GithubUrl  *string `json:"githubUrl,optional"`
+
+        // 是否删除 0：正常；1：已删除 
+        IsDel  *int32 `json:"isDel,optional"`
+
+        // 创建时间 
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间 
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+    // The upgrade tauri information response | UpgradeTauri信息返回体
+    UpgradeTauriInfoResp {
+        BaseDataInfo
+
+        // upgrade tauri information | UpgradeTauri信息数据
+        Data UpgradeTauriInfo `json:"data"`
+    }
+)
+
+@server(
+    jwt: Auth
+    group: upgrade_tauri
+    middleware: Authority
+)
+
+service Upgrade {
+    // Create upgrade tauri information | 创建UpgradeTauri信息
+    @handler createUpgradeTauri
+    post /upgrade_tauri/create (UpgradeTauriInfo) returns (BaseMsgResp)
+
+    // Update upgrade tauri information | 更新UpgradeTauri信息
+    @handler updateUpgradeTauri
+    post /upgrade_tauri/update (UpgradeTauriInfo) returns (BaseMsgResp)
+
+    // Delete upgrade tauri information | 删除UpgradeTauri信息
+    @handler deleteUpgradeTauri
+    post /upgrade_tauri/delete (IDsReq) returns (BaseMsgResp)
+
+    // Get upgrade tauri list | 获取UpgradeTauri信息列表
+    @handler getUpgradeTauriList
+    post /upgrade_tauri/list (UpgradeTauriListReq) returns (UpgradeTauriListResp)
+
+    // Get upgrade tauri by ID | 通过ID获取UpgradeTauri信息
+    @handler getUpgradeTauriById
+    post /upgrade_tauri (IDReq) returns (UpgradeTauriInfoResp)
+}

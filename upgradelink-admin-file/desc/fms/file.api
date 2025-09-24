@@ -1,0 +1,147 @@
+syntax = "v1"
+
+info(
+	title: "file management"
+	desc: "file management"
+	author: "Ryan SU"
+	email: "yuansu.china.work@gmail.com"
+	version: "v1.0"
+)
+
+import "../base.api"
+
+type (
+	// The data when upload finished | 上传完成数据
+	UploadInfo {
+		// File name | 文件名称
+		Name string `json:"name"`
+
+		// File path | 文件路径
+		Url string `json:"url"`
+	}
+
+	// The response data when upload finished | 上传完成返回的数据
+	UploadResp {
+		BaseDataInfo
+
+		// The  data when upload finished | 上传完成数据
+		Data UploadInfo `json:"data"`
+	}
+
+	// Update file information params | 更新文件信息参数
+	UpdateFileReq {
+		// ID
+		// Required : true
+		ID string `json:"id"`
+
+		// File name | 文件名
+		// Required : true
+		Name *string `json:"name,optional" validate:"max=50"`
+
+		// File tag | 文件标签
+		FileTagIds  []uint64  `json:"tagIds,optional"`
+	}
+
+	// Get file list params | 获取文件列表参数
+	FileListReq {
+		PageInfo
+		// File type | 文件类型
+		FileType *uint8 `json:"fileType,optional" validate:"omitempty,max=10"`
+
+		// File name | 文件名
+		FileName *string `json:"fileName,optional" validate:"omitempty,max=50"`
+
+		// Create date period | 创建日期时间段
+		Period []string `json:"period,optional"`
+
+		// FileTags' Id | 标签 ID
+        FileTagIds  []uint64 `json:"tagIds,optional"`
+
+        // Status | 状态
+        Status *uint8 `json:"status,optional"`
+	}
+
+	// The response data of file information | 文件信息数据
+	FileInfo {
+		BaseUUIDInfo
+
+		// User's UUID | 用户的UUID
+		UserUUID *string `json:"userUUID"`
+
+		// File name | 文件名
+		Name *string `json:"name"`
+
+		// File type | 文件类型
+		FileType *uint8 `json:"fileType"`
+
+		// File size | 文件大小
+		Size *uint64 `json:"size"`
+
+		// File path | 文件路径
+		Path *string `json:"path"`
+
+		// File public status | 文件公开状态
+		// false private true public | false 私人, true公开
+		Status *uint8 `json:"status"`
+
+		// The public URL | 公开访问的链接
+		PublicPath *string `json:"publicPath"`
+
+		// FileTags' Id | 标签 ID
+		FileTagIds  []uint64 `json:"tagIds,optional,omitempty"`
+	}
+
+	// The response data of file information list | 文件信息列表数据
+	FileListResp {
+		BaseDataInfo
+
+		// The file list data | 文件信息列表数据
+		Data FileListInfo `json:"data"`
+	}
+
+	FileListInfo {
+		BaseListInfo
+
+		// The file list data | 文件信息列表数据
+		Data []FileInfo `json:"data"`
+	}
+)
+
+@server(
+	jwt : Auth
+	group: file
+	middleware: Authority
+)
+
+service Fms {
+	// Get file list | 获取文件列表
+	@handler fileList
+	post /file/list (FileListReq) returns (FileListResp)
+	
+	// Update file information | 更新文件信息
+	@handler updateFile
+	post /file/update (UpdateFileReq) returns (BaseMsgResp)
+	
+	// Delete file information | 删除文件信息
+	@handler deleteFile
+	post /file/delete (UUIDsReq) returns (BaseMsgResp)
+	
+	// Change file public status | 改变文件公开状态
+	@handler changePublicStatus
+	post /file/status (StatusCodeReq) returns (BaseMsgResp)
+	
+	// Download file | 下载文件
+	@handler downloadFile
+	get /file/download/:id (UUIDPathReq)
+}
+
+@server(
+	jwt : Auth
+	group: file
+)
+
+service Fms {
+	// Upload file | 上传文件
+	@handler upload
+	post /upload returns (UploadResp)
+}

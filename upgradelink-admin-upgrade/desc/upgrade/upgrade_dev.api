@@ -1,0 +1,92 @@
+import "../base.api"
+
+type (
+    // The data of upgrade dev information | UpgradeDev信息
+    UpgradeDevInfo {
+        Id        *int    `json:"id,optional"`
+
+        // 设备唯一标识
+        Key  *string `json:"key,optional"`
+
+        // 是否删除 0：正常；1：已删除 
+        IsDel  *int32 `json:"isDel,optional"`
+
+        // DevGroup
+        DevGroupIds []uint64 `json:"devGroupIds,optional,omitempty"`
+
+        // 创建时间 
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间 
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+    // The response data of upgrade dev list | UpgradeDev信息列表数据
+    UpgradeDevListResp {
+        BaseDataInfo
+
+        // The upgrade dev list data | UpgradeDev信息列表数据
+        Data UpgradeDevListInfo `json:"data"`
+    }
+
+    // The upgrade dev list data | UpgradeDev信息列表数据
+    UpgradeDevListInfo {
+        BaseListInfo
+
+        // The upgrade dev list data | UpgradeDev信息列表数据
+        Data  []UpgradeDevInfo  `json:"data"`
+    }
+
+    // Get upgrade dev list request params | UpgradeDev信息列表请求参数
+    UpgradeDevListReq {
+        PageInfo
+
+        // 设备唯一标识
+        Key  *string `json:"key,optional"`
+
+        // 是否删除 0：正常；1：已删除 
+        IsDel  *int32 `json:"isDel,optional"`
+
+        // 创建时间 
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间 
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+    // The upgrade dev information response | UpgradeDev信息返回体
+    UpgradeDevInfoResp {
+        BaseDataInfo
+
+        // upgrade dev information | UpgradeDev信息数据
+        Data UpgradeDevInfo `json:"data"`
+    }
+)
+
+@server(
+    jwt: Auth
+    group: upgrade_dev
+    middleware: Authority
+)
+
+service Upgrade {
+    // Create upgrade dev information | 创建UpgradeDev信息
+    @handler createUpgradeDev
+    post /upgrade_dev/create (UpgradeDevInfo) returns (BaseMsgResp)
+
+    // Update upgrade dev information | 更新UpgradeDev信息
+    @handler updateUpgradeDev
+    post /upgrade_dev/update (UpgradeDevInfo) returns (BaseMsgResp)
+
+    // Delete upgrade dev information | 删除UpgradeDev信息
+    @handler deleteUpgradeDev
+    post /upgrade_dev/delete (IDsReq) returns (BaseMsgResp)
+
+    // Get upgrade dev list | 获取UpgradeDev信息列表
+    @handler getUpgradeDevList
+    post /upgrade_dev/list (UpgradeDevListReq) returns (UpgradeDevListResp)
+
+    // Get upgrade dev by ID | 通过ID获取UpgradeDev信息
+    @handler getUpgradeDevById
+    post /upgrade_dev (IDReq) returns (UpgradeDevInfoResp)
+}

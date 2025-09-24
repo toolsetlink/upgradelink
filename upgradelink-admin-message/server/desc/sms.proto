@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+// Sms message
+
+message SmsInfo {
+  repeated string phone_number = 1;
+  repeated string params = 2;
+  optional string template_id = 4;
+  optional string app_id = 5;
+  optional string sign_name = 6;
+  optional string provider = 7;
+}
+
+
+service Mcms {
+  // group: sms
+  rpc sendSms(SmsInfo) returns (BaseUUIDResp);
+}

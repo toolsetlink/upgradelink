@@ -1,0 +1,62 @@
+# 依赖目录
+node_modules/
+
+# 本地开发环境文件
+.env.local
+.env.*.local
+
+# 日志文件
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+logs/
+
+# 编辑器与IDE配置
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.project
+.classpath
+.settings/
+*.ipr
+*.iml
+*.iws
+
+# 构建输出目录
+dist/
+
+# 缓存与临时文件
+.cache/
+.temp/
+.tmp/
+lastupdate.tmp
+*.diff
+*.patch
+
+# 操作系统自动生成文件
+.DS_Store
+Thumbs.db
+
+# 测试输出
+/coverage
+*.lcov
+*.test
+*.out
+
+# 二进制文件
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# 构建工具相关
+dependency-reduced-pom.xml
+pom.xml.versionsBackup
+.gradle/

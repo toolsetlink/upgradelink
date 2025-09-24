@@ -1,0 +1,212 @@
+import "../base.api"
+
+type (
+    UpgradeDashboardInfo {
+
+        // 昨日应用下载次数  /  总下载次数
+        YesterdayDownloadCount   *int    `json:"yesterdayDownloadCount,optional"`
+        TotalDownloadCount   *int    `json:"totalDownloadCount,optional"`
+
+        // 昨日应用获取升级次数 /  总应用获取升级次数
+        YesterdayAppGetStrategyCount   *int    `json:"yesterdayAppGetStrategyCount,optional"`
+        TotalAppGetStrategyCount   *int    `json:"totalAppGetStrategyCount,optional"`
+
+        // 昨日应用升级次数 /  总应用升级次数
+        YesterdayAppUpgradeCount   *int    `json:"yesterdayAppUpgradeCount,optional"`
+        TotalAppUpgradeCount   *int    `json:"totalAppUpgradeCount,optional"`
+
+        // 昨日应用启动次数 /  总应用启动次数
+        YesterdayAppStartCount   *int    `json:"yesterdayAppStartCount,optional"`
+        TotalAppStartCount   *int    `json:"totalAppStartCount,optional"`
+
+        // 近 7 天 流量使用  （展示多应用）
+        TrafficUsageCount7Day  TrafficUsageCount7Day `json:"trafficUsageCount7Day,optional"`
+
+        // 近 7 天 应用下载次数  （展示多应用）
+        DownloadCount7Day  DownloadCount7Day `json:"downloadCount7Day,optional"`
+
+        // 近 7 天 获取应用升级次数  （展示多应用）
+        AppGetStrategyCount7Day  AppGetStrategyCount7Day `json:"appGetStrategyCount7Day,optional"`
+
+        // 近 7 天 应用升级次数  （展示多应用）
+        AppUpgradeCount7Day  AppUpgradeCount7Day `json:"appUpgradeCount7Day,optional"`
+
+        // 近 7 天 应用启动次数  （展示多应用）
+        AppStartCount7Day  AppStartCount7Day `json:"appStartCount7Day,optional"`
+
+        // 昨日新增设备数量
+        YesterdayNewDevCount   *int    `json:"yesterdayNewDevCount,optional"`
+
+        // 总设备数量
+        TotalDevCount   *int    `json:"totalDevCount,optional"`
+
+        // 昨日请求次数
+        YesterdayReqCount   *int    `json:"yesterdayReqCount,optional"`
+
+        // 总请求次数
+        TotalReqCount   *int    `json:"totalReqCount,optional"`
+
+        // 近 7天设备新增量
+        DevCount7Day  DevCount7Day `json:"devCount7Day,optional"`
+
+        // 近 7天接口请求次数
+        ReqCount7Day ReqCount7Day `json:"reqCount7Day,optional"`
+    }
+
+    TrafficUsageCount7Day  {
+        TimeData  []string     `json:"timeData"`             // time 时间 x 轴
+        Series    []TrafficUsageCount7DaySeriesItem `json:"series"`   // 数据
+    }
+    TrafficUsageCount7DaySeriesItem  {
+        Data  []float32    `json:"data"`        // y 轴数据
+        AppName string     `json:"appName"`     // 应用名称
+    }
+
+    DownloadCount7Day  {
+        TimeData  []string     `json:"timeData"`             // time 时间 x 轴
+        Series    []DownloadCount7DaySeriesItem `json:"series"`   // 数据
+    }
+    DownloadCount7DaySeriesItem  {
+        Data  []int    `json:"data"`        // y 轴数据
+        AppName string `json:"appName"`     // 应用名称
+    }
+
+    AppUpgradeCount7Day  {
+        TimeData  []string     `json:"timeData"`             // time 时间 x 轴
+        Series    []AppUpgradeCount7DaySeriesItem `json:"series"`   // 数据
+    }
+    AppUpgradeCount7DaySeriesItem  {
+        Data  []int    `json:"data"`        // y 轴数据
+        AppName string `json:"appName"`     // 应用名称
+    }
+
+    AppGetStrategyCount7Day  {
+        TimeData  []string     `json:"timeData"`             // time 时间 x 轴
+        Series    []AppGetStrategyCount7DaySeriesItem `json:"series"`   // 数据
+    }
+    AppGetStrategyCount7DaySeriesItem  {
+        Data  []int    `json:"data"`        // y 轴数据
+        AppName string `json:"appName"`     // 应用名称
+    }
+
+    AppStartCount7Day  {
+        TimeData  []string     `json:"timeData"`             // time 时间 x 轴
+        Series    []AppStartCount7DaySeriesItem `json:"series"`   // 数据
+    }
+    AppStartCount7DaySeriesItem  {
+        Data  []int    `json:"data"`        // y 轴数据
+        AppName string `json:"appName"`     // 应用名称
+    }
+
+    DevCount7Day  {
+        TimeData  []string     `json:"timeData"`             // time 时间 x 轴
+        Series    []DevCount7DaySeriesItem `json:"series"`   // 数据
+    }
+
+    DevCount7DaySeriesItem  {
+        Data  []int    `json:"data"`        // y 轴数据
+        AppName string `json:"appName"`     // 应用名称
+    }
+
+    ReqCount7Day  {
+        TimeData  []string     `json:"timeData"`             // time 时间 x 轴
+        Series    []ReqCount7DaySeriesItem `json:"series"`   // 数据
+    }
+    
+    ReqCount7DaySeriesItem  {
+        Data  []int    `json:"data"`        // y 轴数据
+        AppName string `json:"appName"`     // 应用名称
+    }
+
+    UpgradeDashboardResp {
+        BaseDataInfo
+
+        Data UpgradeDashboardInfo `json:"data"`
+    }
+)
+
+
+type (
+    TaruiAppUpgradeDashboardInfo {
+
+        // 近 7 天 应用下载次数  （展示多应用）
+        DownloadCount7Day  DownloadCount7Day `json:"downloadCount7Day,optional"`
+
+        // 近 7 天 应用启动次数  （展示多应用）
+        AppStartCount7Day  AppStartCount7Day `json:"appStartCount7Day,optional"`
+
+        // 近 7 天 应用升级次数  （展示多应用）
+        AppUpgradeCount7Day  AppUpgradeCount7Day `json:"appUpgradeCount7Day,optional"`
+
+    }
+
+    TaruiAppDownloadCount7Day  {
+        TimeData  []string     `json:"timeData"`             // time 时间 x 轴
+        Series    []DownloadCount7DaySeriesItem `json:"series"`   // 数据
+    }
+    TaruiAppDownloadCount7DaySeriesItem  {
+        Data  []int    `json:"data"`        // y 轴数据
+        AppName string `json:"appName"`     // 应用名称
+    }
+
+    TaruiAppAppStartCount7Day  {
+        TimeData  []string     `json:"timeData"`             // time 时间 x 轴
+        Series    []AppStartCount7DaySeriesItem `json:"series"`   // 数据
+    }
+    TaruiAppAppStartCount7DaySeriesItem  {
+        Data  []int    `json:"data"`        // y 轴数据
+        AppName string `json:"appName"`     // 应用名称
+    }
+
+    TaruiAppAppUpgradeCount7Day  {
+        TimeData  []string     `json:"timeData"`             // time 时间 x 轴
+        Series    []AppUpgradeCount7DaySeriesItem `json:"series"`   // 数据
+    }
+    TaruiAppAppUpgradeCount7DaySeriesItem  {
+        Data  []int    `json:"data"`        // y 轴数据
+        AppName string `json:"appName"`     // 应用名称
+    }
+
+
+    TaruiAppUpgradeDashboardResp {
+        BaseDataInfo
+
+        Data TaruiAppUpgradeDashboardInfo `json:"data"`
+    }
+)
+
+@server(
+    jwt: Auth
+    group: upgrade_dashboard
+    middleware: Authority
+)
+
+service Upgrade {
+    // 获取首页统计数据
+    @handler getUpgradeDashboard
+    post /upgrade_dashboard returns (UpgradeDashboardResp)
+
+    // 获取应用级别tauri应用统计数据
+    @handler getTaruiAppUpgradeDashboard
+    post /tauri_app_upgrade_dashboard  (IDReq) returns (TaruiAppUpgradeDashboardResp)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

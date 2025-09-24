@@ -1,0 +1,89 @@
+import "../base.api"
+
+type (
+    // The data of upgrade url information | UpgradeUrl信息
+    UpgradeUrlInfo {
+        Id        *int    `json:"id,optional"`
+
+        // url唯一标识
+        Key  *string `json:"key,optional"`
+
+        // url 名称 
+        Name  *string `json:"name,optional"`
+
+        // 描述信息
+        Description  *string `json:"description,optional,default="`
+
+        // 是否删除 0：正常；1：已删除
+        IsDel  *int32 `json:"isDel,optional"`
+
+        // 创建时间 
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间 
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+    // The response data of upgrade url list | UpgradeUrl信息列表数据
+    UpgradeUrlListResp {
+        BaseDataInfo
+
+        // The upgrade url list data | UpgradeUrl信息列表数据
+        Data UpgradeUrlListInfo `json:"data"`
+    }
+
+    // The upgrade url list data | UpgradeUrl信息列表数据
+    UpgradeUrlListInfo {
+        BaseListInfo
+
+        // The upgrade url list data | UpgradeUrl信息列表数据
+        Data  []UpgradeUrlInfo  `json:"data"`
+    }
+
+    // Get upgrade url list request params | UpgradeUrl信息列表请求参数
+    UpgradeUrlListReq {
+        PageInfo
+
+        // url唯一标识
+        Key  *string `json:"key,optional"`
+
+        // url 名称 
+        Name  *string `json:"name,optional"`
+    }
+
+    // The upgrade url information response | UpgradeUrl信息返回体
+    UpgradeUrlInfoResp {
+        BaseDataInfo
+
+        // upgrade url information | UpgradeUrl信息数据
+        Data UpgradeUrlInfo `json:"data"`
+    }
+)
+
+@server(
+    jwt: Auth
+    group: upgrade_url
+    middleware: Authority
+)
+
+service Upgrade {
+    // Create upgrade url information | 创建UpgradeUrl信息
+    @handler createUpgradeUrl
+    post /upgrade_url/create (UpgradeUrlInfo) returns (BaseMsgResp)
+
+    // Update upgrade url information | 更新UpgradeUrl信息
+    @handler updateUpgradeUrl
+    post /upgrade_url/update (UpgradeUrlInfo) returns (BaseMsgResp)
+
+    // Delete upgrade url information | 删除UpgradeUrl信息
+    @handler deleteUpgradeUrl
+    post /upgrade_url/delete (IDsReq) returns (BaseMsgResp)
+
+    // Get upgrade url list | 获取UpgradeUrl信息列表
+    @handler getUpgradeUrlList
+    post /upgrade_url/list (UpgradeUrlListReq) returns (UpgradeUrlListResp)
+
+    // Get upgrade url by ID | 通过ID获取UpgradeUrl信息
+    @handler getUpgradeUrlById
+    post /upgrade_url (IDReq) returns (UpgradeUrlInfoResp)
+}

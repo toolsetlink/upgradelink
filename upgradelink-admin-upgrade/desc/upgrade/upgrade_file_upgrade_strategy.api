@@ -1,0 +1,267 @@
+import "../base.api"
+
+type (
+    // The data of upgrade file upgrade strategy information | UpgradeFileUpgradeStrategy信息
+    UpgradeFileUpgradeStrategyInfo {
+        Id        *int    `json:"id,optional"`
+
+        // 是否生效；可通过此控制策略是否生效0：失效；1：生效
+        Enable  *int32 `json:"enable,optional"`
+
+        // 任务名称 
+        Name  *string `json:"name,optional"`
+
+        // 任务描述信息 
+        Description  *string `json:"description,optional,default="`
+
+        // 文件应用ID 
+        FileId  *int `json:"fileId,optional"`
+
+        // file_version_id; 外键file_version.id 
+        FileVersionId  *int `json:"fileVersionId,optional"`
+
+        // 升级方式：0：未知方式；1：提示升级；2：静默升级；3: 强制升级 
+        UpgradeType  *int32 `json:"upgradeType,optional"`
+
+        // 提示升级描述内容 
+        PromptUpgradeContent  *string `json:"promptUpgradeContent,optional"`
+
+        // 指定升级的设备范围：0：全部设备；1：指定设备分组；2：指定机型 
+        UpgradeDevType  *int32 `json:"upgradeDevType,optional"`
+
+        // 升级设备数据：0.当为全部设备时，此字段为空；；1.当指定设备分组时，此字段存储设备分组id；2.当指定设备机型时，此字段存储选中的设备机型id; 
+        UpgradeDevData  *string `json:"upgradeDevData,optional"`
+        UpgradeDevTypeZeroData *string  `json:"upgradeDevTypeZeroData,optional"`
+        UpgradeDevTypeOneData  []int  `json:"upgradeDevTypeOneData,optional"`
+        UpgradeDevTypeTwoData  []int  `json:"upgradeDevTypeTwoData,optional"`
+
+        // 指定升级的应用版本：0：全部版本；1，指定版本
+        UpgradeVersionType  *int32 `json:"upgradeVersionType,optional"`
+        // 升级应用版本数据：0.当为全部版本时，此字段为空；1.当指定版本时，此字段存储版本id；
+        UpgradeVersionData  *string `json:"upgradeVersionData,optional"`
+        UpgradeVersionTypeZeroData *string  `json:"upgradeVersionTypeZeroData,optional"`
+        UpgradeVersionTypeOneData  []int  `json:"upgradeVersionTypeOneData,optional"`
+
+        // 升级任务开始时间
+        BeginDatetime  *string `json:"beginDatetime,optional"`
+
+        // 升级任务结束时间
+        EndDatetime  *string `json:"endDatetime,optional"`
+
+        // 是否开启灰度
+        IsGray  *int32 `json:"isGray,optional"`
+        // 灰度策略数据
+        GrayDataInfo []*FileGrayDataInfo `json:"grayDataList,optional"`
+
+        // 是否开启频控
+        IsFlowLimit  *int32 `json:"isFlowLimit,optional"`
+        // 频控策略数据
+        FlowLimitDataInfo []*FileFlowLimitDataInfo `json:"flowLimitDataList,optional"`
+
+        // 是否删除 0：正常；1：已删除 
+        IsDel  *int32 `json:"isDel,optional"`
+
+        // 创建时间 
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间 
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+    RespUpgradeFileUpgradeStrategyInfo {
+        Id        *int    `json:"id,optional"`
+
+        // 是否生效；可通过此控制策略是否生效0：失效；1：生效
+        Enable  *int32 `json:"enable,optional"`
+
+        // 任务名称
+        Name  *string `json:"name,optional"`
+
+        // 任务描述信息
+        Description  *string `json:"description,optional,default="`
+
+        // 文件应用ID
+        FileId  *int `json:"fileId,optional"`
+        // 文件应用名称
+        FileName  *string `json:"fileName,optional"`
+
+        // file_version_id; 外键file_version.id
+        FileVersionId  *int `json:"fileVersionId,optional"`
+        // 文件应用版本名称
+        FileVersionName  *string `json:"fileVersionName,optional"`
+
+        FileVersionCode  *int `json:"fileVersionCode,optional"`
+
+        // 升级方式：0：未知方式；1：提示升级；2：静默升级；3: 强制升级
+        UpgradeType  *int32 `json:"upgradeType,optional"`
+
+        // 提示升级描述内容
+        PromptUpgradeContent  *string `json:"promptUpgradeContent,optional"`
+
+        // 指定升级的设备范围：0：全部设备；1：指定设备分组；2：指定机型
+        UpgradeDevType  *int32 `json:"upgradeDevType,optional"`
+
+        // 升级设备数据：0.当为全部设备时，此字段为空；；1.当指定设备分组时，此字段存储设备分组id；2.当指定设备机型时，此字段存储选中的设备机型id;
+        UpgradeDevData  *string `json:"upgradeDevData,optional"`
+        UpgradeDevTypeZeroData *string  `json:"upgradeDevTypeZeroData,optional"`
+        UpgradeDevTypeOneData  []int  `json:"upgradeDevTypeOneData,optional"`
+        UpgradeDevTypeTwoData  []int  `json:"upgradeDevTypeTwoData,optional"`
+
+        // 指定升级的应用版本：0：全部版本；1，指定版本
+        UpgradeVersionType  *int32 `json:"upgradeVersionType,optional"`
+        // 升级应用版本数据：0.当为全部版本时，此字段为空；1.当指定版本时，此字段存储版本id；
+        UpgradeVersionData  *string `json:"upgradeVersionData,optional"`
+        UpgradeVersionTypeZeroData *string  `json:"upgradeVersionTypeZeroData,optional"`
+        UpgradeVersionTypeOneData  []int  `json:"upgradeVersionTypeOneData,optional"`
+    
+        // 升级任务开始时间
+        BeginDatetime  *string `json:"beginDatetime,optional"`
+
+        // 升级任务结束时间
+        EndDatetime  *string `json:"endDatetime,optional"`
+
+        // 是否开启灰度
+        IsGray  *int32 `json:"isGray,optional"`
+        // 灰度策略数据
+        GrayDataInfo []*FileGrayDataInfo `json:"grayDataList,optional"`
+
+        // 是否开启频控
+        IsFlowLimit  *int32 `json:"isFlowLimit,optional"`
+        // 频控策略数据
+        FlowLimitDataInfo []*FileFlowLimitDataInfo `json:"flowLimitDataList,optional"`
+
+        // 是否删除 0：正常；1：已删除
+        IsDel  *int32 `json:"isDel,optional"`
+
+        // 创建时间
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+    // 灰度策略数据
+    FileGrayDataInfo {
+        // 是否生效；可通过此控制策略是否生效0：失效；1：生效
+        Enable  *int32 `json:"enable,optional"`
+        // 开始时间
+        BeginDatetime  *string `json:"beginDatetime,optional"`
+        // 结束时间
+        EndDatetime  *string `json:"endDatetime,optional"`
+        // 数量
+        Limit  *int `json:"limit,optional"`
+    }
+
+    // 频控策略数据
+    FileFlowLimitDataInfo {
+        // 是否生效；可通过此控制策略是否生效0：失效；1：生效
+        Enable  *int32 `json:"enable,optional"`
+        // 开始时间
+        Begintime  *string `json:"beginTime,optional"`
+        // 结束时间
+        Endtime  *string `json:"endTime,optional"`
+        // 流控维度
+        Dimension  *int32 `json:"dimension,optional"`
+        // 数量
+        Limit  *int `json:"limit,optional"`
+    }
+
+    // The response data of upgrade file upgrade strategy list | UpgradeFileUpgradeStrategy信息列表数据
+    UpgradeFileUpgradeStrategyListResp {
+        BaseDataInfo
+
+        // The upgrade file upgrade strategy list data | UpgradeFileUpgradeStrategy信息列表数据
+        Data UpgradeFileUpgradeStrategyListInfo `json:"data"`
+    }
+
+    // The upgrade file upgrade strategy list data | UpgradeFileUpgradeStrategy信息列表数据
+    UpgradeFileUpgradeStrategyListInfo {
+        BaseListInfo
+
+        // The upgrade file upgrade strategy list data | UpgradeFileUpgradeStrategy信息列表数据
+        Data  []RespUpgradeFileUpgradeStrategyInfo  `json:"data"`
+    }
+
+    // Get upgrade file upgrade strategy list request params | UpgradeFileUpgradeStrategy信息列表请求参数
+    UpgradeFileUpgradeStrategyListReq {
+        PageInfo
+
+        // 是否生效；可通过此控制策略是否生效0：失效；1：生效
+        Enable  *int32 `json:"enable,optional"`
+
+        // 任务名称 
+        Name  *string `json:"name,optional"`
+
+        // 任务描述信息 
+        Description  *string `json:"description,optional,default="`
+
+        // 文件应用ID 
+        FileId  *int `json:"fileId,optional"`
+
+        // file_version_id; 外键file_version.id 
+        FileVersionId  *int `json:"fileVersionId,optional"`
+
+        // 升级方式：0：未知方式；1：提示升级；2：静默升级；3: 强制升级 
+        UpgradeType  *int32 `json:"upgradeType,optional"`
+
+        // 提示升级描述内容 
+        PromptUpgradeContent  *string `json:"promptUpgradeContent,optional"`
+
+        // 指定升级的设备范围：0：全部设备；1：指定设备分组；2：指定机型 
+        UpgradeDevType  *int32 `json:"upgradeDevType,optional"`
+
+        // 升级设备数据：0.当为全部设备时，此字段为空；；1.当指定设备分组时，此字段存储设备分组id；2.当指定设备机型时，此字段存储选中的设备机型id; 
+        UpgradeDevData  *string `json:"upgradeDevData,optional"`
+
+        // 升级任务开始时间 
+        BeginDatetime  *string `json:"beginDatetime,optional"`
+
+        // 升级任务结束时间
+        EndDatetime  *string `json:"endDatetime,optional"`
+
+        // 是否删除 0：正常；1：已删除
+        IsDel  *int32 `json:"isDel,optional"`
+
+        // 创建时间 
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间 
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+    // The upgrade file upgrade strategy information response | UpgradeFileUpgradeStrategy信息返回体
+    UpgradeFileUpgradeStrategyInfoResp {
+        BaseDataInfo
+
+        // upgrade file upgrade strategy information | UpgradeFileUpgradeStrategy信息数据
+        Data RespUpgradeFileUpgradeStrategyInfo `json:"data"`
+    }
+)
+
+@server(
+    jwt: Auth
+    group: upgrade_file_upgrade_strategy
+    middleware: Authority
+)
+
+service Upgrade {
+    // Create upgrade file upgrade strategy information | 创建UpgradeFileUpgradeStrategy信息
+    @handler createUpgradeFileUpgradeStrategy
+    post /upgrade_file_upgrade_strategy/create (UpgradeFileUpgradeStrategyInfo) returns (BaseMsgResp)
+
+    // Update upgrade file upgrade strategy information | 更新UpgradeFileUpgradeStrategy信息
+    @handler updateUpgradeFileUpgradeStrategy
+    post /upgrade_file_upgrade_strategy/update (UpgradeFileUpgradeStrategyInfo) returns (BaseMsgResp)
+
+    // Delete upgrade file upgrade strategy information | 删除UpgradeFileUpgradeStrategy信息
+    @handler deleteUpgradeFileUpgradeStrategy
+    post /upgrade_file_upgrade_strategy/delete (IDsReq) returns (BaseMsgResp)
+
+    // Get upgrade file upgrade strategy list | 获取UpgradeFileUpgradeStrategy信息列表
+    @handler getUpgradeFileUpgradeStrategyList
+    post /upgrade_file_upgrade_strategy/list (UpgradeFileUpgradeStrategyListReq) returns (UpgradeFileUpgradeStrategyListResp)
+
+    // Get upgrade file upgrade strategy by ID | 通过ID获取UpgradeFileUpgradeStrategy信息
+    @handler getUpgradeFileUpgradeStrategyById
+    post /upgrade_file_upgrade_strategy (IDReq) returns (UpgradeFileUpgradeStrategyInfoResp)
+}

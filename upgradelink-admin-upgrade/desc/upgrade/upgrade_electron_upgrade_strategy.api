@@ -1,0 +1,293 @@
+import "../base.api"
+
+type (
+    // The data of upgrade electron upgrade strategy information | UpgradeElectronUpgradeStrategy信息
+    UpgradeElectronUpgradeStrategyInfo {
+        Id        *int    `json:"id,optional"`
+
+        // 是否生效；可通过此控制策略是否生效0：失效；1：生效
+        Enable  *int32 `json:"enable,optional"`
+
+        // 任务名称 
+        Name  *string `json:"name,optional"`
+
+        // 任务描述信息 
+        Description  *string `json:"description,optional"`
+
+        // electron应用ID 
+        ElectronId  *int `json:"electronId,optional"`
+
+        // electron_version_id; 外键electron_version.id 
+        ElectronVersionId  *int `json:"electronVersionId,optional"`
+
+        // 升级任务开始时间
+        BeginDatetime  *string `json:"beginDatetime,optional"`
+
+        // 升级任务结束时间
+        EndDatetime  *string `json:"endDatetime,optional"`
+
+
+        // 升级方式：0：未知方式；1：提示升级；2：静默升级；3: 强制升级
+        UpgradeType  *int32 `json:"upgradeType,optional"`
+
+        // 提示升级描述内容
+        PromptUpgradeContent  *string `json:"promptUpgradeContent,optional"`
+
+        // 指定升级的设备范围：0：全部设备；1：指定设备分组；2：指定机型
+        UpgradeDevType  *int32 `json:"upgradeDevType,optional"`
+
+        // 升级设备数据：0.当为全部设备时，此字段为空；；1.当指定设备分组时，此字段存储设备分组id；2.当指定设备机型时，此字段存储选中的设备机型id;
+        UpgradeDevData  *string `json:"upgradeDevData,optional"`
+        UpgradeDevTypeZeroData *string  `json:"upgradeDevTypeZeroData,optional"`
+        UpgradeDevTypeOneData  []int  `json:"upgradeDevTypeOneData,optional"`
+        UpgradeDevTypeTwoData  []int  `json:"upgradeDevTypeTwoData,optional"`
+
+        // 指定升级的应用版本：0：全部版本；1，指定版本
+        UpgradeVersionType  *int32 `json:"upgradeVersionType,optional"`
+        // 升级应用版本数据：0.当为全部版本时，此字段为空；1.当指定版本时，此字段存储版本id；
+        UpgradeVersionData  *string `json:"upgradeVersionData,optional"`
+        UpgradeVersionTypeZeroData *string  `json:"upgradeVersionTypeZeroData,optional"`
+        UpgradeVersionTypeOneData  []int  `json:"upgradeVersionTypeOneData,optional"`
+
+        // 是否开启灰度
+        IsGray  *int32 `json:"isGray,optional"`
+        // 灰度策略数据
+        GrayDataInfo []*ElectronGrayDataInfo `json:"grayDataList,optional"`
+
+        // 是否开启频控
+        IsFlowLimit  *int32 `json:"isFlowLimit,optional"`
+        // 频控策略数据
+        FlowLimitDataInfo []*ElectronFlowLimitDataInfo `json:"flowLimitDataList,optional"`
+
+        // 是否删除 0：正常；1：已删除 
+        IsDel  *int32 `json:"isDel,optional"`
+
+        // 创建时间 
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间 
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+
+
+    RespUpgradeElectronUpgradeStrategyInfo {
+        Id        *int    `json:"id,optional"`
+
+        // 是否生效；可通过此控制策略是否生效0：失效；1：生效
+        Enable  *int32 `json:"enable,optional"`
+
+        // 任务名称
+        Name  *string `json:"name,optional"`
+
+        // 任务描述信息
+        Description  *string `json:"description,optional,default="`
+
+        // electron应用ID
+        ElectronId  *int `json:"electronId,optional"`
+        // Electron应用名称
+        ElectronName  *string `json:"electronName,optional"`
+
+        // electron_version_id; 外键electron_version.id
+        ElectronVersionId  *int `json:"electronVersionId,optional"`
+        // Electron应用版本名称
+        ElectronVersionName  *string `json:"electronVersionName,optional"`
+        ElectronVersionCode  *int `json:"electronVersionCode,optional"`
+        ElectronPlatform  *string `json:"electronPlatform,optional"`
+        ElectronArch  *string `json:"electronArch,optional"`
+
+        // 升级方式：0：未知方式；1：提示升级；2：静默升级；3: 强制升级
+        UpgradeType  *int32 `json:"upgradeType,optional"`
+
+        // 提示升级描述内容
+        PromptUpgradeContent  *string `json:"promptUpgradeContent,optional"`
+
+        // 指定升级的设备范围：0：全部设备；1：指定设备分组；2：指定机型
+        UpgradeDevType  *int32 `json:"upgradeDevType,optional"`
+        // 升级设备数据：0.当为全部设备时，此字段为空；；1.当指定设备分组时，此字段存储设备分组id；2.当指定设备机型时，此字段存储选中的设备机型id;
+        UpgradeDevData  *string `json:"upgradeDevData,optional"`
+        UpgradeDevTypeZeroData *string  `json:"upgradeDevTypeZeroData,optional"`
+        UpgradeDevTypeOneData  []int  `json:"upgradeDevTypeOneData,optional"`
+        UpgradeDevTypeTwoData  []int  `json:"upgradeDevTypeTwoData,optional"`
+
+        // 指定升级的应用版本：0：全部版本；1，指定版本
+        UpgradeVersionType  *int32 `json:"upgradeVersionType,optional"`
+        // 升级应用版本数据：0.当为全部版本时，此字段为空；1.当指定版本时，此字段存储版本id；
+        UpgradeVersionData  *string `json:"upgradeVersionData,optional"`
+        UpgradeVersionTypeZeroData *string  `json:"upgradeVersionTypeZeroData,optional"`
+        UpgradeVersionTypeOneData  []int  `json:"upgradeVersionTypeOneData,optional"`
+
+
+        // 升级任务开始时间
+        BeginDatetime  *string `json:"beginDatetime,optional"`
+
+        // 升级任务结束时间
+        EndDatetime  *string `json:"endDatetime,optional"`
+
+        // 是否开启灰度
+        IsGray  *int32 `json:"isGray,optional"`
+        // 灰度策略数据
+        GrayDataInfo []*ElectronGrayDataInfo `json:"grayDataList,optional"`
+
+        // 是否开启频控
+        IsFlowLimit  *int32 `json:"isFlowLimit,optional"`
+        // 频控策略数据
+        FlowLimitDataInfo []*ElectronFlowLimitDataInfo `json:"flowLimitDataList,optional"`
+
+        // 是否删除 0：正常；1：已删除
+        IsDel  *int32 `json:"isDel,optional"`
+
+        // 创建时间
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+
+    // 灰度策略数据
+    ElectronGrayDataInfo {
+        // 是否生效；可通过此控制策略是否生效0：失效；1：生效
+        Enable  *int32 `json:"enable,optional"`
+        // 开始时间
+        BeginDatetime  *string `json:"beginDatetime,optional"`
+        // 结束时间
+        EndDatetime  *string `json:"endDatetime,optional"`
+        // 数量
+        Limit  *int `json:"limit,optional"`
+    }
+
+    // 频控策略数据
+    ElectronFlowLimitDataInfo {
+        // 是否生效；可通过此控制策略是否生效0：失效；1：生效
+        Enable  *int32 `json:"enable,optional"`
+        // 开始时间
+        Begintime  *string `json:"beginTime,optional"`
+        // 结束时间
+        Endtime  *string `json:"endTime,optional"`
+        // 流控维度
+        Dimension  *int32 `json:"dimension,optional"`
+        // 数量
+        Limit  *int `json:"limit,optional"`
+    }
+
+    // The response data of upgrade electron upgrade strategy list | UpgradeElectronUpgradeStrategy信息列表数据
+    UpgradeElectronUpgradeStrategyListResp {
+        BaseDataInfo
+
+        // The upgrade electron upgrade strategy list data | UpgradeElectronUpgradeStrategy信息列表数据
+        Data UpgradeElectronUpgradeStrategyListInfo `json:"data"`
+    }
+
+    // The upgrade electron upgrade strategy list data | UpgradeElectronUpgradeStrategy信息列表数据
+    UpgradeElectronUpgradeStrategyListInfo {
+        BaseListInfo
+
+        // The upgrade electron upgrade strategy list data | UpgradeElectronUpgradeStrategy信息列表数据
+        Data  []RespUpgradeElectronUpgradeStrategyInfo  `json:"data"`
+    }
+
+    // Get upgrade electron upgrade strategy list request params | UpgradeElectronUpgradeStrategy信息列表请求参数
+    UpgradeElectronUpgradeStrategyListReq {
+        PageInfo
+
+        // 公司ID 
+        CompanyId  *int `json:"companyId,optional"`
+
+        // 是否生效；可通过此控制策略是否生效0：失效；1：生效 
+        Enable  *int32 `json:"enable,optional"`
+
+        // 任务名称 
+        Name  *string `json:"name,optional"`
+
+        // 任务描述信息 
+        Description  *string `json:"description,optional"`
+
+        // electron应用ID 
+        ElectronId  *int `json:"electronId,optional"`
+
+        // electron_version_id; 外键electron_version.id 
+        ElectronVersionId  *int `json:"electronVersionId,optional"`
+
+        // 升级任务开始时间 
+        BeginDatetime  *int64 `json:"beginDatetime,optional"`
+
+        // 升级任务结束时间 
+        EndDatetime  *int64 `json:"endDatetime,optional"`
+
+        // 升级方式：0：未知方式；1：提示升级；2：静默升级；3: 强制升级 
+        UpgradeType  *int32 `json:"upgradeType,optional"`
+
+        // 提示升级描述内容 
+        PromptUpgradeContent  *string `json:"promptUpgradeContent,optional"`
+
+        // 指定升级的设备范围：0：全部设备；1：指定设备分组；2：指定机型 
+        UpgradeDevType  *int32 `json:"upgradeDevType,optional"`
+
+        // 升级设备数据：0.当为全部设备时，此字段为空；；1.当指定设备分组时，此字段存储设备分组id；2.当指定设备机型时，此字段存储选中的设备机型id; 
+        UpgradeDevData  *string `json:"upgradeDevData,optional"`
+
+        // 指定升级的应用版本：0：全部版本；1：指定版本 
+        UpgradeVersionType  *int32 `json:"upgradeVersionType,optional"`
+
+        // 升级设备数据：0.当为全部版本时，此字段为空；；1.当指定应用版本时，此字段存储应用版本id; 
+        UpgradeVersionData  *string `json:"upgradeVersionData,optional"`
+
+        // 是否开启灰度 0：不开启；1：开启 
+        IsGray  *int32 `json:"isGray,optional"`
+
+        // 灰度策略id数据 
+        GrayData  *string `json:"grayData,optional"`
+
+        // 是否开启频控 0：不开启；1：开启 
+        IsFlowLimit  *int32 `json:"isFlowLimit,optional"`
+
+        // 频控策略id数据 
+        FlowLimitData  *string `json:"flowLimitData,optional"`
+
+        // 是否删除 0：正常；1：已删除 
+        IsDel  *int32 `json:"isDel,optional"`
+
+        // 创建时间 
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间 
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+    // The upgrade electron upgrade strategy information response | UpgradeElectronUpgradeStrategy信息返回体
+    UpgradeElectronUpgradeStrategyInfoResp {
+        BaseDataInfo
+
+        // upgrade electron upgrade strategy information | UpgradeElectronUpgradeStrategy信息数据
+        Data RespUpgradeElectronUpgradeStrategyInfo `json:"data"`
+    }
+)
+
+@server(
+    jwt: Auth
+    group: upgrade_electron_upgrade_strategy
+    middleware: Authority
+)
+
+service Upgrade {
+    // Create upgrade electron upgrade strategy information | 创建UpgradeElectronUpgradeStrategy信息
+    @handler createUpgradeElectronUpgradeStrategy
+    post /upgrade_electron_upgrade_strategy/create (UpgradeElectronUpgradeStrategyInfo) returns (BaseMsgResp)
+
+    // Update upgrade electron upgrade strategy information | 更新UpgradeElectronUpgradeStrategy信息
+    @handler updateUpgradeElectronUpgradeStrategy
+    post /upgrade_electron_upgrade_strategy/update (UpgradeElectronUpgradeStrategyInfo) returns (BaseMsgResp)
+
+    // Delete upgrade electron upgrade strategy information | 删除UpgradeElectronUpgradeStrategy信息
+    @handler deleteUpgradeElectronUpgradeStrategy
+    post /upgrade_electron_upgrade_strategy/delete (IDsReq) returns (BaseMsgResp)
+
+    // Get upgrade electron upgrade strategy list | 获取UpgradeElectronUpgradeStrategy信息列表
+    @handler getUpgradeElectronUpgradeStrategyList
+    post /upgrade_electron_upgrade_strategy/list (UpgradeElectronUpgradeStrategyListReq) returns (UpgradeElectronUpgradeStrategyListResp)
+
+    // Get upgrade electron upgrade strategy by ID | 通过ID获取UpgradeElectronUpgradeStrategy信息
+    @handler getUpgradeElectronUpgradeStrategyById
+    post /upgrade_electron_upgrade_strategy (IDReq) returns (UpgradeElectronUpgradeStrategyInfoResp)
+}

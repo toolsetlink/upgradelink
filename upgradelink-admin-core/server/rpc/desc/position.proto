@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+// Position message
+
+message PositionInfo {
+  optional uint64 id = 1;
+  optional int64 created_at = 2;
+  optional int64 updated_at = 3;
+  optional uint32 status = 4;
+  optional uint32 sort = 5;
+  optional string name = 6;
+  optional string code = 7;
+  optional string remark = 8;
+}
+
+message PositionListResp {
+  uint64 total = 1;
+  repeated PositionInfo data = 2;
+}
+
+message PositionListReq {
+  uint64 page = 1;
+  uint64 page_size = 2;
+  optional string name = 3;
+  optional string code = 4;
+  optional string remark = 5;
+}
+
+
+service Core {
+
+  // Position management
+  // group: position
+  rpc createPosition (PositionInfo) returns (BaseIDResp);
+  // group: position
+  rpc updatePosition (PositionInfo) returns (BaseResp);
+  // group: position
+  rpc getPositionList (PositionListReq) returns (PositionListResp);
+  // group: position
+  rpc getPositionById (IDReq) returns (PositionInfo);
+  // group: position
+  rpc deletePosition (IDsReq) returns (BaseResp);
+
+
+}

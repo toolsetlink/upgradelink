@@ -1,0 +1,234 @@
+import "../base.api"
+
+type (
+    // The data of upgrade url upgrade strategy information | UpgradeUrlUpgradeStrategy信息
+    UpgradeUrlUpgradeStrategyInfo {
+        Id        *int    `json:"id,optional"`
+
+        // 是否生效；可通过此控制策略是否生效0：失效；1：生效
+        Enable  *int32 `json:"enable,optional"`
+
+        // 任务名称 
+        Name  *string `json:"name,optional"`
+
+        // 任务描述信息 
+        Description  *string `json:"description,optional,default="`
+
+        // url应用ID 
+        UrlId  *int `json:"urlId,optional"`
+
+        // url_version_id; 外键url_version.id 
+        UrlVersionId  *int `json:"urlVersionId,optional"`
+
+        // 升级任务开始时间
+        BeginDatetime  *string `json:"beginDatetime,optional"`
+
+        // 升级任务结束时间
+        EndDatetime  *string `json:"endDatetime,optional"`
+
+        // 升级方式：0：未知方式；1：提示升级；2：静默升级；3: 强制升级
+        UpgradeType  *int32 `json:"upgradeType,optional"`
+
+        // 提示升级描述内容 
+        PromptUpgradeContent  *string `json:"promptUpgradeContent,optional"`
+
+        // 指定升级的设备范围：0：全部设备；1：指定设备分组；2：指定机型 
+        UpgradeDevType  *int32 `json:"upgradeDevType,optional"`
+
+        // 升级设备数据：0.当为全部设备时，此字段为空；；1.当指定设备分组时，此字段存储设备分组id；2.当指定设备机型时，此字段存储选中的设备机型id; 
+        UpgradeDevData  *string `json:"upgradeDevData,optional"`
+        UpgradeDevTypeZeroData *string  `json:"upgradeDevTypeZeroData,optional"`
+        UpgradeDevTypeOneData  []int  `json:"upgradeDevTypeOneData,optional"`
+        UpgradeDevTypeTwoData  []int  `json:"upgradeDevTypeTwoData,optional"`
+
+        // 指定升级的应用版本：0：全部版本；1，指定版本
+        UpgradeVersionType  *int32 `json:"upgradeVersionType,optional"`
+        // 升级应用版本数据：0.当为全部版本时，此字段为空；1.当指定版本时，此字段存储版本id；
+        UpgradeVersionData  *string `json:"upgradeVersionData,optional"`
+        UpgradeVersionTypeZeroData *string  `json:"upgradeVersionTypeZeroData,optional"`
+        UpgradeVersionTypeOneData  []int  `json:"upgradeVersionTypeOneData,optional"`
+
+        // 是否开启灰度
+        IsGray  *int32 `json:"isGray,optional"`
+        // 灰度策略数据
+        GrayDataInfo []*GrayDataInfo `json:"grayDataList,optional"`
+
+        // 是否开启频控
+        IsFlowLimit  *int32 `json:"isFlowLimit,optional"`
+        // 频控策略数据
+        FlowLimitDataInfo []*FlowLimitDataInfo `json:"flowLimitDataList,optional"`
+
+        // 是否删除 0：正常；1：已删除 
+        IsDel  *int32 `json:"isDel,optional"`
+
+        // 创建时间 
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间 
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+    RespUpgradeUrlUpgradeStrategyInfo {
+        Id        *int    `json:"id,optional"`
+
+        // 是否生效；可通过此控制策略是否生效0：失效；1：生效
+        Enable  *int32 `json:"enable,optional"`
+
+        // 任务名称
+        Name  *string `json:"name,optional"`
+
+        // 任务描述信息
+        Description  *string `json:"description,optional,default="`
+
+        // url应用ID
+        UrlId  *int `json:"urlId,optional"`
+
+        // url应用
+        UrlName  *string `json:"urlName,optional"`
+
+        // url_version_id; 外键url_version.id
+        UrlVersionId  *int `json:"urlVersionId,optional"`
+
+        // url版本名
+        UrlVersionName  *string `json:"urlVersionName,optional"`
+
+        // url版本号
+        UrlVersionCode  *int `json:"urlVersionCode,optional"`
+
+        // 升级任务开始时间
+        BeginDatetime  *string `json:"beginDatetime,optional"`
+
+        // 升级任务结束时间
+        EndDatetime  *string `json:"endDatetime,optional"`
+
+        // 升级方式：0：未知方式；1：提示升级；2：静默升级；3: 强制升级
+        UpgradeType  *int32 `json:"upgradeType,optional"`
+
+        // 提示升级描述内容
+        PromptUpgradeContent  *string `json:"promptUpgradeContent,optional"`
+
+        // 指定升级的设备范围：0：全部设备；1：指定设备分组；2：指定机型
+        UpgradeDevType  *int32 `json:"upgradeDevType,optional"`
+
+        // 升级设备数据：0.当为全部设备时，此字段为空；；1.当指定设备分组时，此字段存储设备分组id；2.当指定设备机型时，此字段存储选中的设备机型id;
+        UpgradeDevData  *string `json:"upgradeDevData,optional"`
+        UpgradeDevTypeZeroData *string  `json:"upgradeDevTypeZeroData,optional"`
+        UpgradeDevTypeOneData  []int  `json:"upgradeDevTypeOneData,optional"`
+        UpgradeDevTypeTwoData  []int  `json:"upgradeDevTypeTwoData,optional"`
+
+        // 指定升级的应用版本：0：全部版本；1，指定版本
+        UpgradeVersionType  *int32 `json:"upgradeVersionType,optional"`
+        // 升级应用版本数据：0.当为全部版本时，此字段为空；1.当指定版本时，此字段存储版本id；
+        UpgradeVersionData  *string `json:"upgradeVersionData,optional"`
+        UpgradeVersionTypeZeroData *string  `json:"upgradeVersionTypeZeroData,optional"`
+        UpgradeVersionTypeOneData  []int  `json:"upgradeVersionTypeOneData,optional"`
+    
+        // 是否开启灰度
+        IsGray  *int32 `json:"isGray,optional"`
+        // 灰度策略数据
+        GrayDataInfo []*GrayDataInfo `json:"grayDataList,optional"`
+
+        // 是否开启频控
+        IsFlowLimit  *int32 `json:"isFlowLimit,optional"`
+        // 频控策略数据
+        FlowLimitDataInfo []*FlowLimitDataInfo `json:"flowLimitDataList,optional"`
+
+        // 创建时间
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+    // 灰度策略数据
+    GrayDataInfo {
+        // 是否生效；可通过此控制策略是否生效0：失效；1：生效
+        Enable  *int32 `json:"enable,optional"`
+        // 开始时间
+        BeginDatetime  *string `json:"beginDatetime,optional"`
+        // 结束时间
+        EndDatetime  *string `json:"endDatetime,optional"`
+        // 数量
+        Limit  *int `json:"limit,optional"`
+    }
+
+    // 频控策略数据
+    FlowLimitDataInfo {
+        // 是否生效；可通过此控制策略是否生效0：失效；1：生效
+        Enable  *int32 `json:"enable,optional"`
+        // 开始时间
+        Begintime  *string `json:"beginTime,optional"`
+        // 结束时间
+        Endtime  *string `json:"endTime,optional"`
+        // 流控维度
+        Dimension  *int32 `json:"dimension,optional"`
+        // 数量
+        Limit  *int `json:"limit,optional"`
+    }
+
+    // The response data of upgrade url upgrade strategy list | UpgradeUrlUpgradeStrategy信息列表数据
+    UpgradeUrlUpgradeStrategyListResp {
+        BaseDataInfo
+
+        // The upgrade url upgrade strategy list data | UpgradeUrlUpgradeStrategy信息列表数据
+        Data UpgradeUrlUpgradeStrategyListInfo `json:"data"`
+    }
+
+    // The upgrade url upgrade strategy list data | UpgradeUrlUpgradeStrategy信息列表数据
+    UpgradeUrlUpgradeStrategyListInfo {
+        BaseListInfo
+
+        // The upgrade url upgrade strategy list data | UpgradeUrlUpgradeStrategy信息列表数据
+        Data  []RespUpgradeUrlUpgradeStrategyInfo  `json:"data"`
+    }
+
+    // Get upgrade url upgrade strategy list request params | UpgradeUrlUpgradeStrategy信息列表请求参数
+    UpgradeUrlUpgradeStrategyListReq {
+        PageInfo
+
+        // 是否生效；可通过此控制策略是否生效0：失效；1：生效
+        Enable  *int32 `json:"enable,optional"`
+
+        // 任务名称 
+        Name  *string `json:"name,optional"`
+
+        // url应用ID
+        UrlId  *int `json:"urlId,optional"`
+    }
+
+    // The upgrade url upgrade strategy information response | UpgradeUrlUpgradeStrategy信息返回体
+    UpgradeUrlUpgradeStrategyInfoResp {
+        BaseDataInfo
+
+        // upgrade url upgrade strategy information | UpgradeUrlUpgradeStrategy信息数据
+        Data RespUpgradeUrlUpgradeStrategyInfo `json:"data"`
+    }
+)
+
+@server(
+    jwt: Auth
+    group: upgrade_url_upgrade_strategy
+    middleware: Authority
+)
+
+service Upgrade {
+    // Create upgrade url upgrade strategy information | 创建UpgradeUrlUpgradeStrategy信息
+    @handler createUpgradeUrlUpgradeStrategy
+    post /upgrade_url_upgrade_strategy/create (UpgradeUrlUpgradeStrategyInfo) returns (BaseMsgResp)
+
+    // Update upgrade url upgrade strategy information | 更新UpgradeUrlUpgradeStrategy信息
+    @handler updateUpgradeUrlUpgradeStrategy
+    post /upgrade_url_upgrade_strategy/update (UpgradeUrlUpgradeStrategyInfo) returns (BaseMsgResp)
+
+    // Delete upgrade url upgrade strategy information | 删除UpgradeUrlUpgradeStrategy信息
+    @handler deleteUpgradeUrlUpgradeStrategy
+    post /upgrade_url_upgrade_strategy/delete (IDsReq) returns (BaseMsgResp)
+
+    // Get upgrade url upgrade strategy list | 获取UpgradeUrlUpgradeStrategy信息列表
+    @handler getUpgradeUrlUpgradeStrategyList
+    post /upgrade_url_upgrade_strategy/list (UpgradeUrlUpgradeStrategyListReq) returns (UpgradeUrlUpgradeStrategyListResp)
+
+    // Get upgrade url upgrade strategy by ID | 通过ID获取UpgradeUrlUpgradeStrategy信息
+    @handler getUpgradeUrlUpgradeStrategyById
+    post /upgrade_url_upgrade_strategy (IDReq) returns (UpgradeUrlUpgradeStrategyInfoResp)
+}

@@ -1,0 +1,107 @@
+import "../base.api"
+
+type (
+    // The data of upgrade configuration information | UpgradeConfiguration信息
+    UpgradeConfigurationInfo {
+        Id        *int    `json:"id,optional"`
+
+        // 公司ID 
+        CompanyId  *int `json:"companyId,optional"`
+
+        // 配置唯一标识 
+        Key  *string `json:"key,optional"`
+
+        // 配置名称 
+        Name  *string `json:"name,optional"`
+
+        // 描述信息 
+        Description  *string `json:"description,optional"`
+
+        // 是否删除 0：正常；1：已删除 
+        IsDel  *int32 `json:"isDel,optional"`
+
+        // 创建时间 
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间 
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+    // The response data of upgrade configuration list | UpgradeConfiguration信息列表数据
+    UpgradeConfigurationListResp {
+        BaseDataInfo
+
+        // The upgrade configuration list data | UpgradeConfiguration信息列表数据
+        Data UpgradeConfigurationListInfo `json:"data"`
+    }
+
+    // The upgrade configuration list data | UpgradeConfiguration信息列表数据
+    UpgradeConfigurationListInfo {
+        BaseListInfo
+
+        // The upgrade configuration list data | UpgradeConfiguration信息列表数据
+        Data  []UpgradeConfigurationInfo  `json:"data"`
+    }
+
+    // Get upgrade configuration list request params | UpgradeConfiguration信息列表请求参数
+    UpgradeConfigurationListReq {
+        PageInfo
+
+        // 公司ID 
+        CompanyId  *int `json:"companyId,optional"`
+
+        // 配置唯一标识 
+        Key  *string `json:"key,optional"`
+
+        // 配置名称 
+        Name  *string `json:"name,optional"`
+
+        // 描述信息 
+        Description  *string `json:"description,optional"`
+
+        // 是否删除 0：正常；1：已删除 
+        IsDel  *int32 `json:"isDel,optional"`
+
+        // 创建时间 
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间 
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+    // The upgrade configuration information response | UpgradeConfiguration信息返回体
+    UpgradeConfigurationInfoResp {
+        BaseDataInfo
+
+        // upgrade configuration information | UpgradeConfiguration信息数据
+        Data UpgradeConfigurationInfo `json:"data"`
+    }
+)
+
+@server(
+    jwt: Auth
+    group: upgrade_configuration
+    middleware: Authority
+)
+
+service Upgrade {
+    // Create upgrade configuration information | 创建UpgradeConfiguration信息
+    @handler createUpgradeConfiguration
+    post /upgrade_configuration/create (UpgradeConfigurationInfo) returns (BaseMsgResp)
+
+    // Update upgrade configuration information | 更新UpgradeConfiguration信息
+    @handler updateUpgradeConfiguration
+    post /upgrade_configuration/update (UpgradeConfigurationInfo) returns (BaseMsgResp)
+
+    // Delete upgrade configuration information | 删除UpgradeConfiguration信息
+    @handler deleteUpgradeConfiguration
+    post /upgrade_configuration/delete (IDsReq) returns (BaseMsgResp)
+
+    // Get upgrade configuration list | 获取UpgradeConfiguration信息列表
+    @handler getUpgradeConfigurationList
+    post /upgrade_configuration/list (UpgradeConfigurationListReq) returns (UpgradeConfigurationListResp)
+
+    // Get upgrade configuration by ID | 通过ID获取UpgradeConfiguration信息
+    @handler getUpgradeConfigurationById
+    post /upgrade_configuration (IDReq) returns (UpgradeConfigurationInfoResp)
+}

@@ -1,0 +1,207 @@
+import "../base.api"
+
+type (
+    // The data of upgrade electron version information | UpgradeElectronVersion信息
+    UpgradeElectronVersionInfo {
+        Id        *int    `json:"id,optional"`
+
+        // 公司ID 
+        CompanyId  *int `json:"companyId,optional"`
+
+        // ElectronId
+        ElectronId  *int `json:"electronId,optional"`
+
+        // 云文件id 
+        CloudFileId  *string `json:"cloudFileId,optional"`
+
+        // 生成的sha512
+        Sha512  *string `json:"sha512,optional"`
+
+        // 云文件id 安装文件
+        InstallCloudFileId  *string `json:"installCloudFileId,optional"`
+
+        // 生成的sha512
+        InstallSha512  *string `json:"installSha512,optional"`
+
+        // 版本名 
+        VersionName  *string `json:"versionName,optional"`
+
+        // 版本号 
+        VersionCode  *int `json:"versionCode,optional"`
+
+        // 安装包文件大小
+        InstallVersionFileSize  *string `json:"installVersionFileSize,optional"`
+
+        // 升级包文件大小
+        UpgradeVersionFileSize  *string `json:"upgradeVersionFileSize,optional"`
+
+        // 操作平台:linux、mac、windows 
+        Platform  *string `json:"platform,optional"`
+
+        // 分发类型: windows:nsis,portable, linux: AppImage,deb  
+        Target  *string `json:"target,optional"`
+
+        // 机器架构:x64、ia32 arm64 
+        Arch  *string `json:"arch,optional"`
+
+        // 描述信息 
+        Description  *string `json:"description,optional"`
+
+        // 是否删除 0：正常；1：已删除 
+        IsDel  *int32 `json:"isDel,optional"`
+
+        // 创建时间 
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间 
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+    RespUpgradeElectronVersionInfo {
+        Id   *int    `json:"id,optional"`
+
+        // ElectronId
+        ElectronId  *int `json:"electronId,optional"`
+
+        // Electron应用名称
+        ElectronName  *string `json:"electronName,optional"`
+
+        // 云文件id
+        CloudFileId  *string `json:"cloudFileId,optional"`
+
+        // 云文件名称
+        CloudFileName  *string `json:"cloudFileName,optional"`
+
+        // 云文件id 安装文件
+        InstallCloudFileId  *string `json:"installCloudFileId,optional"`
+
+        // 云文件名称
+        InstallCloudFileName  *string `json:"InstallCloudFileName,optional"`
+
+        // 版本名
+        VersionName  *string `json:"versionName,optional"`
+
+        // 版本号
+        VersionCode  *int `json:"versionCode,optional"`
+
+        // 安装包文件大小
+        InstallVersionFileSize  *string `json:"installVersionFileSize,optional"`
+
+        // 升级包文件大小
+        UpgradeVersionFileSize  *string `json:"upgradeVersionFileSize,optional"`
+    
+        // 操作平台:linux、darwin、windows
+        Platform  *string `json:"platform,optional"`
+
+        // 机器架构:x64、arm64
+        Arch  *string `json:"arch,optional"`
+
+        // 生成的sha512
+        Sha512  *string `json:"sha512,optional"`
+
+        // 生成的sha512
+        InstallSha512  *string `json:"installSha512,optional"`
+
+        // 描述信息
+        Description  *string `json:"description,optional,default="`
+
+        // 是否删除 0：正常；1：已删除
+        IsDel  *int32 `json:"isDel,optional"`
+
+        // 创建时间
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+    // The response data of upgrade electron version list | UpgradeElectronVersion信息列表数据
+    UpgradeElectronVersionListResp {
+        BaseDataInfo
+
+        // The upgrade electron version list data | UpgradeElectronVersion信息列表数据
+        Data UpgradeElectronVersionListInfo `json:"data"`
+    }
+
+    // The upgrade electron version list data | UpgradeElectronVersion信息列表数据
+    UpgradeElectronVersionListInfo {
+        BaseListInfo
+
+        // The upgrade electron version list data | UpgradeElectronVersion信息列表数据
+        Data  []RespUpgradeElectronVersionInfo  `json:"data"`
+    }
+
+    // Get upgrade electron version list request params | UpgradeElectronVersion信息列表请求参数
+    UpgradeElectronVersionListReq {
+        PageInfo
+
+        // 公司ID 
+        CompanyId  *int `json:"companyId,optional"`
+
+        // tauri应用ID 
+        ElectronId  *int `json:"electronId,optional"`
+
+        // 版本名
+        VersionName  *string `json:"versionName,optional"`
+
+        // 版本号 
+        VersionCode  *int `json:"versionCode,optional"`
+
+        // 操作平台:linux、mac、windows 
+        Platform  *string `json:"platform,optional"`
+
+        // 分发类型: windows:nsis,portable, linux: AppImage,deb  
+        Target  *string `json:"target,optional"`
+
+        // 机器架构:x64、ia32 arm64 
+        Arch  *string `json:"arch,optional"`
+
+        // 描述信息
+        Description  *string `json:"description,optional"`
+
+        // 是否删除 0：正常；1：已删除 
+        IsDel  *int32 `json:"isDel,optional"`
+
+        // 创建时间 
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间 
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+    // The upgrade electron version information response | UpgradeElectronVersion信息返回体
+    UpgradeElectronVersionInfoResp {
+        BaseDataInfo
+
+        // upgrade electron version information | UpgradeElectronVersion信息数据
+        Data RespUpgradeElectronVersionInfo `json:"data"`
+    }
+)
+
+@server(
+    jwt: Auth
+    group: upgrade_electron_version
+    middleware: Authority
+)
+
+service Upgrade {
+    // Create upgrade electron version information | 创建UpgradeElectronVersion信息
+    @handler createUpgradeElectronVersion
+    post /upgrade_electron_version/create (UpgradeElectronVersionInfo) returns (BaseMsgResp)
+
+    // Update upgrade electron version information | 更新UpgradeElectronVersion信息
+    @handler updateUpgradeElectronVersion
+    post /upgrade_electron_version/update (UpgradeElectronVersionInfo) returns (BaseMsgResp)
+
+    // Delete upgrade electron version information | 删除UpgradeElectronVersion信息
+    @handler deleteUpgradeElectronVersion
+    post /upgrade_electron_version/delete (IDsReq) returns (BaseMsgResp)
+
+    // Get upgrade electron version list | 获取UpgradeElectronVersion信息列表
+    @handler getUpgradeElectronVersionList
+    post /upgrade_electron_version/list (UpgradeElectronVersionListReq) returns (UpgradeElectronVersionListResp)
+
+    // Get upgrade electron version by ID | 通过ID获取UpgradeElectronVersion信息
+    @handler getUpgradeElectronVersionById
+    post /upgrade_electron_version (IDReq) returns (UpgradeElectronVersionInfoResp)
+}

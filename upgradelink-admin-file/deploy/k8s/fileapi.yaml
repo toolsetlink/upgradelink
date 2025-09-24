@@ -1,0 +1,147 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: file-api
+  labels:
+    app: file-api
+spec:
+  replicas: 3
+  revisionHistoryLimit: 5
+  selector:
+    matchLabels:
+      app: file-api
+  template:
+    metadata:
+      labels:
+        app: file-api
+    spec:
+      serviceAccountName: endpoints-finder
+      containers:
+        - name: file-api
+          image: ryanpower/file-api:0.0.24
+          ports:
+            - containerPort: 9100
+          readinessProbe:
+            tcpSocket:
+              port: 9100
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            tcpSocket:
+              port: 9100
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+            limits:
+              cpu: 1000m
+              memory: 1024Mi
+          volumeMounts:
+            - name: timezone
+              mountPath: /etc/localtime
+            - mountPath: /home/data
+              name: simple-admin-pv
+      volumes:
+        - name: timezone
+          hostPath:
+            path: /usr/share/zoneinfo/Asia/Shanghai
+        - name: simple-admin-pv
+          persistentVolumeClaim:
+            claimName: simple-admin-pv-claim
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: file-api-svc
+  labels:
+    app: file-api-svc
+spec:
+  type: NodePort
+  ports:
+    - port: 9100
+      targetPort: 9100
+      name: api
+      protocol: TCP
+  selector:
+    app: file-api
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: file-api-svc
+  labels:
+    app: file-api-svc
+spec:
+  ports:
+    - port: 4000
+      name: prometheus
+      targetPort: 4000
+  selector:
+    app: file-api
+
+---
+
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: file-api
+  labels:
+    serviceMonitor: prometheus
+spec:
+  selector:
+    matchLabels:
+      app: file-api-svc
+  endpoints:
+    - port: prometheus
+
+---
+
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: file-api-hpa-c
+  labels:
+    app: file-api-hpa-c
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: file-api
+  minReplicas: 3
+  maxReplicas: 4
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 80
+
+---
+
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: file-api-hpa-m
+  labels:
+    app: file-api-hpa-m
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: file-api
+  minReplicas: 3
+  maxReplicas: 4
+  metrics:
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 80

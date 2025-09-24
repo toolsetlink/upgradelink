@@ -1,0 +1,80 @@
+import "../base.api"
+
+type (
+    // The response data of cloud file tag information | 云文件标签信息
+    CloudFileTagInfo {
+        BaseIDInfo
+
+        // Status
+        Status  *uint8 `json:"status,optional"`
+
+        // Name
+        Name  *string `json:"name,optional"`
+
+        // Remark
+        Remark  *string `json:"remark,optional"`
+    }
+
+    // The response data of cloud file tag list | 云文件标签列表数据
+    CloudFileTagListResp {
+        BaseDataInfo
+
+        // CloudFileTag list data | 云文件标签列表数据
+        Data CloudFileTagListInfo `json:"data"`
+    }
+
+    // CloudFileTag list data | 云文件标签列表数据
+    CloudFileTagListInfo {
+        BaseListInfo
+
+        // The API list data | 云文件标签列表数据
+        Data  []CloudFileTagInfo  `json:"data"`
+    }
+
+    // Get cloud file tag list request params | 云文件标签列表请求参数
+    CloudFileTagListReq {
+        PageInfo
+
+        // Name
+        Name  *string `json:"name,optional"`
+
+        // Remark
+        Remark  *string `json:"remark,optional"`
+    }
+
+    // Cloud file tag information response | 云文件标签信息返回体
+    CloudFileTagInfoResp {
+        BaseDataInfo
+
+        // Cloud file tag information | 云文件标签数据
+        Data CloudFileTagInfo `json:"data"`
+    }
+)
+
+@server(
+    jwt: Auth
+    group: cloudfiletag
+    middleware: Authority
+)
+
+service Fms {
+    // Create cloud file tag information | 创建云文件标签
+    @handler createCloudFileTag
+    post /cloud_file_tag/create (CloudFileTagInfo) returns (BaseMsgResp)
+
+    // Update cloud file tag information | 更新云文件标签
+    @handler updateCloudFileTag
+    post /cloud_file_tag/update (CloudFileTagInfo) returns (BaseMsgResp)
+
+    // Delete cloud file tag information | 删除云文件标签信息
+    @handler deleteCloudFileTag
+    post /cloud_file_tag/delete (IDsReq) returns (BaseMsgResp)
+
+    // Get cloud file tag list | 获取云文件标签列表
+    @handler getCloudFileTagList
+    post /cloud_file_tag/list (CloudFileTagListReq) returns (CloudFileTagListResp)
+
+    // Get cloud file tag by ID | 通过ID获取云文件标签
+    @handler getCloudFileTagById
+    post /cloud_file_tag (IDReq) returns (CloudFileTagInfoResp)
+}

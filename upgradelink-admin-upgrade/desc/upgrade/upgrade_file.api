@@ -1,0 +1,98 @@
+import "../base.api"
+
+type (
+    // The data of upgrade file information | UpgradeFile信息
+    UpgradeFileInfo {
+        Id        *int    `json:"id,optional"`
+
+        // 文件应用唯一标识
+        Key  *string `json:"key,optional"`
+
+        // 文件应用名称 
+        Name  *string `json:"name,optional"`
+
+        // 描述信息
+        Description  *string `json:"description,optional,default="`
+
+        // 是否删除 0：正常；1：已删除 
+        IsDel  *int32 `json:"isDel,optional"`
+
+        // 创建时间 
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间 
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+    // The response data of upgrade file list | UpgradeFile信息列表数据
+    UpgradeFileListResp {
+        BaseDataInfo
+
+        // The upgrade file list data | UpgradeFile信息列表数据
+        Data UpgradeFileListInfo `json:"data"`
+    }
+
+    // The upgrade file list data | UpgradeFile信息列表数据
+    UpgradeFileListInfo {
+        BaseListInfo
+
+        // The upgrade file list data | UpgradeFile信息列表数据
+        Data  []UpgradeFileInfo  `json:"data"`
+    }
+
+    // Get upgrade file list request params | UpgradeFile信息列表请求参数
+    UpgradeFileListReq {
+        PageInfo
+
+        // 文件应用唯一标识
+        Key  *string `json:"key,optional"`
+
+        // 文件应用名称 
+        Name  *string `json:"name,optional"`
+
+        // 是否删除 0：正常；1：已删除
+        IsDel  *int32 `json:"isDel,optional"`
+
+        // 创建时间 
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间 
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+    // The upgrade file information response | UpgradeFile信息返回体
+    UpgradeFileInfoResp {
+        BaseDataInfo
+
+        // upgrade file information | UpgradeFile信息数据
+        Data UpgradeFileInfo `json:"data"`
+    }
+)
+
+@server(
+    jwt: Auth
+    group: upgrade_file
+    middleware: Authority
+)
+
+service Upgrade {
+    // Create upgrade file information | 创建UpgradeFile信息
+    @handler createUpgradeFile
+    post /upgrade_file/create (UpgradeFileInfo) returns (BaseMsgResp)
+
+    // Update upgrade file information | 更新UpgradeFile信息
+    @handler updateUpgradeFile
+    post /upgrade_file/update (UpgradeFileInfo) returns (BaseMsgResp)
+
+    // Delete upgrade file information | 删除UpgradeFile信息
+    @handler deleteUpgradeFile
+    post /upgrade_file/delete (IDsReq) returns (BaseMsgResp)
+
+    // Get upgrade file list | 获取UpgradeFile信息列表
+    @handler getUpgradeFileList
+    post /upgrade_file/list (UpgradeFileListReq) returns (UpgradeFileListResp)
+
+    // Get upgrade file by ID | 通过ID获取UpgradeFile信息
+    @handler getUpgradeFileById
+    post /upgrade_file (IDReq) returns (UpgradeFileInfoResp)
+}

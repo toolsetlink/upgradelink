@@ -1,0 +1,68 @@
+Name: upgrade.api
+Host: 0.0.0.0
+Port: 8181
+Timeout: 100000
+
+Auth:
+  AccessSecret: jS6VKDtsJf3z1n2VKDtsJf3z111 # the same as core
+  AccessExpire: 259200
+
+CROSConf:
+  Address: '*'
+
+Log:
+  ServiceName: upgradeApiLogger
+  Mode: file
+  Path: ./logs/upgrade/api
+  Level: info
+  Compress: false
+  Encoding: json
+  KeepDays: 7
+  StackCoolDownMillis: 100
+
+DatabaseConf:
+  Type: mysql
+  Host: rm-j6cx741ix46hwj4xa1o.mysql.cnhk.rds.aliyuncs.com
+  Port: 3306
+  DBName: upgrade-prod
+  Username: songang # set your username
+  Password: Sj13051570639! # set your password
+  MaxOpenConn: 100
+  SSLMode: disable # disable or require
+  CacheTime: 5
+
+CoreRpc:
+  Target: rpc.core.upgrade.toolsetlink.com:9101
+  Enabled: true
+
+RedisConf:
+  Host: redis.upgrade.toolsetlink.com:6379
+  Db: 0
+  Pass: sj13051570639
+
+CasbinDatabaseConf:
+  Type: mysql
+  Host: rm-j6cx741ix46hwj4xa1o.mysql.cnhk.rds.aliyuncs.com
+  Port: 3306
+  DBName: upgrade-prod
+  Username: songang # set your username
+  Password: Sj13051570639! # set your password
+  MaxOpenConn: 100
+  SSLMode: disable # disable or require
+  CacheTime: 5
+
+CasbinConf:
+  ModelText: |
+    [request_definition]
+    r = sub, obj, act
+    [policy_definition]
+    p = sub, obj, act
+    [role_definition]
+    g = _, _
+    [policy_effect]
+    e = some(where (p.eft == allow))
+    [matchers]
+    m = r.sub == p.sub && keyMatch2(r.obj,p.obj) && r.act == p.act
+
+I18nConf:
+  Dir: # set the path of locale if you need to load files
