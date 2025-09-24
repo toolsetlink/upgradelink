@@ -13,7 +13,6 @@ require (
 	github.com/suyuan32/simple-admin-core v1.6.4
 	github.com/zeromicro/go-zero v1.8.0
 	google.golang.org/grpc v1.70.0
-	github.com/aliyun/alibabacloud-oss-go-sdk-v2 v1.2.2
 )
 
 replace github.com/zeromicro/go-zero v1.8.0 => github.com/suyuan32/simple-admin-tools v1.8.0

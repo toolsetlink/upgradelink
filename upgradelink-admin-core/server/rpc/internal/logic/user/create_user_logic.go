@@ -64,7 +64,7 @@ func (l *CreateUserLogic) CreateUser(in *core.UserInfo) (*core.BaseUUIDResp, err
 		SetNotNilHomePath(in.HomePath).
 		SetNotNilDescription(in.Description).
 		SetNotNilDepartmentID(in.DepartmentId).
-		SetNotNilCompanyID(in.CompanyId).
+		//SetNotNilCompanyID(in.CompanyId).
 		AddPositionIDs(in.PositionIds...).
 		Save(l.ctx)
 	if err != nil {

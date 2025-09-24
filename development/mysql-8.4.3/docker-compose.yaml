@@ -2,7 +2,7 @@ version: '1' # 使用较新的版本来兼容更多的功能
 services:
   mysql:
     image: mysql:8.4.3 # MySQL 8.4.3 镜像
-    container_name: upgrade-mysql843 # 容器名称
+    container_name: upgrade-mysql8.4.3 # 容器名称
     environment:
       MYSQL_ROOT_PASSWORD: Rootroot123! # 设置根用户密码
       MYSQL_DATABASE: upgrade # 创建默认数据库

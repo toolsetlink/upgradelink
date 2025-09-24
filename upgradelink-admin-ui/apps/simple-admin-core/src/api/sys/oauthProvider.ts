@@ -69,7 +69,7 @@ export const getOauthProviderById = (params: BaseIDReq) => {
 };
 
 /**
- *  author: Ryan Su
+ *  author: toolsetlink
  *  @description: oauth log in
  */
 export const oauthLogin = (params: OauthLoginReq) => {
@@ -77,7 +77,7 @@ export const oauthLogin = (params: OauthLoginReq) => {
 };
 
 /**
- *  author: Ryan Su
+ *  author: toolsetlink
  *  @description: oauth log in callback
  */
 export const oauthLoginCallback = (URL: string) => {

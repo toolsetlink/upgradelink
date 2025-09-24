@@ -143,7 +143,7 @@ export function doLogout() {
 }
 
 /**
- *  author: Ryan Su
+ *  author: toolsetlink
  *  @description: Get user profile
  */
 export function getUserProfile() {
@@ -151,7 +151,7 @@ export function getUserProfile() {
 }
 
 /**
- *  author: Ryan Su
+ *  author: toolsetlink
  *  @description: update user profile
  */
 export function updateProfile(params: UserProfile) {
@@ -159,7 +159,7 @@ export function updateProfile(params: UserProfile) {
 }
 
 /**
- *  author: Ryan Su
+ *  author: toolsetlink
  *  @description: change user password
  */
 
@@ -168,7 +168,7 @@ export function changePassword(params: ChangePasswordReq) {
 }
 
 /**
- *  author: Ryan Su
+ *  author: toolsetlink
  *  @description: reset user password by email
  */
 
@@ -177,7 +177,7 @@ export function resetPasswordByEmail(params: ResetByEmailInfo) {
 }
 
 /**
- *  author: Ryan Su
+ *  author: toolsetlink
  *  @description: reset user password by email
  */
 

@@ -25,7 +25,7 @@ export interface OauthProviderInfo {
 export type OauthProviderListResp = BaseListResp<OauthProviderInfo>;
 
 /**
- *  author: Ryan Su
+ *  author: toolsetlink
  *  @description: Oauth log in request parameters
  */
 export interface OauthLoginReq {
@@ -34,7 +34,7 @@ export interface OauthLoginReq {
 }
 
 /**
- *  author: Ryan Su
+ *  author: toolsetlink
  *  @description: redirect information
  */
 export interface RedirectInfo {
@@ -42,7 +42,7 @@ export interface RedirectInfo {
 }
 
 /**
- *  author: Ryan Su
+ *  author: toolsetlink
  *  @description: redirect response
  */
 export type RedirectResp = BaseDataResp<RedirectInfo>;

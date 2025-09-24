@@ -19,7 +19,7 @@ enum Api {
 }
 
 /**
- *  author: Ryan Su
+ *  author: toolsetlink
  *  @description: this function is used to get api list for authorization
  */
 
@@ -47,7 +47,7 @@ export const createOrUpdateApiAuthority = (params: ApiAuthorityReq) => {
 };
 
 /**
- *  author: Ryan Su
+ *  author: toolsetlink
  *  @description:
  */
 
@@ -56,7 +56,7 @@ export const createOrUpdateMenuAuthority = (params: MenuAuthorityInfo) => {
 };
 
 /**
- *  author: Ryan Su
+ *  author: toolsetlink
  *  @description: get role's menu authorization ids
  */
 

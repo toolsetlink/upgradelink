@@ -38,7 +38,7 @@ func NewInitDatabaseLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Init
 }
 
 func (l *InitDatabaseLogic) InitDatabase(_ *core.Empty) (*core.BaseResp, error) {
-	// If your mysql speed is high, comment the code below.
+	// If your mysql-8.4.3 speed is high, comment the code below.
 	// Because the context deadline will reach if the database is too slow
 	l.ctx = context.Background()
 

@@ -32,13 +32,13 @@ async function viteLicensePlugin(
         const copyrightText = `/*!
   * UpgradeLink
   * Version: ${version}
-  * Author: Ryan SU
+  * Author: toolsetlink
   * Copyright (C) 2024 UpgradeLink
   * License: Apache2.0 License
   * Description: ${description}
   * Date Created: ${date}
   * Homepage: ${homepage}
-  * Contact: yuansu.china.work@gmail.com
+  * Contact: toolsetlink@163.com
 */
               `.trim();
 

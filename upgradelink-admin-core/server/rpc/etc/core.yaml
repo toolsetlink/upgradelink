@@ -3,11 +3,11 @@ ListenOn: 0.0.0.0:9101
 
 DatabaseConf:
   Type: mysql
-  Host: rm-j6cx741ix46hwj4xa1o.mysql.cnhk.rds.aliyuncs.com
+  Host: 127.0.0.1
   Port: 3306
-  DBName: upgrade-prod
-  Username: songang # set your username
-  Password: Sj13051570639! # set your password
+  DBName: upgrade
+  Username: root # set your username
+  Password: Rootroot123! # set your password
   MaxOpenConn: 100
   SSLMode: disable # disable or require
   CacheTime: 5
@@ -23,9 +23,9 @@ Log:
   StackCoolDownMillis: 100
 
 RedisConf:
-  Host: redis.upgrade.toolsetlink.com:6379
+  Host: 127.0.0.1:6379
   Db: 0
-  Pass: sj13051570639
+  Pass: a123456
 
 Prometheus:
   Host: 0.0.0.0

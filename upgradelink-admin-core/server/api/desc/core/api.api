@@ -3,8 +3,8 @@ syntax = "v1"
 info(
     title: "API management"
     desc: "API management is used to register APIs and manage APIs"
-    author: "Ryan Su"
-    email: "yuansu.china.work@gmail.com"
+    author: "toolsetlink"
+    email: "toolsetlink@163.com"
     version: "v1.0"
 )
 

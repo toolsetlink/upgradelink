@@ -84,7 +84,7 @@ async function getApiData() {
 }
 
 /**
- *  author: Ryan Su
+ *  author: toolsetlink
  *  @description: this function is used to convert menu data into tree node data
  */
 
@@ -142,7 +142,7 @@ function convertApiTreeData(params: ApiInfo[]): DataNode[] {
 }
 
 /**
- *  author: Ryan Su
+ *  author: toolsetlink
  *  @description: convert checked data into authorized data
  */
 function convertApiCheckedKeysToReq(
@@ -181,7 +181,7 @@ function convertApiCheckedKeysToReq(
 }
 
 /**
- *  author: Ryan Su
+ *  author: toolsetlink
  *  @description: this function is used to convert authorization api response into checked keys
  */
 

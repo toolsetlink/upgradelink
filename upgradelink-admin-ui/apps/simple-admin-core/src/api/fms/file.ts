@@ -51,7 +51,7 @@ export const updateFileInfo = (params: updateFileInfoReq) => {
 };
 
 /**
- *  author: Ryan Su
+ *  author: toolsetlink
  *  @description: delete files
  */
 export const deleteFile = (params: BaseUUIDsReq) => {
@@ -59,14 +59,14 @@ export const deleteFile = (params: BaseUUIDsReq) => {
 };
 
 /**
- *  author: Ryan Su
+ *  author: toolsetlink
  *  @description: set file's status
  */
 export const setFileStatus = (id: string, status: number) =>
   requestClient.post(Api.SetFileStatus, { id, status });
 
 /**
- *  author: Ryan Su
+ *  author: toolsetlink
  *  @description: download file
  */
 
@@ -74,7 +74,7 @@ export const downloadFile = (id: number) =>
   requestClient.download(`${Api.DownloadFile}/${id}`);
 
 /**
- *  author: Ryan Su
+ *  author: toolsetlink
  *  @description: delete files
  */
 export const deleteFileByUrl = (params: FileDeleteReq) => {

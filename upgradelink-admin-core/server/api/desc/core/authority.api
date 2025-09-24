@@ -3,8 +3,8 @@ syntax = "v1"
 info(
     title: "authority control"
     desc:  "authority control including authority management, role access control"
-    author: "Ryan Su"
-    email: "yuansu.china.work@gmail.com"
+    author: "toolsetlink"
+    email: "toolsetlink@163.com"
     version: "v1.0"
 )
 

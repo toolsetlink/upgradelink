@@ -33,23 +33,6 @@ func (l *CreateUserLogic) CreateUser(req *types.UserInfo) (resp *types.BaseMsgRe
 		return nil, errorx.NewApiBadRequestError("password can not be empty")
 	}
 
-	// 先创建一个公司，公司先随机生成一个id，然后再创建用户
-	company, err := l.svcCtx.CoreRpc.CreateCompany(l.ctx, &core.CompanyInfo{})
-	if err != nil {
-		return nil, err
-	}
-
-	// 创建公司密钥
-	accessKey, secretKey, _ := GenerateAPIKeys()
-	_, err = l.svcCtx.CoreRpc.CreateCompanySecret(l.ctx, &core.CompanySecretInfo{
-		CompanyId: &company.Id,
-		AccessKey: &accessKey,
-		SecretKey: &secretKey,
-	})
-	if err != nil {
-		return nil, err
-	}
-
 	data, err := l.svcCtx.CoreRpc.CreateUser(l.ctx,
 		&core.UserInfo{
 			Status:       req.Status,
@@ -63,7 +46,6 @@ func (l *CreateUserLogic) CreateUser(req *types.UserInfo) (resp *types.BaseMsgRe
 			Email:        req.Email,
 			Avatar:       req.Avatar,
 			DepartmentId: req.DepartmentId,
-			CompanyId:    &company.Id,
 			PositionIds:  req.PositionIds,
 		})
 	if err != nil {
