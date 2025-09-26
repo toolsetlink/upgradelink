@@ -1,5 +1,10 @@
 # Upgradelink
 
+![](https://img.shields.io/badge/free-pricing?logo=free&color=%20%23155EEF&label=pricing&labelColor=%20%23528bff)
+[![GitHub Repo stars](https://img.shields.io/github/stars/toolsetlink/upgradelink)](https://github.com/toolsetlink/upgradelink)
+![](https://github.com/toolsetlink/upgradelink/actions/workflows/release.yml/badge.svg?branch=release)
+
+
 ## 它是做什么的
 UpgradeLink 是**全端支持的应用升级系统与应用升级分发平台**，为应用提供一站式的应用升级及分发解决方案，核心价值包括：
 - 有效降低技术门槛
@@ -104,7 +109,6 @@ docker run -d --add-host=host.docker.internal:host-gateway -p 8081:8080 -p 8888:
 # 谁在使用
 - 托管应用：100+
 - 托管应用版本：900+
-- 加速下载次数：100,000+
 
 ### 托管的开源项目
 
