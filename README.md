@@ -124,8 +124,11 @@ docker run -d --add-host=host.docker.internal:host-gateway -p 8081:8080 -p 8888:
 [![Star History Chart](https://api.star-history.com/svg?repos=toolsetlink/upgradelink&type=Date)](https://www.star-history.com/#toolsetlink/upgradelink&Date)
 
 
+#
+#
+#
 
-### 授权协议
+### 授权
 为避免对授权范围的误解，本项目对“自用”和“商用”的界定如下：
 #### 🔍 允许的“自用”行为（无需额外授权）
 1. **个人场景**：
