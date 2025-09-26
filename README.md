@@ -35,16 +35,6 @@ UpgradeLink 是**全端支持的应用升级系统与应用升级分发平台**�
 - 支持维度：设备、机型等
 - 管理方式：可通过可视化控制台精准管理升级包分发
 
-## 服务成就数据
-- 托管应用：100+
-- 托管应用版本：900+
-- 加速下载次数：80,000+
-
-
-# 托管的开源项目
-企业版 开源计划-免费提供服务 [计划链接](https://www.toolsetlink.com/upgrade/open-source/plan.html)
-
-| [note-gen (AI笔记软件)](https://notegen.top/en)         | [BongoCat（桌宠）](https://github.com/ayangweb/BongoCat)   | [MarkFlowy (MD 编辑器)](https://github.com/drl990114/MarkFlowy)    | [lazyeat (手势控制)](https://github.com/lanxiuyun/lazyeat)  |
 
 
 #  快速开始只需4步。
@@ -102,9 +92,7 @@ docker run -d --add-host=host.docker.internal:host-gateway -p 8081:8080 -p 8888:
 # 贡献
 欢迎贡献者加入 UpgradeLink 项目。请 [进群](https://www.toolsetlink.com/upgrade/communication-group.html) 了解如何为这个项目做出贡献。
 
-
 # 其他相关项目存储库
-
 ## Sdk
 - [Go](https://github.com/toolsetlink/upgradelink-api-go)   GO sdk
 - [Java](https://github.com/toolsetlink/upgradelink-api-java)   Java sdk
@@ -112,6 +100,16 @@ docker run -d --add-host=host.docker.internal:host-gateway -p 8081:8080 -p 8888:
 - [Android](https://github.com/toolsetlink/upgradelink-api-android)  Android sdk
 - [TypeScript](https://github.com/toolsetlink/upgradelink-api-ts) TypeScript sdk
 
+# 谁在使用
+- 托管应用：100+
+- 托管应用版本：900+
+- 加速下载次数：100,000+
+
+### 托管的开源项目
+
+企业版 开源计划-免费提供服务 [计划链接](https://www.toolsetlink.com/upgrade/open-source/plan.html)
+
+[note-gen (AI笔记软件)](https://notegen.top/en)         | [BongoCat（桌宠）](https://github.com/ayangweb/BongoCat)   | [MarkFlowy (MD 编辑器)](https://github.com/drl990114/MarkFlowy)    | [lazyeat (手势控制)](https://github.com/lanxiuyun/lazyeat)  |
 
 
 
