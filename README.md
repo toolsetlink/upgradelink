@@ -90,6 +90,9 @@ docker run -d --add-host=host.docker.internal:host-gateway -p 8081:8080 -p 8888:
 # 贡献
 欢迎贡献者加入 UpgradeLink 项目。请 [进群](https://www.toolsetlink.com/upgrade/communication-group.html) 了解如何为这个项目做出贡献。
 
+> 本项目基于 [Go Zero](https://go-zero.dev/) 与 [simple-admin](https://doc.ryansu.tech/) 开发。
+
+
 # 其他相关项目存储库
 ## Sdk
 - [Go](https://github.com/toolsetlink/upgradelink-api-go)   GO sdk
