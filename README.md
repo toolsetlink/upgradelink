@@ -78,8 +78,7 @@ docker-compose up -d
 docker run -d --add-host=host.docker.internal:host-gateway -p 8081:8080 -p 8888:8888 toolsetlink/upgradelink-standalone:v2.0.6
 ```
 
-
-# 其他开源项目的快速入门：
+## 其他方式快速入门：
 - [自行 build 文档](https://www.toolsetlink.com/upgrade/deploy/quick-start-docker2.html)
 
 
@@ -87,7 +86,6 @@ docker run -d --add-host=host.docker.internal:host-gateway -p 8081:8080 -p 8888:
 您可以从 [UpgradeLink](https://www.toolsetlink.com/upgrade/) 网站查看完整文档。
 
 所有最新和长期通知也可以在此处找到 [UpgradeLink 通知问题](https://github.com/toolsetlink/upgradelink/issues)。
-
 
 # 贡献
 欢迎贡献者加入 UpgradeLink 项目。请 [进群](https://www.toolsetlink.com/upgrade/communication-group.html) 了解如何为这个项目做出贡献。
