@@ -113,7 +113,6 @@ docker run -d --add-host=host.docker.internal:host-gateway -p 8081:8080 -p 8888:
 [note-gen (AI笔记软件)](https://notegen.top/en)         | [BongoCat（桌宠）](https://github.com/ayangweb/BongoCat)   | [MarkFlowy (MD 编辑器)](https://github.com/drl990114/MarkFlowy)    | [lazyeat (手势控制)](https://github.com/lanxiuyun/lazyeat)  |
 
 
-
 # Contributors
 
 <a href="https://github.com/toolsetlink/upgradelink/graphs/contributors">
@@ -123,3 +122,23 @@ docker run -d --add-host=host.docker.internal:host-gateway -p 8081:8080 -p 8888:
 # Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=toolsetlink/upgradelink&type=Date)](https://www.star-history.com/#toolsetlink/upgradelink&Date)
+
+
+
+### 授权协议
+为避免对授权范围的误解，本项目对“自用”和“商用”的界定如下：
+#### 🔍 允许的“自用”行为（无需额外授权）
+1. **个人场景**：
+    - 个人非盈利性使用（如学习、个人工具部署、非商业目的的个人项目）；
+    - 修改代码后仅用于个人使用（不向任何第三方传播、提供服务或收费）。
+2. **企业/组织场景**：
+    - 企业内部员工使用（如部署在公司内网供员工办公使用、内部系统集成）；
+    - 企业为自身业务需求进行二次开发，但修改后的版本仅用于企业内部运营（不对外提供）。
+#### ❌ 禁止的“商用”行为（需提前获得作者书面授权）
+1. 直接或间接将本项目（或修改后的衍生版本）作为商品销售、出租、许可给第三方；
+2. 基于本项目提供付费服务（如付费托管、技术支持、定制化开发服务等）；
+3. 将本项目（或修改后的衍生版本）嵌入商业产品中，以盈利为目的向客户提供；
+4. 以“开源免费”为噱头，通过广告、流量、数据收集等方式从本项目中获利；
+5. 其他以盈利为目的的使用方式（未明确列举但符合“商用”性质的行为）。
+#### 📩 授权申请
+若你需要在上述“禁止的商用行为”范围内使用本项目，请通过 [toolsetlink@163.com](https://www.toolsetlink.com/) 联系作者，获取书面授权许可。
