@@ -1,0 +1,54 @@
+Name: core.rpc
+ListenOn: 0.0.0.0:9101
+
+DatabaseConf:
+  Type: mysql
+  Host: host.docker.internal
+  Port: 3306
+  DBName: upgrade
+  Username: root # set your username
+  Password: Rootroot123! # set your password
+  MaxOpenConn: 100
+  SSLMode: disable # disable or require
+  CacheTime: 5
+
+Log:
+  ServiceName: coreRpcLogger
+  Mode: file
+  Path: ./logs/core/rpc
+  Encoding: json
+  Level: info
+  Compress: false
+  KeepDays: 7
+  StackCoolDownMillis: 100
+
+RedisConf:
+  Host: host.docker.internal:6379
+  Db: 0
+  Pass: a123456
+
+Prometheus:
+  Host: 0.0.0.0
+  Port: 4001
+  Path: /metrics
+
+CasbinConf:
+  ModelText: |
+    [request_definition]
+    r = sub, obj, act
+    [policy_definition]
+    p = sub, obj, act
+    [role_definition]
+    g = _, _
+    [policy_effect]
+    e = some(where (p.eft == allow))
+    [matchers]
+    m = r.sub == p.sub && keyMatch2(r.obj,p.obj) && r.act == p.act
+
+# Tracing Analysis
+
+#Telemetry:
+#  Name: core-rpc
+#  Endpoint: localhost:4317
+#  Sampler: 1.0
+#  Batcher: otlpgrpc # grpc

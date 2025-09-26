@@ -12,10 +12,10 @@ Log:
   KeepDays: 3
   Rotation: daily
 
-MysqlConfig: "root:Rootroot123!@tcp(127.0.0.1:3306)/upgrade?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai"
+MysqlConfig: "root:Rootroot123!@tcp(host.docker.internal:3306)/upgrade?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai"
 
 RedisConfig:
-  Host: 127.0.0.1:6379
+  Host: host.docker.internal:6379
   Type: node
   Pass: a123456
   Tls: false

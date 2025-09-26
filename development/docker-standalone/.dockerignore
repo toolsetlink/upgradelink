@@ -1,0 +1,10 @@
+# .dockerignore 文件内容
+node_modules/
+.git/
+.gitignore
+.dockerignore
+.env
+.env.*
+*.md
+mysql-8.4.3/
+redis-6.0.20/

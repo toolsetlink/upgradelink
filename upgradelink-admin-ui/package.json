@@ -76,6 +76,7 @@
     "happy-dom": "catalog:",
     "husky": "catalog:",
     "is-ci": "catalog:",
+    "less": "^4.4.1",
     "lint-staged": "catalog:",
     "playwright": "catalog:",
     "rimraf": "catalog:",

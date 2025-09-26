@@ -1,6 +1,6 @@
 module upgradelink-admin-message
 
-go 1.23.0
+go 1.25.0
 
 replace github.com/zeromicro/go-zero v1.8.0 => github.com/suyuan32/simple-admin-tools v1.8.0
 

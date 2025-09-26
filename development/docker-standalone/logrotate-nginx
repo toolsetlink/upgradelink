@@ -1,0 +1,15 @@
+/link/logs/nginx/access.log {
+    daily
+    rotate 2
+    dateext
+    dateformat -%Y%m%d
+    dateyesterday
+    ifempty
+    missingok
+    compress
+    nocreate
+    sharedscripts
+    postrotate # 执行脚本
+        kill -USR1 $(cat /link/logs/nginx/nginx.pid)
+    endscript
+}

@@ -1,0 +1,52 @@
+FROM toolsetlink/alpine-upgradelink:v2.0.0
+
+LABEL description="upgradelink-standalone"
+
+ARG ENV=prod
+
+ENV RUN_MODE=$ENV APP_NAME="upgradelink-standalone"
+
+WORKDIR /link/upgradelink-standalone
+
+RUN mkdir -p /link/upgradelink-standalone/etc /link/upgradelink-standalone/build
+
+# 根据构建上下文调整文件复制路径（构建上下文为项目根目录）
+COPY upgradelink-admin-core/server/api/core-api  /link/upgradelink-standalone/
+COPY upgradelink-admin-core/server/api/etc/core-api.yaml  /link/upgradelink-standalone/etc/
+
+COPY upgradelink-admin-core/server/rpc/core-rpc  /link/upgradelink-standalone/
+COPY upgradelink-admin-core/server/rpc/etc/core-rpc.yaml  /link/upgradelink-standalone/etc/
+
+COPY upgradelink-admin-file/server/file  /link/upgradelink-standalone/
+COPY upgradelink-admin-file/server/etc/fms.yaml  /link/upgradelink-standalone/etc/
+
+COPY upgradelink-admin-message/server/message  /link/upgradelink-standalone/
+COPY upgradelink-admin-message/server/etc/mcms.yaml  /link/upgradelink-standalone/etc/
+
+COPY upgradelink-admin-upgrade/server/upgrade  /link/upgradelink-standalone/
+COPY upgradelink-admin-upgrade/server/etc/upgrade.yaml  /link/upgradelink-standalone/etc/
+
+# 创建 Nginx html 目录
+RUN mkdir -p /usr/share/nginx/html
+
+COPY upgradelink-admin-ui/apps/simple-admin-core/dist /usr/share/nginx/html/
+
+# 拷贝配置文件
+COPY development/docker-standalone/nginx.conf /etc/nginx/
+COPY development/docker-standalone/logrotate-nginx /link/upgradelink-standalone/logrotate-nginx
+COPY development/docker-standalone/supervisord.conf /link/upgradelink-standalone/supervisord.conf
+
+# 创建启动脚本和设置定时任务，修正路径引用
+RUN sed -i '$a\0 0 * * * logrotate -f /link/upgradelink-standalone/logrotate-nginx' /var/spool/cron/crontabs/root \
+    && echo '''mkdir -p /link/logs/nginx && \
+        mkdir -p /link/logs/supervisor && \
+        supervisord -c /link/upgradelink-standalone/supervisord.conf''' > start.sh \
+    && chmod a+x start.sh
+
+EXPOSE 80
+
+CMD [ "/bin/bash", "start.sh" ]
+
+# 在当前目录执行
+# docker buildx build -t toolsetlink/upgradelink-standalone:v2.0.2 --platform=linux/amd64,linux/arm64 -f ./Dockerfile ../../ --push
+

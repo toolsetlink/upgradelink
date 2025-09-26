@@ -22,7 +22,7 @@ Log:
 
 DatabaseConf:
   Type: mysql
-  Host: 127.0.0.1
+  Host: host.docker.internal
   Port: 3306
   DBName: upgrade
   Username: root # set your username
@@ -36,13 +36,13 @@ CoreRpc:
   Enabled: true
 
 RedisConf:
-  Host: 127.0.0.1:6379
+  Host: host.docker.internal:6379
   Db: 0
   Pass: a123456
 
 CasbinDatabaseConf:
   Type: mysql
-  Host: 127.0.0.1
+  Host: host.docker.internal
   Port: 3306
   DBName: upgrade
   Username: root # set your username

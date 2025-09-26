@@ -1,6 +1,6 @@
 module upgradelink-admin-upgrade
 
-go 1.23.4
+go 1.25.0
 
 require (
 	entgo.io/ent v0.14.1
