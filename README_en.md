@@ -44,7 +44,7 @@ Supports 6 mainstream languages with no complex configuration:
 - 🐍 [Python SDK](https://github.com/toolsetlink/upgradelink-api-python)
 - 🦋 [Dart SDK](https://github.com/toolsetlink/upgradelink-api-dart)
 - 🤖 [Android SDK](https://github.com/toolsetlink/upgradelink-api-android)
-- 🟦 [TypeScript SDK](https://github.com/toolsetlink/upgradelink-api-ts)
+- 🟦 [TypeScript SDK](https://github.com/toolsetlink/upgradelink-api-typescript)
 
 ### Step 2: Refer to Documentation
 - [Complete User Guide](https://www.toolsetlink.com/upgrade/what-is-upgrade.html)

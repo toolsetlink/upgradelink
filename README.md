@@ -44,7 +44,7 @@
 - 🐍 [Python SDK](https://github.com/toolsetlink/upgradelink-api-python)
 - 🦋 [Dart SDK](https://github.com/toolsetlink/upgradelink-api-dart)
 - 🤖 [Android SDK](https://github.com/toolsetlink/upgradelink-api-android)
-- 🟦 [TypeScript SDK](https://github.com/toolsetlink/upgradelink-api-ts)
+- 🟦 [TypeScript SDK](https://github.com/toolsetlink/upgradelink-api-typescript)
 
 ### 第二步：参考文档
 - [完整使用文档](https://www.toolsetlink.com/upgrade/what-is-upgrade.html)
