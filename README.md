@@ -59,11 +59,37 @@
 
 
 ## 谁在使用？
-已有多个开源项目接入：
-- [note-gen（AI笔记软件）](https://notegen.top/en) - 跨平台笔记工具
-- [BongoCat（桌宠）](https://github.com/ayangweb/BongoCat) - 趣味桌面宠物
-- [MarkFlowy（MD编辑器）](https://github.com/drl990114/MarkFlowy) - 轻量Markdown工具
-- [lazyeat（手势控制）](https://github.com/lanxiuyun/lazyeat) - 手势控制工具
+
+已有多个开源项目接入，按技术框架分类如下：
+
+### 🚀 Tauri 框架项目
+| 项目名称 | 应用场景 |                                                            Stars                                                            | 
+| :--- | :--- |:---------------------------------------------------------------------------------------------------------------------------:| 
+| note-gen | 跨平台笔记工具 |       [![GitHub Repo stars](https://img.shields.io/github/stars/codexu/note-gen)](https://github.com/codexu/note-gen)       | 
+| BongoCat | 趣味桌面宠物 |     [![GitHub Repo stars](https://img.shields.io/github/stars/ayangweb/BongoCat)](https://github.com/ayangweb/BongoCat)     | 
+| Hula | 开源即时通讯系统 |        [![GitHub Repo stars](https://img.shields.io/github/stars/HuLaSpark/HuLa)](https://github.com/HuLaSpark/HuLa)        | 
+| MarkFlowy | 轻量 Markdown 工具 |   [![GitHub Repo stars](https://img.shields.io/github/stars/drl990114/MarkFlowy)](https://github.com/drl990114/MarkFlowy)   |
+| lazyeat | 手势控制工具 |     [![GitHub Repo stars](https://img.shields.io/github/stars/lanxiuyun/lazyeat)](https://github.com/lanxiuyun/lazyeat)     | 
+| Prompt-Tools | AI 提示词工具 | [![GitHub Repo stars](https://img.shields.io/github/stars/jwangkun/Prompt-Tools)](https://github.com/jwangkun/Prompt-Tools) | 
+| MarkFly | Markdown 编辑器 |      [![GitHub Repo stars](https://img.shields.io/github/stars/jwangkun/MarkFly)](https://github.com/jwangkun/MarkFly)      | 
+| rank-analysis | LoL 排位分析工具 |  [![GitHub Repo stars](https://img.shields.io/github/stars/wnzzer/rank-analysis)](https://github.com/wnzzer/rank-analysis)  |
+| Welight | 公众号智能排版应用 |                                                   [官网](https://waer.ltd)                                                    |  
+
+---
+
+### 📱 Android 项目
+| 项目名称 | 应用场景 |                                                             Stars                                                             |
+| :--- | :--- |:-----------------------------------------------------------------------------------------------------------------------------:|
+| 聚在工大 | 校园服务 | [![GitHub Repo stars](https://img.shields.io/github/stars/Chiu-xaH/HFUT-Schedule)](https://github.com/Chiu-xaH/HFUT-Schedule) |
+| 脉扑 | 健康生活 |                                                                [官网](https://www.maipusc.com)                                                                  |
+
+---
+
+### 💻 Electron 框架项目
+| 项目名称 | 应用场景 | Stars |
+| :--- | :--- |:-----:|
+| es-client | ElasticSearch 客户端 |   [官网](https://es-client.esion.xyz)    |
+
 
 
 ## 企业版
@@ -85,3 +111,7 @@
 <a href="https://github.com/toolsetlink/upgradelink/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=toolsetlink/upgradelink" />
 </a>
+
+# Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=toolsetlink/upgradelink&type=Date)](https://www.star-history.com/#toolsetlink/upgradelink&Date)
