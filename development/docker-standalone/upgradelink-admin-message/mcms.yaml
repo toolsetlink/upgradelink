@@ -22,7 +22,7 @@ RedisConf:
 Log:
   ServiceName: mcmsRpcLogger
   Mode: file
-  Path: ./logs/mcms/rpc
+  Path: /link/logs/mcms/rpc
   Encoding: json
   Level: info
   Compress: false

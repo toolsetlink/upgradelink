@@ -14,7 +14,7 @@ CROSConf:
 Log:
   ServiceName: fileManagerLogger
   Mode: file
-  Path: ./logs/file/api
+  Path: /link/logs/file/api
   Level: info
   Compress: false
   KeepDays: 7

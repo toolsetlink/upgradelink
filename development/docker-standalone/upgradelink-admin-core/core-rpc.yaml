@@ -16,7 +16,7 @@ DatabaseConf:
 Log:
   ServiceName: coreRpcLogger
   Mode: file
-  Path: ./logs/core/rpc
+  Path: /link/logs/core/rpc
   Encoding: json
   Level: info
   Compress: false

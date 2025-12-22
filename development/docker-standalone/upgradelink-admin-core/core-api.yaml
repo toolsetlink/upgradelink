@@ -10,7 +10,7 @@ Auth:
 Log:
   ServiceName: coreApiLogger
   Mode: file
-  Path: ./logs/core/api
+  Path: /link/logs/core/api
   Level: info
   Compress: false
   KeepDays: 7

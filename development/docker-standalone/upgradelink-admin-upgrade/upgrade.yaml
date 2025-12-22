@@ -13,7 +13,7 @@ CROSConf:
 Log:
   ServiceName: upgradeApiLogger
   Mode: file
-  Path: ./logs/upgrade/api
+  Path: /link/logs/upgrade/api
   Level: info
   Compress: false
   Encoding: json
