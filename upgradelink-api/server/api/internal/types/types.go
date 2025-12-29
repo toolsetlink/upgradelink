@@ -222,7 +222,6 @@ type GetElectronVersionInfoRespData struct {
 type GetFileDownloadInfoReq struct {
 	FileKey     string `form:"fileKey"`
 	VersionCode int64  `form:"versionCode,default=0"`
-	VersionId   int64  `form:"versionId,default=0"`
 }
 
 type GetFileUpgradeInfoReq struct {

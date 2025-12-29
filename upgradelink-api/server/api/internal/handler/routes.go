@@ -86,26 +86,11 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				{
 					Method:  http.MethodGet,
 					Path:    "/download",
-					Handler: download.GetApkDownloadInfoHandler(serverCtx),
+					Handler: download.GetTauriDownloadInfoHandler(serverCtx),
 				},
 			}...,
 		),
-		rest.WithPrefix("/v1/apk"),
-		rest.WithTimeout(30000*time.Millisecond),
-	)
-
-	server.AddRoutes(
-		rest.WithMiddlewares(
-			[]rest.Middleware{serverCtx.CdnRateLimit},
-			[]rest.Route{
-				{
-					Method:  http.MethodGet,
-					Path:    "/download",
-					Handler: download.GetUrlDownloadInfoHandler(serverCtx),
-				},
-			}...,
-		),
-		rest.WithPrefix("/v1/url"),
+		rest.WithPrefix("/v1/tauri"),
 		rest.WithTimeout(30000*time.Millisecond),
 	)
 
@@ -161,11 +146,11 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				{
 					Method:  http.MethodGet,
 					Path:    "/download",
-					Handler: download.GetFileDownloadInfoHandler(serverCtx),
+					Handler: download.GetApkDownloadInfoHandler(serverCtx),
 				},
 			}...,
 		),
-		rest.WithPrefix("/v1/file"),
+		rest.WithPrefix("/v1/apk"),
 		rest.WithTimeout(30000*time.Millisecond),
 	)
 
@@ -176,11 +161,26 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				{
 					Method:  http.MethodGet,
 					Path:    "/download",
-					Handler: download.GetTauriDownloadInfoHandler(serverCtx),
+					Handler: download.GetUrlDownloadInfoHandler(serverCtx),
 				},
 			}...,
 		),
-		rest.WithPrefix("/v1/tauri"),
+		rest.WithPrefix("/v1/url"),
+		rest.WithTimeout(30000*time.Millisecond),
+	)
+
+	server.AddRoutes(
+		rest.WithMiddlewares(
+			[]rest.Middleware{serverCtx.CdnRateLimit},
+			[]rest.Route{
+				{
+					Method:  http.MethodGet,
+					Path:    "/download",
+					Handler: download.GetFileDownloadInfoHandler(serverCtx),
+				},
+			}...,
+		),
+		rest.WithPrefix("/v1/file"),
 		rest.WithTimeout(30000*time.Millisecond),
 	)
 

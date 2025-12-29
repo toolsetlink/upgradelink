@@ -36,7 +36,7 @@ func (l *GetApkUpgradeInfoLogic) GetApkUpgradeInfo(req *types.GetApkUpgradeInfoR
 	if req.ApkKey == "" {
 		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrApk1Msg, common.ErrApk1Docs)
 	}
-	if req.VersionCode == 0 {
+	if req.VersionCode < 0 {
 		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrApk1Msg, common.ErrApk1Docs)
 	}
 

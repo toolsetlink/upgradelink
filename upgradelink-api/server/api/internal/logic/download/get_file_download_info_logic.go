@@ -45,31 +45,22 @@ func (l *GetFileDownloadInfoLogic) GetFileDownloadInfo(req *types.GetFileDownloa
 	}
 
 	var fileVersionInfo *model.UpgradeFileVersion
-	// 判断是否传了 versionId， 如果传了，则直接选择数据
-	if req.VersionId > 0 {
-		fileVersionInfo, err = l.svcCtx.ResourceCtx.GetFileVersionInfoById(l.ctx, req.VersionId)
+
+	// 判断是否固定了版本号，如果没有固定 则获取详细的版本信息
+	if req.VersionCode == 0 {
+		fileVersionInfo, err = l.svcCtx.ResourceCtx.GetFileVersionLastInfoByFileId(l.ctx, fileInfo.Id)
 		if err != nil && errors.Is(err, model.ErrNotFound) {
 			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, common.ErrFile3Msg, common.ErrFile3Docs)
 		} else if err != nil {
 			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
 		}
-	} else {
-		// 判断是否固定了版本号，如果没有固定 则获取详细的版本信息
-		if req.VersionCode == 0 {
-			fileVersionInfo, err = l.svcCtx.ResourceCtx.GetFileVersionLastInfoByFileId(l.ctx, fileInfo.Id)
-			if err != nil && errors.Is(err, model.ErrNotFound) {
-				return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, common.ErrFile3Msg, common.ErrFile3Docs)
-			} else if err != nil {
-				return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
-			}
 
-		} else {
-			fileVersionInfo, err = l.svcCtx.ResourceCtx.GetFileVersionInfoByFileIdAndVersionCode(l.ctx, fileInfo.Id, req.VersionCode)
-			if err != nil && errors.Is(err, model.ErrNotFound) {
-				return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, common.ErrFile3Msg, common.ErrFile3Docs)
-			} else if err != nil {
-				return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
-			}
+	} else {
+		fileVersionInfo, err = l.svcCtx.ResourceCtx.GetFileVersionInfoByFileIdAndVersionCode(l.ctx, fileInfo.Id, req.VersionCode)
+		if err != nil && errors.Is(err, model.ErrNotFound) {
+			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, common.ErrFile3Msg, common.ErrFile3Docs)
+		} else if err != nil {
+			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
 		}
 	}
 

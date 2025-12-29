@@ -36,7 +36,7 @@ func (l *GetFileUpgradeInfoLogic) GetFileUpgradeInfo(req *types.GetFileUpgradeIn
 	if req.FileKey == "" {
 		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrFile1Msg, common.ErrFile1Docs)
 	}
-	if req.VersionCode == 0 {
+	if req.VersionCode < 0 {
 		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrFile1Msg, common.ErrFile1Docs)
 	}
 
@@ -90,7 +90,6 @@ func (l *GetFileUpgradeInfoLogic) GetFileUpgradeInfo(req *types.GetFileUpgradeIn
 		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
 	}
 
-	urlPath := ""
 	// 获取文件信息
 	cloudFileInfo, err := l.svcCtx.ResourceCtx.GetCloudFileInfoById(l.ctx, fileVersionInfo.CloudFileId)
 	if err != nil && errors.Is(err, model.ErrNotFound) {
@@ -98,6 +97,8 @@ func (l *GetFileUpgradeInfoLogic) GetFileUpgradeInfo(req *types.GetFileUpgradeIn
 	} else if err != nil {
 		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
 	}
+
+	urlPath := ""
 	urlPath = cloudFileInfo.Url
 
 	// 插入获取日志上报
@@ -106,7 +107,7 @@ func (l *GetFileUpgradeInfoLogic) GetFileUpgradeInfo(req *types.GetFileUpgradeIn
 		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
 	}
 	// 获取应用版本 id
-	appVersionId, err := l.svcCtx.ResourceCtx.GetAppVersionIdByReport(l.ctx, resource.GetAppVersionIdByReportReq{
+	reqAppVersionId, err := l.svcCtx.ResourceCtx.GetAppVersionIdByReport(l.ctx, resource.GetAppVersionIdByReportReq{
 		AppKey:           fileInfo.Key,
 		AppVersionCode:   req.VersionCode,
 		DevModelKey:      req.DevModelKey,
@@ -119,7 +120,7 @@ func (l *GetFileUpgradeInfoLogic) GetFileUpgradeInfo(req *types.GetFileUpgradeIn
 		AppKey:              fileInfo.Key,
 		AppType:             "file",
 		Timestamp:           *timestamp,
-		AppVersionId:        appVersionId,
+		AppVersionId:        reqAppVersionId,
 		AppVersionCode:      req.VersionCode,
 		DevModelKey:         req.DevModelKey,
 		DevKey:              req.DevKey,
