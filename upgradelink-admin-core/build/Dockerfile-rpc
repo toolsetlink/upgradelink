@@ -43,9 +43,9 @@ CMD [ "/bin/bash", "start.sh" ]
 # 在当面模块根目录下执行  /upgradelink/upgradelink-admin-core
 
 # amd架构
-# docker buildx build  -t upgradelink-admin-core-rpc:2.3.0 --platform=linux/amd64 -f build/Dockerfile-rpc . --load
+# docker buildx build  -t upgradelink-admin-core-rpc:2.4.0 --platform=linux/amd64 -f build/Dockerfile-rpc . --load
 # arm架构
-# docker buildx build  -t upgradelink-admin-core-rpc:2.3.0 --platform=linux/arm64 -f build/Dockerfile-rpc . --load
+# docker buildx build  -t upgradelink-admin-core-rpc:2.4.0 --platform=linux/arm64 -f build/Dockerfile-rpc . --load
 
 # 打包开源镜像
-# docker buildx build -t toolsetlink/upgradelink-admin-core-rpc:2.3.0 --platform=linux/amd64,linux/arm64 -f build/Dockerfile-rpc . --push
+# docker buildx build -t toolsetlink/upgradelink-admin-core-rpc:2.4.0 --platform=linux/amd64,linux/arm64 -f build/Dockerfile-rpc . --push

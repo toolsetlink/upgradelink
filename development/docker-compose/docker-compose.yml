@@ -26,7 +26,7 @@ services:
     privileged: true # 获取宿主机root权限
     command: [ "redis-server","/etc/redis/redis.conf" ] # 指定配置文件启动redis-server进程
   upgradelink-admin-core-rpc:
-    image: toolsetlink/upgradelink-admin-core-rpc:2.2.0
+    image: toolsetlink/upgradelink-admin-core-rpc:2.4.0
     container_name: upgradelink-admin-core-rpc # 容器名称
     volumes:
       - ./upgradelink-admin-core/supervisord-rpc.conf:/link/upgradelink-admin-core-rpc/build/supervisord.conf
@@ -59,7 +59,7 @@ services:
     depends_on: # 启动顺序
       - upgradelink-admin-core-rpc
   upgradelink-admin-upgrade:
-    image: toolsetlink/upgradelink-admin-upgrade:2.3.1
+    image: toolsetlink/upgradelink-admin-upgrade:2.4.0
     container_name: upgradelink-admin-upgrade # 容器名称
     volumes:
       - ./upgradelink-admin-upgrade/nginx.conf:/etc/nginx/nginx.conf
@@ -71,7 +71,7 @@ services:
     depends_on: # 启动顺序
       - upgradelink-admin-core-rpc
   upgradelink-admin-core-api:
-    image: toolsetlink/upgradelink-admin-core-api:2.2.0
+    image: toolsetlink/upgradelink-admin-core-api:2.4.0
     container_name: upgradelink-admin-core-api # 容器名称
     volumes:
       - ./upgradelink-admin-core/nginx.conf:/etc/nginx/nginx.conf
@@ -83,7 +83,7 @@ services:
     depends_on: # 启动顺序
       - upgradelink-admin-upgrade
   upgradelink-admin-ui:
-    image: toolsetlink/upgradelink-admin-ui:2.3.1
+    image: toolsetlink/upgradelink-admin-ui:2.4.0
     container_name: upgradelink-admin-ui # 容器名称
     volumes:
       - ./upgradelink-admin-ui/nginx.conf:/etc/nginx/nginx.conf
@@ -94,7 +94,7 @@ services:
     depends_on: # 启动顺序
       - upgradelink-admin-core-api
   upgradelink-api:
-    image: toolsetlink/upgradelink-api:2.3.1
+    image: toolsetlink/upgradelink-api:2.4.0
     container_name: upgradelink-api # 容器名称
     volumes:
       - ./upgradelink-api/nginx.conf:/etc/nginx/nginx.conf

@@ -33,6 +33,6 @@ CMD [ "/bin/bash", "start.sh"]
 # pnpm install
 # pnpm build:simple-admin-core
 # 打包开源镜像
-# docker buildx build -t toolsetlink/upgradelink-admin-ui:2.3.1 --platform=linux/amd64,linux/arm64 -f build/Dockerfile . --push
+# docker buildx build -t toolsetlink/upgradelink-admin-ui:2.4.0 --platform=linux/amd64,linux/arm64 -f build/Dockerfile . --push
 
 

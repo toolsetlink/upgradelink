@@ -1,4 +1,4 @@
-FROM toolsetlink/build-upgradelink:v2.0.1 AS builder
+FROM toolsetlink/build-upgradelink:v2.0.2 AS builder
 
 WORKDIR /go/src/upgradelink-standalone/
 
@@ -118,5 +118,5 @@ EXPOSE 8080
 CMD [ "/bin/bash", "start.sh" ]
 
 # 在当前目录执行
-# docker buildx build -t toolsetlink/upgradelink-standalone:2.3.1 --platform=linux/amd64,linux/arm64 -f ./Dockerfile ../../ --push
+# docker buildx build -t toolsetlink/upgradelink-standalone:2.4.1 --platform=linux/amd64,linux/arm64 -f ./Dockerfile ../../ --push
 
