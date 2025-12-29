@@ -37,7 +37,7 @@
     "name": "名称",
     "bucket": "存储桶",
     "providerName": "提供商名称",
-    "secretId": "Secret Id",
+    "secretId": "Secret Id or Access Key",
     "secretKey": "Secret Key",
     "folder": "云服务文件夹",
     "region": "地区",

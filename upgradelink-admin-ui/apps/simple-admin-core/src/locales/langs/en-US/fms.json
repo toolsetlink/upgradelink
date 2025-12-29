@@ -36,7 +36,7 @@
     "name": "Name",
     "bucket": "Bucket",
     "providerName": "Provider Name",
-    "secretId": "Secret ID",
+    "secretId": "Secret Id or Access Key",
     "secretKey": "Secret Key",
     "folder": "Folder in cloud",
     "region": "Region",
