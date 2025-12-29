@@ -147,10 +147,10 @@ function handleTimePickerChange(
         allow-clear
         :class="{ 'valid-success': !!modelValue.dimension }"
         :options="[
-          { label: '秒', value: 1 },
-          { label: '分钟', value: 2 },
-          { label: '小时', value: 3 },
-          { label: '填', value: 4 },
+          { label: $t('upgrade.base.s'), value: 1 },
+          { label: $t('upgrade.base.m'), value: 2 },
+          { label: $t('upgrade.base.h'), value: 3 },
+          { label: $t('upgrade.base.d'), value: 4 },
         ]"
         @blur="emit('blur')"
         @change="onChange"
