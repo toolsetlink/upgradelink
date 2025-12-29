@@ -46,9 +46,6 @@ func (l *GetTauriUpgradeInfoLogic) GetTauriUpgradeInfo(req *types.GetTauriUpgrad
 	}
 
 	appointVersionCode := int64(0)
-	if req.AppointVersionCode != 0 {
-		appointVersionCode = req.AppointVersionCode
-	}
 	if req.AppointVersionName == "" {
 	} else {
 		// 转换版本号

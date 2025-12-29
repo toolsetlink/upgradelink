@@ -335,8 +335,7 @@ type GetTauriDownloadInfoReq struct {
 	TauriKey     string `form:"tauriKey"`
 	Target       string `form:"target,optional"`
 	Arch         string `form:"arch,optional"`
-	VersionCode  int64  `form:"versionCode,default=0"`
-	VersionId    int64  `form:"versionId,default=0"`
+	VersionName  string `form:"versionName,optional,default=''"`
 }
 
 type GetTauriUpgradeInfoReq struct {
@@ -346,7 +345,6 @@ type GetTauriUpgradeInfoReq struct {
 	Arch               string `form:"arch"`
 	VersionName        string `form:"versionName"`
 	AppointVersionName string `form:"appointVersionName,optional,default="`
-	AppointVersionCode int64  `form:"appointVersionCode,default=0"`
 	DevModelKey        string `form:"devModelKey,optional,default="`
 	DevKey             string `form:"devKey,optional,default="`
 }

@@ -34,8 +34,12 @@ func (l *GetTauriDownloadInfoLogic) GetTauriDownloadInfo(req *types.GetTauriDown
 		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrTauri1Msg, common.ErrTauri1Docs)
 	}
 
-	if req.VersionCode < 0 {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrTauri1Msg, common.ErrTauri1Docs)
+	versionCode := int64(0)
+	if req.VersionName != "" {
+		versionCode, err = common.SemVerToInt64(req.VersionName)
+		if err != nil {
+			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrTauri1Msg, common.ErrTauri1Docs)
+		}
 	}
 
 	// 通过唯一标识 获取到对应的应用信息
@@ -47,31 +51,22 @@ func (l *GetTauriDownloadInfoLogic) GetTauriDownloadInfo(req *types.GetTauriDown
 	}
 
 	var tauriVersionInfo *model.UpgradeTauriVersion
-	// 判断是否传了 versionId， 如果传了，则直接选择数据
-	if req.VersionId > 0 {
-		tauriVersionInfo, err = l.svcCtx.ResourceCtx.GetTauriVersionInfoById(l.ctx, req.VersionId)
+
+	// 判断是否固定了版本号，如果没有固定 则获取详细的版本信息
+	if versionCode == 0 {
+		tauriVersionInfo, err = l.svcCtx.ResourceCtx.GetTauriVersionLastInfoByTauriIdAndTargetAndArch(l.ctx, tauriInfo.Id, req.Target, req.Arch)
 		if err != nil && errors.Is(err, model.ErrNotFound) {
 			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, common.ErrTauri3Msg, common.ErrTauri3Docs)
 		} else if err != nil {
 			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
 		}
-	} else {
-		// 判断是否固定了版本号，如果没有固定 则获取详细的版本信息
-		if req.VersionCode == 0 {
-			tauriVersionInfo, err = l.svcCtx.ResourceCtx.GetTauriVersionLastInfoByTauriIdAndTargetAndArch(l.ctx, tauriInfo.Id, req.Target, req.Arch)
-			if err != nil && errors.Is(err, model.ErrNotFound) {
-				return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, common.ErrTauri3Msg, common.ErrTauri3Docs)
-			} else if err != nil {
-				return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
-			}
 
-		} else {
-			tauriVersionInfo, err = l.svcCtx.ResourceCtx.GetTauriVersionInfoByTauriIdAndVersionCodeAndTargetAndArch(l.ctx, tauriInfo.Id, req.VersionCode, req.Target, req.Arch)
-			if err != nil && errors.Is(err, model.ErrNotFound) {
-				return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, common.ErrTauri3Msg, common.ErrTauri3Docs)
-			} else if err != nil {
-				return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
-			}
+	} else {
+		tauriVersionInfo, err = l.svcCtx.ResourceCtx.GetTauriVersionInfoByTauriIdAndVersionCodeAndTargetAndArch(l.ctx, tauriInfo.Id, versionCode, req.Target, req.Arch)
+		if err != nil && errors.Is(err, model.ErrNotFound) {
+			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, common.ErrTauri3Msg, common.ErrTauri3Docs)
+		} else if err != nil {
+			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
 		}
 	}
 

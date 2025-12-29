@@ -32,9 +32,6 @@ type (
         // 升级指定版本名（可空，为空时是最新版本）
         AppointVersionName string `form:"appointVersionName,optional,default="`
 
-        // 升级指定版本号（可空，为空时是最新版本）
-        AppointVersionCode int64 `form:"appointVersionCode,default=0"`
-
         // 设备机型唯一标识
         DevModelKey string `form:"devModelKey,optional,default="`
 
@@ -195,10 +192,8 @@ type (
         Target string `form:"target,optional"`
         // 机器架构
         Arch string `form:"arch,optional"`
-        // 指定版本（可空，为空时是最新版本）
-        VersionCode int64 `form:"versionCode,default=0"`
-        // 指定版本id
-        VersionId int64 `form:"versionId,default=0"`
+        // 应用版本名
+        VersionName string `form:"versionName,optional,default=''"`
     }
 )
 
