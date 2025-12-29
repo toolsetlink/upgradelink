@@ -1205,24 +1205,26 @@ func (m *CompanyMutation) ResetEdge(name string) error {
 // CompanySecretMutation represents an operation that mutates the CompanySecret nodes in the graph.
 type CompanySecretMutation struct {
 	config
-	op            Op
-	typ           string
-	id            *uint64
-	created_at    *time.Time
-	updated_at    *time.Time
-	company_id    *uint64
-	addcompany_id *int64
-	access_key    *string
-	secret_key    *string
-	enable        *uint32
-	addenable     *int32
-	description   *string
-	is_del        *uint32
-	addis_del     *int32
-	clearedFields map[string]struct{}
-	done          bool
-	oldValue      func(context.Context) (*CompanySecret, error)
-	predicates    []predicate.CompanySecret
+	op                Op
+	typ               string
+	id                *uint64
+	created_at        *time.Time
+	updated_at        *time.Time
+	company_id        *uint64
+	addcompany_id     *int64
+	access_key        *string
+	secret_key        *string
+	validity_datetime *time.Time
+	rule_data         *string
+	enable            *uint32
+	addenable         *int32
+	description       *string
+	is_del            *uint32
+	addis_del         *int32
+	clearedFields     map[string]struct{}
+	done              bool
+	oldValue          func(context.Context) (*CompanySecret, error)
+	predicates        []predicate.CompanySecret
 }
 
 var _ ent.Mutation = (*CompanySecretMutation)(nil)
@@ -1543,6 +1545,104 @@ func (m *CompanySecretMutation) ResetSecretKey() {
 	m.secret_key = nil
 }
 
+// SetValidityDatetime sets the "validity_datetime" field.
+func (m *CompanySecretMutation) SetValidityDatetime(t time.Time) {
+	m.validity_datetime = &t
+}
+
+// ValidityDatetime returns the value of the "validity_datetime" field in the mutation.
+func (m *CompanySecretMutation) ValidityDatetime() (r time.Time, exists bool) {
+	v := m.validity_datetime
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldValidityDatetime returns the old "validity_datetime" field's value of the CompanySecret entity.
+// If the CompanySecret object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *CompanySecretMutation) OldValidityDatetime(ctx context.Context) (v time.Time, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldValidityDatetime is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldValidityDatetime requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldValidityDatetime: %w", err)
+	}
+	return oldValue.ValidityDatetime, nil
+}
+
+// ClearValidityDatetime clears the value of the "validity_datetime" field.
+func (m *CompanySecretMutation) ClearValidityDatetime() {
+	m.validity_datetime = nil
+	m.clearedFields[companysecret.FieldValidityDatetime] = struct{}{}
+}
+
+// ValidityDatetimeCleared returns if the "validity_datetime" field was cleared in this mutation.
+func (m *CompanySecretMutation) ValidityDatetimeCleared() bool {
+	_, ok := m.clearedFields[companysecret.FieldValidityDatetime]
+	return ok
+}
+
+// ResetValidityDatetime resets all changes to the "validity_datetime" field.
+func (m *CompanySecretMutation) ResetValidityDatetime() {
+	m.validity_datetime = nil
+	delete(m.clearedFields, companysecret.FieldValidityDatetime)
+}
+
+// SetRuleData sets the "rule_data" field.
+func (m *CompanySecretMutation) SetRuleData(s string) {
+	m.rule_data = &s
+}
+
+// RuleData returns the value of the "rule_data" field in the mutation.
+func (m *CompanySecretMutation) RuleData() (r string, exists bool) {
+	v := m.rule_data
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldRuleData returns the old "rule_data" field's value of the CompanySecret entity.
+// If the CompanySecret object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *CompanySecretMutation) OldRuleData(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldRuleData is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldRuleData requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldRuleData: %w", err)
+	}
+	return oldValue.RuleData, nil
+}
+
+// ClearRuleData clears the value of the "rule_data" field.
+func (m *CompanySecretMutation) ClearRuleData() {
+	m.rule_data = nil
+	m.clearedFields[companysecret.FieldRuleData] = struct{}{}
+}
+
+// RuleDataCleared returns if the "rule_data" field was cleared in this mutation.
+func (m *CompanySecretMutation) RuleDataCleared() bool {
+	_, ok := m.clearedFields[companysecret.FieldRuleData]
+	return ok
+}
+
+// ResetRuleData resets all changes to the "rule_data" field.
+func (m *CompanySecretMutation) ResetRuleData() {
+	m.rule_data = nil
+	delete(m.clearedFields, companysecret.FieldRuleData)
+}
+
 // SetEnable sets the "enable" field.
 func (m *CompanySecretMutation) SetEnable(u uint32) {
 	m.enable = &u
@@ -1738,7 +1838,7 @@ func (m *CompanySecretMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *CompanySecretMutation) Fields() []string {
-	fields := make([]string, 0, 8)
+	fields := make([]string, 0, 10)
 	if m.created_at != nil {
 		fields = append(fields, companysecret.FieldCreatedAt)
 	}
@@ -1753,6 +1853,12 @@ func (m *CompanySecretMutation) Fields() []string {
 	}
 	if m.secret_key != nil {
 		fields = append(fields, companysecret.FieldSecretKey)
+	}
+	if m.validity_datetime != nil {
+		fields = append(fields, companysecret.FieldValidityDatetime)
+	}
+	if m.rule_data != nil {
+		fields = append(fields, companysecret.FieldRuleData)
 	}
 	if m.enable != nil {
 		fields = append(fields, companysecret.FieldEnable)
@@ -1781,6 +1887,10 @@ func (m *CompanySecretMutation) Field(name string) (ent.Value, bool) {
 		return m.AccessKey()
 	case companysecret.FieldSecretKey:
 		return m.SecretKey()
+	case companysecret.FieldValidityDatetime:
+		return m.ValidityDatetime()
+	case companysecret.FieldRuleData:
+		return m.RuleData()
 	case companysecret.FieldEnable:
 		return m.Enable()
 	case companysecret.FieldDescription:
@@ -1806,6 +1916,10 @@ func (m *CompanySecretMutation) OldField(ctx context.Context, name string) (ent.
 		return m.OldAccessKey(ctx)
 	case companysecret.FieldSecretKey:
 		return m.OldSecretKey(ctx)
+	case companysecret.FieldValidityDatetime:
+		return m.OldValidityDatetime(ctx)
+	case companysecret.FieldRuleData:
+		return m.OldRuleData(ctx)
 	case companysecret.FieldEnable:
 		return m.OldEnable(ctx)
 	case companysecret.FieldDescription:
@@ -1855,6 +1969,20 @@ func (m *CompanySecretMutation) SetField(name string, value ent.Value) error {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
 		m.SetSecretKey(v)
+		return nil
+	case companysecret.FieldValidityDatetime:
+		v, ok := value.(time.Time)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetValidityDatetime(v)
+		return nil
+	case companysecret.FieldRuleData:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetRuleData(v)
 		return nil
 	case companysecret.FieldEnable:
 		v, ok := value.(uint32)
@@ -1949,6 +2077,12 @@ func (m *CompanySecretMutation) ClearedFields() []string {
 	if m.FieldCleared(companysecret.FieldCompanyID) {
 		fields = append(fields, companysecret.FieldCompanyID)
 	}
+	if m.FieldCleared(companysecret.FieldValidityDatetime) {
+		fields = append(fields, companysecret.FieldValidityDatetime)
+	}
+	if m.FieldCleared(companysecret.FieldRuleData) {
+		fields = append(fields, companysecret.FieldRuleData)
+	}
 	if m.FieldCleared(companysecret.FieldDescription) {
 		fields = append(fields, companysecret.FieldDescription)
 	}
@@ -1968,6 +2102,12 @@ func (m *CompanySecretMutation) ClearField(name string) error {
 	switch name {
 	case companysecret.FieldCompanyID:
 		m.ClearCompanyID()
+		return nil
+	case companysecret.FieldValidityDatetime:
+		m.ClearValidityDatetime()
+		return nil
+	case companysecret.FieldRuleData:
+		m.ClearRuleData()
 		return nil
 	case companysecret.FieldDescription:
 		m.ClearDescription()
@@ -1994,6 +2134,12 @@ func (m *CompanySecretMutation) ResetField(name string) error {
 		return nil
 	case companysecret.FieldSecretKey:
 		m.ResetSecretKey()
+		return nil
+	case companysecret.FieldValidityDatetime:
+		m.ResetValidityDatetime()
+		return nil
+	case companysecret.FieldRuleData:
+		m.ResetRuleData()
 		return nil
 	case companysecret.FieldEnable:
 		m.ResetEnable()

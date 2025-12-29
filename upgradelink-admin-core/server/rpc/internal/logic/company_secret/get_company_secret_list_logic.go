@@ -2,6 +2,7 @@ package company_secret
 
 import (
 	"context"
+	"fmt"
 	"time"
 
 	"upgradelink-admin-core/server/rpc/ent/companysecret"
@@ -64,16 +65,21 @@ func (l *GetCompanySecretListLogic) GetCompanySecretList(in *core.CompanySecretL
 	resp.Total = result.PageDetails.Total
 
 	for _, v := range result.List {
+		fmt.Println(v.ValidityDatetime)
+		fmt.Println(v.ValidityDatetime.Unix())
+		fmt.Println(v.ValidityDatetime.UnixMilli())
 		resp.Data = append(resp.Data, &core.CompanySecretInfo{
-			Id:          &v.ID,
-			CreatedAt:   pointy.GetPointer(v.CreatedAt.UnixMilli()),
-			UpdatedAt:   pointy.GetPointer(v.UpdatedAt.UnixMilli()),
-			CompanyId:   &v.CompanyID,
-			AccessKey:   &v.AccessKey,
-			SecretKey:   &v.SecretKey,
-			Enable:      &v.Enable,
-			Description: &v.Description,
-			IsDel:       &v.IsDel,
+			Id:               &v.ID,
+			CreatedAt:        pointy.GetPointer(v.CreatedAt.UnixMilli()),
+			UpdatedAt:        pointy.GetPointer(v.UpdatedAt.UnixMilli()),
+			CompanyId:        &v.CompanyID,
+			AccessKey:        &v.AccessKey,
+			SecretKey:        &v.SecretKey,
+			ValidityDatetime: pointy.GetPointer(v.ValidityDatetime.UnixMilli()),
+			RuleData:         &v.RuleData,
+			Enable:           &v.Enable,
+			Description:      &v.Description,
+			IsDel:            &v.IsDel,
 		})
 	}
 

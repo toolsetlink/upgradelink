@@ -88,7 +88,7 @@ func (*Role) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the Role fields.
-func (_m *Role) assignValues(columns []string, values []any) error {
+func (r *Role) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -99,57 +99,57 @@ func (_m *Role) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			_m.ID = uint64(value.Int64)
+			r.ID = uint64(value.Int64)
 		case role.FieldCreatedAt:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field created_at", values[i])
 			} else if value.Valid {
-				_m.CreatedAt = value.Time
+				r.CreatedAt = value.Time
 			}
 		case role.FieldUpdatedAt:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field updated_at", values[i])
 			} else if value.Valid {
-				_m.UpdatedAt = value.Time
+				r.UpdatedAt = value.Time
 			}
 		case role.FieldStatus:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field status", values[i])
 			} else if value.Valid {
-				_m.Status = uint8(value.Int64)
+				r.Status = uint8(value.Int64)
 			}
 		case role.FieldName:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field name", values[i])
 			} else if value.Valid {
-				_m.Name = value.String
+				r.Name = value.String
 			}
 		case role.FieldCode:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field code", values[i])
 			} else if value.Valid {
-				_m.Code = value.String
+				r.Code = value.String
 			}
 		case role.FieldDefaultRouter:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field default_router", values[i])
 			} else if value.Valid {
-				_m.DefaultRouter = value.String
+				r.DefaultRouter = value.String
 			}
 		case role.FieldRemark:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field remark", values[i])
 			} else if value.Valid {
-				_m.Remark = value.String
+				r.Remark = value.String
 			}
 		case role.FieldSort:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field sort", values[i])
 			} else if value.Valid {
-				_m.Sort = uint32(value.Int64)
+				r.Sort = uint32(value.Int64)
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			r.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -157,66 +157,66 @@ func (_m *Role) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the Role.
 // This includes values selected through modifiers, order, etc.
-func (_m *Role) Value(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (r *Role) Value(name string) (ent.Value, error) {
+	return r.selectValues.Get(name)
 }
 
 // QueryMenus queries the "menus" edge of the Role entity.
-func (_m *Role) QueryMenus() *MenuQuery {
-	return NewRoleClient(_m.config).QueryMenus(_m)
+func (r *Role) QueryMenus() *MenuQuery {
+	return NewRoleClient(r.config).QueryMenus(r)
 }
 
 // QueryUsers queries the "users" edge of the Role entity.
-func (_m *Role) QueryUsers() *UserQuery {
-	return NewRoleClient(_m.config).QueryUsers(_m)
+func (r *Role) QueryUsers() *UserQuery {
+	return NewRoleClient(r.config).QueryUsers(r)
 }
 
 // Update returns a builder for updating this Role.
 // Note that you need to call Role.Unwrap() before calling this method if this Role
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *Role) Update() *RoleUpdateOne {
-	return NewRoleClient(_m.config).UpdateOne(_m)
+func (r *Role) Update() *RoleUpdateOne {
+	return NewRoleClient(r.config).UpdateOne(r)
 }
 
 // Unwrap unwraps the Role entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *Role) Unwrap() *Role {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (r *Role) Unwrap() *Role {
+	_tx, ok := r.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: Role is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	r.config.driver = _tx.drv
+	return r
 }
 
 // String implements the fmt.Stringer.
-func (_m *Role) String() string {
+func (r *Role) String() string {
 	var builder strings.Builder
 	builder.WriteString("Role(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", r.ID))
 	builder.WriteString("created_at=")
-	builder.WriteString(_m.CreatedAt.Format(time.ANSIC))
+	builder.WriteString(r.CreatedAt.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("updated_at=")
-	builder.WriteString(_m.UpdatedAt.Format(time.ANSIC))
+	builder.WriteString(r.UpdatedAt.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("status=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Status))
+	builder.WriteString(fmt.Sprintf("%v", r.Status))
 	builder.WriteString(", ")
 	builder.WriteString("name=")
-	builder.WriteString(_m.Name)
+	builder.WriteString(r.Name)
 	builder.WriteString(", ")
 	builder.WriteString("code=")
-	builder.WriteString(_m.Code)
+	builder.WriteString(r.Code)
 	builder.WriteString(", ")
 	builder.WriteString("default_router=")
-	builder.WriteString(_m.DefaultRouter)
+	builder.WriteString(r.DefaultRouter)
 	builder.WriteString(", ")
 	builder.WriteString("remark=")
-	builder.WriteString(_m.Remark)
+	builder.WriteString(r.Remark)
 	builder.WriteString(", ")
 	builder.WriteString("sort=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Sort))
+	builder.WriteString(fmt.Sprintf("%v", r.Sort))
 	builder.WriteByte(')')
 	return builder.String()
 }

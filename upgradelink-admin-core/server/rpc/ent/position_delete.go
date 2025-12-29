@@ -20,56 +20,56 @@ type PositionDelete struct {
 }
 
 // Where appends a list predicates to the PositionDelete builder.
-func (_d *PositionDelete) Where(ps ...predicate.Position) *PositionDelete {
-	_d.mutation.Where(ps...)
-	return _d
+func (pd *PositionDelete) Where(ps ...predicate.Position) *PositionDelete {
+	pd.mutation.Where(ps...)
+	return pd
 }
 
 // Exec executes the deletion query and returns how many vertices were deleted.
-func (_d *PositionDelete) Exec(ctx context.Context) (int, error) {
-	return withHooks(ctx, _d.sqlExec, _d.mutation, _d.hooks)
+func (pd *PositionDelete) Exec(ctx context.Context) (int, error) {
+	return withHooks(ctx, pd.sqlExec, pd.mutation, pd.hooks)
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *PositionDelete) ExecX(ctx context.Context) int {
-	n, err := _d.Exec(ctx)
+func (pd *PositionDelete) ExecX(ctx context.Context) int {
+	n, err := pd.Exec(ctx)
 	if err != nil {
 		panic(err)
 	}
 	return n
 }
 
-func (_d *PositionDelete) sqlExec(ctx context.Context) (int, error) {
+func (pd *PositionDelete) sqlExec(ctx context.Context) (int, error) {
 	_spec := sqlgraph.NewDeleteSpec(position.Table, sqlgraph.NewFieldSpec(position.FieldID, field.TypeUint64))
-	if ps := _d.mutation.predicates; len(ps) > 0 {
+	if ps := pd.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	affected, err := sqlgraph.DeleteNodes(ctx, _d.driver, _spec)
+	affected, err := sqlgraph.DeleteNodes(ctx, pd.driver, _spec)
 	if err != nil && sqlgraph.IsConstraintError(err) {
 		err = &ConstraintError{msg: err.Error(), wrap: err}
 	}
-	_d.mutation.done = true
+	pd.mutation.done = true
 	return affected, err
 }
 
 // PositionDeleteOne is the builder for deleting a single Position entity.
 type PositionDeleteOne struct {
-	_d *PositionDelete
+	pd *PositionDelete
 }
 
 // Where appends a list predicates to the PositionDelete builder.
-func (_d *PositionDeleteOne) Where(ps ...predicate.Position) *PositionDeleteOne {
-	_d._d.mutation.Where(ps...)
-	return _d
+func (pdo *PositionDeleteOne) Where(ps ...predicate.Position) *PositionDeleteOne {
+	pdo.pd.mutation.Where(ps...)
+	return pdo
 }
 
 // Exec executes the deletion query.
-func (_d *PositionDeleteOne) Exec(ctx context.Context) error {
-	n, err := _d._d.Exec(ctx)
+func (pdo *PositionDeleteOne) Exec(ctx context.Context) error {
+	n, err := pdo.pd.Exec(ctx)
 	switch {
 	case err != nil:
 		return err
@@ -81,8 +81,8 @@ func (_d *PositionDeleteOne) Exec(ctx context.Context) error {
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *PositionDeleteOne) ExecX(ctx context.Context) {
-	if err := _d.Exec(ctx); err != nil {
+func (pdo *PositionDeleteOne) ExecX(ctx context.Context) {
+	if err := pdo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }

@@ -1672,11 +1672,21 @@ type ConfigurationInfoResp struct {
 // swagger:model CompanySecretInfo
 type CompanySecretInfo struct {
 	BaseIDInfo
-	AccessKey   string  `json:"accessKey,optional"`
-	SecretKey   string  `json:"secretKey,optional"`
-	Enable      *uint32 `json:"enable,optional"`
-	IsDel       *uint32 `json:"isDel,optional"`
-	Description string  `json:"description,optional"`
+	AccessKey             string  `json:"accessKey,optional"`
+	SecretKey             string  `json:"secretKey,optional"`
+	ValidityDatetime      string  `json:"validityDatetime,optional"`
+	RuleDataUrl           []int   `json:"ruleDataUrl,optional"`
+	RuleDataFile          []int   `json:"ruleDataFile,optional"`
+	RuleDataConfiguration []int   `json:"ruleDataConfiguration,optional"`
+	RuleDataTauri         []int   `json:"ruleDataTauri,optional"`
+	RuleDataElectron      []int   `json:"ruleDataElectron,optional"`
+	RuleDataApk           []int   `json:"ruleDataApk,optional"`
+	RuleDataWin           []int   `json:"ruleDataWin,optional"`
+	RuleDataMac           []int   `json:"ruleDataMac,optional"`
+	RuleDataLnx           []int   `json:"ruleDataLnx,optional"`
+	Enable                *uint32 `json:"enable,optional"`
+	IsDel                 *uint32 `json:"isDel,optional"`
+	Description           string  `json:"description,optional"`
 }
 
 // swagger:model CompanySecretListResp

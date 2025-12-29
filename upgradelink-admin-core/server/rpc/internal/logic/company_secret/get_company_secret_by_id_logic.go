@@ -32,14 +32,16 @@ func (l *GetCompanySecretByIdLogic) GetCompanySecretById(in *core.IDReq) (*core.
 	}
 
 	return &core.CompanySecretInfo{
-		Id:          &result.ID,
-		CreatedAt:   pointy.GetPointer(result.CreatedAt.UnixMilli()),
-		UpdatedAt:   pointy.GetPointer(result.UpdatedAt.UnixMilli()),
-		CompanyId:   &result.CompanyID,
-		AccessKey:   &result.AccessKey,
-		SecretKey:   &result.SecretKey,
-		Enable:      &result.Enable,
-		Description: &result.Description,
-		IsDel:       &result.IsDel,
+		Id:               &result.ID,
+		CreatedAt:        pointy.GetPointer(result.CreatedAt.UnixMilli()),
+		UpdatedAt:        pointy.GetPointer(result.UpdatedAt.UnixMilli()),
+		CompanyId:        &result.CompanyID,
+		AccessKey:        &result.AccessKey,
+		SecretKey:        &result.SecretKey,
+		ValidityDatetime: pointy.GetPointer(result.ValidityDatetime.UnixMilli()),
+		RuleData:         &result.RuleData,
+		Enable:           &result.Enable,
+		Description:      &result.Description,
+		IsDel:            &result.IsDel,
 	}, nil
 }

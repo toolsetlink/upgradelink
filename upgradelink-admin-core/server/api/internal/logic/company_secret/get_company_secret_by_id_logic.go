@@ -2,6 +2,8 @@ package company_secret
 
 import (
 	"context"
+	"encoding/json"
+	"upgradelink-admin-core/server/api/internal/utils"
 	"upgradelink-admin-core/server/rpc/types/core"
 
 	"upgradelink-admin-core/server/api/internal/svc"
@@ -54,6 +56,64 @@ func (l *GetCompanySecretByIdLogic) GetCompanySecretById(req *types.IDReq) (resp
 		return nil, err
 	}
 
+	// 整理有效期时间
+	validityDatetimeStr := ""
+	// 判断数据是否为默认值， 如果为默认值则代表为无期限数据
+	if int(*companySecretData.ValidityDatetime) != 1000 && int(*companySecretData.ValidityDatetime) != 0 {
+		validityDatetime, err := utils.IntUnixMilliToTime(int(*companySecretData.ValidityDatetime))
+		if err != nil {
+			return nil, err
+		}
+		validityDatetimeStr = validityDatetime.Format("2006-01-02 15:04:05")
+	}
+
+	// 整理 rule 数据
+	var ruleData RuleDataInfo
+	if companySecretData.RuleData != nil {
+		if *companySecretData.RuleData != "" {
+			err := json.Unmarshal([]byte(*companySecretData.RuleData), &ruleData)
+			if err != nil {
+				return nil, err
+			}
+		}
+	}
+	ruleDataUrl := []int{}
+	if len(ruleData.Url) != 0 {
+		ruleDataUrl = ruleData.Url
+	}
+	ruleDataFile := []int{}
+	if len(ruleData.File) != 0 {
+		ruleDataFile = ruleData.File
+	}
+	ruleDataConfiguration := []int{}
+	if len(ruleData.Configuration) != 0 {
+		ruleDataConfiguration = ruleData.Configuration
+	}
+	ruleDataTauri := []int{}
+	if len(ruleData.Tauri) != 0 {
+		ruleDataTauri = ruleData.Tauri
+	}
+	ruleDataElectron := []int{}
+	if len(ruleData.Electron) != 0 {
+		ruleDataElectron = ruleData.Electron
+	}
+	ruleDataApk := []int{}
+	if len(ruleData.Apk) != 0 {
+		ruleDataApk = ruleData.Apk
+	}
+	ruleDataWin := []int{}
+	if len(ruleData.Win) != 0 {
+		ruleDataWin = ruleData.Win
+	}
+	ruleDataMac := []int{}
+	if len(ruleData.Mac) != 0 {
+		ruleDataMac = ruleData.Mac
+	}
+	ruleDataLnx := []int{}
+	if len(ruleData.Lnx) != 0 {
+		ruleDataLnx = ruleData.Lnx
+	}
+
 	return &types.CompanySecretInfoResp{
 		BaseDataInfo: types.BaseDataInfo{
 			Code: 0,
@@ -65,11 +125,21 @@ func (l *GetCompanySecretByIdLogic) GetCompanySecretById(req *types.IDReq) (resp
 				CreatedAt: companySecretData.CreatedAt,
 				UpdatedAt: companySecretData.UpdatedAt,
 			},
-			AccessKey:   *companySecretData.AccessKey,
-			SecretKey:   *companySecretData.SecretKey,
-			Enable:      companySecretData.Enable,
-			IsDel:       companySecretData.IsDel,
-			Description: *companySecretData.Description,
+			AccessKey:             *companySecretData.AccessKey,
+			SecretKey:             *companySecretData.SecretKey,
+			ValidityDatetime:      validityDatetimeStr,
+			RuleDataUrl:           ruleDataUrl,
+			RuleDataFile:          ruleDataFile,
+			RuleDataConfiguration: ruleDataConfiguration,
+			RuleDataTauri:         ruleDataTauri,
+			RuleDataElectron:      ruleDataElectron,
+			RuleDataApk:           ruleDataApk,
+			RuleDataWin:           ruleDataWin,
+			RuleDataMac:           ruleDataMac,
+			RuleDataLnx:           ruleDataLnx,
+			Enable:                companySecretData.Enable,
+			IsDel:                 companySecretData.IsDel,
+			Description:           *companySecretData.Description,
 		},
 	}, nil
 }

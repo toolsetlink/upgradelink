@@ -733,12 +733,16 @@ type CompanySecretInfo struct {
 	AccessKey *string `protobuf:"bytes,5,opt,name=access_key,json=accessKey,proto3,oneof" json:"access_key,omitempty"`
 	// secret_key | 密钥key
 	SecretKey *string `protobuf:"bytes,6,opt,name=secret_key,json=secretKey,proto3,oneof" json:"secret_key,omitempty"`
+	// validity_datetime | 有效期
+	ValidityDatetime *int64 `protobuf:"varint,7,opt,name=validity_datetime,json=validityDatetime,proto3,oneof" json:"validity_datetime,omitempty"`
+	// rule_data | 规则数据
+	RuleData *string `protobuf:"bytes,8,opt,name=rule_data,json=ruleData,proto3,oneof" json:"rule_data,omitempty"`
 	// 是否生效；可通过此控制策略是否生效0：失效；1：生效
-	Enable *uint32 `protobuf:"varint,7,opt,name=enable,proto3,oneof" json:"enable,omitempty"`
+	Enable *uint32 `protobuf:"varint,9,opt,name=enable,proto3,oneof" json:"enable,omitempty"`
 	// 描述信息
-	Description *string `protobuf:"bytes,8,opt,name=description,proto3,oneof" json:"description,omitempty"`
+	Description *string `protobuf:"bytes,10,opt,name=description,proto3,oneof" json:"description,omitempty"`
 	// 是否删除 0：正常；1：已删除
-	IsDel         *uint32 `protobuf:"varint,9,opt,name=is_del,json=isDel,proto3,oneof" json:"is_del,omitempty"`
+	IsDel         *uint32 `protobuf:"varint,11,opt,name=is_del,json=isDel,proto3,oneof" json:"is_del,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -815,6 +819,20 @@ func (x *CompanySecretInfo) GetSecretKey() string {
 	return ""
 }
 
+func (x *CompanySecretInfo) GetValidityDatetime() int64 {
+	if x != nil && x.ValidityDatetime != nil {
+		return *x.ValidityDatetime
+	}
+	return 0
+}
+
+func (x *CompanySecretInfo) GetRuleData() string {
+	if x != nil && x.RuleData != nil {
+		return *x.RuleData
+	}
+	return ""
+}
+
 func (x *CompanySecretInfo) GetEnable() uint32 {
 	if x != nil && x.Enable != nil {
 		return *x.Enable
@@ -837,19 +855,21 @@ func (x *CompanySecretInfo) GetIsDel() uint32 {
 }
 
 type CompanySecretListReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Page          uint64                 `protobuf:"varint,1,opt,name=page,proto3" json:"page,omitempty"`
-	PageSize      uint64                 `protobuf:"varint,2,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
-	CreatedAt     *int64                 `protobuf:"varint,3,opt,name=created_at,json=createdAt,proto3,oneof" json:"created_at,omitempty"`
-	UpdatedAt     *int64                 `protobuf:"varint,4,opt,name=updated_at,json=updatedAt,proto3,oneof" json:"updated_at,omitempty"`
-	CompanyId     *uint64                `protobuf:"varint,5,opt,name=company_id,json=companyId,proto3,oneof" json:"company_id,omitempty"`
-	AccessKey     *string                `protobuf:"bytes,6,opt,name=access_key,json=accessKey,proto3,oneof" json:"access_key,omitempty"`
-	SecretKey     *string                `protobuf:"bytes,7,opt,name=secret_key,json=secretKey,proto3,oneof" json:"secret_key,omitempty"`
-	Enable        *uint32                `protobuf:"varint,8,opt,name=enable,proto3,oneof" json:"enable,omitempty"`
-	Description   *string                `protobuf:"bytes,9,opt,name=description,proto3,oneof" json:"description,omitempty"`
-	IsDel         *uint32                `protobuf:"varint,10,opt,name=is_del,json=isDel,proto3,oneof" json:"is_del,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	Page             uint64                 `protobuf:"varint,1,opt,name=page,proto3" json:"page,omitempty"`
+	PageSize         uint64                 `protobuf:"varint,2,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
+	CreatedAt        *int64                 `protobuf:"varint,3,opt,name=created_at,json=createdAt,proto3,oneof" json:"created_at,omitempty"`
+	UpdatedAt        *int64                 `protobuf:"varint,4,opt,name=updated_at,json=updatedAt,proto3,oneof" json:"updated_at,omitempty"`
+	CompanyId        *uint64                `protobuf:"varint,5,opt,name=company_id,json=companyId,proto3,oneof" json:"company_id,omitempty"`
+	AccessKey        *string                `protobuf:"bytes,6,opt,name=access_key,json=accessKey,proto3,oneof" json:"access_key,omitempty"`
+	SecretKey        *string                `protobuf:"bytes,7,opt,name=secret_key,json=secretKey,proto3,oneof" json:"secret_key,omitempty"`
+	ValidityDatetime *int64                 `protobuf:"varint,8,opt,name=validity_datetime,json=validityDatetime,proto3,oneof" json:"validity_datetime,omitempty"`
+	RuleData         *string                `protobuf:"bytes,9,opt,name=rule_data,json=ruleData,proto3,oneof" json:"rule_data,omitempty"`
+	Enable           *uint32                `protobuf:"varint,10,opt,name=enable,proto3,oneof" json:"enable,omitempty"`
+	Description      *string                `protobuf:"bytes,11,opt,name=description,proto3,oneof" json:"description,omitempty"`
+	IsDel            *uint32                `protobuf:"varint,12,opt,name=is_del,json=isDel,proto3,oneof" json:"is_del,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *CompanySecretListReq) Reset() {
@@ -927,6 +947,20 @@ func (x *CompanySecretListReq) GetAccessKey() string {
 func (x *CompanySecretListReq) GetSecretKey() string {
 	if x != nil && x.SecretKey != nil {
 		return *x.SecretKey
+	}
+	return ""
+}
+
+func (x *CompanySecretListReq) GetValidityDatetime() int64 {
+	if x != nil && x.ValidityDatetime != nil {
+		return *x.ValidityDatetime
+	}
+	return 0
+}
+
+func (x *CompanySecretListReq) GetRuleData() string {
+	if x != nil && x.RuleData != nil {
+		return *x.RuleData
 	}
 	return ""
 }
@@ -4297,7 +4331,7 @@ const file_rpc_core_proto_rawDesc = "" +
 	"\x05_name\"N\n" +
 	"\x0fCompanyListResp\x12\x14\n" +
 	"\x05total\x18\x01 \x01(\x04R\x05total\x12%\n" +
-	"\x04data\x18\x02 \x03(\v2\x11.core.CompanyInfoR\x04data\"\xb4\x03\n" +
+	"\x04data\x18\x02 \x03(\v2\x11.core.CompanyInfoR\x04data\"\xac\x04\n" +
 	"\x11CompanySecretInfo\x12\x13\n" +
 	"\x02id\x18\x01 \x01(\x04H\x00R\x02id\x88\x01\x01\x12\"\n" +
 	"\n" +
@@ -4309,19 +4343,26 @@ const file_rpc_core_proto_rawDesc = "" +
 	"\n" +
 	"access_key\x18\x05 \x01(\tH\x04R\taccessKey\x88\x01\x01\x12\"\n" +
 	"\n" +
-	"secret_key\x18\x06 \x01(\tH\x05R\tsecretKey\x88\x01\x01\x12\x1b\n" +
-	"\x06enable\x18\a \x01(\rH\x06R\x06enable\x88\x01\x01\x12%\n" +
-	"\vdescription\x18\b \x01(\tH\aR\vdescription\x88\x01\x01\x12\x1a\n" +
-	"\x06is_del\x18\t \x01(\rH\bR\x05isDel\x88\x01\x01B\x05\n" +
+	"secret_key\x18\x06 \x01(\tH\x05R\tsecretKey\x88\x01\x01\x120\n" +
+	"\x11validity_datetime\x18\a \x01(\x03H\x06R\x10validityDatetime\x88\x01\x01\x12 \n" +
+	"\trule_data\x18\b \x01(\tH\aR\bruleData\x88\x01\x01\x12\x1b\n" +
+	"\x06enable\x18\t \x01(\rH\bR\x06enable\x88\x01\x01\x12%\n" +
+	"\vdescription\x18\n" +
+	" \x01(\tH\tR\vdescription\x88\x01\x01\x12\x1a\n" +
+	"\x06is_del\x18\v \x01(\rH\n" +
+	"R\x05isDel\x88\x01\x01B\x05\n" +
 	"\x03_idB\r\n" +
 	"\v_created_atB\r\n" +
 	"\v_updated_atB\r\n" +
 	"\v_company_idB\r\n" +
 	"\v_access_keyB\r\n" +
-	"\v_secret_keyB\t\n" +
+	"\v_secret_keyB\x14\n" +
+	"\x12_validity_datetimeB\f\n" +
+	"\n" +
+	"_rule_dataB\t\n" +
 	"\a_enableB\x0e\n" +
 	"\f_descriptionB\t\n" +
-	"\a_is_del\"\xcc\x03\n" +
+	"\a_is_del\"\xc4\x04\n" +
 	"\x14CompanySecretListReq\x12\x12\n" +
 	"\x04page\x18\x01 \x01(\x04R\x04page\x12\x1b\n" +
 	"\tpage_size\x18\x02 \x01(\x04R\bpageSize\x12\"\n" +
@@ -4334,16 +4375,21 @@ const file_rpc_core_proto_rawDesc = "" +
 	"\n" +
 	"access_key\x18\x06 \x01(\tH\x03R\taccessKey\x88\x01\x01\x12\"\n" +
 	"\n" +
-	"secret_key\x18\a \x01(\tH\x04R\tsecretKey\x88\x01\x01\x12\x1b\n" +
-	"\x06enable\x18\b \x01(\rH\x05R\x06enable\x88\x01\x01\x12%\n" +
-	"\vdescription\x18\t \x01(\tH\x06R\vdescription\x88\x01\x01\x12\x1a\n" +
-	"\x06is_del\x18\n" +
-	" \x01(\rH\aR\x05isDel\x88\x01\x01B\r\n" +
+	"secret_key\x18\a \x01(\tH\x04R\tsecretKey\x88\x01\x01\x120\n" +
+	"\x11validity_datetime\x18\b \x01(\x03H\x05R\x10validityDatetime\x88\x01\x01\x12 \n" +
+	"\trule_data\x18\t \x01(\tH\x06R\bruleData\x88\x01\x01\x12\x1b\n" +
+	"\x06enable\x18\n" +
+	" \x01(\rH\aR\x06enable\x88\x01\x01\x12%\n" +
+	"\vdescription\x18\v \x01(\tH\bR\vdescription\x88\x01\x01\x12\x1a\n" +
+	"\x06is_del\x18\f \x01(\rH\tR\x05isDel\x88\x01\x01B\r\n" +
 	"\v_created_atB\r\n" +
 	"\v_updated_atB\r\n" +
 	"\v_company_idB\r\n" +
 	"\v_access_keyB\r\n" +
-	"\v_secret_keyB\t\n" +
+	"\v_secret_keyB\x14\n" +
+	"\x12_validity_datetimeB\f\n" +
+	"\n" +
+	"_rule_dataB\t\n" +
 	"\a_enableB\x0e\n" +
 	"\f_descriptionB\t\n" +
 	"\a_is_del\"Z\n" +

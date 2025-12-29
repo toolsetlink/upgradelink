@@ -79,6 +79,16 @@ func SecretKey(v string) predicate.CompanySecret {
 	return predicate.CompanySecret(sql.FieldEQ(FieldSecretKey, v))
 }
 
+// ValidityDatetime applies equality check predicate on the "validity_datetime" field. It's identical to ValidityDatetimeEQ.
+func ValidityDatetime(v time.Time) predicate.CompanySecret {
+	return predicate.CompanySecret(sql.FieldEQ(FieldValidityDatetime, v))
+}
+
+// RuleData applies equality check predicate on the "rule_data" field. It's identical to RuleDataEQ.
+func RuleData(v string) predicate.CompanySecret {
+	return predicate.CompanySecret(sql.FieldEQ(FieldRuleData, v))
+}
+
 // Enable applies equality check predicate on the "enable" field. It's identical to EnableEQ.
 func Enable(v uint32) predicate.CompanySecret {
 	return predicate.CompanySecret(sql.FieldEQ(FieldEnable, v))
@@ -352,6 +362,131 @@ func SecretKeyEqualFold(v string) predicate.CompanySecret {
 // SecretKeyContainsFold applies the ContainsFold predicate on the "secret_key" field.
 func SecretKeyContainsFold(v string) predicate.CompanySecret {
 	return predicate.CompanySecret(sql.FieldContainsFold(FieldSecretKey, v))
+}
+
+// ValidityDatetimeEQ applies the EQ predicate on the "validity_datetime" field.
+func ValidityDatetimeEQ(v time.Time) predicate.CompanySecret {
+	return predicate.CompanySecret(sql.FieldEQ(FieldValidityDatetime, v))
+}
+
+// ValidityDatetimeNEQ applies the NEQ predicate on the "validity_datetime" field.
+func ValidityDatetimeNEQ(v time.Time) predicate.CompanySecret {
+	return predicate.CompanySecret(sql.FieldNEQ(FieldValidityDatetime, v))
+}
+
+// ValidityDatetimeIn applies the In predicate on the "validity_datetime" field.
+func ValidityDatetimeIn(vs ...time.Time) predicate.CompanySecret {
+	return predicate.CompanySecret(sql.FieldIn(FieldValidityDatetime, vs...))
+}
+
+// ValidityDatetimeNotIn applies the NotIn predicate on the "validity_datetime" field.
+func ValidityDatetimeNotIn(vs ...time.Time) predicate.CompanySecret {
+	return predicate.CompanySecret(sql.FieldNotIn(FieldValidityDatetime, vs...))
+}
+
+// ValidityDatetimeGT applies the GT predicate on the "validity_datetime" field.
+func ValidityDatetimeGT(v time.Time) predicate.CompanySecret {
+	return predicate.CompanySecret(sql.FieldGT(FieldValidityDatetime, v))
+}
+
+// ValidityDatetimeGTE applies the GTE predicate on the "validity_datetime" field.
+func ValidityDatetimeGTE(v time.Time) predicate.CompanySecret {
+	return predicate.CompanySecret(sql.FieldGTE(FieldValidityDatetime, v))
+}
+
+// ValidityDatetimeLT applies the LT predicate on the "validity_datetime" field.
+func ValidityDatetimeLT(v time.Time) predicate.CompanySecret {
+	return predicate.CompanySecret(sql.FieldLT(FieldValidityDatetime, v))
+}
+
+// ValidityDatetimeLTE applies the LTE predicate on the "validity_datetime" field.
+func ValidityDatetimeLTE(v time.Time) predicate.CompanySecret {
+	return predicate.CompanySecret(sql.FieldLTE(FieldValidityDatetime, v))
+}
+
+// ValidityDatetimeIsNil applies the IsNil predicate on the "validity_datetime" field.
+func ValidityDatetimeIsNil() predicate.CompanySecret {
+	return predicate.CompanySecret(sql.FieldIsNull(FieldValidityDatetime))
+}
+
+// ValidityDatetimeNotNil applies the NotNil predicate on the "validity_datetime" field.
+func ValidityDatetimeNotNil() predicate.CompanySecret {
+	return predicate.CompanySecret(sql.FieldNotNull(FieldValidityDatetime))
+}
+
+// RuleDataEQ applies the EQ predicate on the "rule_data" field.
+func RuleDataEQ(v string) predicate.CompanySecret {
+	return predicate.CompanySecret(sql.FieldEQ(FieldRuleData, v))
+}
+
+// RuleDataNEQ applies the NEQ predicate on the "rule_data" field.
+func RuleDataNEQ(v string) predicate.CompanySecret {
+	return predicate.CompanySecret(sql.FieldNEQ(FieldRuleData, v))
+}
+
+// RuleDataIn applies the In predicate on the "rule_data" field.
+func RuleDataIn(vs ...string) predicate.CompanySecret {
+	return predicate.CompanySecret(sql.FieldIn(FieldRuleData, vs...))
+}
+
+// RuleDataNotIn applies the NotIn predicate on the "rule_data" field.
+func RuleDataNotIn(vs ...string) predicate.CompanySecret {
+	return predicate.CompanySecret(sql.FieldNotIn(FieldRuleData, vs...))
+}
+
+// RuleDataGT applies the GT predicate on the "rule_data" field.
+func RuleDataGT(v string) predicate.CompanySecret {
+	return predicate.CompanySecret(sql.FieldGT(FieldRuleData, v))
+}
+
+// RuleDataGTE applies the GTE predicate on the "rule_data" field.
+func RuleDataGTE(v string) predicate.CompanySecret {
+	return predicate.CompanySecret(sql.FieldGTE(FieldRuleData, v))
+}
+
+// RuleDataLT applies the LT predicate on the "rule_data" field.
+func RuleDataLT(v string) predicate.CompanySecret {
+	return predicate.CompanySecret(sql.FieldLT(FieldRuleData, v))
+}
+
+// RuleDataLTE applies the LTE predicate on the "rule_data" field.
+func RuleDataLTE(v string) predicate.CompanySecret {
+	return predicate.CompanySecret(sql.FieldLTE(FieldRuleData, v))
+}
+
+// RuleDataContains applies the Contains predicate on the "rule_data" field.
+func RuleDataContains(v string) predicate.CompanySecret {
+	return predicate.CompanySecret(sql.FieldContains(FieldRuleData, v))
+}
+
+// RuleDataHasPrefix applies the HasPrefix predicate on the "rule_data" field.
+func RuleDataHasPrefix(v string) predicate.CompanySecret {
+	return predicate.CompanySecret(sql.FieldHasPrefix(FieldRuleData, v))
+}
+
+// RuleDataHasSuffix applies the HasSuffix predicate on the "rule_data" field.
+func RuleDataHasSuffix(v string) predicate.CompanySecret {
+	return predicate.CompanySecret(sql.FieldHasSuffix(FieldRuleData, v))
+}
+
+// RuleDataIsNil applies the IsNil predicate on the "rule_data" field.
+func RuleDataIsNil() predicate.CompanySecret {
+	return predicate.CompanySecret(sql.FieldIsNull(FieldRuleData))
+}
+
+// RuleDataNotNil applies the NotNil predicate on the "rule_data" field.
+func RuleDataNotNil() predicate.CompanySecret {
+	return predicate.CompanySecret(sql.FieldNotNull(FieldRuleData))
+}
+
+// RuleDataEqualFold applies the EqualFold predicate on the "rule_data" field.
+func RuleDataEqualFold(v string) predicate.CompanySecret {
+	return predicate.CompanySecret(sql.FieldEqualFold(FieldRuleData, v))
+}
+
+// RuleDataContainsFold applies the ContainsFold predicate on the "rule_data" field.
+func RuleDataContainsFold(v string) predicate.CompanySecret {
+	return predicate.CompanySecret(sql.FieldContainsFold(FieldRuleData, v))
 }
 
 // EnableEQ applies the EQ predicate on the "enable" field.

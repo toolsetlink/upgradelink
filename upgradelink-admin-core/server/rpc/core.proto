@@ -85,12 +85,16 @@ message CompanySecretInfo {
   optional string access_key = 5;
   //  secret_key | 密钥key
   optional string secret_key = 6;
+  //  validity_datetime | 有效期
+  optional int64 validity_datetime = 7;
+  //  rule_data | 规则数据
+  optional string rule_data = 8;
   //  是否生效；可通过此控制策略是否生效0：失效；1：生效
-  optional uint32 enable = 7;
+  optional uint32 enable = 9;
   //  描述信息
-  optional string description = 8;
+  optional string description = 10;
   //  是否删除 0：正常；1：已删除
-  optional uint32 is_del = 9;
+  optional uint32 is_del = 11;
 }
 
 message CompanySecretListReq {
@@ -101,9 +105,11 @@ message CompanySecretListReq {
   optional uint64 company_id = 5;
   optional string access_key = 6;
   optional string secret_key = 7;
-  optional uint32 enable = 8;
-  optional string description = 9;
-  optional uint32 is_del = 10;
+  optional int64 validity_datetime = 8;
+  optional string rule_data = 9;
+  optional uint32 enable = 10;
+  optional string description = 11;
+  optional uint32 is_del = 12;
 }
 
 message CompanySecretListResp {

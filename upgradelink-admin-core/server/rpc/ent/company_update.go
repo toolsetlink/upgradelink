@@ -24,45 +24,45 @@ type CompanyUpdate struct {
 }
 
 // Where appends a list predicates to the CompanyUpdate builder.
-func (_u *CompanyUpdate) Where(ps ...predicate.Company) *CompanyUpdate {
-	_u.mutation.Where(ps...)
-	return _u
+func (cu *CompanyUpdate) Where(ps ...predicate.Company) *CompanyUpdate {
+	cu.mutation.Where(ps...)
+	return cu
 }
 
 // SetUpdatedAt sets the "updated_at" field.
-func (_u *CompanyUpdate) SetUpdatedAt(v time.Time) *CompanyUpdate {
-	_u.mutation.SetUpdatedAt(v)
-	return _u
+func (cu *CompanyUpdate) SetUpdatedAt(t time.Time) *CompanyUpdate {
+	cu.mutation.SetUpdatedAt(t)
+	return cu
 }
 
 // SetName sets the "name" field.
-func (_u *CompanyUpdate) SetName(v string) *CompanyUpdate {
-	_u.mutation.SetName(v)
-	return _u
+func (cu *CompanyUpdate) SetName(s string) *CompanyUpdate {
+	cu.mutation.SetName(s)
+	return cu
 }
 
 // SetNillableName sets the "name" field if the given value is not nil.
-func (_u *CompanyUpdate) SetNillableName(v *string) *CompanyUpdate {
-	if v != nil {
-		_u.SetName(*v)
+func (cu *CompanyUpdate) SetNillableName(s *string) *CompanyUpdate {
+	if s != nil {
+		cu.SetName(*s)
 	}
-	return _u
+	return cu
 }
 
 // Mutation returns the CompanyMutation object of the builder.
-func (_u *CompanyUpdate) Mutation() *CompanyMutation {
-	return _u.mutation
+func (cu *CompanyUpdate) Mutation() *CompanyMutation {
+	return cu.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (_u *CompanyUpdate) Save(ctx context.Context) (int, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (cu *CompanyUpdate) Save(ctx context.Context) (int, error) {
+	cu.defaults()
+	return withHooks(ctx, cu.sqlSave, cu.mutation, cu.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *CompanyUpdate) SaveX(ctx context.Context) int {
-	affected, err := _u.Save(ctx)
+func (cu *CompanyUpdate) SaveX(ctx context.Context) int {
+	affected, err := cu.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -70,49 +70,49 @@ func (_u *CompanyUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (_u *CompanyUpdate) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (cu *CompanyUpdate) Exec(ctx context.Context) error {
+	_, err := cu.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *CompanyUpdate) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (cu *CompanyUpdate) ExecX(ctx context.Context) {
+	if err := cu.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *CompanyUpdate) defaults() {
-	if _, ok := _u.mutation.UpdatedAt(); !ok {
+func (cu *CompanyUpdate) defaults() {
+	if _, ok := cu.mutation.UpdatedAt(); !ok {
 		v := company.UpdateDefaultUpdatedAt()
-		_u.mutation.SetUpdatedAt(v)
+		cu.mutation.SetUpdatedAt(v)
 	}
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (_u *CompanyUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *CompanyUpdate {
-	_u.modifiers = append(_u.modifiers, modifiers...)
-	return _u
+func (cu *CompanyUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *CompanyUpdate {
+	cu.modifiers = append(cu.modifiers, modifiers...)
+	return cu
 }
 
-func (_u *CompanyUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+func (cu *CompanyUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(company.Table, company.Columns, sqlgraph.NewFieldSpec(company.FieldID, field.TypeUint64))
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := cu.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdatedAt(); ok {
+	if value, ok := cu.mutation.UpdatedAt(); ok {
 		_spec.SetField(company.FieldUpdatedAt, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.Name(); ok {
+	if value, ok := cu.mutation.Name(); ok {
 		_spec.SetField(company.FieldName, field.TypeString, value)
 	}
-	_spec.AddModifiers(_u.modifiers...)
-	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
+	_spec.AddModifiers(cu.modifiers...)
+	if n, err = sqlgraph.UpdateNodes(ctx, cu.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{company.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -120,8 +120,8 @@ func (_u *CompanyUpdate) sqlSave(ctx context.Context) (_node int, err error) {
 		}
 		return 0, err
 	}
-	_u.mutation.done = true
-	return _node, nil
+	cu.mutation.done = true
+	return n, nil
 }
 
 // CompanyUpdateOne is the builder for updating a single Company entity.
@@ -134,52 +134,52 @@ type CompanyUpdateOne struct {
 }
 
 // SetUpdatedAt sets the "updated_at" field.
-func (_u *CompanyUpdateOne) SetUpdatedAt(v time.Time) *CompanyUpdateOne {
-	_u.mutation.SetUpdatedAt(v)
-	return _u
+func (cuo *CompanyUpdateOne) SetUpdatedAt(t time.Time) *CompanyUpdateOne {
+	cuo.mutation.SetUpdatedAt(t)
+	return cuo
 }
 
 // SetName sets the "name" field.
-func (_u *CompanyUpdateOne) SetName(v string) *CompanyUpdateOne {
-	_u.mutation.SetName(v)
-	return _u
+func (cuo *CompanyUpdateOne) SetName(s string) *CompanyUpdateOne {
+	cuo.mutation.SetName(s)
+	return cuo
 }
 
 // SetNillableName sets the "name" field if the given value is not nil.
-func (_u *CompanyUpdateOne) SetNillableName(v *string) *CompanyUpdateOne {
-	if v != nil {
-		_u.SetName(*v)
+func (cuo *CompanyUpdateOne) SetNillableName(s *string) *CompanyUpdateOne {
+	if s != nil {
+		cuo.SetName(*s)
 	}
-	return _u
+	return cuo
 }
 
 // Mutation returns the CompanyMutation object of the builder.
-func (_u *CompanyUpdateOne) Mutation() *CompanyMutation {
-	return _u.mutation
+func (cuo *CompanyUpdateOne) Mutation() *CompanyMutation {
+	return cuo.mutation
 }
 
 // Where appends a list predicates to the CompanyUpdate builder.
-func (_u *CompanyUpdateOne) Where(ps ...predicate.Company) *CompanyUpdateOne {
-	_u.mutation.Where(ps...)
-	return _u
+func (cuo *CompanyUpdateOne) Where(ps ...predicate.Company) *CompanyUpdateOne {
+	cuo.mutation.Where(ps...)
+	return cuo
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (_u *CompanyUpdateOne) Select(field string, fields ...string) *CompanyUpdateOne {
-	_u.fields = append([]string{field}, fields...)
-	return _u
+func (cuo *CompanyUpdateOne) Select(field string, fields ...string) *CompanyUpdateOne {
+	cuo.fields = append([]string{field}, fields...)
+	return cuo
 }
 
 // Save executes the query and returns the updated Company entity.
-func (_u *CompanyUpdateOne) Save(ctx context.Context) (*Company, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (cuo *CompanyUpdateOne) Save(ctx context.Context) (*Company, error) {
+	cuo.defaults()
+	return withHooks(ctx, cuo.sqlSave, cuo.mutation, cuo.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *CompanyUpdateOne) SaveX(ctx context.Context) *Company {
-	node, err := _u.Save(ctx)
+func (cuo *CompanyUpdateOne) SaveX(ctx context.Context) *Company {
+	node, err := cuo.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -187,40 +187,40 @@ func (_u *CompanyUpdateOne) SaveX(ctx context.Context) *Company {
 }
 
 // Exec executes the query on the entity.
-func (_u *CompanyUpdateOne) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (cuo *CompanyUpdateOne) Exec(ctx context.Context) error {
+	_, err := cuo.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *CompanyUpdateOne) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (cuo *CompanyUpdateOne) ExecX(ctx context.Context) {
+	if err := cuo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *CompanyUpdateOne) defaults() {
-	if _, ok := _u.mutation.UpdatedAt(); !ok {
+func (cuo *CompanyUpdateOne) defaults() {
+	if _, ok := cuo.mutation.UpdatedAt(); !ok {
 		v := company.UpdateDefaultUpdatedAt()
-		_u.mutation.SetUpdatedAt(v)
+		cuo.mutation.SetUpdatedAt(v)
 	}
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (_u *CompanyUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *CompanyUpdateOne {
-	_u.modifiers = append(_u.modifiers, modifiers...)
-	return _u
+func (cuo *CompanyUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *CompanyUpdateOne {
+	cuo.modifiers = append(cuo.modifiers, modifiers...)
+	return cuo
 }
 
-func (_u *CompanyUpdateOne) sqlSave(ctx context.Context) (_node *Company, err error) {
+func (cuo *CompanyUpdateOne) sqlSave(ctx context.Context) (_node *Company, err error) {
 	_spec := sqlgraph.NewUpdateSpec(company.Table, company.Columns, sqlgraph.NewFieldSpec(company.FieldID, field.TypeUint64))
-	id, ok := _u.mutation.ID()
+	id, ok := cuo.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "Company.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := _u.fields; len(fields) > 0 {
+	if fields := cuo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, company.FieldID)
 		for _, f := range fields {
@@ -232,24 +232,24 @@ func (_u *CompanyUpdateOne) sqlSave(ctx context.Context) (_node *Company, err er
 			}
 		}
 	}
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := cuo.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdatedAt(); ok {
+	if value, ok := cuo.mutation.UpdatedAt(); ok {
 		_spec.SetField(company.FieldUpdatedAt, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.Name(); ok {
+	if value, ok := cuo.mutation.Name(); ok {
 		_spec.SetField(company.FieldName, field.TypeString, value)
 	}
-	_spec.AddModifiers(_u.modifiers...)
-	_node = &Company{config: _u.config}
+	_spec.AddModifiers(cuo.modifiers...)
+	_node = &Company{config: cuo.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, cuo.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{company.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -257,6 +257,6 @@ func (_u *CompanyUpdateOne) sqlSave(ctx context.Context) (_node *Company, err er
 		}
 		return nil, err
 	}
-	_u.mutation.done = true
+	cuo.mutation.done = true
 	return _node, nil
 }

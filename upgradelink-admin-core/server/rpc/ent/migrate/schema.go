@@ -55,6 +55,8 @@ var (
 		{Name: "company_id", Type: field.TypeUint64, Nullable: true, Comment: "Company ID | 公司ID", Default: 1},
 		{Name: "access_key", Type: field.TypeString, Unique: true, Comment: "access_key | 密钥id"},
 		{Name: "secret_key", Type: field.TypeString, Unique: true, Comment: "secret_key | 密钥key"},
+		{Name: "validity_datetime", Type: field.TypeTime, Nullable: true, Comment: "Validity Time | 有效期"},
+		{Name: "rule_data", Type: field.TypeString, Nullable: true, Comment: "规则数据"},
 		{Name: "enable", Type: field.TypeUint32, Comment: "是否生效；可通过此控制策略是否生效0：失效；1：生效", Default: 0},
 		{Name: "description", Type: field.TypeString, Nullable: true, Comment: "描述信息"},
 		{Name: "is_del", Type: field.TypeUint32, Comment: "是否删除 0：正常；1：已删除", Default: 0},

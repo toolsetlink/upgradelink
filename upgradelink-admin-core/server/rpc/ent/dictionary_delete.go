@@ -20,56 +20,56 @@ type DictionaryDelete struct {
 }
 
 // Where appends a list predicates to the DictionaryDelete builder.
-func (_d *DictionaryDelete) Where(ps ...predicate.Dictionary) *DictionaryDelete {
-	_d.mutation.Where(ps...)
-	return _d
+func (dd *DictionaryDelete) Where(ps ...predicate.Dictionary) *DictionaryDelete {
+	dd.mutation.Where(ps...)
+	return dd
 }
 
 // Exec executes the deletion query and returns how many vertices were deleted.
-func (_d *DictionaryDelete) Exec(ctx context.Context) (int, error) {
-	return withHooks(ctx, _d.sqlExec, _d.mutation, _d.hooks)
+func (dd *DictionaryDelete) Exec(ctx context.Context) (int, error) {
+	return withHooks(ctx, dd.sqlExec, dd.mutation, dd.hooks)
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *DictionaryDelete) ExecX(ctx context.Context) int {
-	n, err := _d.Exec(ctx)
+func (dd *DictionaryDelete) ExecX(ctx context.Context) int {
+	n, err := dd.Exec(ctx)
 	if err != nil {
 		panic(err)
 	}
 	return n
 }
 
-func (_d *DictionaryDelete) sqlExec(ctx context.Context) (int, error) {
+func (dd *DictionaryDelete) sqlExec(ctx context.Context) (int, error) {
 	_spec := sqlgraph.NewDeleteSpec(dictionary.Table, sqlgraph.NewFieldSpec(dictionary.FieldID, field.TypeUint64))
-	if ps := _d.mutation.predicates; len(ps) > 0 {
+	if ps := dd.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	affected, err := sqlgraph.DeleteNodes(ctx, _d.driver, _spec)
+	affected, err := sqlgraph.DeleteNodes(ctx, dd.driver, _spec)
 	if err != nil && sqlgraph.IsConstraintError(err) {
 		err = &ConstraintError{msg: err.Error(), wrap: err}
 	}
-	_d.mutation.done = true
+	dd.mutation.done = true
 	return affected, err
 }
 
 // DictionaryDeleteOne is the builder for deleting a single Dictionary entity.
 type DictionaryDeleteOne struct {
-	_d *DictionaryDelete
+	dd *DictionaryDelete
 }
 
 // Where appends a list predicates to the DictionaryDelete builder.
-func (_d *DictionaryDeleteOne) Where(ps ...predicate.Dictionary) *DictionaryDeleteOne {
-	_d._d.mutation.Where(ps...)
-	return _d
+func (ddo *DictionaryDeleteOne) Where(ps ...predicate.Dictionary) *DictionaryDeleteOne {
+	ddo.dd.mutation.Where(ps...)
+	return ddo
 }
 
 // Exec executes the deletion query.
-func (_d *DictionaryDeleteOne) Exec(ctx context.Context) error {
-	n, err := _d._d.Exec(ctx)
+func (ddo *DictionaryDeleteOne) Exec(ctx context.Context) error {
+	n, err := ddo.dd.Exec(ctx)
 	switch {
 	case err != nil:
 		return err
@@ -81,8 +81,8 @@ func (_d *DictionaryDeleteOne) Exec(ctx context.Context) error {
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *DictionaryDeleteOne) ExecX(ctx context.Context) {
-	if err := _d.Exec(ctx); err != nil {
+func (ddo *DictionaryDeleteOne) ExecX(ctx context.Context) {
+	if err := ddo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }

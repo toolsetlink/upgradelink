@@ -21,113 +21,113 @@ type APICreate struct {
 }
 
 // SetCreatedAt sets the "created_at" field.
-func (_c *APICreate) SetCreatedAt(v time.Time) *APICreate {
-	_c.mutation.SetCreatedAt(v)
-	return _c
+func (ac *APICreate) SetCreatedAt(t time.Time) *APICreate {
+	ac.mutation.SetCreatedAt(t)
+	return ac
 }
 
 // SetNillableCreatedAt sets the "created_at" field if the given value is not nil.
-func (_c *APICreate) SetNillableCreatedAt(v *time.Time) *APICreate {
-	if v != nil {
-		_c.SetCreatedAt(*v)
+func (ac *APICreate) SetNillableCreatedAt(t *time.Time) *APICreate {
+	if t != nil {
+		ac.SetCreatedAt(*t)
 	}
-	return _c
+	return ac
 }
 
 // SetUpdatedAt sets the "updated_at" field.
-func (_c *APICreate) SetUpdatedAt(v time.Time) *APICreate {
-	_c.mutation.SetUpdatedAt(v)
-	return _c
+func (ac *APICreate) SetUpdatedAt(t time.Time) *APICreate {
+	ac.mutation.SetUpdatedAt(t)
+	return ac
 }
 
 // SetNillableUpdatedAt sets the "updated_at" field if the given value is not nil.
-func (_c *APICreate) SetNillableUpdatedAt(v *time.Time) *APICreate {
-	if v != nil {
-		_c.SetUpdatedAt(*v)
+func (ac *APICreate) SetNillableUpdatedAt(t *time.Time) *APICreate {
+	if t != nil {
+		ac.SetUpdatedAt(*t)
 	}
-	return _c
+	return ac
 }
 
 // SetPath sets the "path" field.
-func (_c *APICreate) SetPath(v string) *APICreate {
-	_c.mutation.SetPath(v)
-	return _c
+func (ac *APICreate) SetPath(s string) *APICreate {
+	ac.mutation.SetPath(s)
+	return ac
 }
 
 // SetDescription sets the "description" field.
-func (_c *APICreate) SetDescription(v string) *APICreate {
-	_c.mutation.SetDescription(v)
-	return _c
+func (ac *APICreate) SetDescription(s string) *APICreate {
+	ac.mutation.SetDescription(s)
+	return ac
 }
 
 // SetAPIGroup sets the "api_group" field.
-func (_c *APICreate) SetAPIGroup(v string) *APICreate {
-	_c.mutation.SetAPIGroup(v)
-	return _c
+func (ac *APICreate) SetAPIGroup(s string) *APICreate {
+	ac.mutation.SetAPIGroup(s)
+	return ac
 }
 
 // SetServiceName sets the "service_name" field.
-func (_c *APICreate) SetServiceName(v string) *APICreate {
-	_c.mutation.SetServiceName(v)
-	return _c
+func (ac *APICreate) SetServiceName(s string) *APICreate {
+	ac.mutation.SetServiceName(s)
+	return ac
 }
 
 // SetNillableServiceName sets the "service_name" field if the given value is not nil.
-func (_c *APICreate) SetNillableServiceName(v *string) *APICreate {
-	if v != nil {
-		_c.SetServiceName(*v)
+func (ac *APICreate) SetNillableServiceName(s *string) *APICreate {
+	if s != nil {
+		ac.SetServiceName(*s)
 	}
-	return _c
+	return ac
 }
 
 // SetMethod sets the "method" field.
-func (_c *APICreate) SetMethod(v string) *APICreate {
-	_c.mutation.SetMethod(v)
-	return _c
+func (ac *APICreate) SetMethod(s string) *APICreate {
+	ac.mutation.SetMethod(s)
+	return ac
 }
 
 // SetNillableMethod sets the "method" field if the given value is not nil.
-func (_c *APICreate) SetNillableMethod(v *string) *APICreate {
-	if v != nil {
-		_c.SetMethod(*v)
+func (ac *APICreate) SetNillableMethod(s *string) *APICreate {
+	if s != nil {
+		ac.SetMethod(*s)
 	}
-	return _c
+	return ac
 }
 
 // SetIsRequired sets the "is_required" field.
-func (_c *APICreate) SetIsRequired(v bool) *APICreate {
-	_c.mutation.SetIsRequired(v)
-	return _c
+func (ac *APICreate) SetIsRequired(b bool) *APICreate {
+	ac.mutation.SetIsRequired(b)
+	return ac
 }
 
 // SetNillableIsRequired sets the "is_required" field if the given value is not nil.
-func (_c *APICreate) SetNillableIsRequired(v *bool) *APICreate {
-	if v != nil {
-		_c.SetIsRequired(*v)
+func (ac *APICreate) SetNillableIsRequired(b *bool) *APICreate {
+	if b != nil {
+		ac.SetIsRequired(*b)
 	}
-	return _c
+	return ac
 }
 
 // SetID sets the "id" field.
-func (_c *APICreate) SetID(v uint64) *APICreate {
-	_c.mutation.SetID(v)
-	return _c
+func (ac *APICreate) SetID(u uint64) *APICreate {
+	ac.mutation.SetID(u)
+	return ac
 }
 
 // Mutation returns the APIMutation object of the builder.
-func (_c *APICreate) Mutation() *APIMutation {
-	return _c.mutation
+func (ac *APICreate) Mutation() *APIMutation {
+	return ac.mutation
 }
 
 // Save creates the API in the database.
-func (_c *APICreate) Save(ctx context.Context) (*API, error) {
-	_c.defaults()
-	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
+func (ac *APICreate) Save(ctx context.Context) (*API, error) {
+	ac.defaults()
+	return withHooks(ctx, ac.sqlSave, ac.mutation, ac.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (_c *APICreate) SaveX(ctx context.Context) *API {
-	v, err := _c.Save(ctx)
+func (ac *APICreate) SaveX(ctx context.Context) *API {
+	v, err := ac.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -135,77 +135,77 @@ func (_c *APICreate) SaveX(ctx context.Context) *API {
 }
 
 // Exec executes the query.
-func (_c *APICreate) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (ac *APICreate) Exec(ctx context.Context) error {
+	_, err := ac.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *APICreate) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (ac *APICreate) ExecX(ctx context.Context) {
+	if err := ac.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_c *APICreate) defaults() {
-	if _, ok := _c.mutation.CreatedAt(); !ok {
+func (ac *APICreate) defaults() {
+	if _, ok := ac.mutation.CreatedAt(); !ok {
 		v := api.DefaultCreatedAt()
-		_c.mutation.SetCreatedAt(v)
+		ac.mutation.SetCreatedAt(v)
 	}
-	if _, ok := _c.mutation.UpdatedAt(); !ok {
+	if _, ok := ac.mutation.UpdatedAt(); !ok {
 		v := api.DefaultUpdatedAt()
-		_c.mutation.SetUpdatedAt(v)
+		ac.mutation.SetUpdatedAt(v)
 	}
-	if _, ok := _c.mutation.ServiceName(); !ok {
+	if _, ok := ac.mutation.ServiceName(); !ok {
 		v := api.DefaultServiceName
-		_c.mutation.SetServiceName(v)
+		ac.mutation.SetServiceName(v)
 	}
-	if _, ok := _c.mutation.Method(); !ok {
+	if _, ok := ac.mutation.Method(); !ok {
 		v := api.DefaultMethod
-		_c.mutation.SetMethod(v)
+		ac.mutation.SetMethod(v)
 	}
-	if _, ok := _c.mutation.IsRequired(); !ok {
+	if _, ok := ac.mutation.IsRequired(); !ok {
 		v := api.DefaultIsRequired
-		_c.mutation.SetIsRequired(v)
+		ac.mutation.SetIsRequired(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (_c *APICreate) check() error {
-	if _, ok := _c.mutation.CreatedAt(); !ok {
+func (ac *APICreate) check() error {
+	if _, ok := ac.mutation.CreatedAt(); !ok {
 		return &ValidationError{Name: "created_at", err: errors.New(`ent: missing required field "API.created_at"`)}
 	}
-	if _, ok := _c.mutation.UpdatedAt(); !ok {
+	if _, ok := ac.mutation.UpdatedAt(); !ok {
 		return &ValidationError{Name: "updated_at", err: errors.New(`ent: missing required field "API.updated_at"`)}
 	}
-	if _, ok := _c.mutation.Path(); !ok {
+	if _, ok := ac.mutation.Path(); !ok {
 		return &ValidationError{Name: "path", err: errors.New(`ent: missing required field "API.path"`)}
 	}
-	if _, ok := _c.mutation.Description(); !ok {
+	if _, ok := ac.mutation.Description(); !ok {
 		return &ValidationError{Name: "description", err: errors.New(`ent: missing required field "API.description"`)}
 	}
-	if _, ok := _c.mutation.APIGroup(); !ok {
+	if _, ok := ac.mutation.APIGroup(); !ok {
 		return &ValidationError{Name: "api_group", err: errors.New(`ent: missing required field "API.api_group"`)}
 	}
-	if _, ok := _c.mutation.ServiceName(); !ok {
+	if _, ok := ac.mutation.ServiceName(); !ok {
 		return &ValidationError{Name: "service_name", err: errors.New(`ent: missing required field "API.service_name"`)}
 	}
-	if _, ok := _c.mutation.Method(); !ok {
+	if _, ok := ac.mutation.Method(); !ok {
 		return &ValidationError{Name: "method", err: errors.New(`ent: missing required field "API.method"`)}
 	}
-	if _, ok := _c.mutation.IsRequired(); !ok {
+	if _, ok := ac.mutation.IsRequired(); !ok {
 		return &ValidationError{Name: "is_required", err: errors.New(`ent: missing required field "API.is_required"`)}
 	}
 	return nil
 }
 
-func (_c *APICreate) sqlSave(ctx context.Context) (*API, error) {
-	if err := _c.check(); err != nil {
+func (ac *APICreate) sqlSave(ctx context.Context) (*API, error) {
+	if err := ac.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := _c.createSpec()
-	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
+	_node, _spec := ac.createSpec()
+	if err := sqlgraph.CreateNode(ctx, ac.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -215,49 +215,49 @@ func (_c *APICreate) sqlSave(ctx context.Context) (*API, error) {
 		id := _spec.ID.Value.(int64)
 		_node.ID = uint64(id)
 	}
-	_c.mutation.id = &_node.ID
-	_c.mutation.done = true
+	ac.mutation.id = &_node.ID
+	ac.mutation.done = true
 	return _node, nil
 }
 
-func (_c *APICreate) createSpec() (*API, *sqlgraph.CreateSpec) {
+func (ac *APICreate) createSpec() (*API, *sqlgraph.CreateSpec) {
 	var (
-		_node = &API{config: _c.config}
+		_node = &API{config: ac.config}
 		_spec = sqlgraph.NewCreateSpec(api.Table, sqlgraph.NewFieldSpec(api.FieldID, field.TypeUint64))
 	)
-	if id, ok := _c.mutation.ID(); ok {
+	if id, ok := ac.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := _c.mutation.CreatedAt(); ok {
+	if value, ok := ac.mutation.CreatedAt(); ok {
 		_spec.SetField(api.FieldCreatedAt, field.TypeTime, value)
 		_node.CreatedAt = value
 	}
-	if value, ok := _c.mutation.UpdatedAt(); ok {
+	if value, ok := ac.mutation.UpdatedAt(); ok {
 		_spec.SetField(api.FieldUpdatedAt, field.TypeTime, value)
 		_node.UpdatedAt = value
 	}
-	if value, ok := _c.mutation.Path(); ok {
+	if value, ok := ac.mutation.Path(); ok {
 		_spec.SetField(api.FieldPath, field.TypeString, value)
 		_node.Path = value
 	}
-	if value, ok := _c.mutation.Description(); ok {
+	if value, ok := ac.mutation.Description(); ok {
 		_spec.SetField(api.FieldDescription, field.TypeString, value)
 		_node.Description = value
 	}
-	if value, ok := _c.mutation.APIGroup(); ok {
+	if value, ok := ac.mutation.APIGroup(); ok {
 		_spec.SetField(api.FieldAPIGroup, field.TypeString, value)
 		_node.APIGroup = value
 	}
-	if value, ok := _c.mutation.ServiceName(); ok {
+	if value, ok := ac.mutation.ServiceName(); ok {
 		_spec.SetField(api.FieldServiceName, field.TypeString, value)
 		_node.ServiceName = value
 	}
-	if value, ok := _c.mutation.Method(); ok {
+	if value, ok := ac.mutation.Method(); ok {
 		_spec.SetField(api.FieldMethod, field.TypeString, value)
 		_node.Method = value
 	}
-	if value, ok := _c.mutation.IsRequired(); ok {
+	if value, ok := ac.mutation.IsRequired(); ok {
 		_spec.SetField(api.FieldIsRequired, field.TypeBool, value)
 		_node.IsRequired = value
 	}
@@ -272,16 +272,16 @@ type APICreateBulk struct {
 }
 
 // Save creates the API entities in the database.
-func (_c *APICreateBulk) Save(ctx context.Context) ([]*API, error) {
-	if _c.err != nil {
-		return nil, _c.err
+func (acb *APICreateBulk) Save(ctx context.Context) ([]*API, error) {
+	if acb.err != nil {
+		return nil, acb.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
-	nodes := make([]*API, len(_c.builders))
-	mutators := make([]Mutator, len(_c.builders))
-	for i := range _c.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(acb.builders))
+	nodes := make([]*API, len(acb.builders))
+	mutators := make([]Mutator, len(acb.builders))
+	for i := range acb.builders {
 		func(i int, root context.Context) {
-			builder := _c.builders[i]
+			builder := acb.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*APIMutation)
@@ -295,11 +295,11 @@ func (_c *APICreateBulk) Save(ctx context.Context) ([]*API, error) {
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, acb.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, acb.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -323,7 +323,7 @@ func (_c *APICreateBulk) Save(ctx context.Context) ([]*API, error) {
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, acb.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -331,8 +331,8 @@ func (_c *APICreateBulk) Save(ctx context.Context) ([]*API, error) {
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_c *APICreateBulk) SaveX(ctx context.Context) []*API {
-	v, err := _c.Save(ctx)
+func (acb *APICreateBulk) SaveX(ctx context.Context) []*API {
+	v, err := acb.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -340,14 +340,14 @@ func (_c *APICreateBulk) SaveX(ctx context.Context) []*API {
 }
 
 // Exec executes the query.
-func (_c *APICreateBulk) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (acb *APICreateBulk) Exec(ctx context.Context) error {
+	_, err := acb.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *APICreateBulk) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (acb *APICreateBulk) ExecX(ctx context.Context) {
+	if err := acb.Exec(ctx); err != nil {
 		panic(err)
 	}
 }

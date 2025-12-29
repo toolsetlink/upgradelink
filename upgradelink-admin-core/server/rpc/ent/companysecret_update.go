@@ -24,148 +24,188 @@ type CompanySecretUpdate struct {
 }
 
 // Where appends a list predicates to the CompanySecretUpdate builder.
-func (_u *CompanySecretUpdate) Where(ps ...predicate.CompanySecret) *CompanySecretUpdate {
-	_u.mutation.Where(ps...)
-	return _u
+func (csu *CompanySecretUpdate) Where(ps ...predicate.CompanySecret) *CompanySecretUpdate {
+	csu.mutation.Where(ps...)
+	return csu
 }
 
 // SetUpdatedAt sets the "updated_at" field.
-func (_u *CompanySecretUpdate) SetUpdatedAt(v time.Time) *CompanySecretUpdate {
-	_u.mutation.SetUpdatedAt(v)
-	return _u
+func (csu *CompanySecretUpdate) SetUpdatedAt(t time.Time) *CompanySecretUpdate {
+	csu.mutation.SetUpdatedAt(t)
+	return csu
 }
 
 // SetCompanyID sets the "company_id" field.
-func (_u *CompanySecretUpdate) SetCompanyID(v uint64) *CompanySecretUpdate {
-	_u.mutation.ResetCompanyID()
-	_u.mutation.SetCompanyID(v)
-	return _u
+func (csu *CompanySecretUpdate) SetCompanyID(u uint64) *CompanySecretUpdate {
+	csu.mutation.ResetCompanyID()
+	csu.mutation.SetCompanyID(u)
+	return csu
 }
 
 // SetNillableCompanyID sets the "company_id" field if the given value is not nil.
-func (_u *CompanySecretUpdate) SetNillableCompanyID(v *uint64) *CompanySecretUpdate {
-	if v != nil {
-		_u.SetCompanyID(*v)
+func (csu *CompanySecretUpdate) SetNillableCompanyID(u *uint64) *CompanySecretUpdate {
+	if u != nil {
+		csu.SetCompanyID(*u)
 	}
-	return _u
+	return csu
 }
 
-// AddCompanyID adds value to the "company_id" field.
-func (_u *CompanySecretUpdate) AddCompanyID(v int64) *CompanySecretUpdate {
-	_u.mutation.AddCompanyID(v)
-	return _u
+// AddCompanyID adds u to the "company_id" field.
+func (csu *CompanySecretUpdate) AddCompanyID(u int64) *CompanySecretUpdate {
+	csu.mutation.AddCompanyID(u)
+	return csu
 }
 
 // ClearCompanyID clears the value of the "company_id" field.
-func (_u *CompanySecretUpdate) ClearCompanyID() *CompanySecretUpdate {
-	_u.mutation.ClearCompanyID()
-	return _u
+func (csu *CompanySecretUpdate) ClearCompanyID() *CompanySecretUpdate {
+	csu.mutation.ClearCompanyID()
+	return csu
 }
 
 // SetAccessKey sets the "access_key" field.
-func (_u *CompanySecretUpdate) SetAccessKey(v string) *CompanySecretUpdate {
-	_u.mutation.SetAccessKey(v)
-	return _u
+func (csu *CompanySecretUpdate) SetAccessKey(s string) *CompanySecretUpdate {
+	csu.mutation.SetAccessKey(s)
+	return csu
 }
 
 // SetNillableAccessKey sets the "access_key" field if the given value is not nil.
-func (_u *CompanySecretUpdate) SetNillableAccessKey(v *string) *CompanySecretUpdate {
-	if v != nil {
-		_u.SetAccessKey(*v)
+func (csu *CompanySecretUpdate) SetNillableAccessKey(s *string) *CompanySecretUpdate {
+	if s != nil {
+		csu.SetAccessKey(*s)
 	}
-	return _u
+	return csu
 }
 
 // SetSecretKey sets the "secret_key" field.
-func (_u *CompanySecretUpdate) SetSecretKey(v string) *CompanySecretUpdate {
-	_u.mutation.SetSecretKey(v)
-	return _u
+func (csu *CompanySecretUpdate) SetSecretKey(s string) *CompanySecretUpdate {
+	csu.mutation.SetSecretKey(s)
+	return csu
 }
 
 // SetNillableSecretKey sets the "secret_key" field if the given value is not nil.
-func (_u *CompanySecretUpdate) SetNillableSecretKey(v *string) *CompanySecretUpdate {
-	if v != nil {
-		_u.SetSecretKey(*v)
+func (csu *CompanySecretUpdate) SetNillableSecretKey(s *string) *CompanySecretUpdate {
+	if s != nil {
+		csu.SetSecretKey(*s)
 	}
-	return _u
+	return csu
+}
+
+// SetValidityDatetime sets the "validity_datetime" field.
+func (csu *CompanySecretUpdate) SetValidityDatetime(t time.Time) *CompanySecretUpdate {
+	csu.mutation.SetValidityDatetime(t)
+	return csu
+}
+
+// SetNillableValidityDatetime sets the "validity_datetime" field if the given value is not nil.
+func (csu *CompanySecretUpdate) SetNillableValidityDatetime(t *time.Time) *CompanySecretUpdate {
+	if t != nil {
+		csu.SetValidityDatetime(*t)
+	}
+	return csu
+}
+
+// ClearValidityDatetime clears the value of the "validity_datetime" field.
+func (csu *CompanySecretUpdate) ClearValidityDatetime() *CompanySecretUpdate {
+	csu.mutation.ClearValidityDatetime()
+	return csu
+}
+
+// SetRuleData sets the "rule_data" field.
+func (csu *CompanySecretUpdate) SetRuleData(s string) *CompanySecretUpdate {
+	csu.mutation.SetRuleData(s)
+	return csu
+}
+
+// SetNillableRuleData sets the "rule_data" field if the given value is not nil.
+func (csu *CompanySecretUpdate) SetNillableRuleData(s *string) *CompanySecretUpdate {
+	if s != nil {
+		csu.SetRuleData(*s)
+	}
+	return csu
+}
+
+// ClearRuleData clears the value of the "rule_data" field.
+func (csu *CompanySecretUpdate) ClearRuleData() *CompanySecretUpdate {
+	csu.mutation.ClearRuleData()
+	return csu
 }
 
 // SetEnable sets the "enable" field.
-func (_u *CompanySecretUpdate) SetEnable(v uint32) *CompanySecretUpdate {
-	_u.mutation.ResetEnable()
-	_u.mutation.SetEnable(v)
-	return _u
+func (csu *CompanySecretUpdate) SetEnable(u uint32) *CompanySecretUpdate {
+	csu.mutation.ResetEnable()
+	csu.mutation.SetEnable(u)
+	return csu
 }
 
 // SetNillableEnable sets the "enable" field if the given value is not nil.
-func (_u *CompanySecretUpdate) SetNillableEnable(v *uint32) *CompanySecretUpdate {
-	if v != nil {
-		_u.SetEnable(*v)
+func (csu *CompanySecretUpdate) SetNillableEnable(u *uint32) *CompanySecretUpdate {
+	if u != nil {
+		csu.SetEnable(*u)
 	}
-	return _u
+	return csu
 }
 
-// AddEnable adds value to the "enable" field.
-func (_u *CompanySecretUpdate) AddEnable(v int32) *CompanySecretUpdate {
-	_u.mutation.AddEnable(v)
-	return _u
+// AddEnable adds u to the "enable" field.
+func (csu *CompanySecretUpdate) AddEnable(u int32) *CompanySecretUpdate {
+	csu.mutation.AddEnable(u)
+	return csu
 }
 
 // SetDescription sets the "description" field.
-func (_u *CompanySecretUpdate) SetDescription(v string) *CompanySecretUpdate {
-	_u.mutation.SetDescription(v)
-	return _u
+func (csu *CompanySecretUpdate) SetDescription(s string) *CompanySecretUpdate {
+	csu.mutation.SetDescription(s)
+	return csu
 }
 
 // SetNillableDescription sets the "description" field if the given value is not nil.
-func (_u *CompanySecretUpdate) SetNillableDescription(v *string) *CompanySecretUpdate {
-	if v != nil {
-		_u.SetDescription(*v)
+func (csu *CompanySecretUpdate) SetNillableDescription(s *string) *CompanySecretUpdate {
+	if s != nil {
+		csu.SetDescription(*s)
 	}
-	return _u
+	return csu
 }
 
 // ClearDescription clears the value of the "description" field.
-func (_u *CompanySecretUpdate) ClearDescription() *CompanySecretUpdate {
-	_u.mutation.ClearDescription()
-	return _u
+func (csu *CompanySecretUpdate) ClearDescription() *CompanySecretUpdate {
+	csu.mutation.ClearDescription()
+	return csu
 }
 
 // SetIsDel sets the "is_del" field.
-func (_u *CompanySecretUpdate) SetIsDel(v uint32) *CompanySecretUpdate {
-	_u.mutation.ResetIsDel()
-	_u.mutation.SetIsDel(v)
-	return _u
+func (csu *CompanySecretUpdate) SetIsDel(u uint32) *CompanySecretUpdate {
+	csu.mutation.ResetIsDel()
+	csu.mutation.SetIsDel(u)
+	return csu
 }
 
 // SetNillableIsDel sets the "is_del" field if the given value is not nil.
-func (_u *CompanySecretUpdate) SetNillableIsDel(v *uint32) *CompanySecretUpdate {
-	if v != nil {
-		_u.SetIsDel(*v)
+func (csu *CompanySecretUpdate) SetNillableIsDel(u *uint32) *CompanySecretUpdate {
+	if u != nil {
+		csu.SetIsDel(*u)
 	}
-	return _u
+	return csu
 }
 
-// AddIsDel adds value to the "is_del" field.
-func (_u *CompanySecretUpdate) AddIsDel(v int32) *CompanySecretUpdate {
-	_u.mutation.AddIsDel(v)
-	return _u
+// AddIsDel adds u to the "is_del" field.
+func (csu *CompanySecretUpdate) AddIsDel(u int32) *CompanySecretUpdate {
+	csu.mutation.AddIsDel(u)
+	return csu
 }
 
 // Mutation returns the CompanySecretMutation object of the builder.
-func (_u *CompanySecretUpdate) Mutation() *CompanySecretMutation {
-	return _u.mutation
+func (csu *CompanySecretUpdate) Mutation() *CompanySecretMutation {
+	return csu.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (_u *CompanySecretUpdate) Save(ctx context.Context) (int, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (csu *CompanySecretUpdate) Save(ctx context.Context) (int, error) {
+	csu.defaults()
+	return withHooks(ctx, csu.sqlSave, csu.mutation, csu.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *CompanySecretUpdate) SaveX(ctx context.Context) int {
-	affected, err := _u.Save(ctx)
+func (csu *CompanySecretUpdate) SaveX(ctx context.Context) int {
+	affected, err := csu.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -173,79 +213,91 @@ func (_u *CompanySecretUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (_u *CompanySecretUpdate) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (csu *CompanySecretUpdate) Exec(ctx context.Context) error {
+	_, err := csu.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *CompanySecretUpdate) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (csu *CompanySecretUpdate) ExecX(ctx context.Context) {
+	if err := csu.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *CompanySecretUpdate) defaults() {
-	if _, ok := _u.mutation.UpdatedAt(); !ok {
+func (csu *CompanySecretUpdate) defaults() {
+	if _, ok := csu.mutation.UpdatedAt(); !ok {
 		v := companysecret.UpdateDefaultUpdatedAt()
-		_u.mutation.SetUpdatedAt(v)
+		csu.mutation.SetUpdatedAt(v)
 	}
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (_u *CompanySecretUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *CompanySecretUpdate {
-	_u.modifiers = append(_u.modifiers, modifiers...)
-	return _u
+func (csu *CompanySecretUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *CompanySecretUpdate {
+	csu.modifiers = append(csu.modifiers, modifiers...)
+	return csu
 }
 
-func (_u *CompanySecretUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+func (csu *CompanySecretUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(companysecret.Table, companysecret.Columns, sqlgraph.NewFieldSpec(companysecret.FieldID, field.TypeUint64))
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := csu.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdatedAt(); ok {
+	if value, ok := csu.mutation.UpdatedAt(); ok {
 		_spec.SetField(companysecret.FieldUpdatedAt, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.CompanyID(); ok {
+	if value, ok := csu.mutation.CompanyID(); ok {
 		_spec.SetField(companysecret.FieldCompanyID, field.TypeUint64, value)
 	}
-	if value, ok := _u.mutation.AddedCompanyID(); ok {
+	if value, ok := csu.mutation.AddedCompanyID(); ok {
 		_spec.AddField(companysecret.FieldCompanyID, field.TypeUint64, value)
 	}
-	if _u.mutation.CompanyIDCleared() {
+	if csu.mutation.CompanyIDCleared() {
 		_spec.ClearField(companysecret.FieldCompanyID, field.TypeUint64)
 	}
-	if value, ok := _u.mutation.AccessKey(); ok {
+	if value, ok := csu.mutation.AccessKey(); ok {
 		_spec.SetField(companysecret.FieldAccessKey, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.SecretKey(); ok {
+	if value, ok := csu.mutation.SecretKey(); ok {
 		_spec.SetField(companysecret.FieldSecretKey, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Enable(); ok {
+	if value, ok := csu.mutation.ValidityDatetime(); ok {
+		_spec.SetField(companysecret.FieldValidityDatetime, field.TypeTime, value)
+	}
+	if csu.mutation.ValidityDatetimeCleared() {
+		_spec.ClearField(companysecret.FieldValidityDatetime, field.TypeTime)
+	}
+	if value, ok := csu.mutation.RuleData(); ok {
+		_spec.SetField(companysecret.FieldRuleData, field.TypeString, value)
+	}
+	if csu.mutation.RuleDataCleared() {
+		_spec.ClearField(companysecret.FieldRuleData, field.TypeString)
+	}
+	if value, ok := csu.mutation.Enable(); ok {
 		_spec.SetField(companysecret.FieldEnable, field.TypeUint32, value)
 	}
-	if value, ok := _u.mutation.AddedEnable(); ok {
+	if value, ok := csu.mutation.AddedEnable(); ok {
 		_spec.AddField(companysecret.FieldEnable, field.TypeUint32, value)
 	}
-	if value, ok := _u.mutation.Description(); ok {
+	if value, ok := csu.mutation.Description(); ok {
 		_spec.SetField(companysecret.FieldDescription, field.TypeString, value)
 	}
-	if _u.mutation.DescriptionCleared() {
+	if csu.mutation.DescriptionCleared() {
 		_spec.ClearField(companysecret.FieldDescription, field.TypeString)
 	}
-	if value, ok := _u.mutation.IsDel(); ok {
+	if value, ok := csu.mutation.IsDel(); ok {
 		_spec.SetField(companysecret.FieldIsDel, field.TypeUint32, value)
 	}
-	if value, ok := _u.mutation.AddedIsDel(); ok {
+	if value, ok := csu.mutation.AddedIsDel(); ok {
 		_spec.AddField(companysecret.FieldIsDel, field.TypeUint32, value)
 	}
-	_spec.AddModifiers(_u.modifiers...)
-	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
+	_spec.AddModifiers(csu.modifiers...)
+	if n, err = sqlgraph.UpdateNodes(ctx, csu.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{companysecret.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -253,8 +305,8 @@ func (_u *CompanySecretUpdate) sqlSave(ctx context.Context) (_node int, err erro
 		}
 		return 0, err
 	}
-	_u.mutation.done = true
-	return _node, nil
+	csu.mutation.done = true
+	return n, nil
 }
 
 // CompanySecretUpdateOne is the builder for updating a single CompanySecret entity.
@@ -267,155 +319,195 @@ type CompanySecretUpdateOne struct {
 }
 
 // SetUpdatedAt sets the "updated_at" field.
-func (_u *CompanySecretUpdateOne) SetUpdatedAt(v time.Time) *CompanySecretUpdateOne {
-	_u.mutation.SetUpdatedAt(v)
-	return _u
+func (csuo *CompanySecretUpdateOne) SetUpdatedAt(t time.Time) *CompanySecretUpdateOne {
+	csuo.mutation.SetUpdatedAt(t)
+	return csuo
 }
 
 // SetCompanyID sets the "company_id" field.
-func (_u *CompanySecretUpdateOne) SetCompanyID(v uint64) *CompanySecretUpdateOne {
-	_u.mutation.ResetCompanyID()
-	_u.mutation.SetCompanyID(v)
-	return _u
+func (csuo *CompanySecretUpdateOne) SetCompanyID(u uint64) *CompanySecretUpdateOne {
+	csuo.mutation.ResetCompanyID()
+	csuo.mutation.SetCompanyID(u)
+	return csuo
 }
 
 // SetNillableCompanyID sets the "company_id" field if the given value is not nil.
-func (_u *CompanySecretUpdateOne) SetNillableCompanyID(v *uint64) *CompanySecretUpdateOne {
-	if v != nil {
-		_u.SetCompanyID(*v)
+func (csuo *CompanySecretUpdateOne) SetNillableCompanyID(u *uint64) *CompanySecretUpdateOne {
+	if u != nil {
+		csuo.SetCompanyID(*u)
 	}
-	return _u
+	return csuo
 }
 
-// AddCompanyID adds value to the "company_id" field.
-func (_u *CompanySecretUpdateOne) AddCompanyID(v int64) *CompanySecretUpdateOne {
-	_u.mutation.AddCompanyID(v)
-	return _u
+// AddCompanyID adds u to the "company_id" field.
+func (csuo *CompanySecretUpdateOne) AddCompanyID(u int64) *CompanySecretUpdateOne {
+	csuo.mutation.AddCompanyID(u)
+	return csuo
 }
 
 // ClearCompanyID clears the value of the "company_id" field.
-func (_u *CompanySecretUpdateOne) ClearCompanyID() *CompanySecretUpdateOne {
-	_u.mutation.ClearCompanyID()
-	return _u
+func (csuo *CompanySecretUpdateOne) ClearCompanyID() *CompanySecretUpdateOne {
+	csuo.mutation.ClearCompanyID()
+	return csuo
 }
 
 // SetAccessKey sets the "access_key" field.
-func (_u *CompanySecretUpdateOne) SetAccessKey(v string) *CompanySecretUpdateOne {
-	_u.mutation.SetAccessKey(v)
-	return _u
+func (csuo *CompanySecretUpdateOne) SetAccessKey(s string) *CompanySecretUpdateOne {
+	csuo.mutation.SetAccessKey(s)
+	return csuo
 }
 
 // SetNillableAccessKey sets the "access_key" field if the given value is not nil.
-func (_u *CompanySecretUpdateOne) SetNillableAccessKey(v *string) *CompanySecretUpdateOne {
-	if v != nil {
-		_u.SetAccessKey(*v)
+func (csuo *CompanySecretUpdateOne) SetNillableAccessKey(s *string) *CompanySecretUpdateOne {
+	if s != nil {
+		csuo.SetAccessKey(*s)
 	}
-	return _u
+	return csuo
 }
 
 // SetSecretKey sets the "secret_key" field.
-func (_u *CompanySecretUpdateOne) SetSecretKey(v string) *CompanySecretUpdateOne {
-	_u.mutation.SetSecretKey(v)
-	return _u
+func (csuo *CompanySecretUpdateOne) SetSecretKey(s string) *CompanySecretUpdateOne {
+	csuo.mutation.SetSecretKey(s)
+	return csuo
 }
 
 // SetNillableSecretKey sets the "secret_key" field if the given value is not nil.
-func (_u *CompanySecretUpdateOne) SetNillableSecretKey(v *string) *CompanySecretUpdateOne {
-	if v != nil {
-		_u.SetSecretKey(*v)
+func (csuo *CompanySecretUpdateOne) SetNillableSecretKey(s *string) *CompanySecretUpdateOne {
+	if s != nil {
+		csuo.SetSecretKey(*s)
 	}
-	return _u
+	return csuo
+}
+
+// SetValidityDatetime sets the "validity_datetime" field.
+func (csuo *CompanySecretUpdateOne) SetValidityDatetime(t time.Time) *CompanySecretUpdateOne {
+	csuo.mutation.SetValidityDatetime(t)
+	return csuo
+}
+
+// SetNillableValidityDatetime sets the "validity_datetime" field if the given value is not nil.
+func (csuo *CompanySecretUpdateOne) SetNillableValidityDatetime(t *time.Time) *CompanySecretUpdateOne {
+	if t != nil {
+		csuo.SetValidityDatetime(*t)
+	}
+	return csuo
+}
+
+// ClearValidityDatetime clears the value of the "validity_datetime" field.
+func (csuo *CompanySecretUpdateOne) ClearValidityDatetime() *CompanySecretUpdateOne {
+	csuo.mutation.ClearValidityDatetime()
+	return csuo
+}
+
+// SetRuleData sets the "rule_data" field.
+func (csuo *CompanySecretUpdateOne) SetRuleData(s string) *CompanySecretUpdateOne {
+	csuo.mutation.SetRuleData(s)
+	return csuo
+}
+
+// SetNillableRuleData sets the "rule_data" field if the given value is not nil.
+func (csuo *CompanySecretUpdateOne) SetNillableRuleData(s *string) *CompanySecretUpdateOne {
+	if s != nil {
+		csuo.SetRuleData(*s)
+	}
+	return csuo
+}
+
+// ClearRuleData clears the value of the "rule_data" field.
+func (csuo *CompanySecretUpdateOne) ClearRuleData() *CompanySecretUpdateOne {
+	csuo.mutation.ClearRuleData()
+	return csuo
 }
 
 // SetEnable sets the "enable" field.
-func (_u *CompanySecretUpdateOne) SetEnable(v uint32) *CompanySecretUpdateOne {
-	_u.mutation.ResetEnable()
-	_u.mutation.SetEnable(v)
-	return _u
+func (csuo *CompanySecretUpdateOne) SetEnable(u uint32) *CompanySecretUpdateOne {
+	csuo.mutation.ResetEnable()
+	csuo.mutation.SetEnable(u)
+	return csuo
 }
 
 // SetNillableEnable sets the "enable" field if the given value is not nil.
-func (_u *CompanySecretUpdateOne) SetNillableEnable(v *uint32) *CompanySecretUpdateOne {
-	if v != nil {
-		_u.SetEnable(*v)
+func (csuo *CompanySecretUpdateOne) SetNillableEnable(u *uint32) *CompanySecretUpdateOne {
+	if u != nil {
+		csuo.SetEnable(*u)
 	}
-	return _u
+	return csuo
 }
 
-// AddEnable adds value to the "enable" field.
-func (_u *CompanySecretUpdateOne) AddEnable(v int32) *CompanySecretUpdateOne {
-	_u.mutation.AddEnable(v)
-	return _u
+// AddEnable adds u to the "enable" field.
+func (csuo *CompanySecretUpdateOne) AddEnable(u int32) *CompanySecretUpdateOne {
+	csuo.mutation.AddEnable(u)
+	return csuo
 }
 
 // SetDescription sets the "description" field.
-func (_u *CompanySecretUpdateOne) SetDescription(v string) *CompanySecretUpdateOne {
-	_u.mutation.SetDescription(v)
-	return _u
+func (csuo *CompanySecretUpdateOne) SetDescription(s string) *CompanySecretUpdateOne {
+	csuo.mutation.SetDescription(s)
+	return csuo
 }
 
 // SetNillableDescription sets the "description" field if the given value is not nil.
-func (_u *CompanySecretUpdateOne) SetNillableDescription(v *string) *CompanySecretUpdateOne {
-	if v != nil {
-		_u.SetDescription(*v)
+func (csuo *CompanySecretUpdateOne) SetNillableDescription(s *string) *CompanySecretUpdateOne {
+	if s != nil {
+		csuo.SetDescription(*s)
 	}
-	return _u
+	return csuo
 }
 
 // ClearDescription clears the value of the "description" field.
-func (_u *CompanySecretUpdateOne) ClearDescription() *CompanySecretUpdateOne {
-	_u.mutation.ClearDescription()
-	return _u
+func (csuo *CompanySecretUpdateOne) ClearDescription() *CompanySecretUpdateOne {
+	csuo.mutation.ClearDescription()
+	return csuo
 }
 
 // SetIsDel sets the "is_del" field.
-func (_u *CompanySecretUpdateOne) SetIsDel(v uint32) *CompanySecretUpdateOne {
-	_u.mutation.ResetIsDel()
-	_u.mutation.SetIsDel(v)
-	return _u
+func (csuo *CompanySecretUpdateOne) SetIsDel(u uint32) *CompanySecretUpdateOne {
+	csuo.mutation.ResetIsDel()
+	csuo.mutation.SetIsDel(u)
+	return csuo
 }
 
 // SetNillableIsDel sets the "is_del" field if the given value is not nil.
-func (_u *CompanySecretUpdateOne) SetNillableIsDel(v *uint32) *CompanySecretUpdateOne {
-	if v != nil {
-		_u.SetIsDel(*v)
+func (csuo *CompanySecretUpdateOne) SetNillableIsDel(u *uint32) *CompanySecretUpdateOne {
+	if u != nil {
+		csuo.SetIsDel(*u)
 	}
-	return _u
+	return csuo
 }
 
-// AddIsDel adds value to the "is_del" field.
-func (_u *CompanySecretUpdateOne) AddIsDel(v int32) *CompanySecretUpdateOne {
-	_u.mutation.AddIsDel(v)
-	return _u
+// AddIsDel adds u to the "is_del" field.
+func (csuo *CompanySecretUpdateOne) AddIsDel(u int32) *CompanySecretUpdateOne {
+	csuo.mutation.AddIsDel(u)
+	return csuo
 }
 
 // Mutation returns the CompanySecretMutation object of the builder.
-func (_u *CompanySecretUpdateOne) Mutation() *CompanySecretMutation {
-	return _u.mutation
+func (csuo *CompanySecretUpdateOne) Mutation() *CompanySecretMutation {
+	return csuo.mutation
 }
 
 // Where appends a list predicates to the CompanySecretUpdate builder.
-func (_u *CompanySecretUpdateOne) Where(ps ...predicate.CompanySecret) *CompanySecretUpdateOne {
-	_u.mutation.Where(ps...)
-	return _u
+func (csuo *CompanySecretUpdateOne) Where(ps ...predicate.CompanySecret) *CompanySecretUpdateOne {
+	csuo.mutation.Where(ps...)
+	return csuo
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (_u *CompanySecretUpdateOne) Select(field string, fields ...string) *CompanySecretUpdateOne {
-	_u.fields = append([]string{field}, fields...)
-	return _u
+func (csuo *CompanySecretUpdateOne) Select(field string, fields ...string) *CompanySecretUpdateOne {
+	csuo.fields = append([]string{field}, fields...)
+	return csuo
 }
 
 // Save executes the query and returns the updated CompanySecret entity.
-func (_u *CompanySecretUpdateOne) Save(ctx context.Context) (*CompanySecret, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (csuo *CompanySecretUpdateOne) Save(ctx context.Context) (*CompanySecret, error) {
+	csuo.defaults()
+	return withHooks(ctx, csuo.sqlSave, csuo.mutation, csuo.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *CompanySecretUpdateOne) SaveX(ctx context.Context) *CompanySecret {
-	node, err := _u.Save(ctx)
+func (csuo *CompanySecretUpdateOne) SaveX(ctx context.Context) *CompanySecret {
+	node, err := csuo.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -423,40 +515,40 @@ func (_u *CompanySecretUpdateOne) SaveX(ctx context.Context) *CompanySecret {
 }
 
 // Exec executes the query on the entity.
-func (_u *CompanySecretUpdateOne) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (csuo *CompanySecretUpdateOne) Exec(ctx context.Context) error {
+	_, err := csuo.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *CompanySecretUpdateOne) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (csuo *CompanySecretUpdateOne) ExecX(ctx context.Context) {
+	if err := csuo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *CompanySecretUpdateOne) defaults() {
-	if _, ok := _u.mutation.UpdatedAt(); !ok {
+func (csuo *CompanySecretUpdateOne) defaults() {
+	if _, ok := csuo.mutation.UpdatedAt(); !ok {
 		v := companysecret.UpdateDefaultUpdatedAt()
-		_u.mutation.SetUpdatedAt(v)
+		csuo.mutation.SetUpdatedAt(v)
 	}
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (_u *CompanySecretUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *CompanySecretUpdateOne {
-	_u.modifiers = append(_u.modifiers, modifiers...)
-	return _u
+func (csuo *CompanySecretUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *CompanySecretUpdateOne {
+	csuo.modifiers = append(csuo.modifiers, modifiers...)
+	return csuo
 }
 
-func (_u *CompanySecretUpdateOne) sqlSave(ctx context.Context) (_node *CompanySecret, err error) {
+func (csuo *CompanySecretUpdateOne) sqlSave(ctx context.Context) (_node *CompanySecret, err error) {
 	_spec := sqlgraph.NewUpdateSpec(companysecret.Table, companysecret.Columns, sqlgraph.NewFieldSpec(companysecret.FieldID, field.TypeUint64))
-	id, ok := _u.mutation.ID()
+	id, ok := csuo.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "CompanySecret.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := _u.fields; len(fields) > 0 {
+	if fields := csuo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, companysecret.FieldID)
 		for _, f := range fields {
@@ -468,54 +560,66 @@ func (_u *CompanySecretUpdateOne) sqlSave(ctx context.Context) (_node *CompanySe
 			}
 		}
 	}
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := csuo.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdatedAt(); ok {
+	if value, ok := csuo.mutation.UpdatedAt(); ok {
 		_spec.SetField(companysecret.FieldUpdatedAt, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.CompanyID(); ok {
+	if value, ok := csuo.mutation.CompanyID(); ok {
 		_spec.SetField(companysecret.FieldCompanyID, field.TypeUint64, value)
 	}
-	if value, ok := _u.mutation.AddedCompanyID(); ok {
+	if value, ok := csuo.mutation.AddedCompanyID(); ok {
 		_spec.AddField(companysecret.FieldCompanyID, field.TypeUint64, value)
 	}
-	if _u.mutation.CompanyIDCleared() {
+	if csuo.mutation.CompanyIDCleared() {
 		_spec.ClearField(companysecret.FieldCompanyID, field.TypeUint64)
 	}
-	if value, ok := _u.mutation.AccessKey(); ok {
+	if value, ok := csuo.mutation.AccessKey(); ok {
 		_spec.SetField(companysecret.FieldAccessKey, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.SecretKey(); ok {
+	if value, ok := csuo.mutation.SecretKey(); ok {
 		_spec.SetField(companysecret.FieldSecretKey, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Enable(); ok {
+	if value, ok := csuo.mutation.ValidityDatetime(); ok {
+		_spec.SetField(companysecret.FieldValidityDatetime, field.TypeTime, value)
+	}
+	if csuo.mutation.ValidityDatetimeCleared() {
+		_spec.ClearField(companysecret.FieldValidityDatetime, field.TypeTime)
+	}
+	if value, ok := csuo.mutation.RuleData(); ok {
+		_spec.SetField(companysecret.FieldRuleData, field.TypeString, value)
+	}
+	if csuo.mutation.RuleDataCleared() {
+		_spec.ClearField(companysecret.FieldRuleData, field.TypeString)
+	}
+	if value, ok := csuo.mutation.Enable(); ok {
 		_spec.SetField(companysecret.FieldEnable, field.TypeUint32, value)
 	}
-	if value, ok := _u.mutation.AddedEnable(); ok {
+	if value, ok := csuo.mutation.AddedEnable(); ok {
 		_spec.AddField(companysecret.FieldEnable, field.TypeUint32, value)
 	}
-	if value, ok := _u.mutation.Description(); ok {
+	if value, ok := csuo.mutation.Description(); ok {
 		_spec.SetField(companysecret.FieldDescription, field.TypeString, value)
 	}
-	if _u.mutation.DescriptionCleared() {
+	if csuo.mutation.DescriptionCleared() {
 		_spec.ClearField(companysecret.FieldDescription, field.TypeString)
 	}
-	if value, ok := _u.mutation.IsDel(); ok {
+	if value, ok := csuo.mutation.IsDel(); ok {
 		_spec.SetField(companysecret.FieldIsDel, field.TypeUint32, value)
 	}
-	if value, ok := _u.mutation.AddedIsDel(); ok {
+	if value, ok := csuo.mutation.AddedIsDel(); ok {
 		_spec.AddField(companysecret.FieldIsDel, field.TypeUint32, value)
 	}
-	_spec.AddModifiers(_u.modifiers...)
-	_node = &CompanySecret{config: _u.config}
+	_spec.AddModifiers(csuo.modifiers...)
+	_node = &CompanySecret{config: csuo.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, csuo.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{companysecret.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -523,6 +627,6 @@ func (_u *CompanySecretUpdateOne) sqlSave(ctx context.Context) (_node *CompanySe
 		}
 		return nil, err
 	}
-	_u.mutation.done = true
+	csuo.mutation.done = true
 	return _node, nil
 }

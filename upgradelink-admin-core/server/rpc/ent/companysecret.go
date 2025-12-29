@@ -27,6 +27,10 @@ type CompanySecret struct {
 	AccessKey string `json:"access_key,omitempty"`
 	// secret_key | 密钥key
 	SecretKey string `json:"secret_key,omitempty"`
+	// Validity Time | 有效期
+	ValidityDatetime time.Time `json:"validity_datetime,omitempty"`
+	// 规则数据
+	RuleData string `json:"rule_data,omitempty"`
 	// 是否生效；可通过此控制策略是否生效0：失效；1：生效
 	Enable uint32 `json:"enable,omitempty"`
 	// 描述信息
@@ -43,9 +47,9 @@ func (*CompanySecret) scanValues(columns []string) ([]any, error) {
 		switch columns[i] {
 		case companysecret.FieldID, companysecret.FieldCompanyID, companysecret.FieldEnable, companysecret.FieldIsDel:
 			values[i] = new(sql.NullInt64)
-		case companysecret.FieldAccessKey, companysecret.FieldSecretKey, companysecret.FieldDescription:
+		case companysecret.FieldAccessKey, companysecret.FieldSecretKey, companysecret.FieldRuleData, companysecret.FieldDescription:
 			values[i] = new(sql.NullString)
-		case companysecret.FieldCreatedAt, companysecret.FieldUpdatedAt:
+		case companysecret.FieldCreatedAt, companysecret.FieldUpdatedAt, companysecret.FieldValidityDatetime:
 			values[i] = new(sql.NullTime)
 		default:
 			values[i] = new(sql.UnknownType)
@@ -56,7 +60,7 @@ func (*CompanySecret) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the CompanySecret fields.
-func (_m *CompanySecret) assignValues(columns []string, values []any) error {
+func (cs *CompanySecret) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -67,57 +71,69 @@ func (_m *CompanySecret) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			_m.ID = uint64(value.Int64)
+			cs.ID = uint64(value.Int64)
 		case companysecret.FieldCreatedAt:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field created_at", values[i])
 			} else if value.Valid {
-				_m.CreatedAt = value.Time
+				cs.CreatedAt = value.Time
 			}
 		case companysecret.FieldUpdatedAt:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field updated_at", values[i])
 			} else if value.Valid {
-				_m.UpdatedAt = value.Time
+				cs.UpdatedAt = value.Time
 			}
 		case companysecret.FieldCompanyID:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field company_id", values[i])
 			} else if value.Valid {
-				_m.CompanyID = uint64(value.Int64)
+				cs.CompanyID = uint64(value.Int64)
 			}
 		case companysecret.FieldAccessKey:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field access_key", values[i])
 			} else if value.Valid {
-				_m.AccessKey = value.String
+				cs.AccessKey = value.String
 			}
 		case companysecret.FieldSecretKey:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field secret_key", values[i])
 			} else if value.Valid {
-				_m.SecretKey = value.String
+				cs.SecretKey = value.String
+			}
+		case companysecret.FieldValidityDatetime:
+			if value, ok := values[i].(*sql.NullTime); !ok {
+				return fmt.Errorf("unexpected type %T for field validity_datetime", values[i])
+			} else if value.Valid {
+				cs.ValidityDatetime = value.Time
+			}
+		case companysecret.FieldRuleData:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field rule_data", values[i])
+			} else if value.Valid {
+				cs.RuleData = value.String
 			}
 		case companysecret.FieldEnable:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field enable", values[i])
 			} else if value.Valid {
-				_m.Enable = uint32(value.Int64)
+				cs.Enable = uint32(value.Int64)
 			}
 		case companysecret.FieldDescription:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field description", values[i])
 			} else if value.Valid {
-				_m.Description = value.String
+				cs.Description = value.String
 			}
 		case companysecret.FieldIsDel:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field is_del", values[i])
 			} else if value.Valid {
-				_m.IsDel = uint32(value.Int64)
+				cs.IsDel = uint32(value.Int64)
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			cs.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -125,56 +141,62 @@ func (_m *CompanySecret) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the CompanySecret.
 // This includes values selected through modifiers, order, etc.
-func (_m *CompanySecret) Value(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (cs *CompanySecret) Value(name string) (ent.Value, error) {
+	return cs.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this CompanySecret.
 // Note that you need to call CompanySecret.Unwrap() before calling this method if this CompanySecret
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *CompanySecret) Update() *CompanySecretUpdateOne {
-	return NewCompanySecretClient(_m.config).UpdateOne(_m)
+func (cs *CompanySecret) Update() *CompanySecretUpdateOne {
+	return NewCompanySecretClient(cs.config).UpdateOne(cs)
 }
 
 // Unwrap unwraps the CompanySecret entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *CompanySecret) Unwrap() *CompanySecret {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (cs *CompanySecret) Unwrap() *CompanySecret {
+	_tx, ok := cs.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: CompanySecret is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	cs.config.driver = _tx.drv
+	return cs
 }
 
 // String implements the fmt.Stringer.
-func (_m *CompanySecret) String() string {
+func (cs *CompanySecret) String() string {
 	var builder strings.Builder
 	builder.WriteString("CompanySecret(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", cs.ID))
 	builder.WriteString("created_at=")
-	builder.WriteString(_m.CreatedAt.Format(time.ANSIC))
+	builder.WriteString(cs.CreatedAt.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("updated_at=")
-	builder.WriteString(_m.UpdatedAt.Format(time.ANSIC))
+	builder.WriteString(cs.UpdatedAt.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("company_id=")
-	builder.WriteString(fmt.Sprintf("%v", _m.CompanyID))
+	builder.WriteString(fmt.Sprintf("%v", cs.CompanyID))
 	builder.WriteString(", ")
 	builder.WriteString("access_key=")
-	builder.WriteString(_m.AccessKey)
+	builder.WriteString(cs.AccessKey)
 	builder.WriteString(", ")
 	builder.WriteString("secret_key=")
-	builder.WriteString(_m.SecretKey)
+	builder.WriteString(cs.SecretKey)
+	builder.WriteString(", ")
+	builder.WriteString("validity_datetime=")
+	builder.WriteString(cs.ValidityDatetime.Format(time.ANSIC))
+	builder.WriteString(", ")
+	builder.WriteString("rule_data=")
+	builder.WriteString(cs.RuleData)
 	builder.WriteString(", ")
 	builder.WriteString("enable=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Enable))
+	builder.WriteString(fmt.Sprintf("%v", cs.Enable))
 	builder.WriteString(", ")
 	builder.WriteString("description=")
-	builder.WriteString(_m.Description)
+	builder.WriteString(cs.Description)
 	builder.WriteString(", ")
 	builder.WriteString("is_del=")
-	builder.WriteString(fmt.Sprintf("%v", _m.IsDel))
+	builder.WriteString(fmt.Sprintf("%v", cs.IsDel))
 	builder.WriteByte(')')
 	return builder.String()
 }

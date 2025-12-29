@@ -21,121 +21,149 @@ type CompanySecretCreate struct {
 }
 
 // SetCreatedAt sets the "created_at" field.
-func (_c *CompanySecretCreate) SetCreatedAt(v time.Time) *CompanySecretCreate {
-	_c.mutation.SetCreatedAt(v)
-	return _c
+func (csc *CompanySecretCreate) SetCreatedAt(t time.Time) *CompanySecretCreate {
+	csc.mutation.SetCreatedAt(t)
+	return csc
 }
 
 // SetNillableCreatedAt sets the "created_at" field if the given value is not nil.
-func (_c *CompanySecretCreate) SetNillableCreatedAt(v *time.Time) *CompanySecretCreate {
-	if v != nil {
-		_c.SetCreatedAt(*v)
+func (csc *CompanySecretCreate) SetNillableCreatedAt(t *time.Time) *CompanySecretCreate {
+	if t != nil {
+		csc.SetCreatedAt(*t)
 	}
-	return _c
+	return csc
 }
 
 // SetUpdatedAt sets the "updated_at" field.
-func (_c *CompanySecretCreate) SetUpdatedAt(v time.Time) *CompanySecretCreate {
-	_c.mutation.SetUpdatedAt(v)
-	return _c
+func (csc *CompanySecretCreate) SetUpdatedAt(t time.Time) *CompanySecretCreate {
+	csc.mutation.SetUpdatedAt(t)
+	return csc
 }
 
 // SetNillableUpdatedAt sets the "updated_at" field if the given value is not nil.
-func (_c *CompanySecretCreate) SetNillableUpdatedAt(v *time.Time) *CompanySecretCreate {
-	if v != nil {
-		_c.SetUpdatedAt(*v)
+func (csc *CompanySecretCreate) SetNillableUpdatedAt(t *time.Time) *CompanySecretCreate {
+	if t != nil {
+		csc.SetUpdatedAt(*t)
 	}
-	return _c
+	return csc
 }
 
 // SetCompanyID sets the "company_id" field.
-func (_c *CompanySecretCreate) SetCompanyID(v uint64) *CompanySecretCreate {
-	_c.mutation.SetCompanyID(v)
-	return _c
+func (csc *CompanySecretCreate) SetCompanyID(u uint64) *CompanySecretCreate {
+	csc.mutation.SetCompanyID(u)
+	return csc
 }
 
 // SetNillableCompanyID sets the "company_id" field if the given value is not nil.
-func (_c *CompanySecretCreate) SetNillableCompanyID(v *uint64) *CompanySecretCreate {
-	if v != nil {
-		_c.SetCompanyID(*v)
+func (csc *CompanySecretCreate) SetNillableCompanyID(u *uint64) *CompanySecretCreate {
+	if u != nil {
+		csc.SetCompanyID(*u)
 	}
-	return _c
+	return csc
 }
 
 // SetAccessKey sets the "access_key" field.
-func (_c *CompanySecretCreate) SetAccessKey(v string) *CompanySecretCreate {
-	_c.mutation.SetAccessKey(v)
-	return _c
+func (csc *CompanySecretCreate) SetAccessKey(s string) *CompanySecretCreate {
+	csc.mutation.SetAccessKey(s)
+	return csc
 }
 
 // SetSecretKey sets the "secret_key" field.
-func (_c *CompanySecretCreate) SetSecretKey(v string) *CompanySecretCreate {
-	_c.mutation.SetSecretKey(v)
-	return _c
+func (csc *CompanySecretCreate) SetSecretKey(s string) *CompanySecretCreate {
+	csc.mutation.SetSecretKey(s)
+	return csc
+}
+
+// SetValidityDatetime sets the "validity_datetime" field.
+func (csc *CompanySecretCreate) SetValidityDatetime(t time.Time) *CompanySecretCreate {
+	csc.mutation.SetValidityDatetime(t)
+	return csc
+}
+
+// SetNillableValidityDatetime sets the "validity_datetime" field if the given value is not nil.
+func (csc *CompanySecretCreate) SetNillableValidityDatetime(t *time.Time) *CompanySecretCreate {
+	if t != nil {
+		csc.SetValidityDatetime(*t)
+	}
+	return csc
+}
+
+// SetRuleData sets the "rule_data" field.
+func (csc *CompanySecretCreate) SetRuleData(s string) *CompanySecretCreate {
+	csc.mutation.SetRuleData(s)
+	return csc
+}
+
+// SetNillableRuleData sets the "rule_data" field if the given value is not nil.
+func (csc *CompanySecretCreate) SetNillableRuleData(s *string) *CompanySecretCreate {
+	if s != nil {
+		csc.SetRuleData(*s)
+	}
+	return csc
 }
 
 // SetEnable sets the "enable" field.
-func (_c *CompanySecretCreate) SetEnable(v uint32) *CompanySecretCreate {
-	_c.mutation.SetEnable(v)
-	return _c
+func (csc *CompanySecretCreate) SetEnable(u uint32) *CompanySecretCreate {
+	csc.mutation.SetEnable(u)
+	return csc
 }
 
 // SetNillableEnable sets the "enable" field if the given value is not nil.
-func (_c *CompanySecretCreate) SetNillableEnable(v *uint32) *CompanySecretCreate {
-	if v != nil {
-		_c.SetEnable(*v)
+func (csc *CompanySecretCreate) SetNillableEnable(u *uint32) *CompanySecretCreate {
+	if u != nil {
+		csc.SetEnable(*u)
 	}
-	return _c
+	return csc
 }
 
 // SetDescription sets the "description" field.
-func (_c *CompanySecretCreate) SetDescription(v string) *CompanySecretCreate {
-	_c.mutation.SetDescription(v)
-	return _c
+func (csc *CompanySecretCreate) SetDescription(s string) *CompanySecretCreate {
+	csc.mutation.SetDescription(s)
+	return csc
 }
 
 // SetNillableDescription sets the "description" field if the given value is not nil.
-func (_c *CompanySecretCreate) SetNillableDescription(v *string) *CompanySecretCreate {
-	if v != nil {
-		_c.SetDescription(*v)
+func (csc *CompanySecretCreate) SetNillableDescription(s *string) *CompanySecretCreate {
+	if s != nil {
+		csc.SetDescription(*s)
 	}
-	return _c
+	return csc
 }
 
 // SetIsDel sets the "is_del" field.
-func (_c *CompanySecretCreate) SetIsDel(v uint32) *CompanySecretCreate {
-	_c.mutation.SetIsDel(v)
-	return _c
+func (csc *CompanySecretCreate) SetIsDel(u uint32) *CompanySecretCreate {
+	csc.mutation.SetIsDel(u)
+	return csc
 }
 
 // SetNillableIsDel sets the "is_del" field if the given value is not nil.
-func (_c *CompanySecretCreate) SetNillableIsDel(v *uint32) *CompanySecretCreate {
-	if v != nil {
-		_c.SetIsDel(*v)
+func (csc *CompanySecretCreate) SetNillableIsDel(u *uint32) *CompanySecretCreate {
+	if u != nil {
+		csc.SetIsDel(*u)
 	}
-	return _c
+	return csc
 }
 
 // SetID sets the "id" field.
-func (_c *CompanySecretCreate) SetID(v uint64) *CompanySecretCreate {
-	_c.mutation.SetID(v)
-	return _c
+func (csc *CompanySecretCreate) SetID(u uint64) *CompanySecretCreate {
+	csc.mutation.SetID(u)
+	return csc
 }
 
 // Mutation returns the CompanySecretMutation object of the builder.
-func (_c *CompanySecretCreate) Mutation() *CompanySecretMutation {
-	return _c.mutation
+func (csc *CompanySecretCreate) Mutation() *CompanySecretMutation {
+	return csc.mutation
 }
 
 // Save creates the CompanySecret in the database.
-func (_c *CompanySecretCreate) Save(ctx context.Context) (*CompanySecret, error) {
-	_c.defaults()
-	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
+func (csc *CompanySecretCreate) Save(ctx context.Context) (*CompanySecret, error) {
+	csc.defaults()
+	return withHooks(ctx, csc.sqlSave, csc.mutation, csc.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (_c *CompanySecretCreate) SaveX(ctx context.Context) *CompanySecret {
-	v, err := _c.Save(ctx)
+func (csc *CompanySecretCreate) SaveX(ctx context.Context) *CompanySecret {
+	v, err := csc.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -143,71 +171,71 @@ func (_c *CompanySecretCreate) SaveX(ctx context.Context) *CompanySecret {
 }
 
 // Exec executes the query.
-func (_c *CompanySecretCreate) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (csc *CompanySecretCreate) Exec(ctx context.Context) error {
+	_, err := csc.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *CompanySecretCreate) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (csc *CompanySecretCreate) ExecX(ctx context.Context) {
+	if err := csc.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_c *CompanySecretCreate) defaults() {
-	if _, ok := _c.mutation.CreatedAt(); !ok {
+func (csc *CompanySecretCreate) defaults() {
+	if _, ok := csc.mutation.CreatedAt(); !ok {
 		v := companysecret.DefaultCreatedAt()
-		_c.mutation.SetCreatedAt(v)
+		csc.mutation.SetCreatedAt(v)
 	}
-	if _, ok := _c.mutation.UpdatedAt(); !ok {
+	if _, ok := csc.mutation.UpdatedAt(); !ok {
 		v := companysecret.DefaultUpdatedAt()
-		_c.mutation.SetUpdatedAt(v)
+		csc.mutation.SetUpdatedAt(v)
 	}
-	if _, ok := _c.mutation.CompanyID(); !ok {
+	if _, ok := csc.mutation.CompanyID(); !ok {
 		v := companysecret.DefaultCompanyID
-		_c.mutation.SetCompanyID(v)
+		csc.mutation.SetCompanyID(v)
 	}
-	if _, ok := _c.mutation.Enable(); !ok {
+	if _, ok := csc.mutation.Enable(); !ok {
 		v := companysecret.DefaultEnable
-		_c.mutation.SetEnable(v)
+		csc.mutation.SetEnable(v)
 	}
-	if _, ok := _c.mutation.IsDel(); !ok {
+	if _, ok := csc.mutation.IsDel(); !ok {
 		v := companysecret.DefaultIsDel
-		_c.mutation.SetIsDel(v)
+		csc.mutation.SetIsDel(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (_c *CompanySecretCreate) check() error {
-	if _, ok := _c.mutation.CreatedAt(); !ok {
+func (csc *CompanySecretCreate) check() error {
+	if _, ok := csc.mutation.CreatedAt(); !ok {
 		return &ValidationError{Name: "created_at", err: errors.New(`ent: missing required field "CompanySecret.created_at"`)}
 	}
-	if _, ok := _c.mutation.UpdatedAt(); !ok {
+	if _, ok := csc.mutation.UpdatedAt(); !ok {
 		return &ValidationError{Name: "updated_at", err: errors.New(`ent: missing required field "CompanySecret.updated_at"`)}
 	}
-	if _, ok := _c.mutation.AccessKey(); !ok {
+	if _, ok := csc.mutation.AccessKey(); !ok {
 		return &ValidationError{Name: "access_key", err: errors.New(`ent: missing required field "CompanySecret.access_key"`)}
 	}
-	if _, ok := _c.mutation.SecretKey(); !ok {
+	if _, ok := csc.mutation.SecretKey(); !ok {
 		return &ValidationError{Name: "secret_key", err: errors.New(`ent: missing required field "CompanySecret.secret_key"`)}
 	}
-	if _, ok := _c.mutation.Enable(); !ok {
+	if _, ok := csc.mutation.Enable(); !ok {
 		return &ValidationError{Name: "enable", err: errors.New(`ent: missing required field "CompanySecret.enable"`)}
 	}
-	if _, ok := _c.mutation.IsDel(); !ok {
+	if _, ok := csc.mutation.IsDel(); !ok {
 		return &ValidationError{Name: "is_del", err: errors.New(`ent: missing required field "CompanySecret.is_del"`)}
 	}
 	return nil
 }
 
-func (_c *CompanySecretCreate) sqlSave(ctx context.Context) (*CompanySecret, error) {
-	if err := _c.check(); err != nil {
+func (csc *CompanySecretCreate) sqlSave(ctx context.Context) (*CompanySecret, error) {
+	if err := csc.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := _c.createSpec()
-	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
+	_node, _spec := csc.createSpec()
+	if err := sqlgraph.CreateNode(ctx, csc.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -217,49 +245,57 @@ func (_c *CompanySecretCreate) sqlSave(ctx context.Context) (*CompanySecret, err
 		id := _spec.ID.Value.(int64)
 		_node.ID = uint64(id)
 	}
-	_c.mutation.id = &_node.ID
-	_c.mutation.done = true
+	csc.mutation.id = &_node.ID
+	csc.mutation.done = true
 	return _node, nil
 }
 
-func (_c *CompanySecretCreate) createSpec() (*CompanySecret, *sqlgraph.CreateSpec) {
+func (csc *CompanySecretCreate) createSpec() (*CompanySecret, *sqlgraph.CreateSpec) {
 	var (
-		_node = &CompanySecret{config: _c.config}
+		_node = &CompanySecret{config: csc.config}
 		_spec = sqlgraph.NewCreateSpec(companysecret.Table, sqlgraph.NewFieldSpec(companysecret.FieldID, field.TypeUint64))
 	)
-	if id, ok := _c.mutation.ID(); ok {
+	if id, ok := csc.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := _c.mutation.CreatedAt(); ok {
+	if value, ok := csc.mutation.CreatedAt(); ok {
 		_spec.SetField(companysecret.FieldCreatedAt, field.TypeTime, value)
 		_node.CreatedAt = value
 	}
-	if value, ok := _c.mutation.UpdatedAt(); ok {
+	if value, ok := csc.mutation.UpdatedAt(); ok {
 		_spec.SetField(companysecret.FieldUpdatedAt, field.TypeTime, value)
 		_node.UpdatedAt = value
 	}
-	if value, ok := _c.mutation.CompanyID(); ok {
+	if value, ok := csc.mutation.CompanyID(); ok {
 		_spec.SetField(companysecret.FieldCompanyID, field.TypeUint64, value)
 		_node.CompanyID = value
 	}
-	if value, ok := _c.mutation.AccessKey(); ok {
+	if value, ok := csc.mutation.AccessKey(); ok {
 		_spec.SetField(companysecret.FieldAccessKey, field.TypeString, value)
 		_node.AccessKey = value
 	}
-	if value, ok := _c.mutation.SecretKey(); ok {
+	if value, ok := csc.mutation.SecretKey(); ok {
 		_spec.SetField(companysecret.FieldSecretKey, field.TypeString, value)
 		_node.SecretKey = value
 	}
-	if value, ok := _c.mutation.Enable(); ok {
+	if value, ok := csc.mutation.ValidityDatetime(); ok {
+		_spec.SetField(companysecret.FieldValidityDatetime, field.TypeTime, value)
+		_node.ValidityDatetime = value
+	}
+	if value, ok := csc.mutation.RuleData(); ok {
+		_spec.SetField(companysecret.FieldRuleData, field.TypeString, value)
+		_node.RuleData = value
+	}
+	if value, ok := csc.mutation.Enable(); ok {
 		_spec.SetField(companysecret.FieldEnable, field.TypeUint32, value)
 		_node.Enable = value
 	}
-	if value, ok := _c.mutation.Description(); ok {
+	if value, ok := csc.mutation.Description(); ok {
 		_spec.SetField(companysecret.FieldDescription, field.TypeString, value)
 		_node.Description = value
 	}
-	if value, ok := _c.mutation.IsDel(); ok {
+	if value, ok := csc.mutation.IsDel(); ok {
 		_spec.SetField(companysecret.FieldIsDel, field.TypeUint32, value)
 		_node.IsDel = value
 	}
@@ -274,16 +310,16 @@ type CompanySecretCreateBulk struct {
 }
 
 // Save creates the CompanySecret entities in the database.
-func (_c *CompanySecretCreateBulk) Save(ctx context.Context) ([]*CompanySecret, error) {
-	if _c.err != nil {
-		return nil, _c.err
+func (cscb *CompanySecretCreateBulk) Save(ctx context.Context) ([]*CompanySecret, error) {
+	if cscb.err != nil {
+		return nil, cscb.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
-	nodes := make([]*CompanySecret, len(_c.builders))
-	mutators := make([]Mutator, len(_c.builders))
-	for i := range _c.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(cscb.builders))
+	nodes := make([]*CompanySecret, len(cscb.builders))
+	mutators := make([]Mutator, len(cscb.builders))
+	for i := range cscb.builders {
 		func(i int, root context.Context) {
-			builder := _c.builders[i]
+			builder := cscb.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*CompanySecretMutation)
@@ -297,11 +333,11 @@ func (_c *CompanySecretCreateBulk) Save(ctx context.Context) ([]*CompanySecret, 
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, cscb.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, cscb.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -325,7 +361,7 @@ func (_c *CompanySecretCreateBulk) Save(ctx context.Context) ([]*CompanySecret, 
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, cscb.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -333,8 +369,8 @@ func (_c *CompanySecretCreateBulk) Save(ctx context.Context) ([]*CompanySecret, 
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_c *CompanySecretCreateBulk) SaveX(ctx context.Context) []*CompanySecret {
-	v, err := _c.Save(ctx)
+func (cscb *CompanySecretCreateBulk) SaveX(ctx context.Context) []*CompanySecret {
+	v, err := cscb.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -342,14 +378,14 @@ func (_c *CompanySecretCreateBulk) SaveX(ctx context.Context) []*CompanySecret {
 }
 
 // Exec executes the query.
-func (_c *CompanySecretCreateBulk) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (cscb *CompanySecretCreateBulk) Exec(ctx context.Context) error {
+	_, err := cscb.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *CompanySecretCreateBulk) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (cscb *CompanySecretCreateBulk) ExecX(ctx context.Context) {
+	if err := cscb.Exec(ctx); err != nil {
 		panic(err)
 	}
 }

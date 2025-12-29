@@ -22,6 +22,10 @@ func (CompanySecret) Fields() []ent.Field {
 			Comment("access_key | 密钥id"),
 		field.String("secret_key").Unique().
 			Comment("secret_key | 密钥key"),
+		field.Time("validity_datetime").
+			Optional().
+			Comment("Validity Time | 有效期"),
+		field.String("rule_data").Optional().Comment("规则数据"),
 		field.Uint32("enable").Default(0).
 			Comment("是否生效；可通过此控制策略是否生效0：失效；1：生效"),
 		field.String("description").Optional().Comment("描述信息"),

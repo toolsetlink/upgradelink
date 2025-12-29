@@ -88,11 +88,11 @@ func init() {
 	// companysecret.DefaultCompanyID holds the default value on creation for the company_id field.
 	companysecret.DefaultCompanyID = companysecretDescCompanyID.Default.(uint64)
 	// companysecretDescEnable is the schema descriptor for enable field.
-	companysecretDescEnable := companysecretFields[3].Descriptor()
+	companysecretDescEnable := companysecretFields[5].Descriptor()
 	// companysecret.DefaultEnable holds the default value on creation for the enable field.
 	companysecret.DefaultEnable = companysecretDescEnable.Default.(uint32)
 	// companysecretDescIsDel is the schema descriptor for is_del field.
-	companysecretDescIsDel := companysecretFields[5].Descriptor()
+	companysecretDescIsDel := companysecretFields[7].Descriptor()
 	// companysecret.DefaultIsDel holds the default value on creation for the is_del field.
 	companysecret.DefaultIsDel = companysecretDescIsDel.Default.(uint32)
 	configurationMixin := schema.Configuration{}.Mixin()
@@ -434,6 +434,6 @@ func init() {
 }
 
 const (
-	Version = "v0.14.5"                                         // Version of ent codegen.
-	Sum     = "h1:Rj2WOYJtCkWyFo6a+5wB3EfBRP0rnx1fMk6gGA0UUe4=" // Sum of ent codegen.
+	Version = "v0.14.2"                                         // Version of ent codegen.
+	Sum     = "h1:ywld/j2Rx4EmnIKs8eZ29cbFA1zpB+DA9TLL5l3rlq0=" // Sum of ent codegen.
 )

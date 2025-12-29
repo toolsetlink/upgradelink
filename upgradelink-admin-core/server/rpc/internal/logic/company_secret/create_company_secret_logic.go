@@ -8,6 +8,7 @@ import (
 	"upgradelink-admin-core/server/rpc/types/core"
 
 	"github.com/suyuan32/simple-admin-common/i18n"
+	"github.com/suyuan32/simple-admin-common/utils/pointy"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
@@ -31,6 +32,8 @@ func (l *CreateCompanySecretLogic) CreateCompanySecret(in *core.CompanySecretInf
 		SetNotNilCompanyID(in.CompanyId).
 		SetNotNilAccessKey(in.AccessKey).
 		SetNotNilSecretKey(in.SecretKey).
+		SetNotNilValidityDatetime(pointy.GetTimeMilliPointer(in.ValidityDatetime)).
+		SetNotNilRuleData(in.RuleData).
 		SetNotNilEnable(in.Enable).
 		SetNotNilDescription(in.Description).
 		SetNotNilIsDel(in.IsDel).

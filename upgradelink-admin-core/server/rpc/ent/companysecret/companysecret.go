@@ -23,6 +23,10 @@ const (
 	FieldAccessKey = "access_key"
 	// FieldSecretKey holds the string denoting the secret_key field in the database.
 	FieldSecretKey = "secret_key"
+	// FieldValidityDatetime holds the string denoting the validity_datetime field in the database.
+	FieldValidityDatetime = "validity_datetime"
+	// FieldRuleData holds the string denoting the rule_data field in the database.
+	FieldRuleData = "rule_data"
 	// FieldEnable holds the string denoting the enable field in the database.
 	FieldEnable = "enable"
 	// FieldDescription holds the string denoting the description field in the database.
@@ -41,6 +45,8 @@ var Columns = []string{
 	FieldCompanyID,
 	FieldAccessKey,
 	FieldSecretKey,
+	FieldValidityDatetime,
+	FieldRuleData,
 	FieldEnable,
 	FieldDescription,
 	FieldIsDel,
@@ -102,6 +108,16 @@ func ByAccessKey(opts ...sql.OrderTermOption) OrderOption {
 // BySecretKey orders the results by the secret_key field.
 func BySecretKey(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldSecretKey, opts...).ToFunc()
+}
+
+// ByValidityDatetime orders the results by the validity_datetime field.
+func ByValidityDatetime(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldValidityDatetime, opts...).ToFunc()
+}
+
+// ByRuleData orders the results by the rule_data field.
+func ByRuleData(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldRuleData, opts...).ToFunc()
 }
 
 // ByEnable orders the results by the enable field.

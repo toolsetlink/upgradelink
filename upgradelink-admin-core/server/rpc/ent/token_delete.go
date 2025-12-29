@@ -20,56 +20,56 @@ type TokenDelete struct {
 }
 
 // Where appends a list predicates to the TokenDelete builder.
-func (_d *TokenDelete) Where(ps ...predicate.Token) *TokenDelete {
-	_d.mutation.Where(ps...)
-	return _d
+func (td *TokenDelete) Where(ps ...predicate.Token) *TokenDelete {
+	td.mutation.Where(ps...)
+	return td
 }
 
 // Exec executes the deletion query and returns how many vertices were deleted.
-func (_d *TokenDelete) Exec(ctx context.Context) (int, error) {
-	return withHooks(ctx, _d.sqlExec, _d.mutation, _d.hooks)
+func (td *TokenDelete) Exec(ctx context.Context) (int, error) {
+	return withHooks(ctx, td.sqlExec, td.mutation, td.hooks)
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *TokenDelete) ExecX(ctx context.Context) int {
-	n, err := _d.Exec(ctx)
+func (td *TokenDelete) ExecX(ctx context.Context) int {
+	n, err := td.Exec(ctx)
 	if err != nil {
 		panic(err)
 	}
 	return n
 }
 
-func (_d *TokenDelete) sqlExec(ctx context.Context) (int, error) {
+func (td *TokenDelete) sqlExec(ctx context.Context) (int, error) {
 	_spec := sqlgraph.NewDeleteSpec(token.Table, sqlgraph.NewFieldSpec(token.FieldID, field.TypeUUID))
-	if ps := _d.mutation.predicates; len(ps) > 0 {
+	if ps := td.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	affected, err := sqlgraph.DeleteNodes(ctx, _d.driver, _spec)
+	affected, err := sqlgraph.DeleteNodes(ctx, td.driver, _spec)
 	if err != nil && sqlgraph.IsConstraintError(err) {
 		err = &ConstraintError{msg: err.Error(), wrap: err}
 	}
-	_d.mutation.done = true
+	td.mutation.done = true
 	return affected, err
 }
 
 // TokenDeleteOne is the builder for deleting a single Token entity.
 type TokenDeleteOne struct {
-	_d *TokenDelete
+	td *TokenDelete
 }
 
 // Where appends a list predicates to the TokenDelete builder.
-func (_d *TokenDeleteOne) Where(ps ...predicate.Token) *TokenDeleteOne {
-	_d._d.mutation.Where(ps...)
-	return _d
+func (tdo *TokenDeleteOne) Where(ps ...predicate.Token) *TokenDeleteOne {
+	tdo.td.mutation.Where(ps...)
+	return tdo
 }
 
 // Exec executes the deletion query.
-func (_d *TokenDeleteOne) Exec(ctx context.Context) error {
-	n, err := _d._d.Exec(ctx)
+func (tdo *TokenDeleteOne) Exec(ctx context.Context) error {
+	n, err := tdo.td.Exec(ctx)
 	switch {
 	case err != nil:
 		return err
@@ -81,8 +81,8 @@ func (_d *TokenDeleteOne) Exec(ctx context.Context) error {
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *TokenDeleteOne) ExecX(ctx context.Context) {
-	if err := _d.Exec(ctx); err != nil {
+func (tdo *TokenDeleteOne) ExecX(ctx context.Context) {
+	if err := tdo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
