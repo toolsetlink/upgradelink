@@ -123,11 +123,13 @@ export const dataFormSchemas: VbenFormProps = {
       fieldName: "folder",
       label: $t("fms.storageProvider.folder"),
       component: "Input",
+      rules: "required",
     },
     {
       fieldName: "region",
       label: $t("fms.storageProvider.region"),
       component: "Input",
+      rules: "required",
     },
     {
       fieldName: "isDefault",
