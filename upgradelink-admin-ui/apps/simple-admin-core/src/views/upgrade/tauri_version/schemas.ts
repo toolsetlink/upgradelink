@@ -225,7 +225,7 @@ export const dataFormSchemas: VbenFormProps = {
             componentProps: {
                 multiple: false,
                 provider: "cloud-default",
-                accept: [".AppImage", ".exe", ".msi", ".dmg"],
+                accept: [".exe", ".msi", ".dmg", ".AppImage", "deb"],
             },
             dependencies: {
                 disabled(values) {
@@ -256,7 +256,7 @@ export const dataFormSchemas: VbenFormProps = {
             componentProps: {
                 multiple: false,
                 provider: "cloud-default",
-                accept: [".gz", ".msi", ".AppImage"],
+                accept: [".msi", ".gz", ".AppImage", "deb"],
             },
             dependencies: {
                 show: (values) => !values.id,
