@@ -42,8 +42,7 @@ const [Form, formApi] = useVbenForm({
   handleSubmit: onSubmit,
   schema: [...(dataFormSchemas.schema as any)],
   showDefaultActions: false,
-  layout: "horizontal",
-  // layout: "vertical",
+  layout: "vertical",
 });
 
 const [Modal, modalApi] = useVbenDrawer({

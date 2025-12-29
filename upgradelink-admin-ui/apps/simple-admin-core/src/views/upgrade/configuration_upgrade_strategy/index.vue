@@ -7,7 +7,7 @@ import type { ActionItem } from "#/components/table/table-action";
 
 import { h, ref } from "vue";
 
-import { Page, useVbenModal } from "@vben/common-ui";
+import { Page, useVbenDrawer } from "@vben/common-ui";
 import { $t } from "@vben/locales";
 
 import { Button, Modal } from "ant-design-vue";
@@ -29,7 +29,7 @@ defineOptions({
 
 // ---------------- form -----------------
 
-const [FormModal, formModalApi] = useVbenModal({
+const [FormDrawer, formDrawerApi] = useVbenDrawer({
   connectedComponent: UpgradeConfigurationUpgradeStrategyForm,
 });
 
@@ -80,7 +80,7 @@ const gridOptions: VxeGridProps<UpgradeConfigurationUpgradeStrategyInfo> = {
                 type: "link",
                 icon: "clarity:note-edit-line",
                 tooltip: $t("common.edit"),
-                onClick: openFormModal.bind(null, row),
+                onClick: openFormDrawer.bind(null, row),
               },
               {
                 icon: "ant-design:delete-outlined",
@@ -121,21 +121,21 @@ const [Grid, gridApi] = useVbenVxeGrid({
   gridEvents,
 });
 
-function openFormModal(record: any) {
+function openFormDrawer(record: any) {
   if (isPlainObject(record)) {
-    formModalApi.setData({
+    formDrawerApi.setData({
       record,
       isUpdate: true,
       gridApi,
     });
   } else {
-    formModalApi.setData({
+    formDrawerApi.setData({
       record: null,
       isUpdate: false,
       gridApi,
     });
   }
-  formModalApi.open();
+  formDrawerApi.open();
 }
 
 function handleBatchDelete() {
@@ -162,7 +162,7 @@ async function batchDelete(ids: any[]) {
 
 <template>
   <Page auto-content-height>
-    <FormModal />
+    <FormDrawer />
     <Grid>
       <template #toolbar-buttons>
         <Button
@@ -176,7 +176,7 @@ async function batchDelete(ids: any[]) {
       </template>
 
       <template #toolbar-tools>
-        <Button type="primary" @click="openFormModal">
+        <Button type="primary" @click="openFormDrawer">
           {{
             $t(
               "upgrade.upgradeConfigurationUpgradeStrategy.addUpgradeConfigurationUpgradeStrategy",

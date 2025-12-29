@@ -3,7 +3,7 @@ import type { UpgradeConfigurationUpgradeStrategyInfo } from "#/api/upgrade/mode
 
 import { ref } from "vue";
 
-import { useVbenModal } from "@vben/common-ui";
+import { useVbenDrawer } from "@vben/common-ui";
 import { $t } from "@vben/locales";
 
 import { message } from "ant-design-vue";
@@ -42,10 +42,10 @@ const [Form, formApi] = useVbenForm({
   handleSubmit: onSubmit,
   schema: [...(dataFormSchemas.schema as any)],
   showDefaultActions: false,
-  layout: "horizontal",
+  layout: "vertical",
 });
 
-const [Modal, modalApi] = useVbenModal({
+const [Modal, modalApi] = useVbenDrawer({
   // fullscreenButton: false,
   onCancel() {
     modalApi.close();
