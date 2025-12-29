@@ -140,12 +140,14 @@ service api {
 
 type (
     GetApkDownloadInfoReq {
+        // 下载类型， 1: 下载安装版本，2: 下载差分文件
+        DownloadType int64 `form:"downloadType,default=1"`
         // apk 应用 唯一标识
         ApkKey string `form:"apkKey"`
         // 指定版本（可空，为空时是最新版本）
-        VersionCode int64 `form:"versionCode,default=0"`
-        // 指定版本id
-        VersionId int64 `form:"versionId,default=0"`
+        VersionCode int64 `form:"versionCode,optional,default=0"`
+        // cloud 文件 唯一标识
+        CloudFileId string `form:"cloudFileId,optional,default=''"`
     }
 )
 

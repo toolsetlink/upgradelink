@@ -154,13 +154,8 @@ func (l *GetApkUpgradeInfoLogic) GetApkUpgradeInfo(req *types.GetApkUpgradeInfoR
 
 	}
 
-	// 插入获取日志上报
-	timestamp, err := common.ParseRFC3339ToTime(time.Now().Format(time.RFC3339))
-	if err != nil {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
-	}
-	// 获取应用版本 id
-	appVersionId, err := l.svcCtx.ResourceCtx.GetAppVersionIdByReport(l.ctx, resource.GetAppVersionIdByReportReq{
+	// 请求的应用版本信息
+	reqAppVersionId, err := l.svcCtx.ResourceCtx.GetAppVersionIdByReport(l.ctx, resource.GetAppVersionIdByReportReq{
 		AppKey:           apkInfo.Key,
 		AppVersionCode:   req.VersionCode,
 		DevModelKey:      req.DevModelKey,
@@ -168,12 +163,19 @@ func (l *GetApkUpgradeInfoLogic) GetApkUpgradeInfo(req *types.GetApkUpgradeInfoR
 		AppVersionTarget: "",
 		AppVersionArch:   "",
 	})
+
+	// 插入获取日志上报
+	timestamp, err := common.ParseRFC3339ToTime(time.Now().Format(time.RFC3339))
+	if err != nil {
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+	}
+
 	_, err = l.svcCtx.ResourceCtx.AddAppUpgradeGetStrategyReportLog(l.ctx, resource.AddAppUpgradeGetStrategyReportLogReq{
 		CompanyId:           apkInfo.CompanyId,
 		AppKey:              apkInfo.Key,
 		AppType:             "apk",
 		Timestamp:           *timestamp,
-		AppVersionId:        appVersionId,
+		AppVersionId:        reqAppVersionId,
 		AppVersionCode:      req.VersionCode,
 		DevModelKey:         req.DevModelKey,
 		DevKey:              req.DevKey,

@@ -11,6 +11,7 @@ import (
 
 const (
 	CachePatchInfoByApkIdAndHighApkVersionIdAndLowApkVersionId = PREFIX + "APK_PATCH_INFO:APK_ID:%v:HIGH_APK_VERSION_ID:%v:LOW_APK_VERSION_ID:%v"
+	CachePatchInfoByApkIdAndCloudFileId                        = PREFIX + "APK_PATCH_INFO:APK_ID:%v:CLOUD_FILE_ID:%v"
 )
 
 // GetPatchInfo 获取指定 apkId、highApkVersionId、lowApkVersionId 的 patch 信息
@@ -25,6 +26,34 @@ func (c *Ctx) GetPatchInfo(ctx context.Context, apkId int64, patchAlgo int64, hi
 		query := fmt.Sprintf("select * from upgrade_apk_patch where status = 9 and is_del = 0  and `apk_id` = ? and `patch_algo` = ? and `high_apk_version_id` = ? and `low_apk_version_id` = ? limit 1")
 		err := c.mysqlConnCache.QueryRowCtx(ctx, &info, cacheKey, func(ctx context.Context, conn sqlx.SqlConn, v any) error {
 			return c.mysqlConn.QueryRowCtx(ctx, &info, query, apkId, patchAlgo, highApkVersionId, lowApkVersionId)
+		})
+
+		if err != nil {
+			return nil, err
+		}
+		return info, nil
+	})
+
+	if v != nil {
+		info := v.(model.UpgradeApkPatch)
+		return &info, err
+	}
+
+	return nil, err
+}
+
+// GetPatchInfoByCloudFileId  获取指定 apkId、cloudFileId 的 patch 信息
+func (c *Ctx) GetPatchInfoByCloudFileId(ctx context.Context, apkId int64, cloudFileId string) (*model.UpgradeApkPatch, error) {
+
+	cacheKey := fmt.Sprintf(CachePatchInfoByApkIdAndCloudFileId, apkId, cloudFileId)
+
+	// 内存缓存
+	v, err := c.localCache.Take(cacheKey, func() (interface{}, error) {
+		// sql 缓存查询
+		var info model.UpgradeApkPatch
+		query := fmt.Sprintf("select * from upgrade_apk_patch where status = 9 and is_del = 0  and `apk_id` = ?  and `cloud_file_id` = ? limit 1")
+		err := c.mysqlConnCache.QueryRowCtx(ctx, &info, cacheKey, func(ctx context.Context, conn sqlx.SqlConn, v any) error {
+			return c.mysqlConn.QueryRowCtx(ctx, &info, query, apkId, cloudFileId)
 		})
 
 		if err != nil {

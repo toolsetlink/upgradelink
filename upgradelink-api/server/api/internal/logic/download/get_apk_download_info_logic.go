@@ -45,15 +45,11 @@ func (l *GetApkDownloadInfoLogic) GetApkDownloadInfo(req *types.GetApkDownloadIn
 	}
 
 	var apkVersionInfo *model.UpgradeApkVersion
-	// 判断是否传了 versionId， 如果传了，则直接选择数据
-	if req.VersionId > 0 {
-		apkVersionInfo, err = l.svcCtx.ResourceCtx.GetApkVersionInfoById(l.ctx, req.VersionId)
-		if err != nil && errors.Is(err, model.ErrNotFound) {
-			return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, common.ErrApk3Msg, common.ErrApk3Docs)
-		} else if err != nil {
-			return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
-		}
-	} else {
+	var cloudFileInfo *model.FmsCloudFiles
+
+	// 判断当前请求类型为下载全量包，还是补丁包
+	if req.DownloadType == 1 {
+
 		// 判断是否固定了版本号，如果没有固定 则获取详细的版本信息
 		if req.VersionCode == 0 {
 			apkVersionInfo, err = l.svcCtx.ResourceCtx.GetApkVersionLastInfoByApkId(l.ctx, apkInfo.Id)
@@ -71,14 +67,45 @@ func (l *GetApkDownloadInfoLogic) GetApkDownloadInfo(req *types.GetApkDownloadIn
 				return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
 			}
 		}
-	}
 
-	// 通过文件信息 获取云文件地址
-	cloudFileInfo, err := l.svcCtx.ResourceCtx.GetCloudFileInfoById(l.ctx, apkVersionInfo.CloudFileId)
-	if err != nil && errors.Is(err, model.ErrNotFound) {
-		return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
-	} else if err != nil {
-		return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+		// 通过文件信息 获取云文件地址
+		cloudFileInfo, err = l.svcCtx.ResourceCtx.GetCloudFileInfoById(l.ctx, apkVersionInfo.CloudFileId)
+		if err != nil && errors.Is(err, model.ErrNotFound) {
+			return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+		} else if err != nil {
+			return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+		}
+
+	} else if req.DownloadType == 2 {
+		// 通过 cloudFileId 获取到对应的补丁包信息
+		if req.CloudFileId == "" {
+			return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrApk4Msg, common.ErrApk4Docs)
+		}
+
+		// 通过传过来的 CloudFileId 获取到patch 包归属的 apk patch信息
+		apkPatchInfo, err := l.svcCtx.ResourceCtx.GetPatchInfoByCloudFileId(l.ctx, apkInfo.Id, req.CloudFileId)
+		if err != nil && errors.Is(err, model.ErrNotFound) {
+			return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+		} else if err != nil {
+			return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+		}
+
+		// 通过apk patch信息 获取到对应 apk 版本信息
+		apkVersionInfo, err = l.svcCtx.ResourceCtx.GetApkVersionInfoById(l.ctx, apkPatchInfo.HighApkVersionId)
+		if err != nil && errors.Is(err, model.ErrNotFound) {
+			return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+		} else if err != nil {
+			return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+		}
+
+		cloudFileInfo, err = l.svcCtx.ResourceCtx.GetCloudFileInfoById(l.ctx, apkPatchInfo.CloudFileId)
+		if err != nil && errors.Is(err, model.ErrNotFound) {
+			return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+		} else if err != nil {
+			return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+		}
+	} else {
+		return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrApk1Msg, common.ErrApk1Docs)
 	}
 
 	// 插入日志表

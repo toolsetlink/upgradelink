@@ -28,9 +28,10 @@ type EventData struct {
 }
 
 type GetApkDownloadInfoReq struct {
-	ApkKey      string `form:"apkKey"`
-	VersionCode int64  `form:"versionCode,default=0"`
-	VersionId   int64  `form:"versionId,default=0"`
+	DownloadType int64  `form:"downloadType,default=1"`
+	ApkKey       string `form:"apkKey"`
+	VersionCode  int64  `form:"versionCode,optional,default=0"`
+	CloudFileId  string `form:"cloudFileId,optional,default=''"`
 }
 
 type GetApkUpgradeInfoReq struct {

@@ -86,21 +86,6 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				{
 					Method:  http.MethodGet,
 					Path:    "/download",
-					Handler: download.GetMacDownloadInfoHandler(serverCtx),
-				},
-			}...,
-		),
-		rest.WithPrefix("/v1/mac"),
-		rest.WithTimeout(30000*time.Millisecond),
-	)
-
-	server.AddRoutes(
-		rest.WithMiddlewares(
-			[]rest.Middleware{serverCtx.CdnRateLimit},
-			[]rest.Route{
-				{
-					Method:  http.MethodGet,
-					Path:    "/download",
 					Handler: download.GetApkDownloadInfoHandler(serverCtx),
 				},
 			}...,
@@ -116,46 +101,11 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				{
 					Method:  http.MethodGet,
 					Path:    "/download",
-					Handler: download.GetFileDownloadInfoHandler(serverCtx),
+					Handler: download.GetUrlDownloadInfoHandler(serverCtx),
 				},
 			}...,
 		),
-		rest.WithPrefix("/v1/file"),
-		rest.WithTimeout(30000*time.Millisecond),
-	)
-
-	server.AddRoutes(
-		rest.WithMiddlewares(
-			[]rest.Middleware{serverCtx.CdnRateLimit},
-			[]rest.Route{
-				{
-					Method:  http.MethodGet,
-					Path:    "/download",
-					Handler: download.GetElectronDownloadInfoHandler(serverCtx),
-				},
-				{
-					Method:  http.MethodGet,
-					Path:    "/download.AppImage",
-					Handler: download.GetElectronDownloadInfoAppImageHandler(serverCtx),
-				},
-				{
-					Method:  http.MethodGet,
-					Path:    "/download.dmg",
-					Handler: download.GetElectronDownloadInfoDmgHandler(serverCtx),
-				},
-				{
-					Method:  http.MethodGet,
-					Path:    "/download.exe",
-					Handler: download.GetElectronDownloadInfoExeHandler(serverCtx),
-				},
-				{
-					Method:  http.MethodGet,
-					Path:    "/download.zip",
-					Handler: download.GetElectronDownloadInfoZipHandler(serverCtx),
-				},
-			}...,
-		),
-		rest.WithPrefix("/v1/electron"),
+		rest.WithPrefix("/v1/url"),
 		rest.WithTimeout(30000*time.Millisecond),
 	)
 
@@ -196,11 +146,26 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				{
 					Method:  http.MethodGet,
 					Path:    "/download",
-					Handler: download.GetUrlDownloadInfoHandler(serverCtx),
+					Handler: download.GetMacDownloadInfoHandler(serverCtx),
 				},
 			}...,
 		),
-		rest.WithPrefix("/v1/url"),
+		rest.WithPrefix("/v1/mac"),
+		rest.WithTimeout(30000*time.Millisecond),
+	)
+
+	server.AddRoutes(
+		rest.WithMiddlewares(
+			[]rest.Middleware{serverCtx.CdnRateLimit},
+			[]rest.Route{
+				{
+					Method:  http.MethodGet,
+					Path:    "/download",
+					Handler: download.GetFileDownloadInfoHandler(serverCtx),
+				},
+			}...,
+		),
+		rest.WithPrefix("/v1/file"),
 		rest.WithTimeout(30000*time.Millisecond),
 	)
 
@@ -216,6 +181,41 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 			}...,
 		),
 		rest.WithPrefix("/v1/tauri"),
+		rest.WithTimeout(30000*time.Millisecond),
+	)
+
+	server.AddRoutes(
+		rest.WithMiddlewares(
+			[]rest.Middleware{serverCtx.CdnRateLimit},
+			[]rest.Route{
+				{
+					Method:  http.MethodGet,
+					Path:    "/download",
+					Handler: download.GetElectronDownloadInfoHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodGet,
+					Path:    "/download.AppImage",
+					Handler: download.GetElectronDownloadInfoAppImageHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodGet,
+					Path:    "/download.dmg",
+					Handler: download.GetElectronDownloadInfoDmgHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodGet,
+					Path:    "/download.exe",
+					Handler: download.GetElectronDownloadInfoExeHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodGet,
+					Path:    "/download.zip",
+					Handler: download.GetElectronDownloadInfoZipHandler(serverCtx),
+				},
+			}...,
+		),
+		rest.WithPrefix("/v1/electron"),
 		rest.WithTimeout(30000*time.Millisecond),
 	)
 
