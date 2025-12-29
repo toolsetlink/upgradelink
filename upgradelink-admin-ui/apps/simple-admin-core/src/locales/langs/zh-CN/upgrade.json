@@ -1,7 +1,15 @@
 {
   "base": {
     "upgradeConditions": "升级条件",
-    "upgradeFlowLimit": "流量策略"
+    "upgradeFlowLimit": "流量策略",
+    "enableOpen": "开启",
+    "enableClose": "关闭",
+    "add": "添加",
+    "del": "删除",
+    "s": "秒",
+    "m": "分钟",
+    "h": "小时",
+    "d": "天"
   },
   "upgradeUrl": {
     "id": "Id",
@@ -240,7 +248,7 @@
     "versionCodeHelp": "请填写版本号，例如：100, 100001",
     "target": "操作系统",
     "arch": "机器架构",
-    "signature": "生成的 .sig 文件的内容",
+    "signature": ".sig文件里的内容 或 latest.json文件中对应架构的signature字段",
     "installVersionFileSize": "安装包大小",
     "upgradeVersionFileSize": "升级包大小",
     "description": "描述",

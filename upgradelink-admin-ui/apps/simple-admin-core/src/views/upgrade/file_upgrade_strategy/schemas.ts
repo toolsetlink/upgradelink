@@ -505,7 +505,7 @@ export const dataFormSchemas: VbenFormProps = {
     },
     {
       fieldName: "grayDataList",
-      label: "灰度策略",
+      label: "",
       component: (e) => {
         return h(GrayFields, {
           ...e,
@@ -533,7 +533,7 @@ export const dataFormSchemas: VbenFormProps = {
     },
     {
       fieldName: "flowLimitDataList",
-      label: "流控策略",
+      label: "",
       component: (e) => {
         return h(FlowLimitFields, {
           ...e,
