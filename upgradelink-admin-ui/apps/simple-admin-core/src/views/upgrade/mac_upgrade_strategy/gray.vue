@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { ref, watch } from "vue";
 
+import { $t } from "@vben/locales";
+
 import { InputNumber, RangePicker, Select } from "ant-design-vue";
 import dayjs from "dayjs";
 
@@ -132,12 +134,12 @@ function handleRangePickerChange(
       <Select
         v-model:value="modelValue.enable"
         class="w-[80px]"
-        placeholder="启用状态"
+        placeholder=""
         allow-clear
         :class="{ 'valid-success': !!modelValue.enable }"
         :options="[
-          { label: '启用', value: 1 },
-          { label: '禁用', value: 0 },
+          { label: $t('upgrade.base.enableOpen'), value: 1 },
+          { label: $t('upgrade.base.enableClose'), value: 0 },
         ]"
         @blur="emit('blur')"
         @change="onChange"
@@ -153,7 +155,7 @@ function handleRangePickerChange(
         @change="(date) => handleRangePickerChange(date, index)"
       />
       <InputNumber
-        placeholder="请输入限制数量"
+        placeholder=""
         class="flex-1"
         allow-clear
         :class="{ 'valid-success': modelValue.limit }"
@@ -167,14 +169,14 @@ function handleRangePickerChange(
         @click="removeInputGroup(index)"
         class="px-2 py-1 bg-red-500 text-white rounded"
       >
-        删除
+        {{ $t('upgrade.base.del') }}
       </button>
       <button
         v-if="index === 0"
         @click="addInputGroup"
         class="px-2 py-1 bg-blue-500 text-white rounded"
       >
-        添加
+        {{ $t('upgrade.base.add') }}
       </button>
     </div>
   </div>

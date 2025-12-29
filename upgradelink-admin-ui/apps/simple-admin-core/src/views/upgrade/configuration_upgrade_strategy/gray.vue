@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { ref, watch } from "vue";
 
+import { $t } from "@vben/locales";
+
 import { InputNumber, RangePicker, Select } from "ant-design-vue";
 import dayjs from "dayjs";
 
