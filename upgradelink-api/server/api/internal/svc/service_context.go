@@ -74,7 +74,9 @@ func NewServiceContext(c config.Config) *ServiceContext {
 		ResourceCtx:  resourceCtx, // 通用服务 Ctx
 		Signature:    middleware.NewSignatureMiddleware(resourceCtx).Handle,
 		ReplayAttack: middleware.NewReplayAttackMiddleware(resourceCtx).Handle,
+		AccessKey:    middleware.NewAccessKeyMiddleware(resourceCtx).Handle,
 		RateLimit:    middleware.NewRateLimitMiddleware(resourceCtx).Handle,
 		CdnRateLimit: middleware.NewCdnRateLimitMiddleware(resourceCtx).Handle,
+		Rule:         middleware.NewRuleMiddleware(resourceCtx).Handle,
 	}
 }
