@@ -6,6 +6,14 @@ import (
 	"time"
 
 	"upgradelink-api/server/api/internal/resource/model"
+
+	"github.com/zeromicro/go-zero/core/stores/sqlx"
+)
+
+const (
+	CacheKeyStatisticsYesterdayAppGetStrategyCountKey = PREFIX + "StatisticsYesterdayAppGetStrategyCount:APP_KEY:%v"
+	CacheKeyStatisticsAppGetStrategyCountKey          = PREFIX + "StatisticsAppGetStrategyCount:APP_KEY:%v"
+	CacheKeyStatisticsWeeklyAppGetStrategyCountKey    = PREFIX + "StatisticsWeeklyAppGetStrategyCount:APP_KEY:%v"
 )
 
 type AddAppUpgradeGetStrategyReportLogReq struct {
@@ -35,4 +43,132 @@ func (c *Ctx) AddAppUpgradeGetStrategyReportLog(ctx context.Context, req AddAppU
 	fmt.Println(ret.RowsAffected())
 
 	return nil, err
+}
+
+type GetYesterdayAppGetStrategyCountStruct struct {
+	Count int `db:"count"`
+}
+
+// GetYesterdayAppGetStrategyCount
+// 获取昨日下载次数
+func (c *Ctx) GetYesterdayAppGetStrategyCount(ctx context.Context, appKey string) (int, error) {
+
+	cacheKey := fmt.Sprintf(CacheKeyStatisticsYesterdayAppGetStrategyCountKey, appKey)
+
+	// 内存缓存
+	v, err := c.localCache.Take(cacheKey, func() (interface{}, error) {
+		// sql 缓存查询
+		var info GetYesterdayAppGetStrategyCountStruct
+		query := fmt.Sprintf("select count(*) AS count " +
+			"FROM upgrade_app_upgrade_get_strategy_report_log " +
+			"WHERE app_key = ? " +
+			"AND timestamp >= CURDATE() - INTERVAL 1 DAY " +
+			"AND timestamp < CURDATE() ")
+		err := c.mysqlConnCache.QueryRowCtx(ctx, &info, cacheKey, func(ctx context.Context, conn sqlx.SqlConn, v any) error {
+			return c.mysqlConn.QueryRowCtx(ctx, v, query, appKey)
+		})
+
+		if err != nil {
+			return nil, err
+		}
+		return info.Count, nil
+	})
+
+	if v != nil {
+		return v.(int), err
+	}
+
+	return 0, err
+}
+
+type GetAppGetStrategyCountStruct struct {
+	Count int `db:"count"`
+}
+
+// GetAppGetStrategyCount
+// 获取下载次数
+func (c *Ctx) GetAppGetStrategyCount(ctx context.Context, appKey string) (int, error) {
+
+	cacheKey := fmt.Sprintf(CacheKeyStatisticsAppGetStrategyCountKey, appKey)
+
+	// 内存缓存
+	v, err := c.localCache.Take(cacheKey, func() (interface{}, error) {
+		// sql 缓存查询
+		var info GetAppGetStrategyCountStruct
+		query := fmt.Sprintf("select count(*) AS count " +
+			"FROM upgrade_app_upgrade_get_strategy_report_log " +
+			"WHERE app_key = ?  " +
+			"AND timestamp < CURDATE() ")
+		err := c.mysqlConnCache.QueryRowCtx(ctx, &info, cacheKey, func(ctx context.Context, conn sqlx.SqlConn, v any) error {
+			return c.mysqlConn.QueryRowCtx(ctx, v, query, appKey)
+		})
+
+		if err != nil {
+			return nil, err
+		}
+		return info.Count, nil
+	})
+
+	if v != nil {
+		return v.(int), err
+	}
+
+	return 0, err
+
+}
+
+type WeeklyAppGetStrategyCount struct {
+	Date  string `db:"date"`
+	Count int    `db:"count"`
+}
+
+// GetWeeklyAppGetStrategyCount 获取最近7天每日应用下载次数
+func (c *Ctx) GetWeeklyAppGetStrategyCount(ctx context.Context, appKey string) ([]WeeklyAppGetStrategyCount, error) {
+
+	cacheKey := fmt.Sprintf(CacheKeyStatisticsWeeklyAppGetStrategyCountKey, appKey)
+
+	// 内存缓存
+	v, err := c.localCache.Take(cacheKey, func() (interface{}, error) {
+		// sql 缓存查询
+		var ApkVersionList []WeeklyAppGetStrategyCount
+		const query = `
+			  SELECT
+				  DATE_FORMAT(dates.date, '%y%m%d') AS date,
+				  IFNULL(tmp.count, 0) AS count
+			  FROM (
+				  SELECT DATE_SUB(CURDATE(), INTERVAL 7 DAY) + INTERVAL t.n DAY AS date
+				  FROM (
+					  SELECT 0 AS n UNION ALL SELECT 1 UNION ALL SELECT 2 UNION ALL
+					  SELECT 3 UNION ALL SELECT 4 UNION ALL SELECT 5 UNION ALL SELECT 6
+				  ) t
+			  ) dates
+			  LEFT JOIN (
+				  SELECT
+					  DATE(timestamp) AS date,
+					  COUNT(1) AS count
+				  FROM upgrade_app_upgrade_get_strategy_report_log
+				  WHERE app_key = ?
+				  AND timestamp >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
+				  AND timestamp < CURDATE()
+				  GROUP BY DATE(timestamp)
+			  ) tmp ON dates.date = tmp.date
+			  ORDER BY dates.date ASC
+		  `
+		err := c.mysqlConnCache.QueryRowCtx(ctx, &ApkVersionList, cacheKey, func(ctx context.Context, conn sqlx.SqlConn, v any) error {
+			return c.mysqlConn.QueryRowsCtx(ctx, &ApkVersionList, query, appKey)
+		})
+
+		if err != nil {
+			return nil, err
+		}
+		return ApkVersionList, nil
+	})
+
+	if v != nil {
+		list := v.([]WeeklyAppGetStrategyCount)
+		return list, err
+	}
+
+	return nil, err
+
 }

@@ -1,0 +1,96 @@
+syntax = "v1"
+
+info(
+    title: "API management"
+    desc: "API management is used to register APIs and manage APIs"
+    author: "toolsetlink"
+    email: "toolsetlink@163.com"
+    version: "v1.0"
+)
+
+import "../base.api"
+
+type (
+
+    StatisticsReq {
+        // 应用 唯一标识
+        AppKey string `form:"appKey"`
+    }
+
+    StatisticsResp {
+        BaseDataInfo
+
+        Data StatisticsData `json:"data"`
+    }
+
+    StatisticsData {
+        // 昨日应用下载次数  /  总下载次数
+        YesterdayDownloadCount   *int    `json:"yesterdayDownloadCount,optional"`
+        TotalDownloadCount   *int    `json:"totalDownloadCount,optional"`
+
+        // 昨日应用获取升级次数 /  应用总获取升级次数
+        YesterdayAppGetStrategyCount   *int    `json:"yesterdayAppGetStrategyCount,optional"`
+        TotalAppGetStrategyCount   *int    `json:"totalAppGetStrategyCount,optional"`
+
+        // 昨日应用升级次数 /  应用总升级次数
+        YesterdayAppUpgradeCount   *int    `json:"yesterdayAppUpgradeCount,optional"`
+        TotalAppUpgradeCount   *int    `json:"totalAppUpgradeCount,optional"`
+
+        // 昨日应用启动次数 /  应用总启动次数
+        YesterdayAppStartCount   *int    `json:"yesterdayAppStartCount,optional"`
+        TotalAppStartCount   *int    `json:"totalAppStartCount,optional"`
+
+        // 近 7 天 应用下载次数
+        DownloadCount7Day  []DownloadCount7DaySeriesItem `json:"downloadCount7Day,optional"`
+
+        // 近 7 天 获取应用升级次数
+        AppGetStrategyCount7Day  []AppGetStrategyCount7DaySeriesItem `json:"appGetStrategyCount7Day,optional"`
+
+        // 近 7 天 应用升级次数
+        AppUpgradeCount7Day  []AppUpgradeCount7DaySeriesItem  `json:"appUpgradeCount7Day,optional"`
+
+        // 近 7 天 应用启动次数
+        AppStartCount7Day  []AppStartCount7DaySeriesItem `json:"appStartCount7Day,optional"`
+
+    }
+
+    DownloadCount7DaySeriesItem  {
+        TimeData  string     `json:"timeData"`             // time 时间
+        Data  int    `json:"data"`                          // 数据
+    }
+
+    AppUpgradeCount7DaySeriesItem  {
+        TimeData  string     `json:"timeData"`             // time 时间
+        Data  int    `json:"data"`                          // 数据
+    }
+
+    AppGetStrategyCount7DaySeriesItem  {
+        TimeData  string     `json:"timeData"`             // time 时间
+        Data  int    `json:"data"`                          // 数据
+    }
+
+    AppStartCount7DaySeriesItem  {
+        TimeData  string     `json:"timeData"`             // time 时间
+        Data  int    `json:"data"`                          // 数据
+    }
+
+)
+
+// AccessKey 访问密钥效验
+// RateLimit 流量控制
+// ReplayAttack 防重放攻击
+// Signature 签名认证
+// Rule 密钥应用权限验证
+@server(
+    prefix: /v1/app
+    group: app
+    timeout: 30s
+    middleware: AccessKey, RateLimit, ReplayAttack, Signature, Rule
+)
+
+service api {
+    @handler statistics
+    get /statistics/info (StatisticsReq) returns (StatisticsResp)
+}
+
+

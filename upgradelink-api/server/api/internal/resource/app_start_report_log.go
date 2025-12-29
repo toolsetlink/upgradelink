@@ -6,6 +6,14 @@ import (
 	"time"
 
 	"upgradelink-api/server/api/internal/resource/model"
+
+	"github.com/zeromicro/go-zero/core/stores/sqlx"
+)
+
+const (
+	CacheKeyStatisticsYesterdayAppStartCountKey = PREFIX + "StatisticsYesterdayAppStartCount:APP_KEY:%v"
+	CacheKeyStatisticsAppStartCountKey          = PREFIX + "StatisticsAppStartCount:APP_KEY:%v"
+	CacheKeyStatisticsWeeklyAppStartCountKey    = PREFIX + "StatisticsWeeklyAppStartCount:APP_KEY:%v"
 )
 
 type AddAppStartReportLogReq struct {
@@ -32,4 +40,133 @@ func (c *Ctx) AddAppStartReportLog(ctx context.Context, req AddAppStartReportLog
 	fmt.Println(ret.RowsAffected())
 
 	return nil, err
+}
+
+type GetYesterdayAppStartCountStruct struct {
+	Count int `db:"count"`
+}
+
+// GetYesterdayAppStartCount
+// 获取昨日应用启动次数
+func (c *Ctx) GetYesterdayAppStartCount(ctx context.Context, appKey string) (int, error) {
+
+	cacheKey := fmt.Sprintf(CacheKeyStatisticsYesterdayAppStartCountKey, appKey)
+
+	// 内存缓存
+	v, err := c.localCache.Take(cacheKey, func() (interface{}, error) {
+		// sql 缓存查询
+		var info GetYesterdayAppUpgradeCountStruct
+		query := fmt.Sprintf("select count(*) AS count " +
+			"FROM upgrade_app_start_report_log " +
+			"WHERE app_key = ? " +
+			"AND timestamp >= CURDATE() - INTERVAL 1 DAY " +
+			"AND timestamp < CURDATE() ")
+		err := c.mysqlConnCache.QueryRowCtx(ctx, &info, cacheKey, func(ctx context.Context, conn sqlx.SqlConn, v any) error {
+			return c.mysqlConn.QueryRowCtx(ctx, v, query, appKey)
+		})
+
+		if err != nil {
+			return nil, err
+		}
+		return info.Count, nil
+	})
+
+	if v != nil {
+		return v.(int), err
+	}
+
+	return 0, err
+
+}
+
+type GetAppStartCountStruct struct {
+	Count int `db:"count"`
+}
+
+// GetAppStartCount
+// 获取应用启动总次数
+func (c *Ctx) GetAppStartCount(ctx context.Context, appKey string) (int, error) {
+
+	cacheKey := fmt.Sprintf(CacheKeyStatisticsAppStartCountKey, appKey)
+
+	// 内存缓存
+	v, err := c.localCache.Take(cacheKey, func() (interface{}, error) {
+		// sql 缓存查询
+		var info GetAppStartCountStruct
+		query := fmt.Sprintf("select count(*) AS count " +
+			"FROM upgrade_app_start_report_log " +
+			"WHERE app_key = ? " +
+			"AND timestamp < CURDATE() ")
+		err := c.mysqlConnCache.QueryRowCtx(ctx, &info, cacheKey, func(ctx context.Context, conn sqlx.SqlConn, v any) error {
+			return c.mysqlConn.QueryRowCtx(ctx, v, query, appKey)
+		})
+
+		if err != nil {
+			return nil, err
+		}
+		return info.Count, nil
+	})
+
+	if v != nil {
+		return v.(int), err
+	}
+
+	return 0, err
+
+}
+
+type WeeklyAppStartCount struct {
+	Date  string `db:"date"`
+	Count int    `db:"count"`
+}
+
+// GetWeeklyAppStartCount 获取最近7天每日应用启动次数
+func (c *Ctx) GetWeeklyAppStartCount(ctx context.Context, appKey string) ([]WeeklyAppStartCount, error) {
+
+	cacheKey := fmt.Sprintf(CacheKeyStatisticsWeeklyAppStartCountKey, appKey)
+
+	// 内存缓存
+	v, err := c.localCache.Take(cacheKey, func() (interface{}, error) {
+		// sql 缓存查询
+		var ApkVersionList []WeeklyAppStartCount
+		const query = `
+			  SELECT
+				  DATE_FORMAT(dates.date, '%y%m%d') AS date,
+				  IFNULL(tmp.count, 0) AS count
+			  FROM (
+				  SELECT DATE_SUB(CURDATE(), INTERVAL 7 DAY) + INTERVAL t.n DAY AS date
+				  FROM (
+					  SELECT 0 AS n UNION ALL SELECT 1 UNION ALL SELECT 2 UNION ALL
+					  SELECT 3 UNION ALL SELECT 4 UNION ALL SELECT 5 UNION ALL SELECT 6
+				  ) t
+			  ) dates
+			  LEFT JOIN (
+				  SELECT
+					  DATE(timestamp) AS date,
+					  COUNT(1) AS count
+				  FROM upgrade_app_start_report_log
+				  WHERE app_key = ?
+				  AND timestamp >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
+				  AND timestamp < CURDATE()
+				  GROUP BY DATE(timestamp)
+			  ) tmp ON dates.date = tmp.date
+			  ORDER BY dates.date ASC
+		  `
+		err := c.mysqlConnCache.QueryRowCtx(ctx, &ApkVersionList, cacheKey, func(ctx context.Context, conn sqlx.SqlConn, v any) error {
+			return c.mysqlConn.QueryRowsCtx(ctx, &ApkVersionList, query, appKey)
+		})
+
+		if err != nil {
+			return nil, err
+		}
+		return ApkVersionList, nil
+	})
+
+	if v != nil {
+		list := v.([]WeeklyAppStartCount)
+		return list, err
+	}
+
+	return nil, err
+
 }

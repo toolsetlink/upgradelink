@@ -3,12 +3,32 @@
 
 package types
 
+type AppGetStrategyCount7DaySeriesItem struct {
+	TimeData string `json:"timeData"` // time 时间
+	Data     int    `json:"data"`     // 数据
+}
+
+type AppStartCount7DaySeriesItem struct {
+	TimeData string `json:"timeData"` // time 时间
+	Data     int    `json:"data"`     // 数据
+}
+
+type AppUpgradeCount7DaySeriesItem struct {
+	TimeData string `json:"timeData"` // time 时间
+	Data     int    `json:"data"`     // 数据
+}
+
 type BaseDataInfo struct {
 	Code    int    `json:"code"`
 	Msg     string `json:"msg"`
 	TraceId string `json:"traceId"`
 	Docs    string `json:"docs"`
 	Data    string `json:"data"`
+}
+
+type DownloadCount7DaySeriesItem struct {
+	TimeData string `json:"timeData"` // time 时间
+	Data     int    `json:"data"`     // 数据
 }
 
 type ElectronPlatformsRequest struct {
@@ -527,4 +547,28 @@ type ReportReq struct {
 
 type ReportResp struct {
 	BaseDataInfo
+}
+
+type StatisticsData struct {
+	YesterdayDownloadCount       *int                                `json:"yesterdayDownloadCount,optional"`
+	TotalDownloadCount           *int                                `json:"totalDownloadCount,optional"`
+	YesterdayAppGetStrategyCount *int                                `json:"yesterdayAppGetStrategyCount,optional"`
+	TotalAppGetStrategyCount     *int                                `json:"totalAppGetStrategyCount,optional"`
+	YesterdayAppUpgradeCount     *int                                `json:"yesterdayAppUpgradeCount,optional"`
+	TotalAppUpgradeCount         *int                                `json:"totalAppUpgradeCount,optional"`
+	YesterdayAppStartCount       *int                                `json:"yesterdayAppStartCount,optional"`
+	TotalAppStartCount           *int                                `json:"totalAppStartCount,optional"`
+	DownloadCount7Day            []DownloadCount7DaySeriesItem       `json:"downloadCount7Day,optional"`
+	AppGetStrategyCount7Day      []AppGetStrategyCount7DaySeriesItem `json:"appGetStrategyCount7Day,optional"`
+	AppUpgradeCount7Day          []AppUpgradeCount7DaySeriesItem     `json:"appUpgradeCount7Day,optional"`
+	AppStartCount7Day            []AppStartCount7DaySeriesItem       `json:"appStartCount7Day,optional"`
+}
+
+type StatisticsReq struct {
+	AppKey string `form:"appKey"`
+}
+
+type StatisticsResp struct {
+	BaseDataInfo
+	Data StatisticsData `json:"data"`
 }
