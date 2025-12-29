@@ -242,7 +242,7 @@ export const dataFormSchemas: VbenFormProps = {
           return {
             options: res.data.data.map((item: any) => {
               return {
-                label: item.versionName,
+                label: `${item.target} - ${item.arch} - ${item.versionName}`,
                 value: item.id,
               };
             }),
