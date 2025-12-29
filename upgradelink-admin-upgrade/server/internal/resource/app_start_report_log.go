@@ -109,8 +109,3 @@ func GetWeeklyAppStartCount(ctx context.Context, svcCtx *svc.ServiceContext, app
 
 	return result, nil
 }
-
-type WeeklyAppUpgradeCount struct {
-	Date  string `db:"date"`
-	Count int    `db:"count"`
-}

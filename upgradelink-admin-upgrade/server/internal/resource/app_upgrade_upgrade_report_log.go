@@ -60,6 +60,11 @@ func GetAppUpgradeCount(ctx context.Context, svcCtx *svc.ServiceContext, company
 	return info.Count, err
 }
 
+type WeeklyAppUpgradeCount struct {
+	Date  string `db:"date"`
+	Count int    `db:"count"`
+}
+
 // GetWeeklyAppUpgradeCount 获取最近7天每日应用升级次数
 func GetWeeklyAppUpgradeCount(ctx context.Context, svcCtx *svc.ServiceContext, appKey string) ([]WeeklyAppUpgradeCount, error) {
 	const query = `
