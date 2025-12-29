@@ -46,31 +46,22 @@ func (l *GetWinDownloadInfoLogic) GetWinDownloadInfo(req *types.GetWinDownloadIn
 	}
 
 	var winVersionInfo *model.UpgradeWinVersion
-	// 判断是否传了 versionId， 如果传了，则直接选择数据
-	if req.VersionId > 0 {
-		winVersionInfo, err = l.svcCtx.ResourceCtx.GetWinVersionInfoById(l.ctx, req.VersionId)
+
+	// 判断是否固定了版本号，如果没有固定 则获取详细的版本信息
+	if req.VersionCode == 0 {
+		winVersionInfo, err = l.svcCtx.ResourceCtx.GetWinVersionLastInfoByWinId(l.ctx, winInfo.Id)
 		if err != nil && errors.Is(err, model.ErrNotFound) {
 			return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, common.ErrWin3Msg, common.ErrWin3Docs)
 		} else if err != nil {
 			return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
 		}
-	} else {
-		// 判断是否固定了版本号，如果没有固定 则获取详细的版本信息
-		if req.VersionCode == 0 {
-			winVersionInfo, err = l.svcCtx.ResourceCtx.GetWinVersionLastInfoByWinId(l.ctx, winInfo.Id)
-			if err != nil && errors.Is(err, model.ErrNotFound) {
-				return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, common.ErrWin3Msg, common.ErrWin3Docs)
-			} else if err != nil {
-				return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
-			}
 
-		} else {
-			winVersionInfo, err = l.svcCtx.ResourceCtx.GetWinVersionInfoByWinIdAndArchAndVersionCode(l.ctx, winInfo.Id, req.Arch, req.VersionCode)
-			if err != nil && errors.Is(err, model.ErrNotFound) {
-				return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, common.ErrWin3Msg, common.ErrWin3Docs)
-			} else if err != nil {
-				return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
-			}
+	} else {
+		winVersionInfo, err = l.svcCtx.ResourceCtx.GetWinVersionInfoByWinIdAndArchAndVersionCode(l.ctx, winInfo.Id, req.Arch, req.VersionCode)
+		if err != nil && errors.Is(err, model.ErrNotFound) {
+			return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, common.ErrWin3Msg, common.ErrWin3Docs)
+		} else if err != nil {
+			return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
 		}
 	}
 

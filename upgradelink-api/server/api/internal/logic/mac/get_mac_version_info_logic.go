@@ -33,7 +33,7 @@ func (l *GetMacVersionInfoLogic) GetMacVersionInfo(req *types.GetMacVersionInfoR
 	if req.MacKey == "" {
 		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrMac4Msg, common.ErrMac4Docs)
 	}
-	if req.VersionCode == 0 {
+	if req.VersionCode < 0 {
 		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrMac4Msg, common.ErrMac4Docs)
 	}
 

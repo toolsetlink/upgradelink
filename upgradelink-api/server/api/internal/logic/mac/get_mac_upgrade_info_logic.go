@@ -36,7 +36,7 @@ func (l *GetMacUpgradeInfoLogic) GetMacUpgradeInfo(req *types.GetMacUpgradeInfoR
 	if req.MacKey == "" {
 		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrMac1Msg, common.ErrMac1Docs)
 	}
-	if req.VersionCode == 0 {
+	if req.VersionCode < 0 {
 		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrMac1Msg, common.ErrMac1Docs)
 	}
 

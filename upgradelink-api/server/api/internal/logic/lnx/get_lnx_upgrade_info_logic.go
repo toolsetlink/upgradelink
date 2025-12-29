@@ -36,7 +36,7 @@ func (l *GetLnxUpgradeInfoLogic) GetLnxUpgradeInfo(req *types.GetLnxUpgradeInfoR
 	if req.LnxKey == "" {
 		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrLnx1Msg, common.ErrLnx1Docs)
 	}
-	if req.VersionCode == 0 {
+	if req.VersionCode < 0 {
 		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrLnx1Msg, common.ErrLnx1Docs)
 	}
 

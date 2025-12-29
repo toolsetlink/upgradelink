@@ -33,7 +33,7 @@ func (l *GetLnxVersionInfoLogic) GetLnxVersionInfo(req *types.GetLnxVersionInfoR
 	if req.LnxKey == "" {
 		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrLnx4Msg, common.ErrLnx4Docs)
 	}
-	if req.VersionCode == 0 {
+	if req.VersionCode < 0 {
 		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrLnx4Msg, common.ErrLnx4Docs)
 	}
 

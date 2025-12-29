@@ -144,8 +144,6 @@ type (
         Arch string `form:"arch"`
         // 指定版本（可空，为空时是最新版本）
         VersionCode int64 `form:"versionCode,default=0"`
-        // 指定版本id
-        VersionId int64 `form:"versionId,default=0"`
     }
 )
 // RateLimit 流量控制
