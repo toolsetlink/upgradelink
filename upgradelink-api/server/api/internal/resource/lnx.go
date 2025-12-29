@@ -10,7 +10,8 @@ import (
 )
 
 const (
-	CacheKeyLnxInfoByKey = PREFIX + "LNX_INFO:KEY:%v"
+	CacheKeyLnxInfoByKey             = PREFIX + "LNX_INFO:KEY:%v"
+	CacheKeyLnxInfoByCompanyIdAndKey = PREFIX + "LNX_INFO:COMPANY_ID:%v:KEY:%v"
 )
 
 func (c *Ctx) GetLnxInfoByKey(ctx context.Context,
@@ -21,9 +22,9 @@ func (c *Ctx) GetLnxInfoByKey(ctx context.Context,
 	// 内存缓存
 	v, err := c.localCache.Take(cacheKey, func() (interface{}, error) {
 		// sql 缓存查询
-		var urlInfo model.UpgradeLnx
+		var info model.UpgradeLnx
 		query := fmt.Sprintf("select * from upgrade_lnx where `key` = ? and is_del = 0 limit 1")
-		err := c.mysqlConnCache.QueryRowCtx(ctx, &urlInfo, cacheKey, func(ctx context.Context, conn sqlx.SqlConn, v any) error {
+		err := c.mysqlConnCache.QueryRowCtx(ctx, &info, cacheKey, func(ctx context.Context, conn sqlx.SqlConn, v any) error {
 			return c.mysqlConn.QueryRowCtx(ctx, v, query, key)
 		})
 
@@ -31,12 +32,41 @@ func (c *Ctx) GetLnxInfoByKey(ctx context.Context,
 			return nil, err
 		}
 
-		return urlInfo, nil
+		return info, nil
 	})
 
 	if v != nil {
-		lnxInfo := v.(model.UpgradeLnx)
-		return &lnxInfo, err
+		info := v.(model.UpgradeLnx)
+		return &info, err
+	}
+
+	return nil, err
+}
+
+func (c *Ctx) GetLnxInfoByCompanyIdAndKey(ctx context.Context,
+	companyId int64, key string) (*model.UpgradeLnx, error) {
+
+	cacheKey := fmt.Sprintf(CacheKeyLnxInfoByCompanyIdAndKey, companyId, key)
+
+	// 内存缓存
+	v, err := c.localCache.Take(cacheKey, func() (interface{}, error) {
+		// sql 缓存查询
+		var info model.UpgradeLnx
+		query := fmt.Sprintf("select * from upgrade_lnx where `company_id` = ? and `key` = ? and is_del = 0 limit 1")
+		err := c.mysqlConnCache.QueryRowCtx(ctx, &info, cacheKey, func(ctx context.Context, conn sqlx.SqlConn, v any) error {
+			return c.mysqlConn.QueryRowCtx(ctx, v, query, companyId, key)
+		})
+
+		if err != nil {
+			return nil, err
+		}
+
+		return info, nil
+	})
+
+	if v != nil {
+		info := v.(model.UpgradeLnx)
+		return &info, err
 	}
 
 	return nil, err

@@ -37,15 +37,17 @@ type (
 	}
 
 	SysCompanySecret struct {
-		Id          int64     `db:"id"`          // ID
-		CreatedAt   time.Time `db:"created_at"`  // Create Time | 创建日期
-		UpdatedAt   time.Time `db:"updated_at"`  // Update Time | 修改日期
-		CompanyId   int64     `db:"company_id"`  // 公司ID
-		AccessKey   string    `db:"access_key"`  // 密钥id
-		SecretKey   string    `db:"secret_key"`  // 密钥key
-		Enable      int64     `db:"enable"`      // 是否生效；可通过此控制策略是否生效0：失效；1：生效
-		IsDel       int64     `db:"is_del"`      // 是否删除 0：正常；1：已删除
-		Description string    `db:"description"` // 描述信息
+		Id               int64     `db:"id"`                // ID
+		CreatedAt        time.Time `db:"created_at"`        // Create Time | 创建日期
+		UpdatedAt        time.Time `db:"updated_at"`        // Update Time | 修改日期
+		CompanyId        int64     `db:"company_id"`        // 公司ID
+		AccessKey        string    `db:"access_key"`        // 密钥id
+		SecretKey        string    `db:"secret_key"`        // 密钥key
+		ValidityDatetime time.Time `db:"validity_datetime"` // 有效期
+		RuleData         string    `db:"rule_data"`         // 应用权限
+		Enable           int64     `db:"enable"`            // 是否生效；可通过此控制策略是否生效0：失效；1：生效
+		IsDel            int64     `db:"is_del"`            // 是否删除 0：正常；1：已删除
+		Description      string    `db:"description"`       // 描述信息
 	}
 )
 
@@ -77,14 +79,14 @@ func (m *defaultSysCompanySecretModel) FindOne(ctx context.Context, id int64) (*
 }
 
 func (m *defaultSysCompanySecretModel) Insert(ctx context.Context, data *SysCompanySecret) (sql.Result, error) {
-	query := fmt.Sprintf("insert into %s (%s) values (?, ?, ?, ?, ?, ?)", m.table, sysCompanySecretRowsExpectAutoSet)
-	ret, err := m.conn.ExecCtx(ctx, query, data.CompanyId, data.AccessKey, data.SecretKey, data.Enable, data.IsDel, data.Description)
+	query := fmt.Sprintf("insert into %s (%s) values (?, ?, ?, ?, ?, ?, ?, ?)", m.table, sysCompanySecretRowsExpectAutoSet)
+	ret, err := m.conn.ExecCtx(ctx, query, data.CompanyId, data.AccessKey, data.SecretKey, data.ValidityDatetime, data.RuleData, data.Enable, data.IsDel, data.Description)
 	return ret, err
 }
 
 func (m *defaultSysCompanySecretModel) Update(ctx context.Context, data *SysCompanySecret) error {
 	query := fmt.Sprintf("update %s set %s where `id` = ?", m.table, sysCompanySecretRowsWithPlaceHolder)
-	_, err := m.conn.ExecCtx(ctx, query, data.CompanyId, data.AccessKey, data.SecretKey, data.Enable, data.IsDel, data.Description, data.Id)
+	_, err := m.conn.ExecCtx(ctx, query, data.CompanyId, data.AccessKey, data.SecretKey, data.ValidityDatetime, data.RuleData, data.Enable, data.IsDel, data.Description, data.Id)
 	return err
 }
 

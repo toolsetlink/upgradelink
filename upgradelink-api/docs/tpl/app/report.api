@@ -64,14 +64,16 @@ type (
     }
 )
 
+// AccessKey 访问密钥效验
 // RateLimit 流量控制
 // ReplayAttack 防重放攻击
 // Signature 签名认证
+// Rule 密钥应用权限验证
 @server(
     prefix: /v1/app
     group: app
     timeout: 30s
-    middleware: RateLimit, ReplayAttack, Signature
+    middleware: AccessKey, RateLimit, ReplayAttack, Signature, Rule
 )
 
 service api {

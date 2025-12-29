@@ -14,11 +14,13 @@ CREATE TABLE `sys_company_secret` (
 `company_id` bigint NOT NULL DEFAULT '0' COMMENT '公司ID',
 `access_key` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '密钥id',
 `secret_key` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '密钥key',
+`validity_datetime` timestamp NOT NULL DEFAULT '1970-01-01 08:00:01' COMMENT '有效期',
+`rule_data` varchar(2048) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT '应用权限',
 `enable` int NOT NULL DEFAULT '0' COMMENT '是否生效；可通过此控制策略是否生效0：失效；1：生效',
 `is_del` int NOT NULL DEFAULT '0' COMMENT '是否删除 0：正常；1：已删除',
 `description` varchar(2048) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT '描述信息',
 PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=DYNAMIC COMMENT='公司密钥表';
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=DYNAMIC COMMENT='公司密钥表';
 
 
 CREATE TABLE `fms_cloud_files` (

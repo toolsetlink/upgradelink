@@ -100,9 +100,11 @@ type (
 
 )
 
+// AccessKey 访问密钥效验  tauri升级接口无访问密钥效验
 // RateLimit 流量控制
-// ReplayAttack 防重放攻击
-// Signature 签名认证
+// ReplayAttack 防重放攻击  tauri升级接口无重放效验
+// Signature 签名认证  tauri升级接口无签名效验
+// Rule 密钥应用权限验证  tauri升级接口无权限效验
 @server(
     prefix: /v1/tauri
     group: tauri
@@ -162,15 +164,16 @@ type (
     }
 )
 
-
+// AccessKey 访问密钥效验
 // RateLimit 流量控制
 // ReplayAttack 防重放攻击
 // Signature 签名认证
+// Rule 密钥应用权限验证
 @server(
     prefix: /v1/tauri
     group: tauri
     timeout: 30s
-    middleware: RateLimit, ReplayAttack, Signature
+    middleware: AccessKey, RateLimit, ReplayAttack, Signature, Rule
 )
 
 service api {
@@ -178,9 +181,6 @@ service api {
     @handler getTauriVersionInfo
     post /version (GetTauriVersionInfoReq) returns (GetTauriVersionInfoResp)
 }
-
-
-
 
 type (
     GetTauriDownloadInfoReq {
@@ -197,7 +197,7 @@ type (
     }
 )
 
-// RateLimit 流量控制
+// CdnRateLimit 流量控制
 @server(
     group: download
     prefix: /v1/tauri

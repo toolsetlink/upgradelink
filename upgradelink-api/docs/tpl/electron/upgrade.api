@@ -99,14 +99,16 @@ type (
 )
 
 
+// AccessKey 访问密钥效验
 // RateLimit 流量控制
-// ReplayAttack 防重放攻击
-// Signature 签名认证
+// ReplayAttack 防重放攻击  electron升级接口无重放效验
+// Signature 签名认证  electron升级接口无签名效验
+// Rule 密钥应用权限验证
 @server(
     prefix: /v1/electron
     group: electron
     timeout: 600s
-    middleware: RateLimit
+    middleware: AccessKey, RateLimit, Rule
 )
 
 service api {
@@ -178,14 +180,16 @@ type (
 )
 
 
+// AccessKey 访问密钥效验
 // RateLimit 流量控制
 // ReplayAttack 防重放攻击
 // Signature 签名认证
+// Rule 密钥应用权限验证
 @server(
     prefix: /v1/electron
     group: electron
     timeout: 30s
-    middleware: RateLimit, ReplayAttack, Signature
+    middleware: AccessKey, RateLimit, ReplayAttack, Signature, Rule
 )
 
 service api {
@@ -193,8 +197,6 @@ service api {
     @handler getElectronVersionInfo
     post /version (GetElectronVersionInfoReq) returns (GetElectronVersionInfoResp)
 }
-
-
 
 
 type (
@@ -228,7 +230,7 @@ type (
 //    }
 //)
 
-// RateLimit 流量控制
+// CdnRateLimit 流量控制
 @server(
     group: download
     prefix: /v1/electron

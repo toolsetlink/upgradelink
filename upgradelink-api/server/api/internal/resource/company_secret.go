@@ -22,7 +22,7 @@ func (c *Ctx) GetCompanySecretByAccessKey(ctx context.Context,
 	v, err := c.localCache.Take(cacheKey, func() (interface{}, error) {
 		// sql 缓存查询
 		var info model.SysCompanySecret
-		query := fmt.Sprintf("select * from sys_company_secret where enable = 1 and is_del = 0 and `access_key` = ? limit 1")
+		query := fmt.Sprintf("select * from sys_company_secret where `access_key` = ? and is_del = 0 limit 1")
 		err := c.mysqlConnCache.QueryRowCtx(ctx, &info, cacheKey, func(ctx context.Context, conn sqlx.SqlConn, v any) error {
 			return c.mysqlConn.QueryRowCtx(ctx, v, query, key)
 		})

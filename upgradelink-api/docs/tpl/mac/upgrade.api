@@ -116,15 +116,18 @@ type (
     }
 )
 
+// AccessKey 访问密钥效验
 // RateLimit 流量控制
 // ReplayAttack 防重放攻击
 // Signature 签名认证
+// Rule 密钥应用权限验证
 @server(
     prefix: /v1/mac
     group: mac
     timeout: 30s
-    middleware: RateLimit, ReplayAttack, Signature
+    middleware: AccessKey, RateLimit, ReplayAttack, Signature, Rule
 )
+
 service api {
     // Get API list | 获取升级任务
     @handler getMacUpgradeInfo
@@ -145,7 +148,8 @@ type (
         VersionCode int64 `form:"versionCode,default=0"`
     }
 )
-// RateLimit 流量控制
+
+// CdnRateLimit 流量控制
 @server(
     group: download
     prefix: /v1/mac

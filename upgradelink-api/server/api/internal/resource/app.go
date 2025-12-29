@@ -70,6 +70,36 @@ func (c *Ctx) GetAppTypeByAppKey(ctx context.Context, appKey string) (appType st
 			return "configuration", nil
 		}
 
+		// 通过唯一标识 获取到对应的应用信息
+		macInfo, err := c.GetMacInfoByKey(ctx, appKey)
+		if err != nil && errors.Is(err, model.ErrNotFound) {
+		} else if err != nil {
+			return "", err
+		}
+		if macInfo != nil {
+			return "mac", nil
+		}
+
+		// 通过唯一标识 获取到对应的应用信息
+		winInfo, err := c.GetWinInfoByKey(ctx, appKey)
+		if err != nil && errors.Is(err, model.ErrNotFound) {
+		} else if err != nil {
+			return "", err
+		}
+		if winInfo != nil {
+			return "win", nil
+		}
+
+		// 通过唯一标识 获取到对应的应用信息
+		lnxInfo, err := c.GetLnxInfoByKey(ctx, appKey)
+		if err != nil && errors.Is(err, model.ErrNotFound) {
+		} else if err != nil {
+			return "", err
+		}
+		if lnxInfo != nil {
+			return "lnx", nil
+		}
+
 		return "", nil
 	})
 

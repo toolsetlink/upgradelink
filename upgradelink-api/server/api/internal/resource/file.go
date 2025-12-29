@@ -10,7 +10,8 @@ import (
 )
 
 const (
-	CacheKeyFileInfoByKey = PREFIX + "FILE_INFO:KEY:%v"
+	CacheKeyFileInfoByKey             = PREFIX + "FILE_INFO:KEY:%v"
+	CacheKeyFileInfoByCompanyIdAndKey = PREFIX + "FILE_INFO:COMPANY_ID:%v:KEY:%v"
 )
 
 func (c *Ctx) GetFileInfoByKey(ctx context.Context,
@@ -25,6 +26,37 @@ func (c *Ctx) GetFileInfoByKey(ctx context.Context,
 		query := fmt.Sprintf("select * from upgrade_file where `key` = ? and is_del = 0 limit 1")
 		err := c.mysqlConnCache.QueryRowCtx(ctx, &urlInfo, cacheKey, func(ctx context.Context, conn sqlx.SqlConn, v any) error {
 			return c.mysqlConn.QueryRowCtx(ctx, v, query, key)
+		})
+
+		if err != nil {
+			return nil, err
+		}
+
+		return urlInfo, nil
+	})
+
+	if v != nil {
+		urlInfo := v.(model.UpgradeFile)
+		return &urlInfo, err
+	}
+
+	return nil, err
+}
+
+// GetFileInfoByCompanyIdAndKey
+// 获取应用信息
+func (c *Ctx) GetFileInfoByCompanyIdAndKey(ctx context.Context,
+	companyId int64, key string) (*model.UpgradeFile, error) {
+
+	cacheKey := fmt.Sprintf(CacheKeyFileInfoByCompanyIdAndKey, companyId, key)
+
+	// 内存缓存
+	v, err := c.localCache.Take(cacheKey, func() (interface{}, error) {
+		// sql 缓存查询
+		var urlInfo model.UpgradeFile
+		query := fmt.Sprintf("select * from upgrade_file where `company_id` = ? and  `key` = ? and is_del = 0 limit 1")
+		err := c.mysqlConnCache.QueryRowCtx(ctx, &urlInfo, cacheKey, func(ctx context.Context, conn sqlx.SqlConn, v any) error {
+			return c.mysqlConn.QueryRowCtx(ctx, v, query, companyId, key)
 		})
 
 		if err != nil {

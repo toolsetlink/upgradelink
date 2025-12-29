@@ -141,3 +141,16 @@ func CalculateMD5(obj interface{}) (string, error) {
 	// 将哈希转换为十六进制字符串
 	return hex.EncodeToString(hash[:]), nil
 }
+
+// IntInSlice 基础遍历判断int是否在[]int中
+// target: 要查找的目标整数
+// slice: 待查询的整数切片
+// return: 存在返回true，否则返回false
+func IntInSlice(target int, slice []int) bool {
+	for _, v := range slice {
+		if v == target {
+			return true
+		}
+	}
+	return false
+}

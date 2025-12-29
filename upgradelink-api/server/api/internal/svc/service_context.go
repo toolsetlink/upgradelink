@@ -22,9 +22,11 @@ import (
 type ServiceContext struct {
 	Config       config.Config
 	Signature    rest.Middleware
+	AccessKey    rest.Middleware
 	ReplayAttack rest.Middleware
 	RateLimit    rest.Middleware
 	CdnRateLimit rest.Middleware
+	Rule         rest.Middleware
 	ResourceCtx  *resource.Ctx
 }
 

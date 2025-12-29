@@ -10,7 +10,8 @@ import (
 )
 
 const (
-	CacheKeyTauriInfoByKey = PREFIX + "TAURI_INFO:KEY:%v"
+	CacheKeyTauriInfoByKey             = PREFIX + "TAURI_INFO:KEY:%v"
+	CacheKeyTauriInfoByCompanyIdAndKey = PREFIX + "TAURI_INFO:COMPANY_ID:%v:KEY:%v"
 )
 
 func (c *Ctx) GetTauriInfoByKey(ctx context.Context,
@@ -25,6 +26,35 @@ func (c *Ctx) GetTauriInfoByKey(ctx context.Context,
 		query := fmt.Sprintf("select * from upgrade_tauri where `key` = ? and is_del = 0 limit 1")
 		err := c.mysqlConnCache.QueryRowCtx(ctx, &info, cacheKey, func(ctx context.Context, conn sqlx.SqlConn, v any) error {
 			return c.mysqlConn.QueryRowCtx(ctx, v, query, key)
+		})
+
+		if err != nil {
+			return nil, err
+		}
+
+		return info, nil
+	})
+
+	if v != nil {
+		info := v.(model.UpgradeTauri)
+		return &info, err
+	}
+
+	return nil, err
+}
+
+func (c *Ctx) GetTauriInfoByCompanyIdAndKey(ctx context.Context,
+	companyId int64, key string) (*model.UpgradeTauri, error) {
+
+	cacheKey := fmt.Sprintf(CacheKeyTauriInfoByCompanyIdAndKey, companyId, key)
+
+	// 内存缓存
+	v, err := c.localCache.Take(cacheKey, func() (interface{}, error) {
+		// sql 缓存查询
+		var info model.UpgradeTauri
+		query := fmt.Sprintf("select * from upgrade_tauri where `company_id` = ? and `key` = ? and is_del = 0 limit 1")
+		err := c.mysqlConnCache.QueryRowCtx(ctx, &info, cacheKey, func(ctx context.Context, conn sqlx.SqlConn, v any) error {
+			return c.mysqlConn.QueryRowCtx(ctx, v, query, companyId, key)
 		})
 
 		if err != nil {
