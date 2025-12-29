@@ -31,14 +31,14 @@ func NewGetTauriDownloadInfoLogic(ctx context.Context, svcCtx *svc.ServiceContex
 func (l *GetTauriDownloadInfoLogic) GetTauriDownloadInfo(req *types.GetTauriDownloadInfoReq) (resp *string, err error) {
 	// 请求参数效验
 	if req.TauriKey == "" {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrTauri1Msg, common.ErrTauri1Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrTauri5Msg, common.ErrTauri5Docs)
 	}
 
 	versionCode := int64(0)
 	if req.VersionName != "" {
 		versionCode, err = common.SemVerToInt64(req.VersionName)
 		if err != nil {
-			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrTauri1Msg, common.ErrTauri1Docs)
+			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrTauri5Msg, common.ErrTauri5Docs)
 		}
 	}
 

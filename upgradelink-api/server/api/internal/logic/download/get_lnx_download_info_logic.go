@@ -31,10 +31,10 @@ func NewGetLnxDownloadInfoLogic(ctx context.Context, svcCtx *svc.ServiceContext)
 func (l *GetLnxDownloadInfoLogic) GetLnxDownloadInfo(req *types.GetLnxDownloadInfoReq) (resp string, err error) {
 	// 请求参数效验
 	if req.LnxKey == "" {
-		return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrLnx1Msg, common.ErrLnx1Docs)
+		return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrLnx5Msg, common.ErrLnx5Docs)
 	}
 	if req.VersionCode < 0 {
-		return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrLnx1Msg, common.ErrLnx1Docs)
+		return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrLnx5Msg, common.ErrLnx5Docs)
 	}
 
 	// 通过唯一标识 获取到对应的应用信息

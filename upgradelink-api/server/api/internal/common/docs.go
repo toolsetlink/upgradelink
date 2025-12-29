@@ -32,6 +32,9 @@ const (
 	ErrFile4Msg  = "Request parameter error"
 	ErrFile4Docs = "Please refer to the documentation: https://www.toolsetlink.com/upgrade/api/file/get-file-version.html"
 
+	ErrFile5Msg  = "Request parameter error"
+	ErrFile5Docs = "Please refer to the documentation: https://www.toolsetlink.com/upgrade/api/file/get-file-download.html"
+
 	ErrUrl1Msg  = "Request parameter error"
 	ErrUrl1Docs = "Please refer to the documentation: https://www.toolsetlink.com/upgrade/api/url/get-url-upgrade-strategy.html"
 
@@ -43,6 +46,9 @@ const (
 
 	ErrUrl4Msg  = "Request parameter error"
 	ErrUrl4Docs = "Please refer to the documentation: https://www.toolsetlink.com/upgrade/api/url/get-url-version.html"
+
+	ErrUrl5Msg  = "Request parameter error"
+	ErrUrl5Docs = "Please refer to the documentation: https://www.toolsetlink.com/upgrade/api/url/get-url-download.html"
 
 	ErrConfiguration1Msg  = "Request parameter error"
 	ErrConfiguration1Docs = "Please refer to the documentation: https://www.toolsetlink.com/upgrade/api/configuration/get-configuration-upgrade-strategy.html"
@@ -68,6 +74,9 @@ const (
 	ErrApk4Msg  = "Request parameter error"
 	ErrApk4Docs = "Please refer to the documentation: https://www.toolsetlink.com/upgrade/api/apk/get-apk-version.html"
 
+	ErrApk5Msg  = "Request parameter error"
+	ErrApk5Docs = "Please refer to the documentation: https://www.toolsetlink.com/upgrade/api/apk/get-apk-download.html"
+
 	ErrTauri1Msg  = "Request parameter error"
 	ErrTauri1Docs = "Please refer to the documentation: https://www.toolsetlink.com/upgrade/api/tauri/get-tauri-upgrade-strategy.html"
 
@@ -79,6 +88,9 @@ const (
 
 	ErrTauri4Msg  = "Request parameter error"
 	ErrTauri4Docs = "Please refer to the documentation: https://www.toolsetlink.com/upgrade/api/tauri/get-tauri-version.html"
+
+	ErrTauri5Msg  = "Request parameter error"
+	ErrTauri5Docs = "Please refer to the documentation: https://www.toolsetlink.com/upgrade/api/tauri/get-tauri-download.html"
 
 	ErrElectron1Msg  = "Request parameter error"
 	ErrElectron1Docs = "Please refer to the documentation: https://www.toolsetlink.com/upgrade/api/electron/get-electron-upgrade-strategy.html"
@@ -92,6 +104,9 @@ const (
 	ErrElectron4Msg  = "Request parameter error"
 	ErrElectron4Docs = "Please refer to the documentation: https://www.toolsetlink.com/upgrade/api/electron/get-electron-version.html"
 
+	ErrElectron5Msg  = "Request parameter error"
+	ErrElectron5Docs = "Please refer to the documentation: https://www.toolsetlink.com/upgrade/api/electron/get-electron-download.html"
+
 	ErrMac1Msg  = "Request parameter error"
 	ErrMac1Docs = "Please refer to the documentation: https://www.toolsetlink.com/upgrade/api/mac/get-mac-upgrade-strategy.html"
 
@@ -103,6 +118,9 @@ const (
 
 	ErrMac4Msg  = "Request parameter error"
 	ErrMac4Docs = "Please refer to the documentation: https://www.toolsetlink.com/upgrade/api/mac/get-mac-version.html"
+
+	ErrMac5Msg  = "Request parameter error"
+	ErrMac5Docs = "Please refer to the documentation: https://www.toolsetlink.com/upgrade/api/mac/get-mac-download.html"
 
 	ErrLnx1Msg  = "Request parameter error"
 	ErrLnx1Docs = "Please refer to the documentation: https://www.toolsetlink.com/upgrade/api/lnx/get-lnx-upgrade-strategy.html"
@@ -116,6 +134,9 @@ const (
 	ErrLnx4Msg  = "Request parameter error"
 	ErrLnx4Docs = "Please refer to the documentation: https://www.toolsetlink.com/upgrade/api/lnx/get-lnx-version.html"
 
+	ErrLnx5Msg  = "Request parameter error"
+	ErrLnx5Docs = "Please refer to the documentation: https://www.toolsetlink.com/upgrade/api/lnx/get-lnx-download.html"
+
 	ErrWin1Msg  = "Request parameter error"
 	ErrWin1Docs = "Please refer to the documentation: https://www.toolsetlink.com/upgrade/api/win/get-win-upgrade-strategy.html"
 
@@ -127,4 +148,7 @@ const (
 
 	ErrWin4Msg  = "Request parameter error"
 	ErrWin4Docs = "Please refer to the documentation: https://www.toolsetlink.com/upgrade/api/win/get-win-version.html"
+
+	ErrWin5Msg  = "Request parameter error"
+	ErrWin5Docs = "Please refer to the documentation: https://www.toolsetlink.com/upgrade/api/win/get-win-download.html"
 )

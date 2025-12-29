@@ -30,10 +30,10 @@ func NewGetFileDownloadInfoLogic(ctx context.Context, svcCtx *svc.ServiceContext
 func (l *GetFileDownloadInfoLogic) GetFileDownloadInfo(req *types.GetFileDownloadInfoReq) (resp *string, err error) {
 	// 请求参数效验
 	if req.FileKey == "" {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrFile1Msg, common.ErrFile1Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrFile5Msg, common.ErrFile5Docs)
 	}
 	if req.VersionCode < 0 {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrFile1Msg, common.ErrFile1Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrFile5Msg, common.ErrFile5Docs)
 	}
 
 	// 通过唯一标识 获取到对应的应用信息

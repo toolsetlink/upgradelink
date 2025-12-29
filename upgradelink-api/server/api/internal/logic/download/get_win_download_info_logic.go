@@ -31,10 +31,10 @@ func NewGetWinDownloadInfoLogic(ctx context.Context, svcCtx *svc.ServiceContext)
 func (l *GetWinDownloadInfoLogic) GetWinDownloadInfo(req *types.GetWinDownloadInfoReq) (resp string, err error) {
 	// 请求参数效验
 	if req.WinKey == "" {
-		return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrWin1Msg, common.ErrWin1Docs)
+		return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrWin5Msg, common.ErrWin5Docs)
 	}
 	if req.VersionCode < 0 {
-		return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrLnx1Msg, common.ErrLnx1Docs)
+		return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrWin5Msg, common.ErrWin5Docs)
 	}
 
 	// 通过唯一标识 获取到对应的应用信息
@@ -42,7 +42,7 @@ func (l *GetWinDownloadInfoLogic) GetWinDownloadInfo(req *types.GetWinDownloadIn
 	if err != nil && errors.Is(err, model.ErrNotFound) {
 		return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, common.ErrWin2Msg, common.ErrWin2Docs)
 	} else if err != nil {
-		return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.ErrWin1Msg, common.ErrWin1Docs)
+		return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.ErrWin5Msg, common.ErrWin5Docs)
 	}
 
 	var winVersionInfo *model.UpgradeWinVersion

@@ -31,7 +31,7 @@ func NewGetElectronDownloadInfoLogic(ctx context.Context, svcCtx *svc.ServiceCon
 func (l *GetElectronDownloadInfoLogic) GetElectronDownloadInfo(req *types.GetElectronDownloadInfoReq) (resp *string, err error) {
 	// 请求参数效验
 	if req.ElectronKey == "" {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrElectron1Msg, common.ErrElectron1Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrElectron5Msg, common.ErrElectron5Docs)
 	}
 
 	// 客户端windows 系统字段传的值为  win32
@@ -43,7 +43,7 @@ func (l *GetElectronDownloadInfoLogic) GetElectronDownloadInfo(req *types.GetEle
 	if req.VersionName != "" {
 		versionCode, err = common.SemVerToInt64(req.VersionName)
 		if err != nil {
-			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrElectron1Msg, common.ErrElectron1Docs)
+			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrElectron5Msg, common.ErrElectron5Docs)
 		}
 	}
 

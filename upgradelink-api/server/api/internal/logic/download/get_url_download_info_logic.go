@@ -31,10 +31,10 @@ func NewGetUrlDownloadInfoLogic(ctx context.Context, svcCtx *svc.ServiceContext)
 func (l *GetUrlDownloadInfoLogic) GetUrlDownloadInfo(req *types.GetUrlDownloadInfoReq) (resp *string, err error) {
 	// 请求参数效验
 	if req.UrlKey == "" {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrUrl1Msg, common.ErrUrl1Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrUrl5Msg, common.ErrUrl5Docs)
 	}
 	if req.VersionCode < 0 {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrUrl1Msg, common.ErrUrl1Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrUrl5Msg, common.ErrUrl5Docs)
 	}
 
 	// 通过唯一标识 获取到对应的应用信息
