@@ -34,13 +34,17 @@ func (l *GetElectronDownloadInfoLogic) GetElectronDownloadInfo(req *types.GetEle
 		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrElectron1Msg, common.ErrElectron1Docs)
 	}
 
-	if req.VersionCode < 0 {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrElectron1Msg, common.ErrElectron1Docs)
-	}
-
 	// 客户端windows 系统字段传的值为  win32
 	if req.Platform == "win32" {
 		req.Platform = "windows"
+	}
+
+	versionCode := int64(0)
+	if req.VersionName != "" {
+		versionCode, err = common.SemVerToInt64(req.VersionName)
+		if err != nil {
+			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrElectron1Msg, common.ErrElectron1Docs)
+		}
 	}
 
 	// 通过唯一标识 获取到对应的应用信息
@@ -52,31 +56,22 @@ func (l *GetElectronDownloadInfoLogic) GetElectronDownloadInfo(req *types.GetEle
 	}
 
 	var electronVersionInfo *model.UpgradeElectronVersion
-	// 判断是否传了 versionId， 如果传了，则直接选择数据
-	if req.VersionId > 0 {
-		electronVersionInfo, err = l.svcCtx.ResourceCtx.GetElectronVersionInfoById(l.ctx, req.VersionId)
+
+	// 判断是否固定了版本号，如果没有固定 则获取详细的版本信息
+	if versionCode == 0 {
+		electronVersionInfo, err = l.svcCtx.ResourceCtx.GetElectronVersionLastInfoByElectronIdAndPlatformAndArch(l.ctx, electronInfo.Id, req.Platform, req.Arch)
 		if err != nil && errors.Is(err, model.ErrNotFound) {
 			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, common.ErrElectron3Msg, common.ErrElectron3Docs)
 		} else if err != nil {
 			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.Err1Msg, common.Err1Docs)
 		}
-	} else {
-		// 判断是否固定了版本号，如果没有固定 则获取详细的版本信息
-		if req.VersionCode == 0 {
-			electronVersionInfo, err = l.svcCtx.ResourceCtx.GetElectronVersionLastInfoByElectronIdAndPlatformAndArch(l.ctx, electronInfo.Id, req.Platform, req.Arch)
-			if err != nil && errors.Is(err, model.ErrNotFound) {
-				return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, common.ErrElectron3Msg, common.ErrElectron3Docs)
-			} else if err != nil {
-				return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.Err1Msg, common.Err1Docs)
-			}
 
-		} else {
-			electronVersionInfo, err = l.svcCtx.ResourceCtx.GetElectronVersionInfoByElectronIdAndVersionCodeAndPlatformAndArch(l.ctx, electronInfo.Id, req.VersionCode, req.Platform, req.Arch)
-			if err != nil && errors.Is(err, model.ErrNotFound) {
-				return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, common.ErrElectron3Msg, common.ErrElectron3Docs)
-			} else if err != nil {
-				return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.Err1Msg, common.Err1Docs)
-			}
+	} else {
+		electronVersionInfo, err = l.svcCtx.ResourceCtx.GetElectronVersionInfoByElectronIdAndVersionCodeAndPlatformAndArch(l.ctx, electronInfo.Id, versionCode, req.Platform, req.Arch)
+		if err != nil && errors.Is(err, model.ErrNotFound) {
+			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, common.ErrElectron3Msg, common.ErrElectron3Docs)
+		} else if err != nil {
+			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.Err1Msg, common.Err1Docs)
 		}
 	}
 

@@ -121,53 +121,12 @@ type GetConfigurationVersionInfoRespData struct {
 	Description      string `json:"description,optional"`
 }
 
-type GetElectronDownloadInfoAppImageReq struct {
-	ElectronKey string `form:"electronKey"`
-	Platform    string `form:"platform,optional"`
-	Arch        string `form:"arch,optional"`
-	VersionCode int64  `form:"versionCode,default=0"`
-	VersionId   int64  `form:"versionId,default=0"`
-}
-
-type GetElectronDownloadInfoBlockmapReq struct {
-	ElectronKey string `form:"electronKey"`
-	Platform    string `form:"platform,optional"`
-	Arch        string `form:"arch,optional"`
-	VersionCode int64  `form:"versionCode,default=0"`
-	VersionId   int64  `form:"versionId,default=0"`
-}
-
-type GetElectronDownloadInfoDmgReq struct {
-	ElectronKey string `form:"electronKey"`
-	Platform    string `form:"platform,optional"`
-	Arch        string `form:"arch,optional"`
-	VersionCode int64  `form:"versionCode,default=0"`
-	VersionId   int64  `form:"versionId,default=0"`
-}
-
-type GetElectronDownloadInfoExeReq struct {
-	ElectronKey string `form:"electronKey"`
-	Platform    string `form:"platform,optional"`
-	Arch        string `form:"arch,optional"`
-	VersionCode int64  `form:"versionCode,default=0"`
-	VersionId   int64  `form:"versionId,default=0"`
-}
-
 type GetElectronDownloadInfoReq struct {
 	DownloadType int64  `form:"downloadType,default=1"`
 	ElectronKey  string `form:"electronKey"`
-	Platform     string `form:"platform,optional"`
-	Arch         string `form:"arch,optional"`
-	VersionCode  int64  `form:"versionCode,default=0"`
-	VersionId    int64  `form:"versionId,default=0"`
-}
-
-type GetElectronDownloadInfoZipReq struct {
-	ElectronKey string `form:"electronKey"`
-	Platform    string `form:"platform,optional"`
-	Arch        string `form:"arch,optional"`
-	VersionCode int64  `form:"versionCode,default=0"`
-	VersionId   int64  `form:"versionId,default=0"`
+	Platform     string `form:"platform"`
+	Arch         string `form:"arch"`
+	VersionName  string `form:"versionName,optional,default=''"`
 }
 
 type GetElectronUpgradeInfoFileResp struct {
@@ -183,7 +142,6 @@ type GetElectronUpgradeInfoReq struct {
 	Arch               string `form:"arch"`
 	VersionName        string `form:"versionName"`
 	AppointVersionName string `form:"appointVersionName,optional,default="`
-	AppointVersionCode int64  `form:"appointVersionCode,default=0"`
 	DevModelKey        string `form:"devModelKey,optional,default="`
 	DevKey             string `form:"devKey,optional,default="`
 }

@@ -32,9 +32,6 @@ type (
         // 升级指定版本（可空，为空时是最新版本）
         AppointVersionName string `form:"appointVersionName,optional,default="`
 
-        // 升级指定版本号（可空，为空时是最新版本）
-        AppointVersionCode int64 `form:"appointVersionCode,default=0"`
-    
         // 设备机型唯一标识
         DevModelKey string `form:"devModelKey,optional,default="`
 
@@ -207,90 +204,29 @@ type (
         // Electron应用 唯一标识
         ElectronKey string `form:"electronKey"`
         // platform
-        Platform string `form:"platform,optional"`
+        Platform string `form:"platform"`
         // 机器架构
-        Arch string `form:"arch,optional"`
-        // 指定版本（可空，为空时是最新版本）
-        VersionCode int64 `form:"versionCode,default=0"`
-        // 指定版本id
-        VersionId int64 `form:"versionId,default=0"`
+        Arch string `form:"arch"`
+        // 应用版本名
+        VersionName string `form:"versionName,optional,default=''"`
     }
 )
 
-type (
-    GetElectronDownloadInfoDmgReq {
-        // Electron应用 唯一标识
-        ElectronKey string `form:"electronKey"`
-        // platform
-        Platform string `form:"platform,optional"`
-        // 机器架构
-        Arch string `form:"arch,optional"`
-        // 指定版本（可空，为空时是最新版本）
-        VersionCode int64 `form:"versionCode,default=0"`
-        // 指定版本id
-        VersionId int64 `form:"versionId,default=0"`
-    }
-)
 
-type (
-    GetElectronDownloadInfoZipReq {
-        // Electron应用 唯一标识
-        ElectronKey string `form:"electronKey"`
-        // platform
-        Platform string `form:"platform,optional"`
-        // 机器架构
-        Arch string `form:"arch,optional"`
-        // 指定版本（可空，为空时是最新版本）
-        VersionCode int64 `form:"versionCode,default=0"`
-        // 指定版本id
-        VersionId int64 `form:"versionId,default=0"`
-    }
-)
-
-type (
-    GetElectronDownloadInfoExeReq {
-        // Electron应用 唯一标识
-        ElectronKey string `form:"electronKey"`
-        // platform
-        Platform string `form:"platform,optional"`
-        // 机器架构
-        Arch string `form:"arch,optional"`
-        // 指定版本（可空，为空时是最新版本）
-        VersionCode int64 `form:"versionCode,default=0"`
-        // 指定版本id
-        VersionId int64 `form:"versionId,default=0"`
-    }
-)
-
-type (
-    GetElectronDownloadInfoAppImageReq {
-        // Electron应用 唯一标识
-        ElectronKey string `form:"electronKey"`
-        // platform
-        Platform string `form:"platform,optional"`
-        // 机器架构
-        Arch string `form:"arch,optional"`
-        // 指定版本（可空，为空时是最新版本）
-        VersionCode int64 `form:"versionCode,default=0"`
-        // 指定版本id
-        VersionId int64 `form:"versionId,default=0"`
-    }
-)
-
-type (
-    GetElectronDownloadInfoBlockmapReq {
-        // Electron应用 唯一标识
-        ElectronKey string `form:"electronKey"`
-        // platform
-        Platform string `form:"platform,optional"`
-        // 机器架构
-        Arch string `form:"arch,optional"`
-        // 指定版本（可空，为空时是最新版本）
-        VersionCode int64 `form:"versionCode,default=0"`
-        // 指定版本id
-        VersionId int64 `form:"versionId,default=0"`
-    }
-)
+//type (
+//    GetElectronDownloadInfoBlockmapReq {
+//        // Electron应用 唯一标识
+//        ElectronKey string `form:"electronKey"`
+//        // platform
+//        Platform string `form:"platform,optional"`
+//        // 机器架构
+//        Arch string `form:"arch,optional"`
+//        // 指定版本（可空，为空时是最新版本）
+//        VersionCode int64 `form:"versionCode,default=0"`
+//        // 指定版本id
+//        VersionId int64 `form:"versionId,default=0"`
+//    }
+//)
 
 // RateLimit 流量控制
 @server(
@@ -305,16 +241,16 @@ service api {
     get /download (GetElectronDownloadInfoReq) returns (*string)
 
     @handler getElectronDownloadInfoDmg
-    get /download.dmg (GetElectronDownloadInfoDmgReq) returns (*string)
+    get /download.dmg (GetElectronDownloadInfoReq) returns (*string)
 
     @handler getElectronDownloadInfoZip
-    get /download.zip (GetElectronDownloadInfoZipReq) returns (*string)
+    get /download.zip (GetElectronDownloadInfoReq) returns (*string)
 
     @handler getElectronDownloadInfoExe
-    get /download.exe (GetElectronDownloadInfoExeReq) returns (*string)
+    get /download.exe (GetElectronDownloadInfoReq) returns (*string)
 
     @handler getElectronDownloadInfoAppImage
-    get /download.AppImage (GetElectronDownloadInfoAppImageReq) returns (*string)
+    get /download.AppImage (GetElectronDownloadInfoReq) returns (*string)
 
 //    @handler getElectronDownloadInfoBlockmap
 //    get /download.blockmap (GetElectronDownloadInfoBlockmapReq) returns (*string)

@@ -12,14 +12,14 @@ import (
 
 func GetElectronDownloadInfoExeHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		var req types.GetElectronDownloadInfoExeReq
+		var req types.GetElectronDownloadInfoReq
 		if err := httpx.Parse(r, &req); err != nil {
 			httpx.ErrorCtx(r.Context(), w, err)
 			return
 		}
 
-		l := download.NewGetElectronDownloadInfoExeLogic(r.Context(), svcCtx)
-		resp, err := l.GetElectronDownloadInfoExe(&req)
+		l := download.NewGetElectronDownloadInfoLogic(r.Context(), svcCtx)
+		resp, err := l.GetElectronDownloadInfo(&req)
 		if err != nil {
 			httpx.ErrorCtx(r.Context(), w, err)
 		} else {

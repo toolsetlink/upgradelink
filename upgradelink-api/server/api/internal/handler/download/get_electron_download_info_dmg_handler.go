@@ -18,8 +18,8 @@ func GetElectronDownloadInfoDmgHandler(svcCtx *svc.ServiceContext) http.HandlerF
 			return
 		}
 
-		l := download.NewGetElectronDownloadInfoDmgLogic(r.Context(), svcCtx)
-		resp, err := l.GetElectronDownloadInfoDmg(&req)
+		l := download.NewGetElectronDownloadInfoLogic(r.Context(), svcCtx)
+		resp, err := l.GetElectronDownloadInfo(&req)
 		if err != nil {
 			httpx.ErrorCtx(r.Context(), w, err)
 		} else {

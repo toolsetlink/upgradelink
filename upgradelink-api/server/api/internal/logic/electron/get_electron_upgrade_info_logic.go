@@ -54,11 +54,7 @@ func (l *GetElectronUpgradeInfoLogic) GetElectronUpgradeInfo(req *types.GetElect
 	}
 
 	appointVersionCode := int64(0)
-	if req.AppointVersionCode != 0 {
-		appointVersionCode = req.AppointVersionCode
-	}
-	if req.AppointVersionName == "" {
-	} else {
+	if req.AppointVersionName != "" {
 		// 转换版本号
 		appointVersionCode, err = common.SemVerToInt64(req.AppointVersionName)
 		if err != nil {
@@ -134,56 +130,20 @@ func (l *GetElectronUpgradeInfoLogic) GetElectronUpgradeInfo(req *types.GetElect
 
 	files := make([]types.GetElectronUpgradeInfoFileResp, 0)
 
-	// 获取文件地址
-	if req.Platform == "darwin" {
-		// 更新包信息
-		var file1 types.GetElectronUpgradeInfoFileResp
-		file1.Size = int64(cloudFileInfo.Size)
-		file1.Sha512 = electronVersionInfo.Sha512
-		file1.Url = cloudFileInfo.Url
-		files = append(files, file1)
+	// 更新包信息
+	var file1 types.GetElectronUpgradeInfoFileResp
+	file1.Size = int64(cloudFileInfo.Size)
+	file1.Sha512 = electronVersionInfo.Sha512
+	file1.Url = cloudFileInfo.Url
+	files = append(files, file1)
 
-		// 安装包信息
-		var file types.GetElectronUpgradeInfoFileResp
-		file.Size = int64(installCloudFileInfo.Size)
-		file.Sha512 = electronVersionInfo.InstallSha512
-		file.Url = installCloudFileInfo.Url
-		files = append(files, file)
-	}
-
-	if req.Platform == "windows" {
-		// 更新包信息
-		var file1 types.GetElectronUpgradeInfoFileResp
-		file1.Size = int64(cloudFileInfo.Size)
-		file1.Sha512 = electronVersionInfo.Sha512
-		file1.Url = cloudFileInfo.Url
-		files = append(files, file1)
-
-		// 安装包信息
-		var file types.GetElectronUpgradeInfoFileResp
-		file.Size = int64(installCloudFileInfo.Size)
-		file.Sha512 = electronVersionInfo.InstallSha512
-		file.Url = installCloudFileInfo.Url
-		files = append(files, file)
-	}
-
-	if req.Platform == "linux" {
-
-		// 更新包信息
-		var file1 types.GetElectronUpgradeInfoFileResp
-		file1.Size = int64(cloudFileInfo.Size)
-		file1.Sha512 = electronVersionInfo.Sha512
-		file1.Url = cloudFileInfo.Url
-		files = append(files, file1)
-
-		// 安装包信息
-		var file types.GetElectronUpgradeInfoFileResp
-		file.Size = int64(installCloudFileInfo.Size)
-		file.Sha512 = electronVersionInfo.InstallSha512
-		file.Url = installCloudFileInfo.Url
-		files = append(files, file)
-	}
-
+	// 安装包信息
+	var file types.GetElectronUpgradeInfoFileResp
+	file.Size = int64(installCloudFileInfo.Size)
+	file.Sha512 = electronVersionInfo.InstallSha512
+	file.Url = installCloudFileInfo.Url
+	files = append(files, file)
+	
 	// 插入获取日志上报
 	timestamp, err := common.ParseRFC3339ToTime(time.Now().Format(time.RFC3339))
 	if err != nil {
