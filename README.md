@@ -6,7 +6,7 @@
 [![stars](https://gitcode.com/toolsetlink/upgradelink/star/badge.svg)](https://gitcode.com/toolsetlink/upgradelink)
 [![stars](https://gitee.com/toolsetlink/upgradelink/badge/star.svg)](https://gitee.com/toolsetlink/upgradelink)
 
-[English](README_en.md) | [中文](README.md)
+[English](README_en.md) | [中文](README.md) | [日本語](README_ja.md)
 
 
 ## 为什么选择 UpgradeLink？

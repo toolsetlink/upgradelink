@@ -6,7 +6,7 @@ Cross-Platform App Upgrade & Distribution Platform | Save 90% of the cost in bui
 [![stars](https://gitcode.com/toolsetlink/upgradelink/star/badge.svg)](https://gitcode.com/toolsetlink/upgradelink)
 [![stars](https://gitee.com/toolsetlink/upgradelink/badge/star.svg)](https://gitee.com/toolsetlink/upgradelink)
 
-[English](README.md) | [中文](README_zh.md)
+[English](README.md) | [中文](README_zh.md) | [日本語](README_ja.md)
 
 
 ## Why Choose UpgradeLink?
