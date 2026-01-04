@@ -3,8 +3,8 @@
 全端应用升级与分发平台 | 为开发者省去90%升级服务搭建成本
 
 [![GitHub Repo stars](https://img.shields.io/github/stars/toolsetlink/upgradelink)](https://github.com/toolsetlink/upgradelink)
-![star](https://gitcode.com/toolsetlink/upgradelink/star/badge.svg)
-![star](https://gitee.com/toolsetlink/upgradelink/badge/star.svg)
+[![stars](https://gitcode.com/toolsetlink/upgradelink/star/badge.svg)](https://gitcode.com/toolsetlink/upgradelink)
+[![stars](https://gitee.com/toolsetlink/upgradelink/badge/star.svg)](https://gitee.com/toolsetlink/upgradelink)
 
 [English](README_en.md) | [中文](README.md)
 
