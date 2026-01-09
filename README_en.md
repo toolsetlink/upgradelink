@@ -15,6 +15,7 @@ Whether it's a small tool by individual developers or a complex enterprise-level
 - 🌍 **Cross-Platform Coverage**: Supports Windows/Linux/Mac/Android/Tauri/Electron and other full scenarios
 - 💰 **Cost Reduction**: Eliminate R&D investment in server setup and cross-platform adaptation
 - 🔒 **Enterprise-Grade Reliability**: Security protection + flexible strategies, supporting canary release/targeted upgrade
+- 📦 **Flexible Storage Support**: Supports S3 protocol object storage, customizable CDN download address
 
 
 ## Core Features: Full-Scenario Upgrade Solutions
@@ -34,6 +35,10 @@ Whether it's a small tool by individual developers or a complex enterprise-level
 | Configuration Upgrade| Custom JSON configuration with online dynamic updates | Apps requiring dynamic parameter adjustments |
 | File Upgrade         | Upload any files to support resource supplement/replacement | Apps needing to update materials or plugins |
 | URL Upgrade          | Custom download links with self-managed file storage | Apps with existing cloud storage services |
+
+### 3. Flexible Storage and Distribution
+- 📦 **S3 Protocol Support**: All application version files can be stored in S3-compatible object storage services
+- 🌐 **Customizable CDN**: Supports configuring custom CDN download addresses to optimize global user download experience
 
 
 ## 10-Minute Integration Guide 🔧
