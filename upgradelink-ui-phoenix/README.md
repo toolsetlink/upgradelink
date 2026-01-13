@@ -1,1 +1,1 @@
-因为开始基于simple-admin项目开发，导致很多功能不能满足需求，所以决定重新开发后台，取名为upgradelink-admin-ui-phoenix。
+因为开始基于simple-admin项目开发，导致很多功能不能满足需求，所以决定重新开发后台，取名为upgradelink-ui-phoenix。
