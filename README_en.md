@@ -107,6 +107,33 @@ We welcome contributions!
 - Feedback: [Contact Us](https://www.toolsetlink.com/en/upgrade/contact-us.html)
 
 
+## Milestones
+### v3.0.0 (2026-01-26)
+- ⚡ **Second Development Support**: Core new second development support capability, with supporting documentation continuously updated
+- 🔧 **Backend Reconstruction**: Comprehensive reconstruction of admin backend system, merging multiple services into 1 service, reducing 7 project modules to 3
+- 📈 **Reduce Maintenance Cost**: Clean up useless backend modules, significantly reduce project maintenance costs
+
+### v2.0.0 (2025-09-24)
+- 🚀 **Official Open Source**: Project officially open sourced
+- ⚡ **High-Speed Traffic Package**: Support high-speed traffic package to help enterprise users upgrade applications quickly
+- 📦 **Multi-Platform Support**: Support Windows/Linux/Mac application upgrade modules
+- 🔧 **Automated Deployment**: Add Tauri/Electron Github Action modules to support automated deployment and upgrade
+
+### v1.x Series
+- 🌱 **Basic Capability Building**: From v1.4.0 to v1.9.0, gradually implement core functions
+- 📱 **Platform Expansion**: Support Android application upgrade, configuration upgrade and other functions
+- 📊 **Data Statistics**: Add application traffic statistics, revenue module, etc.
+- 🌐 **Global Access**: Application download and distribution pages support global access
+
+## Future Plans
+- 🔄 **Continue to Improve Second Development Documentation**: Based on v3.0.0 second development support capability, iteratively improve development documentation
+- 📱 **More Platform Support**: Expand upgrade capabilities for more application platforms
+- 🎯 **Feature Enhancement**: Implement more advanced functions based on the reconstructed admin system
+- 🌍 **International Promotion**: Improve English translation, support more language versions
+
+## Project Update Records
+View the complete project update records: [UpgradeLink Update Records](https://www.toolsetlink.com/upgrade/update-record.html)
+
 ## Contributors
 <a href="https://github.com/toolsetlink/upgradelink/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=toolsetlink/upgradelink" />
