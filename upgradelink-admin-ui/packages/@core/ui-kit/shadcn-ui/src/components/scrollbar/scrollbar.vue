@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { ClassType } from "@vben-core/typings";
+import type { ClassType } from '@vben-core/typings';
 
-import { computed, ref } from "vue";
+import { computed, ref } from 'vue';
 
-import { cn } from "@vben-core/shared/utils";
+import { cn } from '@vben-core/shared/utils';
 
-import { ScrollArea, ScrollBar } from "../../ui";
+import { ScrollArea, ScrollBar } from '../../ui';
 
 interface Props {
   class?: ClassType;
@@ -20,7 +20,7 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  class: "",
+  class: '',
   horizontal: false,
   shadow: false,
   shadowBorder: false,
@@ -54,13 +54,13 @@ const showShadowRight = computed(() => props.shadow && props.shadowRight);
 
 const computedShadowClasses = computed(() => {
   return {
-    "both-shadow":
+    'both-shadow':
       !isAtLeft.value &&
       !isAtRight.value &&
       showShadowLeft.value &&
       showShadowRight.value,
-    "left-shadow": !isAtLeft.value && showShadowLeft.value,
-    "right-shadow": !isAtRight.value && showShadowRight.value,
+    'left-shadow': !isAtLeft.value && showShadowLeft.value,
+    'right-shadow': !isAtRight.value && showShadowRight.value,
   };
 });
 
@@ -81,7 +81,7 @@ function handleScroll(event: Event) {
     Math.abs(scrollLeft) + clientWidth >=
     scrollWidth - ARRIVED_STATE_THRESHOLD_PIXELS;
 
-  emit("scrollAt", {
+  emit('scrollAt', {
     bottom: isAtBottom.value,
     left: isAtLeft.value,
     right: isAtRight.value,
@@ -100,7 +100,7 @@ function handleScroll(event: Event) {
       v-if="showShadowTop"
       :class="{
         'opacity-100': !isAtTop,
-        'border-border border-t': shadowBorder && !isAtTop,
+        'border-t border-border': shadowBorder && !isAtTop,
       }"
       class="scrollbar-top-shadow pointer-events-none absolute top-0 z-10 h-12 w-full opacity-0 transition-opacity duration-300 ease-in-out will-change-[opacity]"
     ></div>
@@ -109,7 +109,7 @@ function handleScroll(event: Event) {
       v-if="showShadowBottom"
       :class="{
         'opacity-100': !isAtTop && !isAtBottom,
-        'border-border border-b': shadowBorder && !isAtTop && !isAtBottom,
+        'border-b border-border': shadowBorder && !isAtTop && !isAtBottom,
       }"
       class="scrollbar-bottom-shadow pointer-events-none absolute bottom-0 z-10 h-12 w-full opacity-0 transition-opacity duration-300 ease-in-out will-change-[opacity]"
     ></div>

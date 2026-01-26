@@ -1,8 +1,8 @@
-import type { RouteRecordNormalized } from "vue-router";
+import type { RouteRecordNormalized } from 'vue-router';
 
-import { useRouter } from "vue-router";
+import { useRouter } from 'vue-router';
 
-import { isHttpUrl, openRouteInNewWindow, openWindow } from "@vben/utils";
+import { isHttpUrl, openRouteInNewWindow, openWindow } from '@vben/utils';
 
 function useNavigation() {
   const router = useRouter();
@@ -43,13 +43,13 @@ function useNavigation() {
       const { openInNewWindow = false, query = {}, link } = route?.meta ?? {};
 
       // 检查是否有外链
-      if (link && typeof link === "string") {
-        openWindow(link, { target: "_blank" });
+      if (link && typeof link === 'string') {
+        openWindow(link, { target: '_blank' });
         return;
       }
 
       if (isHttpUrl(path)) {
-        openWindow(path, { target: "_blank" });
+        openWindow(path, { target: '_blank' });
       } else if (openInNewWindow) {
         openRouteInNewWindow(resolveHref(path));
       } else {
@@ -59,7 +59,7 @@ function useNavigation() {
         });
       }
     } catch (error) {
-      console.error("Navigation failed:", error);
+      console.error('Navigation failed:', error);
       throw error;
     }
   };

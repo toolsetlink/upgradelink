@@ -1,0 +1,1 @@
+import{ba as t}from"./bootstrap-BKq-8Ur9.js";const a=e=>t.post("/upgrade_file/list",e),p=e=>t.post("/upgrade_file/create",e),s=e=>t.post("/upgrade_file/update",e),d=e=>t.post("/upgrade_file/delete",e);export{p as c,d,a as g,s as u};

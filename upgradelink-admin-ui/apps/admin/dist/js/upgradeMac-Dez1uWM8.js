@@ -1,0 +1,1 @@
+import{ba as a}from"./bootstrap-BKq-8Ur9.js";const r=e=>a.post("/upgrade_mac/list",e),p=e=>a.post("/upgrade_mac/create",e),s=e=>a.post("/upgrade_mac/update",e),c=e=>a.post("/upgrade_mac/delete",e);export{p as c,c as d,r as g,s as u};

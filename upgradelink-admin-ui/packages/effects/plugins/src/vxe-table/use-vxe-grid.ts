@@ -1,20 +1,20 @@
-import type { VxeGridSlots, VxeGridSlotTypes } from "vxe-table";
+import type { VxeGridSlots, VxeGridSlotTypes } from 'vxe-table';
 
-import type { SlotsType } from "vue";
+import type { SlotsType } from 'vue';
 
-import type { BaseFormComponentType } from "@vben-core/form-ui";
+import type { BaseFormComponentType } from '@vben-core/form-ui';
 
-import type { ExtendedVxeGridApi, VxeGridProps } from "./types";
+import type { ExtendedVxeGridApi, VxeGridProps } from './types';
 
-import { defineComponent, h, onBeforeUnmount } from "vue";
+import { defineComponent, h, onBeforeUnmount } from 'vue';
 
-import { useStore } from "@vben-core/shared/store";
+import { useStore } from '@vben-core/shared/store';
 
-import { VxeGridApi } from "./api";
-import VxeGrid from "./use-vxe-grid.vue";
+import { VxeGridApi } from './api';
+import VxeGrid from './use-vxe-grid.vue';
 
 type FilteredSlots<T> = {
-  [K in keyof VxeGridSlots<T> as K extends "form"
+  [K in keyof VxeGridSlots<T> as K extends 'form'
     ? never
     : K]: VxeGridSlots<T>[K];
 };
@@ -39,16 +39,16 @@ export function useVbenVxeGrid<
       return () => h(VxeGrid, { ...props, ...attrs, api: extendedApi }, slots);
     },
     {
-      name: "VbenVxeGrid",
+      name: 'VbenVxeGrid',
       inheritAttrs: false,
       slots: Object as SlotsType<
         {
           // 表格标题
-          "table-title": undefined;
+          'table-title': undefined;
           // 工具栏左侧部分
-          "toolbar-actions": VxeGridSlotTypes.DefaultSlotParams<T>;
+          'toolbar-actions': VxeGridSlotTypes.DefaultSlotParams<T>;
           // 工具栏右侧部分
-          "toolbar-tools": VxeGridSlotTypes.DefaultSlotParams<T>;
+          'toolbar-tools': VxeGridSlotTypes.DefaultSlotParams<T>;
         } & FilteredSlots<T>
       >,
     },

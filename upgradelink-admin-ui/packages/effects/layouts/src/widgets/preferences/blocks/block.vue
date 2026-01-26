@@ -4,11 +4,11 @@ interface Props {
 }
 
 defineOptions({
-  name: "PreferenceBlock",
+  name: 'PreferenceBlock',
 });
 
 withDefaults(defineProps<Props>(), {
-  title: "",
+  title: '',
 });
 </script>
 

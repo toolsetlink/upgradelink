@@ -1,13 +1,13 @@
-import type { DrawerState } from "../drawer";
+import type { DrawerState } from '../drawer';
 
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { DrawerApi } from "../drawer-api";
+import { DrawerApi } from '../drawer-api';
 
 // 模拟 Store 类
-vi.mock("@vben-core/shared/store", () => {
+vi.mock('@vben-core/shared/store', () => {
   return {
-    isFunction: (fn: any) => typeof fn === "function",
+    isFunction: (fn: any) => typeof fn === 'function',
     Store: class {
       get state() {
         return this._state;
@@ -33,7 +33,7 @@ vi.mock("@vben-core/shared/store", () => {
   };
 });
 
-describe("drawerApi", () => {
+describe('drawerApi', () => {
   let drawerApi: DrawerApi;
   let drawerState: DrawerState;
 
@@ -42,23 +42,23 @@ describe("drawerApi", () => {
     drawerState = drawerApi.store.state;
   });
 
-  it("should initialize with default state", () => {
+  it('should initialize with default state', () => {
     expect(drawerState.isOpen).toBe(false);
     expect(drawerState.cancelText).toBe(undefined);
     expect(drawerState.confirmText).toBe(undefined);
   });
 
-  it("should open the drawer", () => {
+  it('should open the drawer', () => {
     drawerApi.open();
     expect(drawerApi.store.state.isOpen).toBe(true);
   });
 
-  it("should close the drawer if onBeforeClose allows it", () => {
+  it('should close the drawer if onBeforeClose allows it', () => {
     drawerApi.close();
     expect(drawerApi.store.state.isOpen).toBe(false);
   });
 
-  it("should not close the drawer if onBeforeClose returns false", () => {
+  it('should not close the drawer if onBeforeClose returns false', () => {
     const onBeforeClose = vi.fn(() => false);
     const drawerApiWithHook = new DrawerApi({ onBeforeClose });
     drawerApiWithHook.open();
@@ -67,7 +67,7 @@ describe("drawerApi", () => {
     expect(onBeforeClose).toHaveBeenCalled();
   });
 
-  it("should trigger onCancel and keep drawer open if onCancel is provided", () => {
+  it('should trigger onCancel and keep drawer open if onCancel is provided', () => {
     const onCancel = vi.fn();
     const drawerApiWithHook = new DrawerApi({ onCancel });
     drawerApiWithHook.open();
@@ -76,37 +76,37 @@ describe("drawerApi", () => {
     expect(drawerApiWithHook.store.state.isOpen).toBe(true); // 关闭逻辑不在 onCancel 内
   });
 
-  it("should update shared data correctly", () => {
-    const testData = { key: "value" };
+  it('should update shared data correctly', () => {
+    const testData = { key: 'value' };
     drawerApi.setData(testData);
     expect(drawerApi.getData()).toEqual(testData);
   });
 
-  it("should set state correctly using an object", () => {
-    drawerApi.setState({ title: "New Title" });
-    expect(drawerApi.store.state.title).toBe("New Title");
+  it('should set state correctly using an object', () => {
+    drawerApi.setState({ title: 'New Title' });
+    expect(drawerApi.store.state.title).toBe('New Title');
   });
 
-  it("should set state correctly using a function", () => {
-    drawerApi.setState((prev) => ({ ...prev, confirmText: "Yes" }));
-    expect(drawerApi.store.state.confirmText).toBe("Yes");
+  it('should set state correctly using a function', () => {
+    drawerApi.setState((prev) => ({ ...prev, confirmText: 'Yes' }));
+    expect(drawerApi.store.state.confirmText).toBe('Yes');
   });
 
-  it("should call onOpenChange when state changes", () => {
+  it('should call onOpenChange when state changes', () => {
     const onOpenChange = vi.fn();
     const drawerApiWithHook = new DrawerApi({ onOpenChange });
     drawerApiWithHook.open();
     expect(onOpenChange).toHaveBeenCalledWith(true);
   });
 
-  it("should call onClosed callback when provided", () => {
+  it('should call onClosed callback when provided', () => {
     const onClosed = vi.fn();
     const drawerApiWithHook = new DrawerApi({ onClosed });
     drawerApiWithHook.onClosed();
     expect(onClosed).toHaveBeenCalled();
   });
 
-  it("should call onOpened callback when provided", () => {
+  it('should call onOpened callback when provided', () => {
     const onOpened = vi.fn();
     const drawerApiWithHook = new DrawerApi({ onOpened });
     drawerApiWithHook.open();

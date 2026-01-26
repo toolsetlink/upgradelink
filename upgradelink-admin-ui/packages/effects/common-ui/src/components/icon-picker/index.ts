@@ -1,1 +1,1 @@
-export { default as IconPicker } from "./icon-picker.vue";
+export { default as IconPicker } from './icon-picker.vue';

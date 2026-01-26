@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import type { BreadcrumbProps } from "./types";
+import type { BreadcrumbProps } from './types';
 
-import { ChevronDown } from "@vben-core/icons";
+import { ChevronDown } from '@vben-core/icons';
 
 import {
   Breadcrumb,
@@ -14,12 +14,12 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "../../ui";
-import { VbenIcon } from "../icon";
+} from '../../ui';
+import { VbenIcon } from '../icon';
 
 interface Props extends BreadcrumbProps {}
 
-defineOptions({ name: "Breadcrumb" });
+defineOptions({ name: 'Breadcrumb' });
 withDefaults(defineProps<Props>(), {
   showIcon: false,
 });
@@ -30,7 +30,7 @@ function handleClick(path?: string) {
   if (!path) {
     return;
   }
-  emit("select", path);
+  emit('select', path);
 }
 </script>
 <template>

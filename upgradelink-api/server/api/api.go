@@ -4,7 +4,6 @@ import (
 	"flag"
 	"fmt"
 
-	"upgradelink-api/server/api/internal/common/osx"
 	"upgradelink-api/server/api/internal/config"
 	"upgradelink-api/server/api/internal/handler"
 	"upgradelink-api/server/api/internal/svc"
@@ -13,12 +12,10 @@ import (
 	"github.com/zeromicro/go-zero/rest"
 )
 
-var configFile = flag.String("f", "./etc/api.yaml", "the config file")
+var configFile = flag.String("f", "./etc/admin.yaml", "the config file")
 
 func main() {
 	flag.Parse()
-
-	fmt.Println("osx.Env(): ", osx.Env())
 
 	var c config.Config
 	conf.MustLoad(*configFile, &c)

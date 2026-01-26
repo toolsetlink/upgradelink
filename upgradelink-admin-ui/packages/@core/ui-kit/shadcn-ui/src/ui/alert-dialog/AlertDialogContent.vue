@@ -1,22 +1,19 @@
-<script lang="ts" setup>
-import type {
-  AlertDialogContentEmits,
-  AlertDialogContentProps,
-} from "radix-vue";
+<script setup lang="ts">
+import type { AlertDialogContentEmits, AlertDialogContentProps } from 'reka-ui';
 
-import type { ClassType } from "@vben-core/typings";
+import type { ClassType } from '@vben-core/typings';
 
-import { computed, ref } from "vue";
+import { computed, ref } from 'vue';
 
-import { cn } from "@vben-core/shared/utils";
+import { cn } from '@vben-core/shared/utils';
 
 import {
   AlertDialogContent,
   AlertDialogPortal,
   useForwardPropsEmits,
-} from "radix-vue";
+} from 'reka-ui';
 
-import AlertDialogOverlay from "./AlertDialogOverlay.vue";
+import AlertDialogOverlay from './AlertDialogOverlay.vue';
 
 const props = withDefaults(
   defineProps<
@@ -48,9 +45,9 @@ function onAnimationEnd(event: AnimationEvent) {
   // 只有在 contentRef 的动画结束时才触发 opened/closed 事件
   if (event.target === contentRef.value?.$el) {
     if (props.open) {
-      emits("opened");
+      emits('opened');
     } else {
-      emits("closed");
+      emits('closed');
     }
   }
 }
@@ -61,7 +58,7 @@ defineExpose({
 
 <template>
   <AlertDialogPortal>
-    <Transition appear name="fade">
+    <Transition name="fade" appear>
       <AlertDialogOverlay
         v-if="open && modal"
         :style="{
@@ -75,15 +72,18 @@ defineExpose({
     </Transition>
     <AlertDialogContent
       ref="contentRef"
+      :style="{ ...(zIndex ? { zIndex } : {}), position: 'fixed' }"
+      @animationend="onAnimationEnd"
+      v-bind="forwarded"
       :class="
         cn(
           'z-popup bg-background p-6 shadow-lg outline-none sm:rounded-xl',
           'data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95',
           'data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95',
           {
-            'data-[state=open]:slide-in-from-top-[48%] data-[state=closed]:slide-out-to-top-[48%]':
+            'data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-top-[48%]':
               !centered,
-            'data-[state=open]:slide-in-from-top-[98%] data-[state=closed]:slide-out-to-top-[148%]':
+            'data-[state=closed]:slide-out-to-top-[148%] data-[state=open]:slide-in-from-top-[98%]':
               centered,
             'top-[10vh]': !centered,
             'top-1/2 -translate-y-1/2': centered,
@@ -91,9 +91,6 @@ defineExpose({
           props.class,
         )
       "
-      :style="{ ...(zIndex ? { zIndex } : {}), position: 'fixed' }"
-      v-bind="forwarded"
-      @animationend="onAnimationEnd"
     >
       <slot></slot>
     </AlertDialogContent>

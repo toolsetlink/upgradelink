@@ -1,15 +1,15 @@
 <script lang="ts" setup>
-import { cn } from "@vben-core/shared/utils";
+import { cn } from '@vben-core/shared/utils';
 
-defineOptions({ name: "VbenButtonGroup" });
+defineOptions({ name: 'VbenButtonGroup' });
 
 withDefaults(
   defineProps<{
     border?: boolean;
     gap?: number;
-    size?: "large" | "middle" | "small";
+    size?: 'large' | 'middle' | 'small';
   }>(),
-  { border: false, gap: 0, size: "middle" },
+  { border: false, gap: 0, size: 'middle' },
 );
 </script>
 <template>

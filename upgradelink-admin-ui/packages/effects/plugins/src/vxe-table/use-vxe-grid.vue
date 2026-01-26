@@ -6,13 +6,13 @@ import type {
   VxeGridPropTypes,
   VxeGridProps as VxeTableGridProps,
   VxeToolbarPropTypes,
-} from "vxe-table";
+} from 'vxe-table';
 
-import type { SetupContext } from "vue";
+import type { SetupContext } from 'vue';
 
-import type { VbenFormProps } from "@vben-core/form-ui";
+import type { VbenFormProps } from '@vben-core/form-ui';
 
-import type { ExtendedVxeGridApi, VxeGridProps } from "./types";
+import type { ExtendedVxeGridApi, VxeGridProps } from './types';
 
 import {
   computed,
@@ -23,31 +23,31 @@ import {
   useSlots,
   useTemplateRef,
   watch,
-} from "vue";
+} from 'vue';
 
-import { usePriorityValues } from "@vben/hooks";
-import { EmptyIcon } from "@vben/icons";
-import { $t } from "@vben/locales";
-import { usePreferences } from "@vben/preferences";
+import { usePriorityValues } from '@vben/hooks';
+import { EmptyIcon } from '@vben/icons';
+import { $t } from '@vben/locales';
+import { usePreferences } from '@vben/preferences';
 import {
   cloneDeep,
   cn,
   isBoolean,
   isEqual,
   mergeWithArrayOverride,
-} from "@vben/utils";
+} from '@vben/utils';
 
-import { VbenHelpTooltip, VbenLoading } from "@vben-core/shadcn-ui";
+import { VbenHelpTooltip, VbenLoading } from '@vben-core/shadcn-ui';
 
-import { VxeButton } from "vxe-pc-ui";
-import { VxeGrid, VxeUI } from "vxe-table";
+import { VxeButton } from 'vxe-pc-ui';
+import { VxeGrid, VxeUI } from 'vxe-table';
 
-import { extendProxyOptions } from "./extends";
-import { useTableForm } from "./init";
+import { extendProxyOptions } from './extends';
+import { useTableForm } from './init';
 
-import "vxe-table/styles/cssvar.scss";
-import "vxe-pc-ui/styles/cssvar.scss";
-import "./style.css";
+import 'vxe-table/styles/cssvar.scss';
+import 'vxe-pc-ui/styles/cssvar.scss';
+import './style.css';
 
 interface Props extends VxeGridProps {
   api: ExtendedVxeGridApi;
@@ -55,13 +55,13 @@ interface Props extends VxeGridProps {
 
 const props = withDefaults(defineProps<Props>(), {});
 
-const FORM_SLOT_PREFIX = "form-";
+const FORM_SLOT_PREFIX = 'form-';
 
-const TOOLBAR_ACTIONS = "toolbar-actions";
-const TOOLBAR_TOOLS = "toolbar-tools";
-const TABLE_TITLE = "table-title";
+const TOOLBAR_ACTIONS = 'toolbar-actions';
+const TOOLBAR_TOOLS = 'toolbar-tools';
+const TABLE_TITLE = 'table-title';
 
-const gridRef = useTemplateRef<VxeGridInstance>("gridRef");
+const gridRef = useTemplateRef<VxeGridInstance>('gridRef');
 
 const state = props.api?.useStore?.();
 
@@ -98,18 +98,12 @@ const separatorBg = computed(() => {
     ? undefined
     : separator.value.backgroundColor;
 });
-const slots: SetupContext["slots"] = useSlots();
+const slots: SetupContext['slots'] = useSlots();
 
 const [Form, formApi] = useTableForm({
   compact: true,
   handleSubmit: async () => {
     const formValues = await formApi.getValues();
-    const keys = Object.keys(formValues);
-    keys.forEach((key) => {
-      if (formValues[key] === "") {
-        formValues[key] = undefined;
-      }
-    });
     formApi.setLatestSubmissionValues(toRaw(formValues));
     props.api.reload(formValues);
   },
@@ -125,14 +119,14 @@ const [Form, formApi] = useTableForm({
   },
   commonConfig: {
     componentProps: {
-      class: "w-full",
+      class: 'w-full',
     },
   },
   showCollapseButton: true,
   submitButtonOptions: {
-    content: computed(() => $t("common.search")),
+    content: computed(() => $t('common.search')),
   },
-  wrapperClass: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3",
+  wrapperClass: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
 });
 
 const showTableTitle = computed(() => {
@@ -151,13 +145,13 @@ const toolbarOptions = computed(() => {
   const slotActions = slots[TOOLBAR_ACTIONS]?.();
   const slotTools = slots[TOOLBAR_TOOLS]?.();
   const searchBtn: VxeToolbarPropTypes.ToolConfig = {
-    code: "search",
-    icon: "vxe-icon-search",
+    code: 'search',
+    icon: 'vxe-icon-search',
     circle: true,
-    status: showSearchForm.value ? "primary" : undefined,
+    status: showSearchForm.value ? 'primary' : undefined,
     title: showSearchForm.value
-      ? $t("common.hideSearchPanel")
-      : $t("common.showSearchPanel"),
+      ? $t('common.hideSearchPanel')
+      : $t('common.showSearchPanel'),
   };
   // 将搜索按钮合并到用户配置的toolbarConfig.tools中
   const toolbarConfig: VxeGridPropTypes.ToolbarConfig = {
@@ -206,18 +200,18 @@ const options = computed(() => {
 
   if (mergedOptions.pagerConfig) {
     const mobileLayouts = [
-      "PrevJump",
-      "PrevPage",
-      "Number",
-      "NextPage",
-      "NextJump",
+      'PrevJump',
+      'PrevPage',
+      'Number',
+      'NextPage',
+      'NextJump',
     ] as any;
     const layouts = [
-      "Total",
-      "Sizes",
-      "Home",
+      'Total',
+      'Sizes',
+      'Home',
       ...mobileLayouts,
-      "End",
+      'End',
     ] as readonly string[];
     mergedOptions.pagerConfig = mergeWithArrayOverride(
       {},
@@ -226,9 +220,9 @@ const options = computed(() => {
         pageSize: 20,
         background: true,
         pageSizes: [10, 20, 30, 50, 100, 200],
-        className: "mt-2 w-full",
+        className: 'mt-2 w-full',
         layouts: isMobile.value ? mobileLayouts : layouts,
-        size: "mini" as const,
+        size: 'mini' as const,
       },
     );
   }
@@ -239,11 +233,11 @@ const options = computed(() => {
 });
 
 function onToolbarToolClick(event: VxeGridDefines.ToolbarToolClickEventParams) {
-  if (event.code === "search") {
+  if (event.code === 'search') {
     onSearchBtnClick();
   }
   (
-    gridEvents.value?.toolbarToolClick as VxeGridListeners["toolbarToolClick"]
+    gridEvents.value?.toolbarToolClick as VxeGridListeners['toolbarToolClick']
   )?.(event);
 }
 
@@ -263,7 +257,7 @@ const delegatedSlots = computed(() => {
 
   for (const key of Object.keys(slots)) {
     if (
-      !["empty", "form", "loading", TOOLBAR_ACTIONS, TOOLBAR_TOOLS].includes(
+      !['empty', 'form', 'loading', TOOLBAR_ACTIONS, TOOLBAR_TOOLS].includes(
         key,
       )
     ) {
@@ -281,7 +275,7 @@ const delegatedFormSlots = computed(() => {
       resultSlots.push(key);
     }
   }
-  return resultSlots.map((key) => key.replace(FORM_SLOT_PREFIX, ""));
+  return resultSlots.map((key) => key.replace(FORM_SLOT_PREFIX, ''));
 });
 
 const showDefaultEmpty = computed(() => {
@@ -306,7 +300,7 @@ async function init() {
   const enableProxyConfig = options.value.proxyConfig?.enabled;
   if (enableProxyConfig && autoLoad) {
     props.api.grid.commitProxy?.(
-      "query",
+      'query',
       formOptions.value ? ((await formApi.getValues()) ?? {}) : {},
     );
     // props.api.reload(formApi.form?.values ?? {});
@@ -318,7 +312,7 @@ async function init() {
   // 因为第一次初始化之后会把defaultGridOptions和gridOptions合并后缓存进State
   if (formConfig && formConfig.enabled) {
     console.warn(
-      "[Vben Vxe Table]: The formConfig in the grid is not supported, please use the `formOptions` props",
+      '[Vben Vxe Table]: The formConfig in the grid is not supported, please use the `formOptions` props',
     );
   }
   props.api?.setState?.({ gridOptions: defaultGridOptions });
@@ -477,7 +471,7 @@ onUnmounted(() => {
       <template v-if="showDefaultEmpty" #empty>
         <slot name="empty">
           <EmptyIcon class="mx-auto" />
-          <div class="mt-2">{{ $t("common.noData") }}</div>
+          <div class="mt-2">{{ $t('common.noData') }}</div>
         </slot>
       </template>
     </VxeGrid>

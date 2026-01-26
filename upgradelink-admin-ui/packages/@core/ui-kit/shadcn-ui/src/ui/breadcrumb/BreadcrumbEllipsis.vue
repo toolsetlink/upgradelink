@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { cn } from "@vben-core/shared/utils";
+import { cn } from '@vben-core/shared/utils';
 
-import { MoreHorizontal } from "lucide-vue-next";
+import { MoreHorizontal } from 'lucide-vue-next';
 
 const props = defineProps<{
   class?: any;

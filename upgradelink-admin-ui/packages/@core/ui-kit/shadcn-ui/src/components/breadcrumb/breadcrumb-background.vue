@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import type { BreadcrumbProps } from "./types";
+import type { BreadcrumbProps } from './types';
 
-import { VbenIcon } from "../icon";
+import { VbenIcon } from '../icon';
 
 interface Props extends BreadcrumbProps {}
 
-defineOptions({ name: "Breadcrumb" });
+defineOptions({ name: 'Breadcrumb' });
 const { breadcrumbs, showIcon } = defineProps<Props>();
 
 const emit = defineEmits<{ select: [string] }>();
@@ -14,7 +14,7 @@ function handleClick(index: number, path?: string) {
   if (!path || index === breadcrumbs.length - 1) {
     return;
   }
-  emit("select", path);
+  emit('select', path);
 }
 </script>
 <template>
@@ -37,7 +37,7 @@ function handleClick(index: number, path?: string) {
               />
               <span
                 :class="{
-                  'text-foreground font-normal':
+                  'font-normal text-foreground':
                     index === breadcrumbs.length - 1,
                 }"
                 >{{ item.title }}
@@ -55,7 +55,7 @@ li {
 }
 
 li a {
-  @apply text-muted-foreground bg-accent relative mr-9 flex h-7 items-center py-0 pl-[5px] pr-2 text-[13px];
+  @apply relative mr-9 flex h-7 items-center bg-accent py-0 pl-[5px] pr-2 text-[13px] text-muted-foreground;
 }
 
 li a > span {
@@ -84,7 +84,7 @@ li:last-child a::after {
 
 li a::before,
 li a::after {
-  @apply border-accent absolute top-0 h-0 w-0 border-[.875rem] border-solid content-[''];
+  @apply absolute top-0 h-0 w-0 border-[.875rem] border-solid border-accent content-[''];
 }
 
 li a::before {
@@ -92,7 +92,7 @@ li a::before {
 }
 
 li a::after {
-  @apply border-l-accent left-full border-transparent;
+  @apply left-full border-transparent border-l-accent;
 }
 
 li:not(:last-child) a:hover {

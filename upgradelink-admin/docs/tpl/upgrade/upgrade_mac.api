@@ -1,0 +1,107 @@
+import "../base.api"
+
+type (
+    // The data of upgrade mac information | UpgradeMac信息
+    UpgradeMacInfo {
+        Id        *int    `json:"id,optional"`
+
+        // 应用唯一标识
+        Key  *string `json:"key,optional"`
+
+        // 应用名称
+        Name  *string `json:"name,optional"`
+
+        // 应用包名
+        PackageName  *string `json:"packageName,optional"`
+
+        // 描述信息
+        Description  *string `json:"description,optional"`
+
+        // 是否删除 0：正常；1：已删除
+        IsDel  *int32 `json:"isDel,optional"`
+
+        // 创建时间
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+        // The response data of upgrade mac list | UpgradeMac信息列表数据
+    UpgradeMacListResp {
+        BaseDataInfo
+
+        // The upgrade mac list data | UpgradeMac信息列表数据
+        Data UpgradeMacListInfo `json:"data"`
+    }
+
+        // The upgrade mac list data | UpgradeMac信息列表数据
+    UpgradeMacListInfo {
+        BaseListInfo
+
+        // The upgrade mac list data | UpgradeMac信息列表数据
+        Data  []UpgradeMacInfo  `json:"data"`
+    }
+
+        // Get upgrade mac list request params | UpgradeMac信息列表请求参数
+    UpgradeMacListReq {
+        PageInfo
+
+        // 应用唯一标识
+        Key  *string `json:"key,optional"`
+
+        // 应用名称
+        Name  *string `json:"name,optional"`
+
+        // 应用包名
+        PackageName  *string `json:"packageName,optional"`
+
+        // 描述信息
+        Description  *string `json:"description,optional"`
+
+        // 是否删除 0：正常；1：已删除
+        IsDel  *int32 `json:"isDel,optional"`
+
+        // 创建时间
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+        // The upgrade mac information response | UpgradeMac信息返回体
+    UpgradeMacInfoResp {
+        BaseDataInfo
+
+        // upgrade mac information | UpgradeMac信息数据
+        Data UpgradeMacInfo `json:"data"`
+    }
+)
+
+@server(
+    jwt: Auth
+    group: upgrade_mac
+    middleware: Authority, CompanyData
+)
+
+service Api {
+    // Create upgrade mac information | 创建UpgradeMac信息
+    @handler createUpgradeMac
+    post /upgrade_mac/create (UpgradeMacInfo) returns (BaseMsgResp)
+
+    // Update upgrade mac information | 更新UpgradeMac信息
+    @handler updateUpgradeMac
+    post /upgrade_mac/update (UpgradeMacInfo) returns (BaseMsgResp)
+
+    // Delete upgrade mac information | 删除UpgradeMac信息
+    @handler deleteUpgradeMac
+    post /upgrade_mac/delete (IDsReq) returns (BaseMsgResp)
+
+    // Get upgrade mac list | 获取UpgradeMac信息列表
+    @handler getUpgradeMacList
+    post /upgrade_mac/list (UpgradeMacListReq) returns (UpgradeMacListResp)
+
+    // Get upgrade mac by ID | 通过ID获取UpgradeMac信息
+    @handler getUpgradeMacById
+    post /upgrade_mac (IDReq) returns (UpgradeMacInfoResp)
+}

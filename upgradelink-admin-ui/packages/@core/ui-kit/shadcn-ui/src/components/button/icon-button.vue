@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import type { ButtonVariants } from "../../ui";
-import type { VbenButtonProps } from "./button";
+import type { ButtonVariants } from '../../ui';
+import type { VbenButtonProps } from './button';
 
-import { computed, useSlots } from "vue";
+import { computed, useSlots } from 'vue';
 
-import { cn } from "@vben-core/shared/utils";
+import { cn } from '@vben-core/shared/utils';
 
-import { VbenTooltip } from "../tooltip";
-import VbenButton from "./button.vue";
+import { VbenTooltip } from '../tooltip';
+import VbenButton from './button.vue';
 
 interface Props extends VbenButtonProps {
   class?: any;
@@ -15,7 +15,7 @@ interface Props extends VbenButtonProps {
   onClick?: () => void;
   tooltip?: string;
   tooltipDelayDuration?: number;
-  tooltipSide?: "bottom" | "left" | "right" | "top";
+  tooltipSide?: 'bottom' | 'left' | 'right' | 'top';
   variant?: ButtonVariants;
 }
 
@@ -23,8 +23,8 @@ const props = withDefaults(defineProps<Props>(), {
   disabled: false,
   onClick: () => {},
   tooltipDelayDuration: 200,
-  tooltipSide: "bottom",
-  variant: "icon",
+  tooltipSide: 'bottom',
+  variant: 'icon',
 });
 
 const slots = useSlots();

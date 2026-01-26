@@ -1,6 +1,6 @@
-import type { CSSProperties } from "vue";
+import type { CSSProperties } from 'vue';
 
-import type { ClassType } from "@vben/types";
+import type { ClassType } from '@vben/types';
 
 export interface CaptchaData {
   /**
@@ -54,8 +54,7 @@ export interface PointSelectionCaptchaCardProps {
   width?: number | string;
 }
 
-export interface PointSelectionCaptchaProps
-  extends PointSelectionCaptchaCardProps {
+export interface PointSelectionCaptchaProps extends PointSelectionCaptchaCardProps {
   /**
    * 是否展示确定按钮
    * @default false

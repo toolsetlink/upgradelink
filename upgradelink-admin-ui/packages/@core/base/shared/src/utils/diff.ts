@@ -69,8 +69,8 @@ function diff<T extends Record<string, any>>(obj1: T, obj2: T): DiffResult<T> {
     }
 
     if (
-      typeof o1 === "object" &&
-      typeof o2 === "object" &&
+      typeof o1 === 'object' &&
+      typeof o2 === 'object' &&
       o1 !== null &&
       o2 !== null
     ) {

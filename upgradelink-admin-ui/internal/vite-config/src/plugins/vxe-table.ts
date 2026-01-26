@@ -1,16 +1,16 @@
-import type { PluginOption } from "vite";
+import type { PluginOption } from 'vite';
 
-import { lazyImport, VxeResolver } from "vite-plugin-lazy-import";
+import { lazyImport, VxeResolver } from 'vite-plugin-lazy-import';
 
 async function viteVxeTableImportsPlugin(): Promise<PluginOption> {
   return [
     lazyImport({
       resolvers: [
         VxeResolver({
-          libraryName: "vxe-table",
+          libraryName: 'vxe-table',
         }),
         VxeResolver({
-          libraryName: "vxe-pc-ui",
+          libraryName: 'vxe-pc-ui',
         }),
       ],
     }),

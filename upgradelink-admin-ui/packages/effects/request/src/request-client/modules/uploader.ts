@@ -1,7 +1,7 @@
-import type { RequestClient } from "../request-client";
-import type { RequestClientConfig } from "../types";
+import type { RequestClient } from '../request-client';
+import type { RequestClientConfig } from '../types';
 
-import { isUndefined } from "@vben/utils";
+import { isUndefined } from '@vben/utils';
 
 class FileUploader {
   private client: RequestClient;
@@ -30,7 +30,7 @@ class FileUploader {
     const finalConfig: RequestClientConfig = {
       ...config,
       headers: {
-        "Content-Type": "multipart/form-data",
+        'Content-Type': 'multipart/form-data',
         ...config?.headers,
       },
     };

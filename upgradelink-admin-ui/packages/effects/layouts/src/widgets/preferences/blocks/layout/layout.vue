@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import type { Component } from "vue";
+import type { Component } from 'vue';
 
-import type { LayoutType } from "@vben/types";
+import type { LayoutType } from '@vben/types';
 
-import { computed } from "vue";
+import { computed } from 'vue';
 
-import { CircleHelp } from "@vben/icons";
-import { $t } from "@vben/locales";
+import { CircleHelp } from '@vben/icons';
+import { $t } from '@vben/locales';
 
-import { VbenTooltip } from "@vben-core/shadcn-ui";
+import { VbenTooltip } from '@vben-core/shadcn-ui';
 
 import {
   FullContent,
@@ -18,7 +18,7 @@ import {
   MixedNav,
   SidebarMixedNav,
   SidebarNav,
-} from "../../icons";
+} from '../../icons';
 
 interface PresetItem {
   name: string;
@@ -27,61 +27,61 @@ interface PresetItem {
 }
 
 defineOptions({
-  name: "PreferenceLayout",
+  name: 'PreferenceLayout',
 });
 
-const modelValue = defineModel<LayoutType>({ default: "sidebar-nav" });
+const modelValue = defineModel<LayoutType>({ default: 'sidebar-nav' });
 
 const components: Record<LayoutType, Component> = {
-  "full-content": FullContent,
-  "header-nav": HeaderNav,
-  "mixed-nav": MixedNav,
-  "sidebar-mixed-nav": SidebarMixedNav,
-  "sidebar-nav": SidebarNav,
-  "header-mixed-nav": HeaderMixedNav,
-  "header-sidebar-nav": HeaderSidebarNav,
+  'full-content': FullContent,
+  'header-nav': HeaderNav,
+  'mixed-nav': MixedNav,
+  'sidebar-mixed-nav': SidebarMixedNav,
+  'sidebar-nav': SidebarNav,
+  'header-mixed-nav': HeaderMixedNav,
+  'header-sidebar-nav': HeaderSidebarNav,
 };
 
 const PRESET = computed((): PresetItem[] => [
   {
-    name: $t("preferences.vertical"),
-    tip: $t("preferences.verticalTip"),
-    type: "sidebar-nav",
+    name: $t('preferences.vertical'),
+    tip: $t('preferences.verticalTip'),
+    type: 'sidebar-nav',
   },
   {
-    name: $t("preferences.twoColumn"),
-    tip: $t("preferences.twoColumnTip"),
-    type: "sidebar-mixed-nav",
+    name: $t('preferences.twoColumn'),
+    tip: $t('preferences.twoColumnTip'),
+    type: 'sidebar-mixed-nav',
   },
   {
-    name: $t("preferences.horizontal"),
-    tip: $t("preferences.horizontalTip"),
-    type: "header-nav",
+    name: $t('preferences.horizontal'),
+    tip: $t('preferences.horizontalTip'),
+    type: 'header-nav',
   },
   {
-    name: $t("preferences.headerSidebarNav"),
-    tip: $t("preferences.headerSidebarNavTip"),
-    type: "header-sidebar-nav",
+    name: $t('preferences.headerSidebarNav'),
+    tip: $t('preferences.headerSidebarNavTip'),
+    type: 'header-sidebar-nav',
   },
   {
-    name: $t("preferences.mixedMenu"),
-    tip: $t("preferences.mixedMenuTip"),
-    type: "mixed-nav",
+    name: $t('preferences.mixedMenu'),
+    tip: $t('preferences.mixedMenuTip'),
+    type: 'mixed-nav',
   },
   {
-    name: $t("preferences.headerTwoColumn"),
-    tip: $t("preferences.headerTwoColumnTip"),
-    type: "header-mixed-nav",
+    name: $t('preferences.headerTwoColumn'),
+    tip: $t('preferences.headerTwoColumnTip'),
+    type: 'header-mixed-nav',
   },
   {
-    name: $t("preferences.fullContent"),
-    tip: $t("preferences.fullContentTip"),
-    type: "full-content",
+    name: $t('preferences.fullContent'),
+    tip: $t('preferences.fullContentTip'),
+    type: 'full-content',
   },
 ]);
 
 function activeClass(theme: string): string[] {
-  return theme === modelValue.value ? ["outline-box-active"] : [];
+  return theme === modelValue.value ? ['outline-box-active'] : [];
 }
 </script>
 

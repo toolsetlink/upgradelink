@@ -1,30 +1,30 @@
-import type { Router, RouteRecordRaw } from "vue-router";
+import type { Router, RouteRecordRaw } from 'vue-router';
 
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHistory } from 'vue-router';
 
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it, vi } from 'vitest';
 
-import { generateMenus } from "../generate-menus";
+import { generateMenus } from '../generate-menus';
 
 // Nested route setup to test child inclusion and hideChildrenInMenu functionality
 
-describe("generateMenus", () => {
+describe('generateMenus', () => {
   // 模拟路由数据
   const mockRoutes = [
     {
-      meta: { icon: "home-icon", title: "首页" },
-      name: "home",
-      path: "/home",
+      meta: { icon: 'home-icon', title: '首页' },
+      name: 'home',
+      path: '/home',
     },
     {
-      meta: { hideChildrenInMenu: true, icon: "about-icon", title: "关于" },
-      name: "about",
-      path: "/about",
+      meta: { hideChildrenInMenu: true, icon: 'about-icon', title: '关于' },
+      name: 'about',
+      path: '/about',
       children: [
         {
-          path: "team",
-          name: "team",
-          meta: { icon: "team-icon", title: "团队" },
+          path: 'team',
+          name: 'team',
+          meta: { icon: 'team-icon', title: '团队' },
         },
       ],
     },
@@ -33,24 +33,24 @@ describe("generateMenus", () => {
   // 模拟 Vue 路由器实例
   const mockRouter = {
     getRoutes: vi.fn(() => [
-      { name: "home", path: "/home" },
-      { name: "about", path: "/about" },
-      { name: "team", path: "/about/team" },
+      { name: 'home', path: '/home' },
+      { name: 'about', path: '/about' },
+      { name: 'team', path: '/about/team' },
     ]),
   };
 
-  it("the correct menu list should be generated according to the route", async () => {
+  it('the correct menu list should be generated according to the route', async () => {
     const expectedMenus = [
       {
         badge: undefined,
         badgeType: undefined,
         badgeVariants: undefined,
-        icon: "home-icon",
-        name: "首页",
-        sort: undefined,
+        icon: 'home-icon',
+        name: '首页',
+        order: undefined,
         parent: undefined,
         parents: undefined,
-        path: "/home",
+        path: '/home',
         show: true,
         children: [],
       },
@@ -58,12 +58,12 @@ describe("generateMenus", () => {
         badge: undefined,
         badgeType: undefined,
         badgeVariants: undefined,
-        icon: "about-icon",
-        name: "关于",
-        sort: undefined,
+        icon: 'about-icon',
+        name: '关于',
+        order: undefined,
         parent: undefined,
         parents: undefined,
-        path: "/about",
+        path: '/about',
         show: true,
         children: [],
       },
@@ -73,12 +73,12 @@ describe("generateMenus", () => {
     expect(menus).toEqual(expectedMenus);
   });
 
-  it("includes additional meta properties in menu items", async () => {
+  it('includes additional meta properties in menu items', async () => {
     const mockRoutesWithMeta = [
       {
-        meta: { icon: "user-icon", sort: 1, title: "Profile" },
-        name: "profile",
-        path: "/profile",
+        meta: { icon: 'user-icon', order: 1, title: 'Profile' },
+        name: 'profile',
+        path: '/profile',
       },
     ] as RouteRecordRaw[];
 
@@ -88,24 +88,24 @@ describe("generateMenus", () => {
         badge: undefined,
         badgeType: undefined,
         badgeVariants: undefined,
-        icon: "user-icon",
-        name: "Profile",
-        sort: 1,
+        icon: 'user-icon',
+        name: 'Profile',
+        order: 1,
         parent: undefined,
         parents: undefined,
-        path: "/profile",
+        path: '/profile',
         show: true,
         children: [],
       },
     ]);
   });
 
-  it("handles dynamic route parameters correctly", async () => {
+  it('handles dynamic route parameters correctly', async () => {
     const mockRoutesWithParams = [
       {
-        meta: { icon: "details-icon", title: "User Details" },
-        name: "userDetails",
-        path: "/users/:userId",
+        meta: { icon: 'details-icon', title: 'User Details' },
+        name: 'userDetails',
+        path: '/users/:userId',
       },
     ] as RouteRecordRaw[];
 
@@ -115,29 +115,29 @@ describe("generateMenus", () => {
         badge: undefined,
         badgeType: undefined,
         badgeVariants: undefined,
-        icon: "details-icon",
-        name: "User Details",
-        sort: undefined,
+        icon: 'details-icon',
+        name: 'User Details',
+        order: undefined,
         parent: undefined,
         parents: undefined,
-        path: "/users/:userId",
+        path: '/users/:userId',
         show: true,
         children: [],
       },
     ]);
   });
 
-  it("processes routes with redirects correctly", async () => {
+  it('processes routes with redirects correctly', async () => {
     const mockRoutesWithRedirect = [
       {
-        name: "redirectedRoute",
-        path: "/old-path",
-        redirect: "/new-path",
+        name: 'redirectedRoute',
+        path: '/old-path',
+        redirect: '/new-path',
       },
       {
-        meta: { icon: "path-icon", title: "New Path" },
-        name: "newPath",
-        path: "/new-path",
+        meta: { icon: 'path-icon', title: 'New Path' },
+        name: 'newPath',
+        path: '/new-path',
       },
     ] as RouteRecordRaw[];
 
@@ -149,11 +149,11 @@ describe("generateMenus", () => {
         badgeType: undefined,
         badgeVariants: undefined,
         icon: undefined,
-        name: "redirectedRoute",
-        sort: undefined,
+        name: 'redirectedRoute',
+        order: undefined,
         parent: undefined,
         parents: undefined,
-        path: "/old-path",
+        path: '/old-path',
         show: true,
         children: [],
       },
@@ -161,12 +161,12 @@ describe("generateMenus", () => {
         badge: undefined,
         badgeType: undefined,
         badgeVariants: undefined,
-        icon: "path-icon",
-        name: "New Path",
-        sort: undefined,
+        icon: 'path-icon',
+        name: 'New Path',
+        order: undefined,
         parent: undefined,
         parents: undefined,
-        path: "/new-path",
+        path: '/new-path',
         show: true,
         children: [],
       },
@@ -175,14 +175,14 @@ describe("generateMenus", () => {
 
   const routes: any = [
     {
-      meta: { sort: 2, title: "Home" },
-      name: "home",
-      path: "/",
+      meta: { order: 2, title: 'Home' },
+      name: 'home',
+      path: '/',
     },
     {
-      meta: { sort: 1, title: "About" },
-      name: "about",
-      path: "/about",
+      meta: { order: 1, title: 'About' },
+      name: 'about',
+      path: '/about',
     },
   ];
 
@@ -191,7 +191,7 @@ describe("generateMenus", () => {
     routes,
   });
 
-  it("should generate menu list with correct sort", async () => {
+  it('should generate menu list with correct order', async () => {
     const menus = generateMenus(routes, router);
     const expectedMenus = [
       {
@@ -199,11 +199,11 @@ describe("generateMenus", () => {
         badgeType: undefined,
         badgeVariants: undefined,
         icon: undefined,
-        name: "About",
-        sort: 1,
+        name: 'About',
+        order: 1,
         parent: undefined,
         parents: undefined,
-        path: "/about",
+        path: '/about',
         show: true,
         children: [],
       },
@@ -212,11 +212,11 @@ describe("generateMenus", () => {
         badgeType: undefined,
         badgeVariants: undefined,
         icon: undefined,
-        name: "Home",
-        sort: 2,
+        name: 'Home',
+        order: 2,
         parent: undefined,
         parents: undefined,
-        path: "/",
+        path: '/',
         show: true,
         children: [],
       },
@@ -225,7 +225,7 @@ describe("generateMenus", () => {
     expect(menus).toEqual(expectedMenus);
   });
 
-  it("should handle empty routes", async () => {
+  it('should handle empty routes', async () => {
     const emptyRoutes: any[] = [];
     const menus = generateMenus(emptyRoutes, router);
     expect(menus).toEqual([]);

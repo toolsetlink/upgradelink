@@ -1,15 +1,18 @@
-import type { VisibleDomRect } from "@vben-core/shared/utils";
-import type { CSSProperties } from "vue";
+import type { CSSProperties } from 'vue';
+
+import type { VisibleDomRect } from '@vben-core/shared/utils';
+
+import { computed, onMounted, onUnmounted, ref } from 'vue';
 
 import {
   CSS_VARIABLE_LAYOUT_CONTENT_HEIGHT,
   CSS_VARIABLE_LAYOUT_CONTENT_WIDTH,
   CSS_VARIABLE_LAYOUT_FOOTER_HEIGHT,
   CSS_VARIABLE_LAYOUT_HEADER_HEIGHT,
-} from "@vben-core/shared/constants";
-import { getElementVisibleRect } from "@vben-core/shared/utils";
-import { useCssVar, useDebounceFn } from "@vueuse/core";
-import { computed, onMounted, onUnmounted, ref } from "vue";
+} from '@vben-core/shared/constants';
+import { getElementVisibleRect } from '@vben-core/shared/utils';
+
+import { useCssVar, useDebounceFn } from '@vueuse/core';
 
 /**
  * @zh_CN content style
@@ -26,7 +29,7 @@ export function useLayoutContentStyle() {
     return {
       height: `${height}px`,
       left: `${left}px`,
-      position: "fixed",
+      position: 'fixed',
       top: `${top}px`,
       width: `${width}px`,
       zIndex: 150,

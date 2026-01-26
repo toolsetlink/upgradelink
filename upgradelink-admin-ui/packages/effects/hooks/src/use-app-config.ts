@@ -1,7 +1,7 @@
 import type {
   ApplicationConfig,
   VbenAdminProAppConfigRaw,
-} from "@vben/types/global";
+} from '@vben/types/global';
 
 /**
  * 由 vite-inject-app-config 注入的全局配置
@@ -25,7 +25,6 @@ export function useAppConfig(
     apiURL: VITE_GLOB_API_URL,
     auth: {},
   };
-
   if (VITE_GLOB_AUTH_DINGDING_CORP_ID && VITE_GLOB_AUTH_DINGDING_CLIENT_ID) {
     applicationConfig.auth.dingding = {
       clientId: VITE_GLOB_AUTH_DINGDING_CLIENT_ID,

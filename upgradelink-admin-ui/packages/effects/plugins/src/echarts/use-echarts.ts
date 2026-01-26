@@ -1,14 +1,14 @@
-import type { EChartsOption } from "echarts";
+import type { EChartsOption } from 'echarts';
 
-import type { Ref } from "vue";
+import type { Ref } from 'vue';
 
-import type { Nullable } from "@vben/types";
+import type { Nullable } from '@vben/types';
 
-import type EchartsUI from "./echarts-ui.vue";
+import type EchartsUI from './echarts-ui.vue';
 
-import { computed, nextTick, watch } from "vue";
+import { computed, nextTick, watch } from 'vue';
 
-import { usePreferences } from "@vben/preferences";
+import { usePreferences } from '@vben/preferences';
 
 import {
   tryOnUnmounted,
@@ -16,13 +16,13 @@ import {
   useResizeObserver,
   useTimeoutFn,
   useWindowSize,
-} from "@vueuse/core";
+} from '@vueuse/core';
 
-import echarts from "./echarts";
+import echarts from './echarts';
 
 type EchartsUIType = typeof EchartsUI | undefined;
 
-type EchartsThemeType = "dark" | "light" | null;
+type EchartsThemeType = 'dark' | 'light' | null;
 
 function useEcharts(chartRef: Ref<EchartsUIType>) {
   let chartInstance: echarts.ECharts | null = null;
@@ -32,13 +32,28 @@ function useEcharts(chartRef: Ref<EchartsUIType>) {
   const { height, width } = useWindowSize();
   const resizeHandler: () => void = useDebounceFn(resize, 200);
 
+  const getChartEl = (): HTMLElement | null => {
+    const refValue = chartRef?.value as unknown;
+    if (!refValue) return null;
+    if (refValue instanceof HTMLElement) {
+      return refValue;
+    }
+    const maybeComponent = refValue as { $el?: HTMLElement };
+    return maybeComponent.$el ?? null;
+  };
+
+  const isElHidden = (el: HTMLElement | null): boolean => {
+    if (!el) return true;
+    return el.offsetHeight === 0 || el.offsetWidth === 0;
+  };
+
   const getOptions = computed((): EChartsOption => {
     if (!isDark.value) {
       return {};
     }
 
     return {
-      backgroundColor: "transparent",
+      backgroundColor: 'transparent',
     };
   });
 
@@ -47,7 +62,7 @@ function useEcharts(chartRef: Ref<EchartsUIType>) {
     if (!el) {
       return;
     }
-    chartInstance = echarts.init(el, t || isDark.value ? "dark" : null);
+    chartInstance = echarts.init(el, t || isDark.value ? 'dark' : null);
 
     return chartInstance;
   };
@@ -69,6 +84,13 @@ function useEcharts(chartRef: Ref<EchartsUIType>) {
         return;
       }
       nextTick(() => {
+        const el = getChartEl();
+        if (isElHidden(el)) {
+          useTimeoutFn(async () => {
+            resolve(await renderEcharts(currentOptions));
+          }, 30);
+          return;
+        }
         useTimeoutFn(() => {
           if (!chartInstance) {
             const instance = initCharts();
@@ -83,10 +105,14 @@ function useEcharts(chartRef: Ref<EchartsUIType>) {
   };
 
   function resize() {
+    const el = getChartEl();
+    if (isElHidden(el)) {
+      return;
+    }
     chartInstance?.resize({
       animation: {
         duration: 300,
-        easing: "quadraticIn",
+        easing: 'quadraticIn',
       },
     });
   }

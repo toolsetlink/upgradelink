@@ -1,31 +1,31 @@
-import type { DefineConfig } from "../typing";
+import type { DefineConfig, VbenViteConfig } from '../typing';
 
-import { existsSync } from "node:fs";
-import { join } from "node:path";
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
 
-import { defineApplicationConfig } from "./application";
-import { defineLibraryConfig } from "./library";
+import { defineApplicationConfig } from './application';
+import { defineLibraryConfig } from './library';
 
-export * from "./application";
-export * from "./library";
+export * from './application';
+export * from './library';
 
 function defineConfig(
   userConfigPromise?: DefineConfig,
-  type: "application" | "auto" | "library" = "auto",
-) {
+  type: 'application' | 'auto' | 'library' = 'auto',
+): VbenViteConfig {
   let projectType = type;
 
   // 根据包是否存在 index.html,自动判断类型
-  if (projectType === "auto") {
-    const htmlPath = join(process.cwd(), "index.html");
-    projectType = existsSync(htmlPath) ? "application" : "library";
+  if (projectType === 'auto') {
+    const htmlPath = join(process.cwd(), 'index.html');
+    projectType = existsSync(htmlPath) ? 'application' : 'library';
   }
 
   switch (projectType) {
-    case "application": {
+    case 'application': {
       return defineApplicationConfig(userConfigPromise);
     }
-    case "library": {
+    case 'library': {
       return defineLibraryConfig(userConfigPromise);
     }
     default: {

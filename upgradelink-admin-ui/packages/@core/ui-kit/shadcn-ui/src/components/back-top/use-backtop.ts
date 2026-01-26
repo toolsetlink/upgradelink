@@ -1,8 +1,8 @@
-import type { BacktopProps } from "./backtop";
+import type { BacktopProps } from './backtop';
 
-import { onMounted, ref, shallowRef } from "vue";
+import { onMounted, ref, shallowRef } from 'vue';
 
-import { useEventListener, useThrottleFn } from "@vueuse/core";
+import { useEventListener, useThrottleFn } from '@vueuse/core';
 
 export const useBackTop = (props: BacktopProps) => {
   const el = shallowRef<HTMLElement>();
@@ -16,12 +16,12 @@ export const useBackTop = (props: BacktopProps) => {
   };
 
   const handleClick = () => {
-    el.value?.scrollTo({ behavior: "smooth", top: 0 });
+    el.value?.scrollTo({ behavior: 'smooth', top: 0 });
   };
 
   const handleScrollThrottled = useThrottleFn(handleScroll, 300, true);
 
-  useEventListener(container, "scroll", handleScrollThrottled);
+  useEventListener(container, 'scroll', handleScrollThrottled);
   onMounted(() => {
     container.value = document;
     el.value = document.documentElement;

@@ -23,13 +23,13 @@
 }
 
 .ant-tag {
-    > svg {
-        display: inline-block;
-    }
+  > svg {
+    display: inline-block;
+  }
 
-    > svg + span {
-        margin-inline-start: 4px;
-    }
+  > svg + span {
+    margin-inline-start: 4px;
+  }
 }
 
 .ant-message-notice-content,

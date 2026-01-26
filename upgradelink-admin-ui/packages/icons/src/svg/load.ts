@@ -1,6 +1,6 @@
-import type { IconifyIconStructure } from "@vben-core/icons";
+import type { IconifyIconStructure } from '@vben-core/icons';
 
-import { addIcon } from "@vben-core/icons";
+import { addIcon } from '@vben-core/icons';
 
 let loaded = false;
 if (!loaded) {
@@ -10,22 +10,40 @@ if (!loaded) {
 
 function parseSvg(svgData: string): IconifyIconStructure {
   const parser = new DOMParser();
-  const xmlDoc = parser.parseFromString(svgData, "image/svg+xml");
+  const xmlDoc = parser.parseFromString(svgData, 'image/svg+xml');
   const svgElement = xmlDoc.documentElement;
+
+  // 提取 SVG 根元素的关键样式属性
+  const getAttrs = (el: Element, attrs: string[]) =>
+    attrs
+      .map((attr) =>
+        el.hasAttribute(attr) ? `${attr}="${el.getAttribute(attr)}"` : '',
+      )
+      .filter(Boolean)
+      .join(' ');
+
+  const rootAttrs = getAttrs(svgElement, [
+    'fill',
+    'stroke',
+    'fill-rule',
+    'stroke-width',
+  ]);
 
   const svgContent = [...svgElement.childNodes]
     .filter((node) => node.nodeType === Node.ELEMENT_NODE)
     .map((node) => new XMLSerializer().serializeToString(node))
-    .join("");
+    .join('');
+  // 若根有属性，用一个 g 标签包裹内容并继承属性
+  const body = rootAttrs ? `<g ${rootAttrs}>${svgContent}</g>` : svgContent;
 
-  const viewBoxValue = svgElement.getAttribute("viewBox") || "";
-  const [left, top, width, height] = viewBoxValue.split(" ").map((val) => {
+  const viewBoxValue = svgElement.getAttribute('viewBox') || '';
+  const [left, top, width, height] = viewBoxValue.split(' ').map((val) => {
     const num = Number(val);
     return Number.isNaN(num) ? undefined : num;
   });
 
   return {
-    body: svgContent,
+    body,
     height,
     left,
     top,
@@ -39,9 +57,9 @@ function parseSvg(svgData: string): IconifyIconStructure {
  * <Icon icon="svg:avatar"></Icon>
  */
 async function loadSvgIcons() {
-  const svgEagers = import.meta.glob("./icons/**", {
+  const svgEagers = import.meta.glob('./icons/**', {
     eager: true,
-    query: "?raw",
+    query: '?raw',
   });
 
   await Promise.all(
@@ -49,12 +67,12 @@ async function loadSvgIcons() {
       const [key, body] = svg as [string, string | { default: string }];
 
       // ./icons/xxxx.svg => xxxxxx
-      const start = key.lastIndexOf("/") + 1;
-      const end = key.lastIndexOf(".");
+      const start = key.lastIndexOf('/') + 1;
+      const end = key.lastIndexOf('.');
       const iconName = key.slice(start, end);
 
       return addIcon(`svg:${iconName}`, {
-        ...parseSvg(typeof body === "object" ? body.default : body),
+        ...parseSvg(typeof body === 'object' ? body.default : body),
       });
     }),
   );

@@ -7,8 +7,8 @@ export function bindMethods<T extends object>(instance: T): void {
     const propertyValue = instance[propertyName as keyof T];
 
     if (
-      typeof propertyValue === "function" &&
-      propertyName !== "constructor" &&
+      typeof propertyValue === 'function' &&
+      propertyName !== 'constructor' &&
       descriptor &&
       !descriptor.get &&
       !descriptor.set
@@ -25,11 +25,11 @@ export function bindMethods<T extends object>(instance: T): void {
  * @returns 字段值，或者未找到时返回 undefined
  */
 export function getNestedValue<T>(obj: T, path: string): any {
-  if (typeof path !== "string" || path.length === 0) {
-    throw new Error("Path must be a non-empty string");
+  if (typeof path !== 'string' || path.length === 0) {
+    throw new Error('Path must be a non-empty string');
   }
   // 把路径字符串按 "." 分割成数组
-  const keys = path.split(".") as (number | string)[];
+  const keys = path.split('.') as (number | string)[];
 
   let current: any = obj;
 

@@ -1,4 +1,4 @@
-import type { Linter } from "eslint";
+import type { Linter } from 'eslint';
 
 import {
   command,
@@ -18,8 +18,8 @@ import {
   typescript,
   unicorn,
   vue,
-} from "./configs";
-import { customConfig } from "./custom-config";
+} from './configs';
+import { customConfig } from './custom-config';
 
 type FlatConfig = Linter.Config;
 

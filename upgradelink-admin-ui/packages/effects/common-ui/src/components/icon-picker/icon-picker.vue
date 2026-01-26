@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { VNode } from "vue";
+import type { VNode } from 'vue';
 
-import { computed, ref, useAttrs, watch, watchEffect } from "vue";
+import { computed, ref, useAttrs, watch, watchEffect } from 'vue';
 
-import { usePagination } from "@vben/hooks";
-import { EmptyIcon, Grip, listIcons } from "@vben/icons";
-import { $t } from "@vben/locales";
+import { usePagination } from '@vben/hooks';
+import { EmptyIcon, Grip, listIcons } from '@vben/icons';
+import { $t } from '@vben/locales';
 
 import {
   Button,
@@ -21,12 +21,12 @@ import {
   VbenIcon,
   VbenIconButton,
   VbenPopover,
-} from "@vben-core/shadcn-ui";
-import { isFunction } from "@vben-core/shared/utils";
+} from '@vben-core/shadcn-ui';
+import { isFunction } from '@vben-core/shared/utils';
 
-import { objectOmit, refDebounced, watchDebounced } from "@vueuse/core";
+import { objectOmit, refDebounced, watchDebounced } from '@vueuse/core';
 
-import { fetchIconsData } from "./icons";
+import { fetchIconsData } from './icons';
 
 interface Props {
   pageSize?: number;
@@ -46,19 +46,19 @@ interface Props {
   modelValueProp?: string;
   /** 图标样式 */
   iconClass?: string;
-  type?: "icon" | "input";
+  type?: 'icon' | 'input';
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  prefix: "ant-design",
+  prefix: 'ant-design',
   pageSize: 36,
   icons: () => [],
-  iconSlot: "default",
-  iconClass: "size-4",
+  iconSlot: 'default',
+  iconClass: 'size-4',
   autoFetchApi: true,
-  modelValueProp: "modelValue",
+  modelValueProp: 'modelValue',
   inputComponent: undefined,
-  type: "input",
+  type: 'input',
 });
 
 const emit = defineEmits<{
@@ -67,26 +67,18 @@ const emit = defineEmits<{
 
 const attrs = useAttrs();
 
-const modelValue = defineModel({ default: "", type: String });
+const modelValue = defineModel({ default: '', type: String });
 
 const visible = ref(false);
-const currentSelect = ref("");
-const currentPage = ref(1);
-const keyword = ref("");
+const currentSelect = ref('');
+const keyword = ref('');
 const keywordDebounce = refDebounced(keyword, 300);
 const innerIcons = ref<string[]>([]);
-
-/* 当检索关键词变化时，重置分页 */
-watch(keywordDebounce, () => {
-  currentPage.value = 1;
-  setCurrentPage(1);
-});
-
 
 watchDebounced(
   () => props.prefix,
   async (prefix) => {
-    if (prefix && prefix !== "svg" && props.autoFetchApi) {
+    if (prefix && prefix !== 'svg' && props.autoFetchApi) {
       innerIcons.value = await fetchIconsData(prefix);
     }
   },
@@ -97,13 +89,13 @@ const currentList = computed(() => {
   try {
     if (props.prefix) {
       if (
-        props.prefix !== "svg" &&
+        props.prefix !== 'svg' &&
         props.autoFetchApi &&
         props.icons.length === 0
       ) {
         return innerIcons.value;
       }
-      const icons = listIcons("", props.prefix);
+      const icons = listIcons('', props.prefix);
       if (icons.length === 0) {
         console.warn(`No icons found for prefix: ${props.prefix}`);
       }
@@ -112,7 +104,7 @@ const currentList = computed(() => {
       return props.icons;
     }
   } catch (error) {
-    console.error("Failed to load icons:", error);
+    console.error('Failed to load icons:', error);
     return [];
   }
 });
@@ -123,7 +115,7 @@ const showList = computed(() => {
   );
 });
 
-const { paginationList, total, setCurrentPage } = usePagination(
+const { paginationList, total, setCurrentPage, currentPage } = usePagination(
   showList,
   props.pageSize,
 );
@@ -135,7 +127,7 @@ watchEffect(() => {
 watch(
   () => currentSelect.value,
   (v) => {
-    emit("change", v);
+    emit('change', v);
   },
 );
 
@@ -146,7 +138,6 @@ const handleClick = (icon: string) => {
 };
 
 const handlePageChange = (page: number) => {
-  currentPage.value = page;
   setCurrentPage(page);
 };
 
@@ -168,10 +159,10 @@ function onKeywordChange(v: string) {
 
 const searchInputProps = computed(() => {
   return {
-    placeholder: $t("ui.iconPicker.search"),
+    placeholder: $t('ui.iconPicker.search'),
     [props.modelValueProp]: keyword.value,
     [`onUpdate:${props.modelValueProp}`]: onKeywordChange,
-    class: "mx-2",
+    class: 'mx-2',
   };
 });
 
@@ -182,7 +173,6 @@ function updateCurrentSelect(v: string) {
     attrs[eventKey](v);
   }
 }
-
 const getBindAttrs = computed(() => {
   return objectOmit(attrs, [`onUpdate:${props.modelValueProp}`]);
 });
@@ -199,12 +189,12 @@ defineExpose({ toggleOpenState, open, close });
     <template #trigger>
       <template v-if="props.type === 'input'">
         <component
-          :is="inputComponent"
           v-if="props.inputComponent"
+          :is="inputComponent"
           :[modelValueProp]="currentSelect"
-          :aria-label="$t('ui.iconPicker.placeholder')"
-          role="combobox"
           :placeholder="$t('ui.iconPicker.placeholder')"
+          role="combobox"
+          :aria-label="$t('ui.iconPicker.placeholder')"
           aria-expanded="visible"
           :[`onUpdate:${modelValueProp}`]="updateCurrentSelect"
           v-bind="getBindAttrs"
@@ -212,46 +202,46 @@ defineExpose({ toggleOpenState, open, close });
           <template #[iconSlot]>
             <VbenIcon
               :icon="currentSelect || Grip"
-              aria-hidden="true"
               class="size-4"
+              aria-hidden="true"
             />
           </template>
         </component>
-        <div v-else class="relative w-full">
+        <div class="relative w-full" v-else>
           <Input
+            v-bind="$attrs"
             v-model="currentSelect"
-            :aria-label="$t('ui.iconPicker.placeholder')"
             :placeholder="$t('ui.iconPicker.placeholder')"
-            aria-expanded="visible"
             class="h-8 w-full pr-8"
             role="combobox"
-            v-bind="$attrs"
+            :aria-label="$t('ui.iconPicker.placeholder')"
+            aria-expanded="visible"
           />
           <VbenIcon
             :icon="currentSelect || Grip"
-            aria-hidden="true"
             class="absolute right-1 top-1 size-6"
+            aria-hidden="true"
           />
         </div>
       </template>
       <VbenIcon
-        v-else
         :icon="currentSelect || Grip"
+        v-else
         class="size-4"
         v-bind="$attrs"
       />
     </template>
     <div class="mb-2 flex w-full">
       <component
-        :is="inputComponent"
         v-if="inputComponent"
+        :is="inputComponent"
         v-bind="searchInputProps"
       />
       <Input
         v-else
-        v-model="keyword"
-        :placeholder="$t('ui.iconPicker.search')"
         class="mx-2 h-8 w-full"
+        :placeholder="$t('ui.iconPicker.search')"
+        v-model="keyword"
       />
     </div>
 
@@ -321,7 +311,7 @@ defineExpose({ toggleOpenState, open, close });
     <template v-else>
       <div class="flex-col-center text-muted-foreground min-h-[150px] w-full">
         <EmptyIcon class="size-10" />
-        <div class="mt-1 text-sm">{{ $t("common.noData") }}</div>
+        <div class="mt-1 text-sm">{{ $t('common.noData') }}</div>
       </div>
     </template>
   </VbenPopover>

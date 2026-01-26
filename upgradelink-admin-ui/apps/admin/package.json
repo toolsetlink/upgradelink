@@ -1,0 +1,62 @@
+{
+  "name": "@vben/admin",
+  "version": "3.0.0",
+  "homepage": "https://https://www.toolsetlink.com",
+  "bugs": "https://github.com/toolsetlink/upgradelink/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/toolsetlink/upgradelink.git",
+    "directory": "apps/admin"
+  },
+  "license": "Apache-2.0",
+  "author": {
+    "name": "toolsetlink",
+    "email": "toolsetlink@163.com",
+    "url": "https://github.com/toolsetlink"
+  },
+  "type": "module",
+  "scripts": {
+    "build": "pnpm vite build --mode production",
+    "build:analyze": "pnpm vite build --mode analyze",
+    "dev": "pnpm vite --mode development",
+    "preview": "vite preview",
+    "typecheck": "vue-tsc --noEmit --skipLibCheck"
+  },
+  "imports": {
+    "#/*": "./src/*"
+  },
+  "dependencies": {
+    "@ant-design/icons-vue": "^7.0.1",
+    "@codemirror/lang-json": "^6.0.2",
+    "@codemirror/language": "^6.12.1",
+    "@codemirror/legacy-modes": "^6.5.2",
+    "@iconify/vue": "catalog:",
+    "@uiw/codemirror-theme-github": "^4.25.4",
+    "@vben/access": "workspace:*",
+    "@vben/common-ui": "workspace:*",
+    "@vben/constants": "workspace:*",
+    "@vben/hooks": "workspace:*",
+    "@vben/icons": "workspace:*",
+    "@vben/layouts": "workspace:*",
+    "@vben/locales": "workspace:*",
+    "@vben/plugins": "workspace:*",
+    "@vben/preferences": "workspace:*",
+    "@vben/request": "workspace:*",
+    "@vben/stores": "workspace:*",
+    "@vben/styles": "workspace:*",
+    "@vben/types": "workspace:*",
+    "@vben/utils": "workspace:*",
+    "@vueuse/core": "catalog:",
+    "@wangeditor-next/editor": "^5.6.49",
+    "@wangeditor-next/editor-for-vue": "^5.1.14",
+    "ant-design-vue": "catalog:",
+    "dayjs": "catalog:",
+    "json-bigint": "catalog:",
+    "performant-array-to-tree": "catalog:",
+    "pinia": "catalog:",
+    "remeda": "catalog:",
+    "vue": "catalog:",
+    "vue-codemirror": "^6.1.1",
+    "vue-router": "catalog:"
+  }
+}

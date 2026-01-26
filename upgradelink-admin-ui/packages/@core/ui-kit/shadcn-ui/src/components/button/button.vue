@@ -1,24 +1,24 @@
 <script setup lang="ts">
-import type { VbenButtonProps } from "./button";
+import type { VbenButtonProps } from './button';
 
-import { computed } from "vue";
+import { computed } from 'vue';
 
-import { LoaderCircle } from "@vben-core/icons";
-import { cn } from "@vben-core/shared/utils";
+import { LoaderCircle } from '@vben-core/icons';
+import { cn } from '@vben-core/shared/utils';
 
-import { Primitive } from "radix-vue";
+import { Primitive } from 'reka-ui';
 
-import { buttonVariants } from "../../ui";
+import { buttonVariants } from '../../ui';
 
 interface Props extends VbenButtonProps {}
 
 const props = withDefaults(defineProps<Props>(), {
-  as: "button",
-  class: "",
+  as: 'button',
+  class: '',
   disabled: false,
   loading: false,
-  size: "default",
-  variant: "default",
+  size: 'default',
+  variant: 'default',
 });
 
 const isDisabled = computed(() => {

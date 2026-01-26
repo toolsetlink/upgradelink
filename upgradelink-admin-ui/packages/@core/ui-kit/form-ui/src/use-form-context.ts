@@ -1,27 +1,27 @@
-import type { ZodRawShape } from "zod";
+import type { ZodRawShape } from 'zod';
 
-import type { ComputedRef } from "vue";
+import type { ComputedRef } from 'vue';
 
-import type { ExtendedFormApi, FormActions, VbenFormProps } from "./types";
+import type { ExtendedFormApi, FormActions, VbenFormProps } from './types';
 
-import { computed, unref, useSlots } from "vue";
+import { computed, unref, useSlots } from 'vue';
 
-import { createContext } from "@vben-core/shadcn-ui";
-import { isString, mergeWithArrayOverride, set } from "@vben-core/shared/utils";
+import { createContext } from '@vben-core/shadcn-ui';
+import { isString, mergeWithArrayOverride, set } from '@vben-core/shared/utils';
 
-import { useForm } from "vee-validate";
-import { object, ZodIntersection, ZodNumber, ZodObject, ZodString } from "zod";
-import { getDefaultsForSchema } from "zod-defaults";
+import { useForm } from 'vee-validate';
+import { object, ZodIntersection, ZodNumber, ZodObject, ZodString } from 'zod';
+import { getDefaultsForSchema } from 'zod-defaults';
 
-type ExtendFormProps = VbenFormProps & { formApi: ExtendedFormApi };
+type ExtendFormProps = VbenFormProps & { formApi?: ExtendedFormApi };
 
 export const [injectFormProps, provideFormProps] =
   createContext<[ComputedRef<ExtendFormProps> | ExtendFormProps, FormActions]>(
-    "VbenFormProps",
+    'VbenFormProps',
   );
 
 export const [injectComponentRefMap, provideComponentRefMap] =
-  createContext<Map<string, unknown>>("ComponentRefMap");
+  createContext<Map<string, unknown>>('ComponentRefMap');
 
 export function useFormInitial(
   props: ComputedRef<VbenFormProps> | VbenFormProps,
@@ -37,7 +37,7 @@ export function useFormInitial(
     const resultSlots: string[] = [];
 
     for (const key of Object.keys(slots)) {
-      if (key !== "default") {
+      if (key !== 'default') {
         resultSlots.push(key);
       }
     }
@@ -49,7 +49,7 @@ export function useFormInitial(
 
     const zodObject: ZodRawShape = {};
     (unref(props).schema || []).forEach((item) => {
-      if (Reflect.has(item, "defaultValue")) {
+      if (Reflect.has(item, 'defaultValue')) {
         set(initialValues, item.fieldName, item.defaultValue);
       } else if (item.rules && !isString(item.rules)) {
         // 检查规则是否适合提取默认值
@@ -69,11 +69,10 @@ export function useFormInitial(
     }
     return mergeWithArrayOverride(initialValues, zodDefaults);
   }
-
   // 自定义默认值提取逻辑
   function getCustomDefaultValue(rule: any): any {
     if (rule instanceof ZodString) {
-      return ""; // 默认为空字符串
+      return ''; // 默认为空字符串
     } else if (rule instanceof ZodNumber) {
       return null; // 默认为 null（避免显示 0）
     } else if (rule instanceof ZodObject) {
@@ -90,8 +89,8 @@ export function useFormInitial(
 
       // 如果左右两边都能提取默认值，合并它们
       if (
-        typeof leftDefaultValue === "object" &&
-        typeof rightDefaultValue === "object"
+        typeof leftDefaultValue === 'object' &&
+        typeof rightDefaultValue === 'object'
       ) {
         return { ...leftDefaultValue, ...rightDefaultValue };
       }

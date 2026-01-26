@@ -1,16 +1,16 @@
-import type { Component, VNode } from "vue";
+import type { Component, VNode } from 'vue';
 
-import type { Recordable } from "@vben-core/typings";
+import type { Recordable } from '@vben-core/typings';
 
-import type { AlertProps, BeforeCloseScope, PromptProps } from "./alert";
+import type { AlertProps, BeforeCloseScope, PromptProps } from './alert';
 
-import { h, nextTick, ref, render } from "vue";
+import { h, nextTick, ref, render } from 'vue';
 
-import { useSimpleLocale } from "@vben-core/composables";
-import { Input, VbenRenderContent } from "@vben-core/shadcn-ui";
-import { isFunction, isString } from "@vben-core/shared/utils";
+import { useSimpleLocale } from '@vben-core/composables';
+import { Input, VbenRenderContent } from '@vben-core/shadcn-ui';
+import { isFunction, isString } from '@vben-core/shared/utils';
 
-import Alert from "./alert.vue";
+import Alert from './alert.vue';
 
 const alerts = ref<Array<{ container: HTMLElement; instance: Component }>>([]);
 
@@ -51,7 +51,7 @@ export function vbenAlert(
       Object.assign(options, arg2);
     }
     // 创建容器元素
-    const container = document.createElement("div");
+    const container = document.createElement('div');
     document.body.append(container);
 
     // 创建一个引用，用于在回调中访问实例
@@ -73,12 +73,12 @@ export function vbenAlert(
         if (isConfirm) {
           resolve();
         } else {
-          reject(new Error("dialog cancelled"));
+          reject(new Error('dialog cancelled'));
         }
       },
       ...options,
       open: true,
-      title: options.title ?? $t.value("prompt"),
+      title: options.title ?? $t.value('prompt'),
     };
 
     // 创建Alert组件的VNode
@@ -144,24 +144,26 @@ export async function vbenPrompt<T = any>(
 
   const modelValue = ref<T | undefined>(defaultValue);
   const inputComponentRef = ref<null | VNode>(null);
-  const staticContents: Component[] = [];
+  const staticContents: Component[] = [
+    h(VbenRenderContent, { content, renderBr: true }),
+  ];
 
-  staticContents.push(h(VbenRenderContent, { content, renderBr: true }));
-
-  const modelPropName = _modelPropName || "modelValue";
+  const modelPropName = _modelPropName || 'modelValue';
   const componentProps = { ..._componentProps };
 
   // 每次渲染时都会重新计算的内容函数
   const contentRenderer = () => {
-    const currentProps = { ...componentProps };
+    const currentProps = {
+      ...componentProps,
+      [modelPropName]: modelValue.value,
+      [`onUpdate:${modelPropName}`]: (val: T) => {
+        modelValue.value = val;
+      },
+    };
 
     // 设置当前值
-    currentProps[modelPropName] = modelValue.value;
 
     // 设置更新处理函数
-    currentProps[`onUpdate:${modelPropName}`] = (val: T) => {
-      modelValue.value = val;
-    };
 
     // 创建输入组件
     inputComponentRef.value = h(
@@ -172,8 +174,8 @@ export async function vbenPrompt<T = any>(
 
     // 返回包含静态内容和输入组件的数组
     return h(
-      "div",
-      { class: "flex flex-col gap-2" },
+      'div',
+      { class: 'flex flex-col gap-2' },
       { default: () => [...staticContents, inputComponentRef.value] },
     );
   };
@@ -204,14 +206,14 @@ export async function vbenPrompt<T = any>(
           if (componentRef.el) {
             if (
               isFunction(componentRef.el.focus) &&
-              ["BUTTON", "INPUT", "SELECT", "TEXTAREA"].includes(
+              ['BUTTON', 'INPUT', 'SELECT', 'TEXTAREA'].includes(
                 componentRef.el.tagName,
               )
             ) {
               componentRef.el.focus();
             } else if (isFunction(componentRef.el.querySelector)) {
               const focusableElement = componentRef.el.querySelector(
-                "input, select, textarea, button",
+                'input, select, textarea, button',
               );
               if (focusableElement && isFunction(focusableElement.focus)) {
                 focusableElement.focus();

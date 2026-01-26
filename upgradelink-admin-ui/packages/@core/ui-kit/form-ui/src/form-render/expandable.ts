@@ -1,18 +1,18 @@
-import type { FormRenderProps } from "../types";
+import type { FormRenderProps } from '../types';
 
-import { computed, nextTick, onMounted, ref, useTemplateRef, watch } from "vue";
+import { computed, nextTick, onMounted, ref, useTemplateRef, watch } from 'vue';
 
 import {
   breakpointsTailwind,
   useBreakpoints,
   useElementVisibility,
-} from "@vueuse/core";
+} from '@vueuse/core';
 
 /**
  * 动态计算行数
  */
 export function useExpandable(props: FormRenderProps) {
-  const wrapperRef = useTemplateRef<HTMLElement>("wrapperRef");
+  const wrapperRef = useTemplateRef<HTMLElement>('wrapperRef');
   const isVisible = useElementVisibility(wrapperRef);
   const rowMapping = ref<Record<number, number>>({});
   // 是否已经计算过一次
@@ -69,8 +69,8 @@ export function useExpandable(props: FormRenderProps) {
     const container = wrapperRef.value;
     const containerStyles = window.getComputedStyle(container);
     const rowHeights = containerStyles
-      .getPropertyValue("grid-template-rows")
-      .split(" ");
+      .getPropertyValue('grid-template-rows')
+      .split(' ');
 
     const containerRect = container?.getBoundingClientRect();
 

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { CircleX } from "@vben-core/icons";
+import { CircleX } from '@vben-core/icons';
 
 import {
   Select,
@@ -7,7 +7,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../../ui";
+} from '../../ui';
 
 interface Props {
   allowClear?: boolean;

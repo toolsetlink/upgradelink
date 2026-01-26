@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import type { MenuRecordRaw } from "@vben/types";
+import type { MenuRecordRaw } from '@vben/types';
 
-import type { MenuProps } from "@vben-core/menu-ui";
+import type { MenuProps } from '@vben-core/menu-ui';
 
-import { Menu } from "@vben-core/menu-ui";
+import { Menu } from '@vben-core/menu-ui';
 
 interface Props extends MenuProps {
   menus?: MenuRecordRaw[];
@@ -20,11 +20,11 @@ const emit = defineEmits<{
 }>();
 
 function handleMenuSelect(key: string) {
-  emit("select", key, props.mode);
+  emit('select', key, props.mode);
 }
 
 function handleMenuOpen(key: string, path: string[]) {
-  emit("open", key, path);
+  emit('open', key, path);
 }
 </script>
 

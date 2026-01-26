@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import type { SupportedLanguagesType } from "@vben/locales";
+import type { SupportedLanguagesType } from '@vben/locales';
 
-import { SUPPORT_LANGUAGES } from "@vben/constants";
-import { Languages } from "@vben/icons";
-import { loadLocaleMessages } from "@vben/locales";
-import { preferences, updatePreferences } from "@vben/preferences";
+import { SUPPORT_LANGUAGES } from '@vben/constants';
+import { Languages } from '@vben/icons';
+import { loadLocaleMessages } from '@vben/locales';
+import { preferences, updatePreferences } from '@vben/preferences';
 
-import { VbenDropdownRadioMenu, VbenIconButton } from "@vben-core/shadcn-ui";
+import { VbenDropdownRadioMenu, VbenIconButton } from '@vben-core/shadcn-ui';
 
 defineOptions({
-  name: "LanguageToggle",
+  name: 'LanguageToggle',
 });
 
 async function handleUpdate(value: string | undefined) {
@@ -21,9 +21,6 @@ async function handleUpdate(value: string | undefined) {
     },
   });
   await loadLocaleMessages(locale);
-  setTimeout(() => {
-    window.location.reload();
-  }, 500);
 }
 </script>
 
@@ -34,7 +31,7 @@ async function handleUpdate(value: string | undefined) {
       :model-value="preferences.app.locale"
       @update:model-value="handleUpdate"
     >
-      <VbenIconButton>
+      <VbenIconButton class="hover:animate-[shrink_0.3s_ease-in-out]">
         <Languages class="text-foreground size-4" />
       </VbenIconButton>
     </VbenDropdownRadioMenu>

@@ -1,33 +1,33 @@
 <script setup lang="ts">
-import type { ToolbarType } from "./types";
+import type { ToolbarType } from './types';
 
-import { computed } from "vue";
+import { computed } from 'vue';
 
-import { preferences } from "@vben/preferences";
+import { preferences } from '@vben/preferences';
 
 import {
   AuthenticationColorToggle,
   AuthenticationLayoutToggle,
   LanguageToggle,
   ThemeToggle,
-} from "../widgets";
+} from '../widgets';
 
 interface Props {
   toolbarList?: ToolbarType[];
 }
 
 defineOptions({
-  name: "AuthenticationToolbar",
+  name: 'AuthenticationToolbar',
 });
 
 const props = withDefaults(defineProps<Props>(), {
-  toolbarList: () => ["color", "language", "layout", "theme"],
+  toolbarList: () => ['color', 'language', 'layout', 'theme'],
 });
 
-const showColor = computed(() => props.toolbarList.includes("color"));
-const showLayout = computed(() => props.toolbarList.includes("layout"));
-const showLanguage = computed(() => props.toolbarList.includes("language"));
-const showTheme = computed(() => props.toolbarList.includes("theme"));
+const showColor = computed(() => props.toolbarList.includes('color'));
+const showLayout = computed(() => props.toolbarList.includes('layout'));
+const showLanguage = computed(() => props.toolbarList.includes('language'));
+const showTheme = computed(() => props.toolbarList.includes('theme'));
 </script>
 
 <template>

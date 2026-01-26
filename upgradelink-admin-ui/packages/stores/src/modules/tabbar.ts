@@ -1,22 +1,22 @@
-import type { ComputedRef } from "vue";
+import type { ComputedRef } from 'vue';
 import type {
   RouteLocationNormalized,
   Router,
   RouteRecordNormalized,
-} from "vue-router";
+} from 'vue-router';
 
-import type { TabDefinition } from "@vben-core/typings";
+import type { TabDefinition } from '@vben-core/typings';
 
-import { toRaw } from "vue";
+import { toRaw } from 'vue';
 
-import { preferences } from "@vben-core/preferences";
+import { preferences } from '@vben-core/preferences';
 import {
   openRouteInNewWindow,
   startProgress,
   stopProgress,
-} from "@vben-core/shared/utils";
+} from '@vben-core/shared/utils';
 
-import { acceptHMRUpdate, defineStore } from "pinia";
+import { acceptHMRUpdate, defineStore } from 'pinia';
 
 interface TabbarState {
   /**
@@ -52,7 +52,7 @@ interface TabbarState {
 /**
  * @zh_CN 访问权限相关
  */
-export const useTabbarStore = defineStore("core-tabbar", {
+export const useTabbarStore = defineStore('core-tabbar', {
   actions: {
     /**
      * Close tabs in bulk
@@ -140,11 +140,10 @@ export const useTabbarStore = defineStore("core-tabbar", {
           // 关闭第一个
           const index = this.tabs.findIndex(
             (item) =>
-              !Reflect.has(item.meta, "affixTab") || !item.meta.affixTab,
+              !Reflect.has(item.meta, 'affixTab') || !item.meta.affixTab,
           );
           index !== -1 && this.tabs.splice(index, 1);
         }
-
         this.tabs.push(tab);
       } else {
         // 页面已经存在，不重复添加选项卡，只更新选项卡参数
@@ -156,14 +155,13 @@ export const useTabbarStore = defineStore("core-tabbar", {
         };
         if (currentTab) {
           const curMeta = currentTab.meta;
-          if (Reflect.has(curMeta, "affixTab")) {
+          if (Reflect.has(curMeta, 'affixTab')) {
             mergedTab.meta.affixTab = curMeta.affixTab;
           }
-          if (Reflect.has(curMeta, "newTabTitle")) {
+          if (Reflect.has(curMeta, 'newTabTitle')) {
             mergedTab.meta.newTabTitle = curMeta.newTabTitle;
           }
         }
-
         tab = mergedTab;
         this.tabs.splice(tabIndex, 1, mergedTab);
       }
@@ -251,7 +249,6 @@ export const useTabbarStore = defineStore("core-tabbar", {
      */
     async closeTab(tab: TabDefinition, router: Router) {
       const { currentRoute } = router;
-
       // 关闭不是激活选项卡
       if (getTabKey(currentRoute.value) !== getTabKeyFromTab(tab)) {
         this._close(tab);
@@ -274,7 +271,7 @@ export const useTabbarStore = defineStore("core-tabbar", {
         this._close(tab);
         await this._goToTab(before, router);
       } else {
-        console.error("Failed to close the tab; only one tab remains open.");
+        console.error('Failed to close the tab; only one tab remains open.');
       }
     },
 
@@ -324,13 +321,11 @@ export const useTabbarStore = defineStore("core-tabbar", {
       if (index === -1) {
         return;
       }
-
       const oldTab = this.tabs[index];
       tab.meta.affixTab = true;
       tab.meta.title = oldTab?.meta?.title as string;
       // this.addTab(tab);
       this.tabs.splice(index, 1, tab);
-
       // 过滤固定tabs，后面更改affixTabOrder的值的话可能会有问题，目前行464排序affixTabs没有设置值
       const affixTabs = this.tabs.filter((tab) => isAffixTab(tab));
       // 获得固定tabs的index
@@ -345,7 +340,7 @@ export const useTabbarStore = defineStore("core-tabbar", {
     async refresh(router: Router | string) {
       // 如果是Router路由，那么就根据当前路由刷新
       // 如果是string字符串，为路由名称，则定向刷新指定标签页，不能是当前路由名称，否则不会刷新
-      if (typeof router === "string") {
+      if (typeof router === 'string') {
         return await this.refreshByName(router);
       }
 
@@ -432,7 +427,6 @@ export const useTabbarStore = defineStore("core-tabbar", {
         await this.updateCacheTabs();
       }
     },
-
     setUpdateTime() {
       this.updateTime = Date.now();
     },
@@ -450,6 +444,7 @@ export const useTabbarStore = defineStore("core-tabbar", {
       this.tabs.splice(newIndex, 0, currentTab);
       this.dragEndIndex = this.dragEndIndex + 1;
     },
+
     /**
      * @zh_CN 切换固定标签页
      * @param tab
@@ -474,7 +469,6 @@ export const useTabbarStore = defineStore("core-tabbar", {
       tab.meta.title = oldTab?.meta?.title as string;
       // this.addTab(tab);
       this.tabs.splice(index, 1, tab);
-
       // 过滤固定tabs，后面更改affixTabOrder的值的话可能会有问题，目前行464排序affixTabs没有设置值
       const affixTabs = this.tabs.filter((tab) => isAffixTab(tab));
       // 获得固定tabs的index,使用固定tabs的下一个位置也就是活动tabs的第一个位置
@@ -482,7 +476,6 @@ export const useTabbarStore = defineStore("core-tabbar", {
       // 交换位置重新排序
       await this.sortTabs(index, newIndex);
     },
-
     /**
      * 根据当前打开的选项卡更新缓存
      */
@@ -511,7 +504,7 @@ export const useTabbarStore = defineStore("core-tabbar", {
     affixTabs(): TabDefinition[] {
       const affixTabs = this.tabs.filter((tab) => isAffixTab(tab));
 
-      return affixTabs.sort((a, b) => {
+      return affixTabs.toSorted((a, b) => {
         const orderA = (a.meta?.affixTabOrder ?? 0) as number;
         const orderB = (b.meta?.affixTabOrder ?? 0) as number;
         return orderA - orderB;
@@ -534,7 +527,7 @@ export const useTabbarStore = defineStore("core-tabbar", {
   persist: [
     // tabs不需要保存在localStorage
     {
-      pick: ["tabs"],
+      pick: ['tabs'],
       storage: sessionStorage,
     },
   ],
@@ -543,15 +536,15 @@ export const useTabbarStore = defineStore("core-tabbar", {
     dragEndIndex: 0,
     excludeCachedTabs: new Set(),
     menuList: [
-      "close",
-      "affix",
-      "maximize",
-      "reload",
-      "open-in-new-window",
-      "close-left",
-      "close-right",
-      "close-other",
-      "close-all",
+      'close',
+      'affix',
+      'maximize',
+      'reload',
+      'open-in-new-window',
+      'close-left',
+      'close-right',
+      'close-other',
+      'close-all',
     ],
     renderRouteView: true,
     tabs: [],

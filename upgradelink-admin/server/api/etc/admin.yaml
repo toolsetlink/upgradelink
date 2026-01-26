@@ -1,0 +1,68 @@
+Name: upgradelink-admin
+Host: 0.0.0.0
+Port: 9110
+Timeout: 300000
+MaxBytes: 1073741824 # max content length : 1 gb | 所有类型单个文件最大大小
+
+Mode: dev
+EnvMode: dev
+
+CROSConf:
+  Address: '*'    # if it is *, allow all ip and address. e.g. http://example.com
+
+Auth:
+  AccessSecret: jS6VKDtsJf3z1n2VKDtsJf3z
+  AccessExpire: 259200
+
+Log:
+  ServiceName: UpgradeLink-admin
+  Mode: file
+  Encoding: json
+  TimeFormat: "2006-01-02 15:04:05.000"
+  Path: "./logs"
+  Level: debug
+  KeepDays: 3
+  Rotation: daily
+
+UploadConf:
+  Bucket:
+  SecretID:
+  SecretKey:
+  Endpoint:
+  Folder:
+  Region:
+  CdnUrl:
+
+CasbinConf:
+  ModelText: |
+    [request_definition]
+    r = sub, obj, act
+    [policy_definition]
+    p = sub, obj, act
+    [role_definition]
+    g = _, _
+    [policy_effect]
+    e = some(where (p.eft == allow))
+    [matchers]
+    m = r.sub == p.sub && keyMatch2(r.obj,p.obj) && r.act == p.act
+
+I18nConf:
+  Dir:
+
+DatabaseConf:
+  Type: mysql
+  Host: 127.0.0.1
+  Port: 3306
+  DBName: upgrade
+  Username: root # set your username
+  Password: Rootroot123! # set your password
+  MaxOpenConn: 100
+  SSLMode: disable # disable or require
+  CacheTime: 5
+  MysqlConfig: "&loc=Asia%2FShanghai"
+
+RedisConf:
+  Host: 127.0.0.1:6379
+  Db: 0
+  Pass: a123456
+

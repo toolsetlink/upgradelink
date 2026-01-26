@@ -1,17 +1,17 @@
 <script lang="ts" setup>
-import { computed } from "vue";
-import { useRoute } from "vue-router";
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
 
-import { useContentMaximize, useTabs } from "@vben/hooks";
-import { preferences } from "@vben/preferences";
-import { useTabbarStore } from "@vben/stores";
+import { useContentMaximize, useTabs } from '@vben/hooks';
+import { preferences } from '@vben/preferences';
+import { useTabbarStore } from '@vben/stores';
 
-import { TabsToolMore, TabsToolScreen, TabsView } from "@vben-core/tabs-ui";
+import { TabsToolMore, TabsToolScreen, TabsView } from '@vben-core/tabs-ui';
 
-import { useTabbar } from "./use-tabbar";
+import { useTabbar } from './use-tabbar';
 
 defineOptions({
-  name: "LayoutTabbar",
+  name: 'LayoutTabbar',
 });
 
 defineProps<{ showIcon?: boolean; theme?: string }>();

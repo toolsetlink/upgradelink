@@ -27,6 +27,7 @@ pnpm-debug.log*
 .cache/
 .temp/
 .tmp/
+.turbo/
 
 # 操作系统自动生成
 .DS_Store

@@ -1,1 +1,1 @@
-export { default as EllipsisText } from "./ellipsis-text.vue";
+export { default as EllipsisText } from './ellipsis-text.vue';

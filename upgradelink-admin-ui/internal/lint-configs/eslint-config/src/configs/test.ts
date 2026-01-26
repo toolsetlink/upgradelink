@@ -1,12 +1,12 @@
-import type { Linter } from "eslint";
+import type { Linter } from 'eslint';
 
-import { interopDefault } from "../util";
+import { interopDefault } from '../util';
 
 export async function test(): Promise<Linter.Config[]> {
   const [pluginTest, pluginNoOnlyTests] = await Promise.all([
-    interopDefault(import("eslint-plugin-vitest")),
+    interopDefault(import('eslint-plugin-vitest')),
     // @ts-expect-error - no types
-    interopDefault(import("eslint-plugin-no-only-tests")),
+    interopDefault(import('eslint-plugin-no-only-tests')),
   ] as const);
 
   return [
@@ -28,17 +28,17 @@ export async function test(): Promise<Linter.Config[]> {
         },
       },
       rules: {
-        "no-console": "off",
-        "node/prefer-global/process": "off",
-        "test/consistent-test-it": [
-          "error",
-          { fn: "it", withinDescribe: "it" },
+        'no-console': 'off',
+        'node/prefer-global/process': 'off',
+        'test/consistent-test-it': [
+          'error',
+          { fn: 'it', withinDescribe: 'it' },
         ],
-        "test/no-identical-title": "error",
-        "test/no-import-node-test": "error",
-        "test/no-only-tests": "error",
-        "test/prefer-hooks-in-order": "error",
-        "test/prefer-lowercase-title": "error",
+        'test/no-identical-title': 'error',
+        'test/no-import-node-test': 'error',
+        'test/no-only-tests': 'error',
+        'test/prefer-hooks-in-order': 'error',
+        'test/prefer-lowercase-title': 'error',
       },
     },
   ];

@@ -3,9 +3,9 @@ import type {
   VNode,
   VNodeChild,
   VNodeNormalizedChildren,
-} from "vue";
+} from 'vue';
 
-import { isVNode } from "vue";
+import { isVNode } from 'vue';
 
 type VNodeChildAtom = Exclude<VNodeChild, Array<any>>;
 type RawSlots = Exclude<VNodeNormalizedChildren, Array<any> | null | string>;
@@ -22,7 +22,7 @@ function findComponentUpward(
   parentNames: string[],
 ) {
   let parent = instance.parent;
-  while (parent && !parentNames.includes(parent?.type?.name ?? "")) {
+  while (parent && !parentNames.includes(parent?.type?.name ?? '')) {
     parent = parent.parent;
   }
   return parent;

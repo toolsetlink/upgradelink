@@ -1,41 +1,41 @@
 <script lang="ts" setup>
-import { computed, nextTick } from "vue";
+import { computed, nextTick } from 'vue';
 
-import { VbenButton } from "@vben-core/shadcn-ui";
+import { VbenButton } from '@vben-core/shadcn-ui';
 
 interface Props {
   /**
    * 类型
    */
-  type?: "icon" | "normal";
+  type?: 'icon' | 'normal';
 }
 
 defineOptions({
-  name: "ThemeToggleButton",
+  name: 'ThemeToggleButton',
 });
 
 const props = withDefaults(defineProps<Props>(), {
-  type: "normal",
+  type: 'normal',
 });
 
 const isDark = defineModel<boolean>();
 
 const theme = computed(() => {
-  return isDark.value ? "light" : "dark";
+  return isDark.value ? 'light' : 'dark';
 });
 
 const bindProps = computed(() => {
   const type = props.type;
 
-  return type === "normal"
+  return type === 'normal'
     ? {
-        variant: "heavy" as const,
+        variant: 'heavy' as const,
       }
     : {
-        class: "rounded-full",
-        size: "icon" as const,
-        style: { padding: "7px" },
-        variant: "icon" as const,
+        class: 'rounded-full',
+        size: 'icon' as const,
+        style: { padding: '7px' },
+        variant: 'icon' as const,
       };
 });
 
@@ -43,7 +43,7 @@ function toggleTheme(event: MouseEvent) {
   const isAppearanceTransition =
     // @ts-expect-error
     document.startViewTransition &&
-    !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!isAppearanceTransition || !event) {
     isDark.value = !isDark.value;
     return;
@@ -64,18 +64,21 @@ function toggleTheme(event: MouseEvent) {
       `circle(0px at ${x}px ${y}px)`,
       `circle(${endRadius}px at ${x}px ${y}px)`,
     ];
-    document.documentElement.animate(
+    const animate = document.documentElement.animate(
       {
-        clipPath: isDark.value ? [...clipPath].reverse() : clipPath,
+        clipPath: isDark.value ? [...clipPath].toReversed() : clipPath,
       },
       {
         duration: 450,
-        easing: "ease-in",
+        easing: 'ease-in',
         pseudoElement: isDark.value
-          ? "::view-transition-old(root)"
-          : "::view-transition-new(root)",
+          ? '::view-transition-old(root)'
+          : '::view-transition-new(root)',
       },
     );
+    animate.onfinish = () => {
+      transition.skipTransition();
+    };
   });
 }
 </script>
@@ -85,7 +88,7 @@ function toggleTheme(event: MouseEvent) {
     :aria-label="theme"
     :class="[`is-${theme}`]"
     aria-live="polite"
-    class="theme-toggle cursor-pointer border-none bg-none"
+    class="theme-toggle cursor-pointer border-none bg-none hover:animate-[shrink_0.3s_ease-in-out]"
     v-bind="bindProps"
     @click.stop="toggleTheme"
   >

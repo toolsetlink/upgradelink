@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import type { Component } from "vue";
+import type { Component } from 'vue';
 
-import { computed } from "vue";
+import { computed } from 'vue';
 
-import { $t } from "@vben/locales";
+import { $t } from '@vben/locales';
 
-import { ContentCompact, ContentWide } from "../../icons";
+import { ContentCompact, ContentWide } from '../../icons';
 
 defineOptions({
-  name: "PreferenceLayoutContent",
+  name: 'PreferenceLayoutContent',
 });
 
-const modelValue = defineModel<string>({ default: "wide" });
+const modelValue = defineModel<string>({ default: 'wide' });
 
 const components: Record<string, Component> = {
   compact: ContentCompact,
@@ -20,17 +20,17 @@ const components: Record<string, Component> = {
 
 const PRESET = computed(() => [
   {
-    name: $t("preferences.wide"),
-    type: "wide",
+    name: $t('preferences.wide'),
+    type: 'wide',
   },
   {
-    name: $t("preferences.compact"),
-    type: "compact",
+    name: $t('preferences.compact'),
+    type: 'compact',
   },
 ]);
 
 function activeClass(theme: string): string[] {
-  return theme === modelValue.value ? ["outline-box-active"] : [];
+  return theme === modelValue.value ? ['outline-box-active'] : [];
 }
 </script>
 

@@ -1,12 +1,13 @@
-import type { ConfigEnv, UserConfig } from "vite";
+import type { ConfigEnv, UserConfig } from 'vite';
 
-import type { DefineLibraryOptions } from "../typing";
+import type { DefineLibraryOptions } from '../typing';
 
-import { readPackageJSON } from "@vben/node-utils";
-import { defineConfig, mergeConfig } from "vite";
+import { readPackageJSON } from '@vben/node-utils';
 
-import { loadLibraryPlugins } from "../plugins";
-import { getCommonConfig } from "./common";
+import { defineConfig, mergeConfig } from 'vite';
+
+import { loadLibraryPlugins } from '../plugins';
+import { getCommonConfig } from './common';
 
 function defineLibraryConfig(userConfigPromise?: DefineLibraryOptions) {
   return defineConfig(async (config: ConfigEnv) => {
@@ -14,7 +15,7 @@ function defineLibraryConfig(userConfigPromise?: DefineLibraryOptions) {
     const { command, mode } = config;
     const { library = {}, vite = {} } = options || {};
     const root = process.cwd();
-    const isBuild = command === "build";
+    const isBuild = command === 'build';
 
     const plugins = await loadLibraryPlugins({
       dts: false,
@@ -35,9 +36,9 @@ function defineLibraryConfig(userConfigPromise?: DefineLibraryOptions) {
     const packageConfig: UserConfig = {
       build: {
         lib: {
-          entry: "src/index.ts",
-          fileName: () => "index.mjs",
-          formats: ["es"],
+          entry: 'src/index.ts',
+          fileName: () => 'index.mjs',
+          formats: ['es'],
         },
         rollupOptions: {
           external: (id) => {

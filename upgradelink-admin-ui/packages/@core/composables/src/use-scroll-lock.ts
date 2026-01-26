@@ -1,9 +1,10 @@
-import { getScrollbarWidth, needsScrollbar } from "@vben-core/shared/utils";
+import { getScrollbarWidth, needsScrollbar } from '@vben-core/shared/utils';
+
 import {
   useScrollLock as _useScrollLock,
   tryOnBeforeUnmount,
   tryOnMounted,
-} from "@vueuse/core";
+} from '@vueuse/core';
 
 export const SCROLL_FIXED_CLASS = `_scroll__fixed_`;
 
@@ -24,7 +25,7 @@ export function useScrollLock() {
     if (nodes.length > 0) {
       nodes.forEach((node) => {
         node.dataset.transition = node.style.transition;
-        node.style.transition = "none";
+        node.style.transition = 'none';
         node.style.paddingRight = `${scrollbarWidth}px`;
       });
     }
@@ -42,12 +43,12 @@ export function useScrollLock() {
     const nodes = [...layoutFixedNodes];
     if (nodes.length > 0) {
       nodes.forEach((node) => {
-        node.style.paddingRight = "";
+        node.style.paddingRight = '';
         requestAnimationFrame(() => {
-          node.style.transition = node.dataset.transition || "";
+          node.style.transition = node.dataset.transition || '';
         });
       });
     }
-    document.body.style.paddingRight = "";
+    document.body.style.paddingRight = '';
   });
 }

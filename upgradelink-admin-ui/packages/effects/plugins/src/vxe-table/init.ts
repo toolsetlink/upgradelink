@@ -1,10 +1,10 @@
-import type { SetupVxeTable } from "./types";
+import type { SetupVxeTable } from './types';
 
-import { defineComponent, watch } from "vue";
+import { defineComponent, watch } from 'vue';
 
-import { usePreferences } from "@vben/preferences";
+import { usePreferences } from '@vben/preferences';
 
-import { useVbenForm } from "@vben-core/form-ui";
+import { useVbenForm } from '@vben-core/form-ui';
 
 import {
   VxeButton,
@@ -33,19 +33,19 @@ import {
   VxeUpload,
   // VxeSwitch,
   // VxeTextarea,
-} from "vxe-pc-ui";
-import enUS from "vxe-pc-ui/lib/language/en-US";
+} from 'vxe-pc-ui';
+import enUS from 'vxe-pc-ui/lib/language/en-US';
 // 导入默认的语言
-import zhCN from "vxe-pc-ui/lib/language/zh-CN";
+import zhCN from 'vxe-pc-ui/lib/language/zh-CN';
 import {
   VxeColgroup,
   VxeColumn,
   VxeGrid,
   VxeTable,
   VxeToolbar,
-} from "vxe-table";
+} from 'vxe-table';
 
-import { extendsDefaultFormatter } from "./extends";
+import { extendsDefaultFormatter } from './extends';
 
 // 是否加载过
 let isInit = false;
@@ -54,7 +54,7 @@ let isInit = false;
 export let useTableForm: typeof useVbenForm;
 
 // 部分组件，如果没注册，vxe-table 会报错，这里实际没用组件，只是为了不报错，同时可以减少打包体积
-const createVirtualComponent = (name = "") => {
+const createVirtualComponent = (name = '') => {
   return defineComponent({
     name,
   });
@@ -75,7 +75,7 @@ export function initVxeTable() {
   // VxeUI.component(VxeButtonGroup);
   VxeUI.component(VxeCheckbox);
   // VxeUI.component(VxeCheckboxGroup);
-  VxeUI.component(createVirtualComponent("VxeForm"));
+  VxeUI.component(createVirtualComponent('VxeForm'));
   // VxeUI.component(VxeFormGather);
   // VxeUI.component(VxeFormItem);
   VxeUI.component(VxeIcon);
@@ -109,14 +109,14 @@ export function setupVbenVxeTable(setupOptions: SetupVxeTable) {
   const { isDark, locale } = usePreferences();
 
   const localMap = {
-    "zh-CN": zhCN,
-    "en-US": enUS,
+    'zh-CN': zhCN,
+    'en-US': enUS,
   };
 
   watch(
     [() => isDark.value, () => locale.value],
     ([isDarkValue, localeValue]) => {
-      VxeUI.setTheme(isDarkValue ? "dark" : "light");
+      VxeUI.setTheme(isDarkValue ? 'dark' : 'light');
       VxeUI.setI18n(localeValue, localMap[localeValue]);
       VxeUI.setLanguage(localeValue);
     },

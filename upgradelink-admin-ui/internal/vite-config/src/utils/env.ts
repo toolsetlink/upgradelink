@@ -1,12 +1,13 @@
-import type { ApplicationPluginOptions } from "../typing";
+import type { ApplicationPluginOptions } from '../typing';
 
-import { existsSync } from "node:fs";
-import { join } from "node:path";
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
 
-import { fs } from "@vben/node-utils";
-import dotenv from "dotenv";
+import { fs } from '@vben/node-utils';
 
-const getBoolean = (value: string | undefined) => value === "true";
+import dotenv from 'dotenv';
+
+const getBoolean = (value: string | undefined) => value === 'true';
 
 const getString = (value: string | undefined, fallback: string) =>
   value ?? fallback;
@@ -21,11 +22,11 @@ function getConfFiles() {
   const script = process.env.npm_lifecycle_script as string;
   const reg = /--mode ([\d_a-z]+)/;
   const result = reg.exec(script);
-  let mode = "production";
+  let mode = 'production';
   if (result) {
     mode = result[1] as string;
   }
-  return [".env", ".env.local", `.env.${mode}`, `.env.${mode}.local`];
+  return ['.env', '.env.local', `.env.${mode}`, `.env.${mode}.local`];
 }
 
 /**
@@ -34,7 +35,7 @@ function getConfFiles() {
  * @param confFiles ext
  */
 async function loadEnv<T = Record<string, string>>(
-  match = "VITE_GLOB_",
+  match = 'VITE_GLOB_',
   confFiles = getConfFiles(),
 ) {
   let envConfig = {};
@@ -44,7 +45,7 @@ async function loadEnv<T = Record<string, string>>(
       const confFilePath = join(process.cwd(), confFile);
       if (existsSync(confFilePath)) {
         const envPath = await fs.readFile(confFilePath, {
-          encoding: "utf8",
+          encoding: 'utf8',
         });
         const env = dotenv.parse(envPath);
         envConfig = { ...envConfig, ...env };
@@ -63,14 +64,14 @@ async function loadEnv<T = Record<string, string>>(
 }
 
 async function loadAndConvertEnv(
-  match = "VITE_",
+  match = 'VITE_',
   confFiles = getConfFiles(),
 ): Promise<
-  {
+  Partial<ApplicationPluginOptions> & {
     appTitle: string;
     base: string;
     port: number;
-  } & Partial<ApplicationPluginOptions>
+  }
 > {
   const envConfig = await loadEnv(match, confFiles);
 
@@ -87,14 +88,14 @@ async function loadAndConvertEnv(
     VITE_VISUALIZER,
   } = envConfig;
 
-  const compressTypes = (VITE_COMPRESS ?? "")
-    .split(",")
-    .filter((item) => item === "brotli" || item === "gzip");
+  const compressTypes = (VITE_COMPRESS ?? '')
+    .split(',')
+    .filter((item) => item === 'brotli' || item === 'gzip');
 
   return {
-    appTitle: getString(VITE_APP_TITLE, "Vben Admin"),
+    appTitle: getString(VITE_APP_TITLE, 'Vben Admin'),
     archiver: getBoolean(VITE_ARCHIVER),
-    base: getString(VITE_BASE, "/"),
+    base: getString(VITE_BASE, '/'),
     compress: compressTypes.length > 0,
     compressTypes,
     devtools: getBoolean(VITE_DEVTOOLS),

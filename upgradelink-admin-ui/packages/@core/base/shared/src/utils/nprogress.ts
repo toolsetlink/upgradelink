@@ -1,4 +1,4 @@
-import type NProgress from "nprogress";
+import type NProgress from 'nprogress';
 
 // 创建一个NProgress实例的变量，初始值为null
 let nProgressInstance: null | typeof NProgress = null;
@@ -14,7 +14,7 @@ async function loadNprogress() {
   if (nProgressInstance) {
     return nProgressInstance;
   }
-  nProgressInstance = await import("nprogress");
+  nProgressInstance = await import('nprogress');
   nProgressInstance.configure({
     showSpinner: true,
     speed: 300,

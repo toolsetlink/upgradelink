@@ -1,14 +1,14 @@
-import type { App, Directive, DirectiveBinding } from "vue";
+import type { App, Directive, DirectiveBinding } from 'vue';
 
-import { h, render } from "vue";
+import { h, render } from 'vue';
 
-import { VbenLoading, VbenSpinner } from "@vben-core/shadcn-ui";
-import { isString } from "@vben-core/shared/utils";
+import { VbenLoading, VbenSpinner } from '@vben-core/shadcn-ui';
+import { isString } from '@vben-core/shared/utils';
 
-const LOADING_INSTANCE_KEY = Symbol("loading");
-const SPINNER_INSTANCE_KEY = Symbol("spinner");
+const LOADING_INSTANCE_KEY = Symbol('loading');
+const SPINNER_INSTANCE_KEY = Symbol('spinner');
 
-const CLASS_NAME_RELATIVE = "spinner-parent--relative";
+const CLASS_NAME_RELATIVE = 'spinner-parent--relative';
 
 const loadingDirective: Directive = {
   mounted(el, binding) {
@@ -38,7 +38,7 @@ const loadingDirective: Directive = {
         instance.component.update();
       } catch (error) {
         console.error(
-          "Failed to update loading component in directive:",
+          'Failed to update loading component in directive:',
           error,
         );
       }
@@ -49,7 +49,7 @@ const loadingDirective: Directive = {
 function getOptions(binding: DirectiveBinding) {
   if (binding.value === undefined) {
     return { spinning: true };
-  } else if (typeof binding.value === "boolean") {
+  } else if (typeof binding.value === 'boolean') {
     return { spinning: binding.value };
   } else {
     return { ...binding.value };
@@ -84,7 +84,7 @@ const spinningDirective: Directive = {
         instance.component.update();
       } catch (error) {
         console.error(
-          "Failed to update spinner component in directive:",
+          'Failed to update spinner component in directive:',
           error,
         );
       }
@@ -109,7 +109,7 @@ export function registerLoadingDirective(
   params?: loadingDirectiveParams,
 ) {
   // 注入一个样式供指令使用，确保容器是相对定位
-  const style = document.createElement("style");
+  const style = document.createElement('style');
   style.id = CLASS_NAME_RELATIVE;
   style.innerHTML = `
     .${CLASS_NAME_RELATIVE} {
@@ -119,13 +119,13 @@ export function registerLoadingDirective(
   document.head.append(style);
   if (params?.loading !== false) {
     app.directive(
-      isString(params?.loading) ? params.loading : "loading",
+      isString(params?.loading) ? params.loading : 'loading',
       loadingDirective,
     );
   }
   if (params?.spinning !== false) {
     app.directive(
-      isString(params?.spinning) ? params.spinning : "spinning",
+      isString(params?.spinning) ? params.spinning : 'spinning',
       spinningDirective,
     );
   }

@@ -2,7 +2,7 @@ import type {
   DrawerApiOptions,
   DrawerProps,
   ExtendedDrawerApi,
-} from "./drawer";
+} from './drawer';
 
 import {
   defineComponent,
@@ -12,14 +12,14 @@ import {
   provide,
   reactive,
   ref,
-} from "vue";
+} from 'vue';
 
-import { useStore } from "@vben-core/shared/store";
+import { useStore } from '@vben-core/shared/store';
 
-import { DrawerApi } from "./drawer-api";
-import VbenDrawer from "./drawer.vue";
+import { DrawerApi } from './drawer-api';
+import VbenDrawer from './drawer.vue';
 
-const USER_DRAWER_INJECT_KEY = Symbol("VBEN_DRAWER_INJECT");
+const USER_DRAWER_INJECT_KEY = Symbol('VBEN_DRAWER_INJECT');
 
 const DEFAULT_DRAWER_PROPS: Partial<DrawerProps> = {};
 
@@ -59,13 +59,14 @@ export function useVbenDrawer<
         });
         return () =>
           h(
-            isDrawerReady.value ? connectedComponent : "div",
+            isDrawerReady.value ? connectedComponent : 'div',
             { ...props, ...attrs },
             slots,
           );
       },
+      // eslint-disable-next-line vue/one-component-per-file
       {
-        name: "VbenParentDrawer",
+        name: 'VbenParentDrawer',
         inheritAttrs: false,
       },
     );
@@ -108,7 +109,7 @@ export function useVbenDrawer<
     },
     // eslint-disable-next-line vue/one-component-per-file
     {
-      name: "VbenDrawer",
+      name: 'VbenDrawer',
       inheritAttrs: false,
     },
   );
@@ -131,7 +132,7 @@ async function checkProps(api: ExtendedDrawerApi, attrs: Record<string, any>) {
   const stateKeys = new Set(Object.keys(state));
 
   for (const attr of Object.keys(attrs)) {
-    if (stateKeys.has(attr) && !["class"].includes(attr)) {
+    if (stateKeys.has(attr) && !['class'].includes(attr)) {
       // connectedComponent存在时，不要传入Drawer的props，会造成复杂度提升，如果你需要修改Drawer的props，请使用 useVbenDrawer 或者api
       console.warn(
         `[Vben Drawer]: When 'connectedComponent' exists, do not set props or slots '${attr}', which will increase complexity. If you need to modify the props of Drawer, please use useVbenDrawer or api.`,

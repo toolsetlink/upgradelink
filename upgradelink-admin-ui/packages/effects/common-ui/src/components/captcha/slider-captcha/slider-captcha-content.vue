@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { CSSProperties } from "vue";
+import type { CSSProperties } from 'vue';
 
-import { computed, useTemplateRef } from "vue";
+import { computed, useTemplateRef } from 'vue';
 
-import { VbenSpineText } from "@vben-core/shadcn-ui";
+import { VbenSpineText } from '@vben-core/shadcn-ui';
 
 const props = defineProps<{
   contentStyle: CSSProperties;
@@ -12,7 +12,7 @@ const props = defineProps<{
   text: string;
 }>();
 
-const contentRef = useTemplateRef<HTMLDivElement>("contentRef");
+const contentRef = useTemplateRef<HTMLDivElement>('contentRef');
 
 const style = computed(() => {
   const { contentStyle } = props;

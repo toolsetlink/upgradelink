@@ -8,10 +8,10 @@ function loadScript(src: string) {
       // 如果已经加载过，直接 resolve
       return resolve();
     }
-    const script = document.createElement("script");
+    const script = document.createElement('script');
     script.src = src;
-    script.addEventListener("load", () => resolve());
-    script.addEventListener("error", () =>
+    script.addEventListener('load', () => resolve());
+    script.addEventListener('error', () =>
       reject(new Error(`Failed to load script: ${src}`)),
     );
     document.head.append(script);

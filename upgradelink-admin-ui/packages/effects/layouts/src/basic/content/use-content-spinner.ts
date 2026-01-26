@@ -1,7 +1,7 @@
-import { computed, ref } from "vue";
-import { useRouter } from "vue-router";
+import { computed, ref } from 'vue';
+import { useRouter } from 'vue-router';
 
-import { preferences } from "@vben/preferences";
+import { preferences } from '@vben/preferences';
 
 function useContentSpinner() {
   const spinning = ref(false);
@@ -27,7 +27,7 @@ function useContentSpinner() {
 
   // 路由前置守卫
   router.beforeEach((to) => {
-    if (to.meta.loaded || !enableLoading.value || to.meta.frameSrc) {
+    if (to.meta.loaded || !enableLoading.value || to.meta.iframeSrc) {
       return true;
     }
     startTime.value = performance.now();
@@ -37,7 +37,7 @@ function useContentSpinner() {
 
   // 路由后置守卫
   router.afterEach((to) => {
-    if (to.meta.loaded || !enableLoading.value || to.meta.frameSrc) {
+    if (to.meta.loaded || !enableLoading.value || to.meta.iframeSrc) {
       return true;
     }
     onEnd();

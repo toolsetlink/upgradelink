@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { cn } from "@vben-core/shared/utils";
+import { cn } from '@vben-core/shared/utils';
 
 const props = defineProps<{
   class?: any;
@@ -10,7 +10,7 @@ const props = defineProps<{
   <div
     :class="
       cn(
-        'bg-card text-card-foreground border-border rounded-xl border',
+        'rounded-xl border border-border bg-card text-card-foreground',
         props.class,
       )
     "

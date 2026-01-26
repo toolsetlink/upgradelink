@@ -3,12 +3,12 @@ export type {
   BeforeCloseScope,
   IconType,
   PromptProps,
-} from "./alert";
-export { useAlertContext } from "./alert";
-export { default as Alert } from "./alert.vue";
+} from './alert';
+export { useAlertContext } from './alert';
+export { default as Alert } from './alert.vue';
 export {
   vbenAlert as alert,
   clearAllAlerts,
   vbenConfirm as confirm,
   vbenPrompt as prompt,
-} from "./AlertBuilder";
+} from './AlertBuilder';

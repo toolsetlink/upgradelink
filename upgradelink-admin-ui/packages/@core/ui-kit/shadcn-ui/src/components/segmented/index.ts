@@ -1,3 +1,3 @@
-export { default as VbenSegmented } from "./segmented.vue";
+export { default as VbenSegmented } from './segmented.vue';
 
-export type * from "./types";
+export type * from './types';

@@ -1,0 +1,1 @@
+import{ba as e}from"./bootstrap-BKq-8Ur9.js";const a=r=>e.post("/upgrade_tauri_version/list",r),s=r=>e.post("/upgrade_tauri_version/create",r),i=r=>e.post("/upgrade_tauri_version/update",r),u=r=>e.post("/upgrade_tauri_version/delete",r);export{s as c,u as d,a as g,i as u};

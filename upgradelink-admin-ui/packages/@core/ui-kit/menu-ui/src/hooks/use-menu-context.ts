@@ -1,10 +1,10 @@
-import type { MenuProvider, SubMenuProvider } from "../types";
+import type { MenuProvider, SubMenuProvider } from '../types';
 
-import { getCurrentInstance, inject, provide } from "vue";
+import { getCurrentInstance, inject, provide } from 'vue';
 
-import { findComponentUpward } from "../utils";
+import { findComponentUpward } from '../utils';
 
-const menuContextKey = Symbol("menuContext");
+const menuContextKey = Symbol('menuContext');
 
 /**
  * @zh_CN Provide menu context
@@ -28,7 +28,7 @@ function createSubMenuContext(injectSubMenuData: SubMenuProvider) {
 function useMenuContext() {
   const instance = getCurrentInstance();
   if (!instance) {
-    throw new Error("instance is required");
+    throw new Error('instance is required');
   }
   const rootMenu = inject(menuContextKey) as MenuProvider;
   return rootMenu;
@@ -40,9 +40,9 @@ function useMenuContext() {
 function useSubMenuContext() {
   const instance = getCurrentInstance();
   if (!instance) {
-    throw new Error("instance is required");
+    throw new Error('instance is required');
   }
-  const parentMenu = findComponentUpward(instance, ["Menu", "SubMenu"]);
+  const parentMenu = findComponentUpward(instance, ['Menu', 'SubMenu']);
   const subMenu = inject(`subMenu:${parentMenu?.uid}`) as SubMenuProvider;
   return subMenu;
 }

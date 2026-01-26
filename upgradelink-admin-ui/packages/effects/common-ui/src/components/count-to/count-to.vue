@@ -1,23 +1,23 @@
 <script lang="ts" setup>
-import type { CountToProps } from "./types";
+import type { CountToProps } from './types';
 
-import { computed, onMounted, ref, watch } from "vue";
+import { computed, onMounted, ref, watch } from 'vue';
 
-import { isString } from "@vben-core/shared/utils";
+import { isString } from '@vben-core/shared/utils';
 
-import { TransitionPresets, useTransition } from "@vueuse/core";
+import { TransitionPresets, useTransition } from '@vueuse/core';
 
 const props = withDefaults(defineProps<CountToProps>(), {
   startVal: 0,
   duration: 2000,
-  separator: ",",
-  decimal: ".",
+  separator: ',',
+  decimal: '.',
   decimals: 0,
   delay: 0,
   transition: () => TransitionPresets.easeOutExpo,
 });
 
-const emit = defineEmits(["started", "finished"]);
+const emit = defineEmits(['started', 'finished']);
 
 const lastValue = ref(props.startVal);
 
@@ -42,24 +42,24 @@ const currentValue = useTransition(lastValue, {
       : props.transition;
   }),
   onStarted() {
-    emit("started");
+    emit('started');
   },
   onFinished() {
-    emit("finished");
+    emit('finished');
   },
 });
 
 const numMain = computed(() => {
   const result = currentValue.value
     .toFixed(props.decimals)
-    .split(".")[0]
+    .split('.')[0]
     ?.replaceAll(/\B(?=(\d{3})+(?!\d))/g, props.separator);
   return result;
 });
 
 const numDec = computed(() => {
   return (
-    props.decimal + currentValue.value.toFixed(props.decimals).split(".")[1]
+    props.decimal + currentValue.value.toFixed(props.decimals).split('.')[1]
   );
 });
 </script>
@@ -67,31 +67,31 @@ const numDec = computed(() => {
   <div class="count-to" v-bind="$attrs">
     <slot name="prefix">
       <div
-        v-if="prefix"
-        :class="prefixClass"
-        :style="prefixStyle"
         class="count-to-prefix"
+        :style="prefixStyle"
+        :class="prefixClass"
+        v-if="prefix"
       >
         {{ prefix }}
       </div>
     </slot>
-    <div :class="mainClass" :style="mainStyle" class="count-to-main">
+    <div class="count-to-main" :class="mainClass" :style="mainStyle">
       <span>{{ numMain }}</span>
       <span
+        class="count-to-main-decimal"
         v-if="decimals > 0"
         :class="decimalClass"
         :style="decimalStyle"
-        class="count-to-main-decimal"
       >
         {{ numDec }}
       </span>
     </div>
     <slot name="suffix">
       <div
-        v-if="suffix"
-        :class="suffixClass"
-        :style="suffixStyle"
         class="count-to-suffix"
+        :style="suffixStyle"
+        :class="suffixClass"
+        v-if="suffix"
       >
         {{ suffix }}
       </div>
@@ -112,7 +112,7 @@ const numDec = computed(() => {
   }
 
   &-main {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     // font-size: 1.5rem;
 
     &-decimal {

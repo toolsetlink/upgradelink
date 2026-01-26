@@ -8,15 +8,15 @@ interface Props {
 }
 
 defineOptions({
-  name: "Copyright",
+  name: 'Copyright',
 });
 
 withDefaults(defineProps<Props>(), {
-  companyName: "UpgradeLink",
-  companySiteLink: "",
-  date: "2024",
-  icp: "",
-  icpLink: "",
+  companyName: 'Vben Admin',
+  companySiteLink: '',
+  date: '2024',
+  icp: '',
+  icpLink: '',
 });
 </script>
 

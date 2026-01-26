@@ -1,6 +1,6 @@
 {
   "name": "upgradelink-admin-ui",
-  "version": "2.3.0",
+  "version": "3.0.0",
   "private": true,
   "keywords": [
     "monorepo",
@@ -12,12 +12,14 @@
     "vue admin",
     "vue vben admin",
     "vue vben admin pro",
-    "vue3",
-    "UpgradeLink"
+    "vue3"
   ],
-  "homepage": "https://https://www.toolsetlink.com/",
+  "homepage": "https://github.com/toolsetlink/upgradelink",
   "bugs": "https://github.com/toolsetlink/upgradelink/issues",
-  "repository": "https://github.com/toolsetlink/upgradelink.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/toolsetlink/upgradelink.git"
+  },
   "license": "Apache-2.0",
   "author": {
     "name": "toolsetlink",
@@ -27,9 +29,7 @@
   "type": "module",
   "scripts": {
     "build": "cross-env NODE_OPTIONS=--max-old-space-size=8192 turbo build",
-    "build:analyze": "turbo build:analyze",
-    "build:simple-admin-core": "pnpm run build --filter=@vben/simple-admin-core",
-    "build:docker": "./scripts/deploy/build-local-docker-image.sh",
+    "build:admin": "pnpm run build --filter=@vben/admin",
     "changeset": "pnpm exec changeset",
     "check": "pnpm run check:circular && pnpm run check:dep && pnpm run check:type && pnpm check:cspell",
     "check:circular": "vsh check-circular",
@@ -39,7 +39,7 @@
     "clean": "node ./scripts/clean.mjs",
     "commit": "czg",
     "dev": "turbo-run dev",
-    "dev:simple-admin-core": "pnpm -F @vben/simple-admin-core run dev",
+    "dev:admin": "pnpm -F @vben/admin run dev",
     "format": "vsh lint --format",
     "lint": "vsh lint",
     "postinstall": "pnpm -r run stub --if-present",
@@ -74,10 +74,8 @@
     "cross-env": "catalog:",
     "cspell": "catalog:",
     "happy-dom": "catalog:",
-    "husky": "catalog:",
     "is-ci": "catalog:",
-    "less": "^4.4.1",
-    "lint-staged": "catalog:",
+    "lefthook": "catalog:",
     "playwright": "catalog:",
     "rimraf": "catalog:",
     "tailwindcss": "catalog:",
@@ -90,10 +88,10 @@
     "vue-tsc": "catalog:"
   },
   "engines": {
-    "node": ">=20.10.0",
-    "pnpm": ">=9.12.0"
+    "node": ">=20.12.0",
+    "pnpm": ">=10.0.0"
   },
-  "packageManager": "pnpm@10.15.1",
+  "packageManager": "pnpm@10.22.0",
   "pnpm": {
     "peerDependencyRules": {
       "allowedVersions": {
@@ -104,6 +102,8 @@
       "@ast-grep/napi": "catalog:",
       "@ctrl/tinycolor": "catalog:",
       "clsx": "catalog:",
+      "esbuild": "0.25.3",
+      "jiti": "catalog:",
       "pinia": "catalog:",
       "vue": "catalog:"
     },
@@ -111,5 +111,8 @@
       "canvas",
       "node-gyp"
     ]
+  },
+  "dependencies": {
+    "less": "^4.5.1"
   }
 }

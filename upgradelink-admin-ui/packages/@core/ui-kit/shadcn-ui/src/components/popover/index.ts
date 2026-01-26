@@ -1,1 +1,1 @@
-export { default as VbenPopover } from "./popover.vue";
+export { default as VbenPopover } from './popover.vue';

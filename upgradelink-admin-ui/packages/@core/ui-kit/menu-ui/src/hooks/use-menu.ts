@@ -1,13 +1,13 @@
-import type { SubMenuProvider } from "../types";
+import type { SubMenuProvider } from '../types';
 
-import { computed, getCurrentInstance } from "vue";
+import { computed, getCurrentInstance } from 'vue';
 
-import { findComponentUpward } from "../utils";
+import { findComponentUpward } from '../utils';
 
 function useMenu() {
   const instance = getCurrentInstance();
   if (!instance) {
-    throw new Error("instance is required");
+    throw new Error('instance is required');
   }
 
   /**
@@ -16,7 +16,7 @@ function useMenu() {
   const parentPaths = computed(() => {
     let parent = instance.parent;
     const paths: string[] = [instance.props.path as string];
-    while (parent?.type.name !== "Menu") {
+    while (parent?.type.name !== 'Menu') {
       if (parent?.props.path) {
         paths.unshift(parent.props.path as string);
       }
@@ -27,7 +27,7 @@ function useMenu() {
   });
 
   const parentMenu = computed(() => {
-    return findComponentUpward(instance, ["Menu", "SubMenu"]);
+    return findComponentUpward(instance, ['Menu', 'SubMenu']);
   });
 
   return {
@@ -39,7 +39,7 @@ function useMenu() {
 function useMenuStyle(menu?: SubMenuProvider) {
   const subMenuStyle = computed(() => {
     return {
-      "--menu-level": menu ? (menu?.level ?? 0 + 1) : 0,
+      '--menu-level': menu ? (menu?.level ?? 0 + 1) : 0,
     };
   });
   return subMenuStyle;

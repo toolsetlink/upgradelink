@@ -1,4 +1,2 @@
-import "./default.css";
-import "./dark.css";
-
-export {};
+import './default.css';
+import './dark.css';

@@ -1,23 +1,23 @@
 <script setup lang="ts">
-import type { CaptchaPoint, PointSelectionCaptchaProps } from "../types";
+import type { CaptchaPoint, PointSelectionCaptchaProps } from '../types';
 
-import { RotateCw } from "@vben/icons";
-import { $t } from "@vben/locales";
+import { RotateCw } from '@vben/icons';
+import { $t } from '@vben/locales';
 
-import { VbenButton, VbenIconButton } from "@vben-core/shadcn-ui";
+import { VbenButton, VbenIconButton } from '@vben-core/shadcn-ui';
 
-import { useCaptchaPoints } from "../hooks/useCaptchaPoints";
-import CaptchaCard from "./point-selection-captcha-card.vue";
+import { useCaptchaPoints } from '../hooks/useCaptchaPoints';
+import CaptchaCard from './point-selection-captcha-card.vue';
 
 const props = withDefaults(defineProps<PointSelectionCaptchaProps>(), {
-  height: "220px",
-  hintImage: "",
-  hintText: "",
-  paddingX: "12px",
-  paddingY: "16px",
+  height: '220px',
+  hintImage: '',
+  hintText: '',
+  paddingX: '12px',
+  paddingY: '16px',
   showConfirm: false,
-  title: "",
-  width: "300px",
+  title: '',
+  width: '300px',
 });
 const emit = defineEmits<{
   click: [CaptchaPoint];
@@ -27,7 +27,7 @@ const emit = defineEmits<{
 const { addPoint, clearPoints, points } = useCaptchaPoints();
 
 if (!props.hintImage && !props.hintText) {
-  console.warn("At least one of hint image or hint text must be provided");
+  console.warn('At least one of hint image or hint text must be provided');
 }
 
 const POINT_OFFSET = 11;
@@ -43,15 +43,15 @@ function getElementPosition(element: HTMLElement) {
 function handleClick(e: MouseEvent) {
   try {
     const dom = e.currentTarget as HTMLElement;
-    if (!dom) throw new Error("Element not found");
+    if (!dom) throw new Error('Element not found');
 
     const { x: domX, y: domY } = getElementPosition(dom);
 
     const mouseX = e.clientX + window.scrollX;
     const mouseY = e.clientY + window.scrollY;
 
-    if (typeof mouseX !== "number" || typeof mouseY !== "number") {
-      throw new TypeError("Mouse coordinates not found");
+    if (typeof mouseX !== 'number' || typeof mouseY !== 'number') {
+      throw new TypeError('Mouse coordinates not found');
     }
 
     const xPos = mouseX - domX;
@@ -61,7 +61,7 @@ function handleClick(e: MouseEvent) {
 
     // 点击位置边界校验
     if (xPos < 0 || yPos < 0 || xPos > rect.width || yPos > rect.height) {
-      console.warn("Click position is out of the valid range");
+      console.warn('Click position is out of the valid range');
       return;
     }
 
@@ -77,11 +77,11 @@ function handleClick(e: MouseEvent) {
 
     addPoint(point);
 
-    emit("click", point);
+    emit('click', point);
     e.stopPropagation();
     e.preventDefault();
   } catch (error) {
-    console.error("Error in handleClick:", error);
+    console.error('Error in handleClick:', error);
   }
 }
 
@@ -89,25 +89,25 @@ function clear() {
   try {
     clearPoints();
   } catch (error) {
-    console.error("Error in clear:", error);
+    console.error('Error in clear:', error);
   }
 }
 
 function handleRefresh() {
   try {
     clear();
-    emit("refresh");
+    emit('refresh');
   } catch (error) {
-    console.error("Error in handleRefresh:", error);
+    console.error('Error in handleRefresh:', error);
   }
 }
 
 function handleConfirm() {
   if (!props.showConfirm) return;
   try {
-    emit("confirm", points, clear);
+    emit('confirm', points, clear);
   } catch (error) {
-    console.error("Error in handleConfirm:", error);
+    console.error('Error in handleConfirm:', error);
   }
 }
 </script>
@@ -122,7 +122,7 @@ function handleConfirm() {
     @click="handleClick"
   >
     <template #title>
-      <slot name="title">{{ $t("ui.captcha.title") }}</slot>
+      <slot name="title">{{ $t('ui.captcha.title') }}</slot>
     </template>
 
     <template #extra>
@@ -140,7 +140,7 @@ function handleConfirm() {
         size="sm"
         @click="handleConfirm"
       >
-        {{ $t("ui.captcha.confirm") }}
+        {{ $t('ui.captcha.confirm') }}
       </VbenButton>
     </template>
 
@@ -169,7 +169,7 @@ function handleConfirm() {
         v-else-if="hintText"
         class="border-border flex-center h-10 w-full rounded border"
       >
-        {{ `${$t("ui.captcha.clickInOrder")}` + `【${hintText}】` }}
+        {{ `${$t('ui.captcha.clickInOrder')}` + `【${hintText}】` }}
       </div>
     </template>
   </CaptchaCard>

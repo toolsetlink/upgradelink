@@ -3,15 +3,15 @@ import type {
   HoverCardContentProps,
   HoverCardRootEmits,
   HoverCardRootProps,
-} from "radix-vue";
+} from 'reka-ui';
 
-import type { ClassType } from "@vben-core/typings";
+import type { ClassType } from '@vben-core/typings';
 
-import { computed } from "vue";
+import { computed } from 'vue';
 
-import { useForwardPropsEmits } from "radix-vue";
+import { useForwardPropsEmits } from 'reka-ui';
 
-import { HoverCard, HoverCardContent, HoverCardTrigger } from "../../ui";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from '../../ui';
 
 interface Props extends HoverCardRootProps {
   class?: ClassType;

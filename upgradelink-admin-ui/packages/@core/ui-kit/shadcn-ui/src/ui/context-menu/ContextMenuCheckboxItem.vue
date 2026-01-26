@@ -2,18 +2,18 @@
 import type {
   ContextMenuCheckboxItemEmits,
   ContextMenuCheckboxItemProps,
-} from "radix-vue";
+} from 'reka-ui';
 
-import { computed } from "vue";
+import { computed } from 'vue';
 
-import { cn } from "@vben-core/shared/utils";
+import { cn } from '@vben-core/shared/utils';
 
-import { Check } from "lucide-vue-next";
+import { Check } from 'lucide-vue-next';
 import {
   ContextMenuCheckboxItem,
   ContextMenuItemIndicator,
   useForwardPropsEmits,
-} from "radix-vue";
+} from 'reka-ui';
 
 const props = defineProps<ContextMenuCheckboxItemProps & { class?: any }>();
 const emits = defineEmits<ContextMenuCheckboxItemEmits>();
@@ -32,7 +32,7 @@ const forwarded = useForwardPropsEmits(delegatedProps, emits);
     v-bind="forwarded"
     :class="
       cn(
-        'focus:bg-accent focus:text-accent-foreground relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
+        'relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
         props.class,
       )
     "

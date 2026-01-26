@@ -3,27 +3,27 @@ import type {
   CaptchaVerifyPassingData,
   SliderCaptchaProps,
   SliderRotateVerifyPassingData,
-} from "../types";
+} from '../types';
 
-import { reactive, unref, useTemplateRef, watch, watchEffect } from "vue";
+import { reactive, unref, useTemplateRef, watch, watchEffect } from 'vue';
 
-import { $t } from "@vben/locales";
+import { $t } from '@vben/locales';
 
-import { cn } from "@vben-core/shared/utils";
+import { cn } from '@vben-core/shared/utils';
 
-import { useTimeoutFn } from "@vueuse/core";
+import { useTimeoutFn } from '@vueuse/core';
 
-import SliderCaptchaAction from "./slider-captcha-action.vue";
-import SliderCaptchaBar from "./slider-captcha-bar.vue";
-import SliderCaptchaContent from "./slider-captcha-content.vue";
+import SliderCaptchaAction from './slider-captcha-action.vue';
+import SliderCaptchaBar from './slider-captcha-bar.vue';
+import SliderCaptchaContent from './slider-captcha-content.vue';
 
 const props = withDefaults(defineProps<SliderCaptchaProps>(), {
   actionStyle: () => ({}),
   barStyle: () => ({}),
   contentStyle: () => ({}),
   isSlot: false,
-  successText: "",
-  text: "",
+  successText: '',
+  text: '',
   wrapperStyle: () => ({}),
 });
 
@@ -49,10 +49,10 @@ defineExpose({
   resume,
 });
 
-const wrapperRef = useTemplateRef<HTMLDivElement>("wrapperRef");
-const barRef = useTemplateRef<typeof SliderCaptchaBar>("barRef");
-const contentRef = useTemplateRef<typeof SliderCaptchaContent>("contentRef");
-const actionRef = useTemplateRef<typeof SliderCaptchaAction>("actionRef");
+const wrapperRef = useTemplateRef<HTMLDivElement>('wrapperRef');
+const barRef = useTemplateRef<typeof SliderCaptchaBar>('barRef');
+const contentRef = useTemplateRef<typeof SliderCaptchaContent>('contentRef');
+const actionRef = useTemplateRef<typeof SliderCaptchaAction>('actionRef');
 
 watch(
   () => state.isPassing,
@@ -60,7 +60,7 @@ watch(
     if (isPassing) {
       const { endTime, startTime } = state;
       const time = (endTime - startTime) / 1000;
-      emit("success", { isPassing, time: time.toFixed(1) });
+      emit('success', { isPassing, time: time.toFixed(1) });
       modelValue.value = isPassing;
     }
   },
@@ -71,9 +71,9 @@ watchEffect(() => {
 });
 
 function getEventPageX(e: MouseEvent | TouchEvent): number {
-  if ("pageX" in e) {
+  if ('pageX' in e) {
     return e.pageX;
-  } else if ("touches" in e && e.touches[0]) {
+  } else if ('touches' in e && e.touches[0]) {
     return e.touches[0].pageX;
   }
   return 0;
@@ -84,12 +84,12 @@ function handleDragStart(e: MouseEvent | TouchEvent) {
     return;
   }
   if (!actionRef.value) return;
-  emit("start", e);
+  emit('start', e);
 
   state.moveDistance =
     getEventPageX(e) -
     Number.parseInt(
-      actionRef.value.getStyle().left.replace("px", "") || "0",
+      actionRef.value.getStyle().left.replace('px', '') || '0',
       10,
     );
   state.startTime = Date.now();
@@ -112,7 +112,7 @@ function handleDragMoving(e: MouseEvent | TouchEvent) {
     const { actionWidth, offset, wrapperWidth } = getOffset(actionEl.getEl());
     const moveX = getEventPageX(e) - moveDistance;
 
-    emit("move", {
+    emit('move', {
       event: e,
       moveDistance,
       moveX,
@@ -133,7 +133,7 @@ function handleDragMoving(e: MouseEvent | TouchEvent) {
 function handleDragOver(e: MouseEvent | TouchEvent) {
   const { isMoving, isPassing, moveDistance } = state;
   if (isMoving && !isPassing) {
-    emit("end", e);
+    emit('end', e);
     const actionEl = actionRef.value;
     const barEl = unref(barRef);
     if (!actionEl || !barEl) return;
@@ -185,12 +185,12 @@ function resume() {
   const contentEl = unref(contentRef);
   if (!actionEl || !barEl || !contentEl) return;
 
-  contentEl.getEl().style.width = "100%";
+  contentEl.getEl().style.width = '100%';
   state.toLeft = true;
   useTimeoutFn(() => {
     state.toLeft = false;
-    actionEl.setLeft("0");
-    barEl.setWidth("0");
+    actionEl.setLeft('0');
+    barEl.setWidth('0');
   }, 300);
 }
 </script>

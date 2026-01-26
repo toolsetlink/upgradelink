@@ -1,7 +1,7 @@
 {
   "welcomeBack": "欢迎回来",
-  "pageTitle": "Upgradelink",
-  "pageDesc": "",
+  "pageTitle": "全端支持，应用升级系统与应用升级分发平台。",
+  "pageDesc": "为应用提供一站式的应用升级及分发解决方案。有效降低技术门槛，减少研发成本，助力业务快速搭建稳定高质量的应用。",
   "loginSuccess": "登录成功",
   "loginSuccessDesc": "欢迎回来",
   "loginSubtitle": "请输入您的帐户信息以开始管理您的项目",
@@ -51,6 +51,10 @@
   "sendCode": "获取验证码",
   "sendText": "{0}秒后重新获取",
   "thirdPartyLogin": "其他登录方式",
+  "weChat": "微信",
+  "qq": "QQ",
+  "gitHub": "GitHub",
+  "google": "Google",
   "loginAgainTitle": "重新登录",
   "loginAgainSubTitle": "您的登录状态已过期，请重新登录以继续。",
   "layout": {

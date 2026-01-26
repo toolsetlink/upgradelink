@@ -1,34 +1,35 @@
-import type { AxiosInstance, AxiosResponse } from "axios";
+import type { AxiosInstance, AxiosResponse } from 'axios';
 
-import type { RequestClientConfig, RequestClientOptions } from "./types";
+import type { RequestClientConfig, RequestClientOptions } from './types';
 
-import { bindMethods, isString, merge } from "@vben/utils";
+import { bindMethods, isString, merge } from '@vben/utils';
 
-import axios from "axios";
-import qs from "qs";
+import axios from 'axios';
+import qs from 'qs';
 
-import { FileDownloader } from "./modules/downloader";
-import { InterceptorManager } from "./modules/interceptor";
-import { FileUploader } from "./modules/uploader";
+import { FileDownloader } from './modules/downloader';
+import { InterceptorManager } from './modules/interceptor';
+import { SSE } from './modules/sse';
+import { FileUploader } from './modules/uploader';
 
 function getParamsSerializer(
-  paramsSerializer: RequestClientOptions["paramsSerializer"],
+  paramsSerializer: RequestClientOptions['paramsSerializer'],
 ) {
   if (isString(paramsSerializer)) {
     switch (paramsSerializer) {
-      case "brackets": {
+      case 'brackets': {
         return (params: any) =>
-          qs.stringify(params, { arrayFormat: "brackets" });
+          qs.stringify(params, { arrayFormat: 'brackets' });
       }
-      case "comma": {
-        return (params: any) => qs.stringify(params, { arrayFormat: "comma" });
+      case 'comma': {
+        return (params: any) => qs.stringify(params, { arrayFormat: 'comma' });
       }
-      case "indices": {
+      case 'indices': {
         return (params: any) =>
-          qs.stringify(params, { arrayFormat: "indices" });
+          qs.stringify(params, { arrayFormat: 'indices' });
       }
-      case "repeat": {
-        return (params: any) => qs.stringify(params, { arrayFormat: "repeat" });
+      case 'repeat': {
+        return (params: any) => qs.stringify(params, { arrayFormat: 'repeat' });
       }
     }
   }
@@ -36,17 +37,19 @@ function getParamsSerializer(
 }
 
 class RequestClient {
-  public addRequestInterceptor: InterceptorManager["addRequestInterceptor"];
+  public addRequestInterceptor: InterceptorManager['addRequestInterceptor'];
 
-  public addResponseInterceptor: InterceptorManager["addResponseInterceptor"];
-  public download: FileDownloader["download"];
+  public addResponseInterceptor: InterceptorManager['addResponseInterceptor'];
+  public download: FileDownloader['download'];
 
+  public readonly instance: AxiosInstance;
   // 是否正在刷新token
   public isRefreshing = false;
+  public postSSE: SSE['postSSE'];
   // 刷新token队列
   public refreshTokenQueue: ((token: string) => void)[] = [];
-  public upload: FileUploader["upload"];
-  private readonly instance: AxiosInstance;
+  public requestSSE: SSE['requestSSE'];
+  public upload: FileUploader['upload'];
 
   /**
    * 构造函数，用于创建Axios实例
@@ -56,11 +59,11 @@ class RequestClient {
     // 合并默认配置和传入的配置
     const defaultConfig: RequestClientOptions = {
       headers: {
-        "Content-Type": "application/json;charset=utf-8",
+        'Content-Type': 'application/json;charset=utf-8',
       },
-      responseReturn: "raw",
+      responseReturn: 'raw',
       // 默认超时时间
-      timeout: 600_000,
+      timeout: 10_000,
     };
     const { ...axiosConfig } = options;
     const requestConfig = merge(axiosConfig, defaultConfig);
@@ -84,6 +87,10 @@ class RequestClient {
     // 实例化文件下载器
     const fileDownloader = new FileDownloader(this);
     this.download = fileDownloader.download.bind(fileDownloader);
+    // 实例化SSE模块
+    const sse = new SSE(this);
+    this.postSSE = sse.postSSE.bind(sse);
+    this.requestSSE = sse.requestSSE.bind(sse);
   }
 
   /**
@@ -93,14 +100,21 @@ class RequestClient {
     url: string,
     config?: RequestClientConfig,
   ): Promise<T> {
-    return this.request<T>(url, { ...config, method: "DELETE" });
+    return this.request<T>(url, { ...config, method: 'DELETE' });
   }
 
   /**
    * GET请求方法
    */
   public get<T = any>(url: string, config?: RequestClientConfig): Promise<T> {
-    return this.request<T>(url, { ...config, method: "GET" });
+    return this.request<T>(url, { ...config, method: 'GET' });
+  }
+
+  /**
+   * 获取基础URL
+   */
+  public getBaseUrl() {
+    return this.instance.defaults.baseURL;
   }
 
   /**
@@ -111,7 +125,7 @@ class RequestClient {
     data?: any,
     config?: RequestClientConfig,
   ): Promise<T> {
-    return this.request<T>(url, { ...config, data, method: "POST" });
+    return this.request<T>(url, { ...config, data, method: 'POST' });
   }
 
   /**
@@ -122,7 +136,7 @@ class RequestClient {
     data?: any,
     config?: RequestClientConfig,
   ): Promise<T> {
-    return this.request<T>(url, { ...config, data, method: "PUT" });
+    return this.request<T>(url, { ...config, data, method: 'PUT' });
   }
 
   /**

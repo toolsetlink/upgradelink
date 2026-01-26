@@ -2,12 +2,12 @@ import type {
   NormalizedOutputOptions,
   OutputBundle,
   OutputChunk,
-} from "rollup";
-import type { PluginOption } from "vite";
+} from 'rollup';
+import type { PluginOption } from 'vite';
 
-import { EOL } from "node:os";
+import { EOL } from 'node:os';
 
-import { dateUtil, readPackageJSON } from "@vben/node-utils";
+import { dateUtil, readPackageJSON } from '@vben/node-utils';
 
 /**
  * 用于注入版权信息
@@ -18,32 +18,32 @@ async function viteLicensePlugin(
   root = process.cwd(),
 ): Promise<PluginOption | undefined> {
   const {
-    description = "",
-    homepage = "",
-    version = "",
+    description = '',
+    homepage = '',
+    version = '',
   } = await readPackageJSON(root);
 
   return {
-    apply: "build",
-    enforce: "post",
+    apply: 'build',
+    enforce: 'post',
     generateBundle: {
       handler: (_options: NormalizedOutputOptions, bundle: OutputBundle) => {
-        const date = dateUtil().format("YYYY-MM-DD ");
+        const date = dateUtil().format('YYYY-MM-DD ');
         const copyrightText = `/*!
-  * UpgradeLink
+  * Vben Admin
   * Version: ${version}
-  * Author: toolsetlink
-  * Copyright (C) 2024 UpgradeLink
-  * License: Apache2.0 License
+  * Author: vben
+  * Copyright (C) 2024 Vben
+  * License: MIT License
   * Description: ${description}
   * Date Created: ${date}
   * Homepage: ${homepage}
-  * Contact: toolsetlink@163.com
+  * Contact: ann.vben@gmail.com
 */
               `.trim();
 
         for (const [, fileContent] of Object.entries(bundle)) {
-          if (fileContent.type === "chunk" && fileContent.isEntry) {
+          if (fileContent.type === 'chunk' && fileContent.isEntry) {
             const chunkContent = fileContent as OutputChunk;
             // 插入版权信息
             const content = chunkContent.code;
@@ -54,9 +54,9 @@ async function viteLicensePlugin(
           }
         }
       },
-      order: "post",
+      order: 'post',
     },
-    name: "vite:license",
+    name: 'vite:license',
   };
 }
 

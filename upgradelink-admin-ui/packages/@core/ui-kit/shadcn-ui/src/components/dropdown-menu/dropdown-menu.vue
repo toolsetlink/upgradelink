@@ -2,7 +2,7 @@
 import type {
   DropdownMenuProps,
   VbenDropdownMenuItem as IDropdownMenuItem,
-} from "./interface";
+} from './interface';
 
 import {
   DropdownMenu,
@@ -11,11 +11,11 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "../../ui";
+} from '../../ui';
 
 interface Props extends DropdownMenuProps {}
 
-defineOptions({ name: "DropdownMenu" });
+defineOptions({ name: 'DropdownMenu' });
 const props = withDefaults(defineProps<Props>(), {});
 
 function handleItemClick(menu: IDropdownMenuItem) {
@@ -35,7 +35,7 @@ function handleItemClick(menu: IDropdownMenuItem) {
         <template v-for="menu in menus" :key="menu.value">
           <DropdownMenuItem
             :disabled="menu.disabled"
-            class="data-[state=checked]:bg-accent data-[state=checked]:text-accent-foreground text-foreground/80 mb-1 cursor-pointer"
+            class="mb-1 cursor-pointer text-foreground/80 data-[state=checked]:bg-accent data-[state=checked]:text-accent-foreground"
             @click="handleItemClick(menu)"
           >
             <component :is="menu.icon" v-if="menu.icon" class="mr-2 size-4" />

@@ -1,6 +1,6 @@
-import type { Ora } from "ora";
+import type { Ora } from 'ora';
 
-import ora from "ora";
+import ora from 'ora';
 
 interface SpinnerOptions {
   failedText?: string;
@@ -15,10 +15,10 @@ export async function spinner<T>(
 
   try {
     const result = await callback();
-    loading.succeed(successText || "Success!");
+    loading.succeed(successText || 'Success!');
     return result;
   } catch (error) {
-    loading.fail(failedText || "Failed!");
+    loading.fail(failedText || 'Failed!');
     throw error;
   } finally {
     loading.stop();

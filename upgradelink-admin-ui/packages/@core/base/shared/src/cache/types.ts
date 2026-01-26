@@ -1,4 +1,4 @@
-type StorageType = "localStorage" | "sessionStorage";
+type StorageType = 'localStorage' | 'sessionStorage';
 
 interface StorageValue<T> {
   data: T;

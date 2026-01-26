@@ -1,31 +1,31 @@
-import type { PluginOption } from "vite";
+import type { PluginOption } from 'vite';
 
 import type {
   ApplicationPluginOptions,
   CommonPluginOptions,
   ConditionPlugin,
   LibraryPluginOptions,
-} from "../typing";
+} from '../typing';
 
-import viteVueI18nPlugin from "@intlify/unplugin-vue-i18n/vite";
-import viteVue from "@vitejs/plugin-vue";
-import viteVueJsx from "@vitejs/plugin-vue-jsx";
-import { visualizer as viteVisualizerPlugin } from "rollup-plugin-visualizer";
-import viteCompressPlugin from "vite-plugin-compression";
-import viteDtsPlugin from "vite-plugin-dts";
-import { createHtmlPlugin as viteHtmlPlugin } from "vite-plugin-html";
-import { VitePWA } from "vite-plugin-pwa";
-import viteVueDevTools from "vite-plugin-vue-devtools";
+import viteVueI18nPlugin from '@intlify/unplugin-vue-i18n/vite';
+import viteVue from '@vitejs/plugin-vue';
+import viteVueJsx from '@vitejs/plugin-vue-jsx';
+import { visualizer as viteVisualizerPlugin } from 'rollup-plugin-visualizer';
+import viteCompressPlugin from 'vite-plugin-compression';
+import viteDtsPlugin from 'vite-plugin-dts';
+import { createHtmlPlugin as viteHtmlPlugin } from 'vite-plugin-html';
+import { VitePWA } from 'vite-plugin-pwa';
+import viteVueDevTools from 'vite-plugin-vue-devtools';
 
-import { viteArchiverPlugin } from "./archiver";
-import { viteExtraAppConfigPlugin } from "./extra-app-config";
-import { viteImportMapPlugin } from "./importmap";
-import { viteInjectAppLoadingPlugin } from "./inject-app-loading";
-import { viteMetadataPlugin } from "./inject-metadata";
-import { viteLicensePlugin } from "./license";
-import { viteNitroMockPlugin } from "./nitro-mock";
-import { vitePrintPlugin } from "./print";
-import { viteVxeTableImportsPlugin } from "./vxe-table";
+import { viteArchiverPlugin } from './archiver';
+import { viteExtraAppConfigPlugin } from './extra-app-config';
+import { viteImportMapPlugin } from './importmap';
+import { viteInjectAppLoadingPlugin } from './inject-app-loading';
+import { viteMetadataPlugin } from './inject-metadata';
+import { viteLicensePlugin } from './license';
+import { viteNitroMockPlugin } from './nitro-mock';
+import { vitePrintPlugin } from './print';
+import { viteVxeTableImportsPlugin } from './vxe-table';
 
 /**
  * 获取条件成立的 vite 插件
@@ -74,7 +74,7 @@ async function loadCommonPlugins(
     {
       condition: isBuild && !!visualizer,
       plugins: () => [<PluginOption>viteVisualizerPlugin({
-          filename: "./node_modules/.cache/visualizer/stats.html",
+          filename: './node_modules/.cache/visualizer/stats.html',
           gzipSize: true,
           open: true,
         })],
@@ -167,9 +167,9 @@ async function loadApplicationPlugins(
           },
           ...pwaOptions,
           manifest: {
-            display: "standalone",
-            start_url: "/",
-            theme_color: "#ffffff",
+            display: 'standalone',
+            start_url: '/',
+            theme_color: '#ffffff',
             ...pwaOptions?.manifest,
           },
         }),
@@ -178,14 +178,14 @@ async function loadApplicationPlugins(
       condition: isBuild && !!compress,
       plugins: () => {
         const compressPlugins: PluginOption[] = [];
-        if (compressTypes?.includes("brotli")) {
+        if (compressTypes?.includes('brotli')) {
           compressPlugins.push(
-            viteCompressPlugin({ deleteOriginFile: false, ext: ".br" }),
+            viteCompressPlugin({ deleteOriginFile: false, ext: '.br' }),
           );
         }
-        if (compressTypes?.includes("gzip")) {
+        if (compressTypes?.includes('gzip')) {
           compressPlugins.push(
-            viteCompressPlugin({ deleteOriginFile: false, ext: ".gz" }),
+            viteCompressPlugin({ deleteOriginFile: false, ext: '.gz' }),
           );
         }
         return compressPlugins;
@@ -230,7 +230,7 @@ async function loadLibraryPlugins(
     ...commonPlugins,
     {
       condition: isBuild && !!dts,
-      plugins: () => [viteDtsPlugin({ logLevel: "error" })],
+      plugins: () => [viteDtsPlugin({ logLevel: 'error' })],
     },
   ]);
 }

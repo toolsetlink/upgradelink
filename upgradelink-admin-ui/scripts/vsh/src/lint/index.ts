@@ -1,6 +1,6 @@
-import type { CAC } from "cac";
+import type { CAC } from 'cac';
 
-import { execaCommand } from "@vben/node-utils";
+import { execaCommand } from '@vben/node-utils';
 
 interface LintCommandOptions {
   /**
@@ -14,34 +14,34 @@ async function runLint({ format }: LintCommandOptions) {
 
   if (format) {
     await execaCommand(`stylelint "**/*.{vue,css,less,scss}" --cache --fix`, {
-      stdio: "inherit",
+      stdio: 'inherit',
     });
     await execaCommand(`eslint . --cache --fix`, {
-      stdio: "inherit",
+      stdio: 'inherit',
     });
     await execaCommand(`prettier . --write --cache --log-level warn`, {
-      stdio: "inherit",
+      stdio: 'inherit',
     });
     return;
   }
   await Promise.all([
     execaCommand(`eslint . --cache`, {
-      stdio: "inherit",
+      stdio: 'inherit',
     }),
     execaCommand(`prettier . --ignore-unknown --check --cache`, {
-      stdio: "inherit",
+      stdio: 'inherit',
     }),
     execaCommand(`stylelint "**/*.{vue,css,less,scss}" --cache`, {
-      stdio: "inherit",
+      stdio: 'inherit',
     }),
   ]);
 }
 
 function defineLintCommand(cac: CAC) {
   cac
-    .command("lint")
-    .usage("Batch execute project lint check.")
-    .option("--format", "Format lint problem.")
+    .command('lint')
+    .usage('Batch execute project lint check.')
+    .option('--format', 'Format lint problem.')
     .action(runLint);
 }
 

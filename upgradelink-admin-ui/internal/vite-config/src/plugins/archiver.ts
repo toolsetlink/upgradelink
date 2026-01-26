@@ -1,24 +1,24 @@
-import type { PluginOption } from "vite";
+import type { PluginOption } from 'vite';
 
-import type { ArchiverPluginOptions } from "../typing";
+import type { ArchiverPluginOptions } from '../typing';
 
-import fs from "node:fs";
-import fsp from "node:fs/promises";
-import { join } from "node:path";
+import fs from 'node:fs';
+import fsp from 'node:fs/promises';
+import { join } from 'node:path';
 
-import archiver from "archiver";
+import archiver from 'archiver';
 
 export const viteArchiverPlugin = (
   options: ArchiverPluginOptions = {},
 ): PluginOption => {
   return {
-    apply: "build",
+    apply: 'build',
     closeBundle: {
       handler() {
-        const { name = "dist", outputDir = "." } = options;
+        const { name = 'dist', outputDir = '.' } = options;
 
         setTimeout(async () => {
-          const folderToZip = "dist";
+          const folderToZip = 'dist';
 
           const zipOutputDir = join(process.cwd(), outputDir);
           const zipOutputPath = join(zipOutputDir, `${name}.zip`);
@@ -32,14 +32,14 @@ export const viteArchiverPlugin = (
             await zipFolder(folderToZip, zipOutputPath);
             console.log(`Folder has been zipped to: ${zipOutputPath}`);
           } catch (error) {
-            console.error("Error zipping folder:", error);
+            console.error('Error zipping folder:', error);
           }
         }, 0);
       },
-      order: "post",
+      order: 'post',
     },
-    enforce: "post",
-    name: "vite:archiver",
+    enforce: 'post',
+    name: 'vite:archiver',
   };
 };
 
@@ -49,18 +49,18 @@ async function zipFolder(
 ): Promise<void> {
   return new Promise((resolve, reject) => {
     const output = fs.createWriteStream(outputPath);
-    const archive = archiver("zip", {
+    const archive = archiver('zip', {
       zlib: { level: 9 }, // 设置压缩级别为 9 以实现最高压缩率
     });
 
-    output.on("close", () => {
+    output.on('close', () => {
       console.log(
         `ZIP file created: ${outputPath} (${archive.pointer()} total bytes)`,
       );
       resolve();
     });
 
-    archive.on("error", (err) => {
+    archive.on('error', (err) => {
       reject(err);
     });
 

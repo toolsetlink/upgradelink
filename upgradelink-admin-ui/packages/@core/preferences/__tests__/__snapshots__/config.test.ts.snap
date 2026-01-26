@@ -17,11 +17,12 @@ exports[`defaultPreferences immutability test > should not modify the config obj
     "contentPaddingRight": 0,
     "contentPaddingTop": 0,
     "defaultAvatar": "https://unpkg.com/@vbenjs/static-source@0.1.7/source/avatar-v1.webp",
-    "defaultHomePath": "/dashboard",
+    "defaultHomePath": "/analytics",
     "dynamicTitle": true,
     "enableCheckUpdates": true,
     "enablePreferences": true,
     "enableRefreshToken": false,
+    "enableStickyPreferencesNavigationBar": true,
     "isMobile": false,
     "layout": "sidebar-nav",
     "locale": "zh-CN",
@@ -29,6 +30,7 @@ exports[`defaultPreferences immutability test > should not modify the config obj
     "name": "Vben Admin",
     "preferencesButtonPosition": "auto",
     "watermark": false,
+    "watermarkContent": "",
     "zIndex": 200,
   },
   "breadcrumb": {
@@ -111,6 +113,7 @@ exports[`defaultPreferences immutability test > should not modify the config obj
     "colorPrimary": "hsl(212 100% 45%)",
     "colorSuccess": "hsl(144 57% 58%)",
     "colorWarning": "hsl(42 84% 61%)",
+    "fontSize": 16,
     "mode": "dark",
     "radius": "0.5",
     "semiDarkHeader": false,
@@ -131,6 +134,7 @@ exports[`defaultPreferences immutability test > should not modify the config obj
     "refresh": true,
     "sidebarToggle": true,
     "themeToggle": true,
+    "timezone": true,
   },
 }
 `;

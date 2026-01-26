@@ -12,7 +12,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "stub": "pnpm unbuild"
+    "stub": "pnpm unbuild --stub"
   },
   "files": [
     "dist"
@@ -53,6 +53,7 @@
     "@tailwindcss/typography": "catalog:",
     "autoprefixer": "catalog:",
     "cssnano": "catalog:",
+    "jiti": "catalog:",
     "postcss": "catalog:",
     "postcss-antd-fixes": "catalog:",
     "postcss-import": "catalog:",

@@ -1,30 +1,31 @@
 <script lang="ts" setup>
-import type { Arrayable } from "@vueuse/core";
+import type { Arrayable } from '@vueuse/core';
 
-import type { ValueType, VbenButtonGroupProps } from "./button";
+import type { ValueType, VbenButtonGroupProps } from './button';
 
-import { computed, ref, watch } from "vue";
+import { computed, ref, watch } from 'vue';
 
-import { Circle, CircleCheckBig, LoaderCircle } from "@vben-core/icons";
-import { cn, isFunction } from "@vben-core/shared/utils";
+import { Circle, CircleCheckBig, LoaderCircle } from '@vben-core/icons';
+import { cn, isFunction } from '@vben-core/shared/utils';
 
-import { objectOmit } from "@vueuse/core";
+import { objectOmit } from '@vueuse/core';
 
-import { VbenRenderContent } from "../render-content";
-import Button from "./button.vue";
+import { VbenRenderContent } from '../render-content';
+import VbenButtonGroup from './button-group.vue';
+import Button from './button.vue';
 
 const props = withDefaults(defineProps<VbenButtonGroupProps>(), {
-  allowClear: false,
   gap: 0,
-  maxCount: 0,
   multiple: false,
   showIcon: true,
-  size: "middle",
+  size: 'middle',
+  allowClear: false,
+  maxCount: 0,
 });
-const emit = defineEmits(["btnClick"]);
+const emit = defineEmits(['btnClick']);
 const btnDefaultProps = computed(() => {
   return {
-    ...objectOmit(props, ["options", "btnClass", "size", "disabled"]),
+    ...objectOmit(props, ['options', 'btnClass', 'size', 'disabled']),
     class: cn(props.btnClass),
   };
 });
@@ -93,14 +94,14 @@ async function onBtnClick(value: ValueType) {
     if (props.allowClear && innerValue.value.includes(value)) {
       innerValue.value = [];
       modelValue.value = undefined;
-      emit("btnClick", undefined);
+      emit('btnClick', undefined);
       return;
     } else {
       innerValue.value = [value];
       modelValue.value = value;
     }
   }
-  emit("btnClick", value);
+  emit('btnClick', value);
 }
 </script>
 <template>
@@ -123,21 +124,21 @@ async function onBtnClick(value: ValueType) {
       @click="onBtnClick(btn.value)"
       type="button"
     >
-      <div v-if="props.showIcon" class="icon-wrapper">
+      <div class="icon-wrapper" v-if="props.showIcon">
         <slot
-          :checked="innerValue.includes(btn.value)"
-          :loading="loadingValues.includes(btn.value)"
           name="icon"
+          :loading="loadingValues.includes(btn.value)"
+          :checked="innerValue.includes(btn.value)"
         >
           <LoaderCircle
-            v-if="loadingValues.includes(btn.value)"
             class="animate-spin"
+            v-if="loadingValues.includes(btn.value)"
           />
           <CircleCheckBig v-else-if="innerValue.includes(btn.value)" />
           <Circle v-else />
         </slot>
       </div>
-      <slot :data="btn" :label="btn.label" :value="btn.value" name="option">
+      <slot name="option" :label="btn.label" :value="btn.value" :data="btn">
         <VbenRenderContent :content="btn.label" />
       </slot>
     </Button>

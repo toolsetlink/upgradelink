@@ -3,17 +3,17 @@ import type {
   VxeGridPropTypes,
   VxeGridProps as VxeTableGridProps,
   VxeUIExport,
-} from "vxe-table";
+} from 'vxe-table';
 
-import type { Ref } from "vue";
+import type { Ref } from 'vue';
 
-import type { ClassType, DeepPartial } from "@vben/types";
+import type { ClassType, DeepPartial } from '@vben/types';
 
-import type { BaseFormComponentType, VbenFormProps } from "@vben-core/form-ui";
+import type { BaseFormComponentType, VbenFormProps } from '@vben-core/form-ui';
 
-import type { VxeGridApi } from "./api";
+import type { VxeGridApi } from './api';
 
-import { useVbenForm } from "@vben-core/form-ui";
+import { useVbenForm } from '@vben-core/form-ui';
 
 export interface VxePaginationInfo {
   currentPage: number;
@@ -72,7 +72,6 @@ export interface VxeGridProps<
    * 显示搜索表单
    */
   showSearchForm?: boolean;
-
   /**
    * 搜索表单与表格主体之间的分隔条
    */

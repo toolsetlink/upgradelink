@@ -1,4 +1,4 @@
-import { acceptHMRUpdate, defineStore } from "pinia";
+import { acceptHMRUpdate, defineStore } from 'pinia';
 
 interface BasicUserInfo {
   [key: string]: any;
@@ -7,17 +7,13 @@ interface BasicUserInfo {
    */
   avatar: string;
   /**
-   * 部门名称
-   */
-  departmentName: string;
-  /**
    * 用户昵称
    */
   realName: string;
   /**
    * 用户角色
    */
-  roleName?: string[];
+  roles?: string[];
   /**
    * 用户id
    */
@@ -42,13 +38,13 @@ interface AccessState {
 /**
  * @zh_CN 用户信息相关
  */
-export const useUserStore = defineStore("core-user", {
+export const useUserStore = defineStore('core-user', {
   actions: {
     setUserInfo(userInfo: BasicUserInfo | null) {
       // 设置用户信息
       this.userInfo = userInfo;
       // 设置角色信息
-      const roles = userInfo?.roleName ?? [];
+      const roles = userInfo?.roles ?? [];
       this.setUserRoles(roles);
     },
     setUserRoles(roles: string[]) {

@@ -1,0 +1,107 @@
+import "../base.api"
+
+type (
+    // The data of upgrade win information | UpgradeWin信息
+    UpgradeWinInfo {
+        Id        *int    `json:"id,optional"`
+
+        // 应用唯一标识
+        Key  *string `json:"key,optional"`
+
+        // 应用名称
+        Name  *string `json:"name,optional"`
+
+        // 应用包名
+        PackageName  *string `json:"packageName,optional"`
+
+        // 描述信息
+        Description  *string `json:"description,optional"`
+
+        // 是否删除 0：正常；1：已删除
+        IsDel  *int32 `json:"isDel,optional"`
+
+        // 创建时间
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+        // The response data of upgrade win list | UpgradeWin信息列表数据
+    UpgradeWinListResp {
+        BaseDataInfo
+
+        // The upgrade win list data | UpgradeWin信息列表数据
+        Data UpgradeWinListInfo `json:"data"`
+    }
+
+        // The upgrade win list data | UpgradeWin信息列表数据
+    UpgradeWinListInfo {
+        BaseListInfo
+
+        // The upgrade win list data | UpgradeWin信息列表数据
+        Data  []UpgradeWinInfo  `json:"data"`
+    }
+
+        // Get upgrade win list request params | UpgradeWin信息列表请求参数
+    UpgradeWinListReq {
+        PageInfo
+
+        // 应用唯一标识
+        Key  *string `json:"key,optional"`
+
+        // 应用名称
+        Name  *string `json:"name,optional"`
+
+        // 应用包名
+        PackageName  *string `json:"packageName,optional"`
+
+        // 描述信息
+        Description  *string `json:"description,optional"`
+
+        // 是否删除 0：正常；1：已删除
+        IsDel  *int32 `json:"isDel,optional"`
+
+        // 创建时间
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+        // The upgrade win information response | UpgradeWin信息返回体
+    UpgradeWinInfoResp {
+        BaseDataInfo
+
+        // upgrade win information | UpgradeWin信息数据
+        Data UpgradeWinInfo `json:"data"`
+    }
+)
+
+@server(
+    jwt: Auth
+    group: upgrade_win
+    middleware: Authority, CompanyData
+)
+
+service Api {
+    // Create upgrade win information | 创建UpgradeWin信息
+    @handler createUpgradeWin
+    post /upgrade_win/create (UpgradeWinInfo) returns (BaseMsgResp)
+
+    // Update upgrade win information | 更新UpgradeWin信息
+    @handler updateUpgradeWin
+    post /upgrade_win/update (UpgradeWinInfo) returns (BaseMsgResp)
+
+    // Delete upgrade win information | 删除UpgradeWin信息
+    @handler deleteUpgradeWin
+    post /upgrade_win/delete (IDsReq) returns (BaseMsgResp)
+
+    // Get upgrade win list | 获取UpgradeWin信息列表
+    @handler getUpgradeWinList
+    post /upgrade_win/list (UpgradeWinListReq) returns (UpgradeWinListResp)
+
+    // Get upgrade win by ID | 通过ID获取UpgradeWin信息
+    @handler getUpgradeWinById
+    post /upgrade_win (IDReq) returns (UpgradeWinInfoResp)
+}

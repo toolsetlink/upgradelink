@@ -1,15 +1,15 @@
 <script lang="ts" setup>
-import type { RouteLocationNormalized } from "vue-router";
+import type { RouteLocationNormalized } from 'vue-router';
 
-import { computed, ref } from "vue";
-import { useRoute } from "vue-router";
+import { computed, ref } from 'vue';
+import { useRoute } from 'vue-router';
 
-import { preferences } from "@vben/preferences";
-import { useTabbarStore } from "@vben/stores";
+import { preferences } from '@vben/preferences';
+import { useTabbarStore } from '@vben/stores';
 
-import { VbenSpinner } from "@vben-core/shadcn-ui";
+import { VbenSpinner } from '@vben-core/shadcn-ui';
 
-defineOptions({ name: "IFrameRouterView" });
+defineOptions({ name: 'IFrameRouterView' });
 
 const spinningList = ref<boolean[]>([]);
 const tabbarStore = useTabbarStore();
@@ -19,9 +19,9 @@ const enableTabbar = computed(() => preferences.tabbar.enable);
 
 const iframeRoutes = computed(() => {
   if (!enableTabbar.value) {
-    return route.meta.frameSrc ? [route] : [];
+    return route.meta.iframeSrc ? [route] : [];
   }
-  return tabbarStore.getTabs.filter((tab) => !!tab.meta?.frameSrc);
+  return tabbarStore.getTabs.filter((tab) => !!tab.meta?.iframeSrc);
 });
 
 const tabNames = computed(
@@ -76,7 +76,7 @@ function showSpinning(index: number) {
       >
         <VbenSpinner :spinning="showSpinning(index)" />
         <iframe
-          :src="item.meta.frameSrc as string"
+          :src="item.meta.iframeSrc as string"
           class="size-full"
           @load="hideLoading(index)"
         ></iframe>

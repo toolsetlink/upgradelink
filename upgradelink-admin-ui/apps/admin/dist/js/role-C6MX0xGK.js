@@ -1,0 +1,1 @@
+import{ba as t}from"./bootstrap-BKq-8Ur9.js";const r=e=>t.post("/role/list",e),s=e=>t.post("/role/create",e),l=e=>t.post("/role/update",e),a=e=>t.post("/role/delete",e);export{s as c,a as d,r as g,l as u};

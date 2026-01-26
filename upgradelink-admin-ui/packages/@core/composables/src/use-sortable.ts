@@ -1,5 +1,5 @@
-import type { SortableOptions } from "sortablejs";
-import type Sortable from "sortablejs";
+import type { SortableOptions } from 'sortablejs';
+import type Sortable from 'sortablejs';
 
 function useSortable<T extends HTMLElement>(
   sortableContainer: T,
@@ -8,7 +8,7 @@ function useSortable<T extends HTMLElement>(
   const initializeSortable = async () => {
     const Sortable = await import(
       // @ts-expect-error - This is a dynamic import
-      "sortablejs/modular/sortable.complete.esm.js"
+      'sortablejs/modular/sortable.complete.esm.js'
     );
     const sortable = Sortable?.default?.create?.(sortableContainer, {
       animation: 300,

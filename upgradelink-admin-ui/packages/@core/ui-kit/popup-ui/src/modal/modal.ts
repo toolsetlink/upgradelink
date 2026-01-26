@@ -1,15 +1,15 @@
-import type { Component, Ref } from "vue";
+import type { Component, Ref } from 'vue';
 
-import type { MaybePromise } from "@vben-core/typings";
+import type { MaybePromise } from '@vben-core/typings';
 
-import type { ModalApi } from "./modal-api";
+import type { ModalApi } from './modal-api';
 
 export interface ModalProps {
   /**
    * 动画类型
    * @default 'slide'
    */
-  animationType?: "scale" | "slide";
+  animationType?: 'scale' | 'slide';
   /**
    * 是否要挂载到内容区域
    * @default false
@@ -162,7 +162,6 @@ export interface ModalApiOptions extends ModalState {
    * 独立的弹窗组件
    */
   connectedComponent?: Component;
-
   /**
    * 关闭前的回调，返回 false 可以阻止关闭
    * @returns

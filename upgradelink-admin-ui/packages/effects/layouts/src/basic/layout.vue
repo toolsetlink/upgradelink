@@ -1,40 +1,40 @@
 <script lang="ts" setup>
-import type { SetupContext } from "vue";
-import type { RouteLocationNormalizedLoaded } from "vue-router";
+import type { SetupContext } from 'vue';
+import type { RouteLocationNormalizedLoaded } from 'vue-router';
 
-import type { MenuRecordRaw } from "@vben/types";
+import type { MenuRecordRaw } from '@vben/types';
 
-import { computed, onMounted, useSlots, watch } from "vue";
-import { useRoute } from "vue-router";
+import { computed, onMounted, useSlots, watch } from 'vue';
+import { useRoute } from 'vue-router';
 
-import { useRefresh } from "@vben/hooks";
-import { $t, i18n } from "@vben/locales";
+import { useRefresh } from '@vben/hooks';
+import { $t, i18n } from '@vben/locales';
 import {
   preferences,
   updatePreferences,
   usePreferences,
-} from "@vben/preferences";
-import { useAccessStore } from "@vben/stores";
-import { cloneDeep, mapTree } from "@vben/utils";
+} from '@vben/preferences';
+import { useAccessStore, useTabbarStore, useTimezoneStore } from '@vben/stores';
+import { cloneDeep, mapTree } from '@vben/utils';
 
-import { VbenAdminLayout } from "@vben-core/layout-ui";
-import { VbenBackTop, VbenLogo } from "@vben-core/shadcn-ui";
+import { VbenAdminLayout } from '@vben-core/layout-ui';
+import { VbenBackTop, VbenLogo } from '@vben-core/shadcn-ui';
 
-import { Breadcrumb, CheckUpdates, Preferences } from "../widgets";
-import { LayoutContent, LayoutContentSpinner } from "./content";
-import { Copyright } from "./copyright";
-import { LayoutFooter } from "./footer";
-import { LayoutHeader } from "./header";
+import { Breadcrumb, CheckUpdates, Preferences } from '../widgets';
+import { LayoutContent, LayoutContentSpinner } from './content';
+import { Copyright } from './copyright';
+import { LayoutFooter } from './footer';
+import { LayoutHeader } from './header';
 import {
   LayoutExtraMenu,
   LayoutMenu,
   LayoutMixedMenu,
   useExtraMenu,
   useMixedMenu,
-} from "./menu";
-import { LayoutTabbar } from "./tabbar";
+} from './menu';
+import { LayoutTabbar } from './tabbar';
 
-defineOptions({ name: "BasicLayout" });
+defineOptions({ name: 'BasicLayout' });
 
 const emit = defineEmits<{ clearPreferencesAndLogout: []; clickLogo: [] }>();
 
@@ -52,16 +52,17 @@ const {
   theme,
 } = usePreferences();
 const accessStore = useAccessStore();
+const timezoneStore = useTimezoneStore();
 const { refresh } = useRefresh();
 
 const sidebarTheme = computed(() => {
   const dark = isDark.value || preferences.theme.semiDarkSidebar;
-  return dark ? "dark" : "light";
+  return dark ? 'dark' : 'light';
 });
 
 const headerTheme = computed(() => {
   const dark = isDark.value || preferences.theme.semiDarkHeader;
-  return dark ? "dark" : "light";
+  return dark ? 'dark' : 'light';
 });
 
 const logoClass = computed(() => {
@@ -69,18 +70,18 @@ const logoClass = computed(() => {
   const classes: string[] = [];
 
   if (collapsedShowTitle && sidebarCollapsed.value && !isMixedNav.value) {
-    classes.push("mx-auto");
+    classes.push('mx-auto');
   }
 
   if (isSideMixedNav.value) {
-    classes.push("flex-center");
+    classes.push('flex-center');
   }
 
-  return classes.join(" ");
+  return classes.join(' ');
 });
 
 const isMenuRounded = computed(() => {
-  return preferences.navigation.styleType === "rounded";
+  return preferences.navigation.styleType === 'rounded';
 });
 
 const logoCollapsed = computed(() => {
@@ -148,17 +149,19 @@ function toggleSidebar() {
 }
 
 function clearPreferencesAndLogout() {
-  emit("clearPreferencesAndLogout");
+  emit('clearPreferencesAndLogout');
 }
 
 function clickLogo() {
-  emit("clickLogo");
+  emit('clickLogo');
 }
 
 function autoCollapseMenuByRouteMeta(route: RouteLocationNormalizedLoaded) {
   // 只在双列模式下生效
   if (
-    preferences.app.layout === "sidebar-mixed-nav" &&
+    ['header-mixed-nav', 'sidebar-mixed-nav'].includes(
+      preferences.app.layout,
+    ) &&
     route.meta &&
     route.meta.hideInMenu
   ) {
@@ -175,7 +178,7 @@ onMounted(() => {
 watch(
   () => preferences.app.layout,
   async (val) => {
-    if (val === "sidebar-mixed-nav" && preferences.sidebar.hidden) {
+    if (val === 'sidebar-mixed-nav' && preferences.sidebar.hidden) {
       updatePreferences({
         sidebar: {
           hidden: false,
@@ -185,13 +188,23 @@ watch(
   },
 );
 
+const tabbarStore = useTabbarStore();
+
+function refreshAll() {
+  tabbarStore.cachedTabs.clear();
+  refresh();
+}
+
 // 语言更新后，刷新页面
 // i18n.global.locale会在preference.app.locale变更之后才会更新，因此watchpreference.app.locale是不合适的，刷新页面时可能语言配置尚未完全加载完成
-watch(i18n.global.locale, refresh, { flush: "post" });
+watch(i18n.global.locale, refreshAll, { flush: 'post' });
 
-const slots: SetupContext["slots"] = useSlots();
+// 时区更新后，刷新页面
+watch(() => timezoneStore.timezone, refreshAll, { flush: 'post' });
+
+const slots: SetupContext['slots'] = useSlots();
 const headerSlots = computed(() => {
-  return Object.keys(slots).filter((key) => key.startsWith("header-"));
+  return Object.keys(slots).filter((key) => key.startsWith('header-'));
 });
 </script>
 
@@ -257,10 +270,15 @@ const headerSlots = computed(() => {
         :class="logoClass"
         :collapsed="logoCollapsed"
         :src="preferences.logo.source"
+        :src-dark="preferences.logo.sourceDark"
         :text="preferences.app.name"
         :theme="showHeaderNav ? headerTheme : theme"
         @click="clickLogo"
-      />
+      >
+        <template v-if="$slots['logo-text']" #text>
+          <slot name="logo-text"></slot>
+        </template>
+      </VbenLogo>
     </template>
     <!-- 头部区域 -->
     <template #header>
@@ -295,6 +313,9 @@ const headerSlots = computed(() => {
         </template>
         <template #notification>
           <slot name="notification"></slot>
+        </template>
+        <template #timezone>
+          <slot name="timezone"></slot>
         </template>
         <template v-for="item in headerSlots" #[item]>
           <slot :name="item"></slot>
@@ -343,7 +364,11 @@ const headerSlots = computed(() => {
         :fit="preferences.logo.fit"
         :text="preferences.app.name"
         :theme="theme"
-      />
+      >
+        <template v-if="$slots['logo-text']" #text>
+          <slot name="logo-text"></slot>
+        </template>
+      </VbenLogo>
     </template>
 
     <template #tabbar>

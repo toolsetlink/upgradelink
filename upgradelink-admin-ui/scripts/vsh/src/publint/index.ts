@@ -1,7 +1,7 @@
-import type { CAC } from "cac";
-import type { Result } from "publint";
+import type { CAC } from 'cac';
+import type { Result } from 'publint';
 
-import { basename, dirname, join } from "node:path";
+import { basename, dirname, join } from 'node:path';
 
 import {
   colors,
@@ -13,15 +13,16 @@ import {
   outputJSON,
   readJSON,
   UNICODE,
-} from "@vben/node-utils";
-import { publint } from "publint";
-import { formatMessage } from "publint/utils";
+} from '@vben/node-utils';
+
+import { publint } from 'publint';
+import { formatMessage } from 'publint/utils';
 
 const CACHE_FILE = join(
-  "node_modules",
-  ".cache",
-  "publint",
-  ".pkglintcache.json",
+  'node_modules',
+  '.cache',
+  'publint',
+  '.pkglintcache.json',
 );
 
 interface PubLintCommandOptions {
@@ -39,13 +40,13 @@ async function getLintFiles(files: string[] = []) {
   const lintFiles: string[] = [];
 
   if (files?.length > 0) {
-    return files.filter((file) => basename(file) === "package.json");
+    return files.filter((file) => basename(file) === 'package.json');
   }
 
   const { packages } = await getPackages();
 
   for (const { dir } of packages) {
-    lintFiles.push(join(dir, "package.json"));
+    lintFiles.push(join(dir, 'package.json'));
   }
   return lintFiles;
 }
@@ -80,9 +81,9 @@ async function runPublint(files: string[], { check }: PubLintCommandOptions) {
           return null;
         }
 
-        Reflect.deleteProperty(pkgJson, "dependencies");
-        Reflect.deleteProperty(pkgJson, "devDependencies");
-        Reflect.deleteProperty(pkgJson, "peerDependencies");
+        Reflect.deleteProperty(pkgJson, 'dependencies');
+        Reflect.deleteProperty(pkgJson, 'devDependencies');
+        Reflect.deleteProperty(pkgJson, 'peerDependencies');
         const content = JSON.stringify(pkgJson);
         const hash = generatorContentHash(content);
 
@@ -90,7 +91,7 @@ async function runPublint(files: string[], { check }: PubLintCommandOptions) {
           cache?.[file]?.hash === hash
             ? (cache?.[file]?.result ?? [])
             : await publint({
-                level: "suggestion",
+                level: 'suggestion',
                 pkgDir: dirname(file),
                 strict: true,
               });
@@ -112,11 +113,11 @@ async function runPublint(files: string[], { check }: PubLintCommandOptions) {
 }
 
 function printResult(
-  results: Array<{
+  results: Array<null | {
     pkgJson: Record<string, number | string>;
     pkgPath: string;
     publintResult: Result;
-  } | null>,
+  }>,
   check?: boolean,
 ) {
   let errorCount = 0;
@@ -133,20 +134,20 @@ function printResult(
       continue;
     }
 
-    consola.log("");
+    consola.log('');
     consola.log(pkgPath);
     for (const message of messages) {
       switch (message.type) {
-        case "error": {
+        case 'error': {
           errorCount++;
 
           break;
         }
-        case "suggestion": {
+        case 'suggestion': {
           suggestionsCount++;
           break;
         }
-        case "warning": {
+        case 'warning': {
           warningCount++;
 
           break;
@@ -175,9 +176,9 @@ function printResult(
 
 function definePubLintCommand(cac: CAC) {
   cac
-    .command("publint [...files]")
-    .usage("Check if the monorepo package conforms to the publint standard.")
-    .option("--check", "Only errors are checked, no program exit is performed.")
+    .command('publint [...files]')
+    .usage('Check if the monorepo package conforms to the publint standard.')
+    .option('--check', 'Only errors are checked, no program exit is performed.')
     .action(runPublint);
 }
 

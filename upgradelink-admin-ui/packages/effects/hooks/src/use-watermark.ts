@@ -1,6 +1,6 @@
-import type { Watermark, WatermarkOptions } from "watermark-js-plus";
+import type { Watermark, WatermarkOptions } from 'watermark-js-plus';
 
-import { nextTick, onUnmounted, readonly, ref } from "vue";
+import { nextTick, onUnmounted, readonly, ref } from 'vue';
 
 const watermark = ref<Watermark>();
 const unmountedHooked = ref<boolean>(false);
@@ -8,19 +8,19 @@ const cachedOptions = ref<Partial<WatermarkOptions>>({
   advancedStyle: {
     colorStops: [
       {
-        color: "gray",
+        color: 'gray',
         offset: 0,
       },
       {
-        color: "gray",
+        color: 'gray',
         offset: 1,
       },
     ],
-    type: "linear",
+    type: 'linear',
   },
   // fontSize: '20px',
-  content: "",
-  contentType: "multi-line-text",
+  content: '',
+  contentType: 'multi-line-text',
   globalAlpha: 0.25,
   gridLayoutOptions: {
     cols: 2,
@@ -32,14 +32,14 @@ const cachedOptions = ref<Partial<WatermarkOptions>>({
     rows: 2,
   },
   height: 200,
-  layout: "grid",
+  layout: 'grid',
   rotate: 30,
   width: 160,
 });
 
 export function useWatermark() {
   async function initWatermark(options: Partial<WatermarkOptions>) {
-    const { Watermark } = await import("watermark-js-plus");
+    const { Watermark } = await import('watermark-js-plus');
 
     cachedOptions.value = {
       ...cachedOptions.value,

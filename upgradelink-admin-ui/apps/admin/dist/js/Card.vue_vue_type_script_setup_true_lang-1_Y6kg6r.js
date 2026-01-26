@@ -1,0 +1,1 @@
+import{a2 as s,aq as o,ak as n,aS as t,aa as c,aT as d,am as l}from"../jse/index-index-CRhkaR6-.js";const u=s({__name:"Card",props:{class:{}},setup(a){const r=a;return(e,p)=>(n(),o("div",{class:t(c(d)("rounded-xl border border-border bg-card text-card-foreground",r.class))},[l(e.$slots,"default")],2))}});export{u as _};

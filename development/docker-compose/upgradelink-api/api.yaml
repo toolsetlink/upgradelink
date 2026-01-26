@@ -3,7 +3,7 @@ Host: 0.0.0.0
 Port: 8888
 
 Log:
-  ServiceName: upgrade-api
+  ServiceName: UpgradeLink-api
   Mode: file
   Encoding: json
   TimeFormat: "2006-01-02 15:04:05.000"
@@ -12,11 +12,20 @@ Log:
   KeepDays: 3
   Rotation: daily
 
-MysqlConfig: "root:Rootroot123!@tcp(upgradelink-mysql:3306)/upgrade?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai"
+MysqlConf: "root:Rootroot123!@tcp(upgradelink-mysql:3306)/upgrade?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai"
 
-RedisConfig:
+RedisConf:
   Host: upgradelink-redis:6379
   Type: node
   Pass: a123456
   Tls: false
   NonBlock: false
+
+UploadConf:
+  Bucket:
+  SecretID:
+  SecretKey:
+  Endpoint:
+  Folder:
+  Region:
+  CdnUrl:

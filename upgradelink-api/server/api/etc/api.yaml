@@ -14,9 +14,18 @@ Log:
 
 MysqlConfig: "root:Rootroot123!@tcp(127.0.0.1:3306)/upgrade?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai"
 
-RedisConfig:
+RedisConf:
   Host: 127.0.0.1:6379
   Type: node
   Pass: a123456
   Tls: false
   NonBlock: false
+
+UploadConf:
+  Bucket:
+  SecretID:
+  SecretKey:
+  Endpoint:
+  Folder:
+  Region:
+  CdnUrl:

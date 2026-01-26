@@ -1,14 +1,14 @@
-import { defineBuildConfig } from "unbuild";
+import { defineBuildConfig } from 'unbuild';
 
 export default defineBuildConfig({
   clean: true,
   declaration: true,
   entries: [
-    "src/store",
-    "src/constants/index",
-    "src/utils/index",
-    "src/color/index",
-    "src/cache/index",
-    "src/global-state",
+    'src/store',
+    'src/constants/index',
+    'src/utils/index',
+    'src/color/index',
+    'src/cache/index',
+    'src/global-state',
   ],
 });

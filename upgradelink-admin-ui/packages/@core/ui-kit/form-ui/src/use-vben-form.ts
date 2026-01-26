@@ -2,14 +2,14 @@ import type {
   BaseFormComponentType,
   ExtendedFormApi,
   VbenFormProps,
-} from "./types";
+} from './types';
 
-import { defineComponent, h, isReactive, onBeforeUnmount, watch } from "vue";
+import { defineComponent, h, isReactive, onBeforeUnmount, watch } from 'vue';
 
-import { useStore } from "@vben-core/shared/store";
+import { useStore } from '@vben-core/shared/store';
 
-import { FormApi } from "./form-api";
-import VbenUseForm from "./vben-use-form.vue";
+import { FormApi } from './form-api';
+import VbenUseForm from './vben-use-form.vue';
 
 export function useVbenForm<
   T extends BaseFormComponentType = BaseFormComponentType,
@@ -31,7 +31,7 @@ export function useVbenForm<
         h(VbenUseForm, { ...props, ...attrs, formApi: extendedApi }, slots);
     },
     {
-      name: "VbenUseForm",
+      name: 'VbenUseForm',
       inheritAttrs: false,
     },
   );

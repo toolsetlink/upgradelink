@@ -1,29 +1,29 @@
-import type { RouteRecordRaw } from "vue-router";
+import type { RouteRecordRaw } from 'vue-router';
 
-import type { RouteModuleType } from "../merge-route-modules";
+import type { RouteModuleType } from '../merge-route-modules';
 
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from 'vitest';
 
-import { mergeRouteModules } from "../merge-route-modules";
+import { mergeRouteModules } from '../merge-route-modules';
 
-describe("mergeRouteModules", () => {
-  it("should merge route modules correctly", () => {
+describe('mergeRouteModules', () => {
+  it('should merge route modules correctly', () => {
     const routeModules: Record<string, RouteModuleType> = {
-      "./dynamic-routes/about.ts": {
+      './dynamic-routes/about.ts': {
         default: [
           {
-            component: () => Promise.resolve({ template: "<div>About</div>" }),
-            name: "About",
-            path: "/about",
+            component: () => Promise.resolve({ template: '<div>About</div>' }),
+            name: 'About',
+            path: '/about',
           },
         ],
       },
-      "./dynamic-routes/home.ts": {
+      './dynamic-routes/home.ts': {
         default: [
           {
-            component: () => Promise.resolve({ template: "<div>Home</div>" }),
-            name: "Home",
-            path: "/",
+            component: () => Promise.resolve({ template: '<div>Home</div>' }),
+            name: 'Home',
+            path: '/',
           },
         ],
       },
@@ -32,13 +32,13 @@ describe("mergeRouteModules", () => {
     const expectedRoutes: RouteRecordRaw[] = [
       {
         component: expect.any(Function),
-        name: "About",
-        path: "/about",
+        name: 'About',
+        path: '/about',
       },
       {
         component: expect.any(Function),
-        name: "Home",
-        path: "/",
+        name: 'Home',
+        path: '/',
       },
     ];
 
@@ -46,7 +46,7 @@ describe("mergeRouteModules", () => {
     expect(mergedRoutes).toEqual(expectedRoutes);
   });
 
-  it("should handle empty modules", () => {
+  it('should handle empty modules', () => {
     const routeModules: Record<string, RouteModuleType> = {};
     const expectedRoutes: RouteRecordRaw[] = [];
 
@@ -54,9 +54,9 @@ describe("mergeRouteModules", () => {
     expect(mergedRoutes).toEqual(expectedRoutes);
   });
 
-  it("should handle modules with no default export", () => {
+  it('should handle modules with no default export', () => {
     const routeModules: Record<string, RouteModuleType> = {
-      "./dynamic-routes/empty.ts": {
+      './dynamic-routes/empty.ts': {
         default: [],
       },
     };

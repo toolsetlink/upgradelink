@@ -17,7 +17,7 @@ export const backtopProps = {
    * @zh_CN the target to trigger scroll.
    */
   target: {
-    default: "",
+    default: '',
     type: String,
   },
   /**

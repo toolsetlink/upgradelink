@@ -1,5 +1,5 @@
-import type { Component } from "vue";
-import type { Router, RouteRecordRaw } from "vue-router";
+import type { Component } from 'vue';
+import type { Router, RouteRecordRaw } from 'vue-router';
 
 interface RouteMeta {
   /**
@@ -32,21 +32,17 @@ interface RouteMeta {
   /**
    * 徽标类型
    */
-  badgeType?: "dot" | "normal";
+  badgeType?: 'dot' | 'normal';
   /**
    * 徽标颜色
    */
   badgeVariants?:
-    | "default"
-    | "destructive"
-    | "primary"
-    | "success"
-    | "warning"
+    | 'default'
+    | 'destructive'
+    | 'primary'
+    | 'success'
+    | 'warning'
     | string;
-  /**
-   * iframe 地址
-   */
-  frameSrc?: string;
   /**
    * 路由的完整路径作为key（默认true）
    */
@@ -75,6 +71,10 @@ interface RouteMeta {
    * 图标（菜单/tab）
    */
   icon?: Component | string;
+  /**
+   * iframe 地址
+   */
+  iframeSrc?: string;
   /**
    * 忽略权限，直接可以访问
    * @default false
@@ -110,13 +110,13 @@ interface RouteMeta {
    */
   openInNewWindow?: boolean;
   /**
+   * 用于路由->菜单排序
+   */
+  order?: number;
+  /**
    * 菜单所携带的参数
    */
   query?: Recordable;
-  /**
-   * 用于路由->菜单排序
-   */
-  sort?: number;
   /**
    * 标题名称
    */
@@ -126,7 +126,7 @@ interface RouteMeta {
 // 定义递归类型以将 RouteRecordRaw 的 component 属性更改为 string
 type RouteRecordStringComponent<T = string> = Omit<
   RouteRecordRaw,
-  "children" | "component"
+  'children' | 'component'
 > & {
   children?: RouteRecordStringComponent<T>[];
   component: T;
@@ -136,7 +136,7 @@ type ComponentRecordType = Record<string, () => Promise<Component>>;
 
 interface GenerateMenuAndRoutesOptions {
   fetchMenuListAsync?: () => Promise<RouteRecordStringComponent[]>;
-  forbiddenComponent?: RouteRecordRaw["component"];
+  forbiddenComponent?: RouteRecordRaw['component'];
   layoutMap?: ComponentRecordType;
   pageMap?: ComponentRecordType;
   roles?: string[];

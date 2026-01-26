@@ -1,12 +1,12 @@
-import type { Component, Ref } from "vue";
+import type { Component, Ref } from 'vue';
 
-import type { ClassType, MaybePromise } from "@vben-core/typings";
+import type { ClassType, MaybePromise } from '@vben-core/typings';
 
-import type { DrawerApi } from "./drawer-api";
+import type { DrawerApi } from './drawer-api';
 
-export type DrawerPlacement = "bottom" | "left" | "right" | "top";
+export type DrawerPlacement = 'bottom' | 'left' | 'right' | 'top';
 
-export type CloseIconPlacement = "left" | "right";
+export type CloseIconPlacement = 'left' | 'right';
 
 export interface DrawerProps {
   /**
@@ -79,12 +79,12 @@ export interface DrawerProps {
    * @default false
    */
   loading?: boolean;
-
   /**
    * 是否显示遮罩
    * @default true
    */
   modal?: boolean;
+
   /**
    * 是否自动聚焦
    */
@@ -93,12 +93,12 @@ export interface DrawerProps {
    * 弹窗遮罩模糊效果
    */
   overlayBlur?: number;
-
   /**
    * 抽屉位置
    * @default right
    */
   placement?: DrawerPlacement;
+
   /**
    * 是否显示取消按钮
    * @default true

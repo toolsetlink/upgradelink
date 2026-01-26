@@ -48,18 +48,18 @@ func NewServiceContext(c config.Config) *ServiceContext {
 	logc.MustSetup(c.Log)
 
 	// 3. 注册 mysqlCli
-	mysqlCli := sqlx.NewMysql(c.MysqlConfig)
+	mysqlCli := sqlx.NewMysql(c.MysqlConf)
 
 	// 4. 注册 mysqlCli Cache
 	mysqlCacheCli := sqlc.NewConn(mysqlCli, cache.CacheConf{
 		{
-			RedisConf: c.RedisConfig,
+			RedisConf: c.RedisConf,
 			Weight:    redisCacheWeight,
 		},
 	}, cache.WithExpiry(mysqlCacheExpiry))
 
 	// 6. 注册 redisCli
-	redisCli := redis.MustNewRedis(c.RedisConfig)
+	redisCli := redis.MustNewRedis(c.RedisConf)
 
 	// 注册 内存缓存
 	localCache, _ := collection.NewCache(localCacheExpiry, collection.WithLimit(localCacheMaxItems))

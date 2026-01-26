@@ -1,5 +1,5 @@
-import type { Preferences } from "@vben-core/preferences";
-import type { DeepPartial } from "@vben-core/typings";
+import type { Preferences } from '@vben-core/preferences';
+import type { DeepPartial } from '@vben-core/typings';
 
 /**
  * 如果你想所有的app都使用相同的默认偏好设置，你可以在这里定义
@@ -14,4 +14,4 @@ function defineOverridesPreferences(preferences: DeepPartial<Preferences>) {
 
 export { defineOverridesPreferences };
 
-export * from "@vben-core/preferences";
+export * from '@vben-core/preferences';

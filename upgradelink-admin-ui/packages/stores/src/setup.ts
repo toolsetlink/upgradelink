@@ -1,9 +1,9 @@
-import type { Pinia } from "pinia";
+import type { Pinia } from 'pinia';
 
-import type { App } from "vue";
+import type { App } from 'vue';
 
-import { createPinia } from "pinia";
-import SecureLS from "secure-ls";
+import { createPinia } from 'pinia';
+import SecureLS from 'secure-ls';
 
 let pinia: Pinia;
 
@@ -18,11 +18,11 @@ export interface InitStoreOptions {
  * @zh_CN 初始化pinia
  */
 export async function initStores(app: App, options: InitStoreOptions) {
-  const { createPersistedState } = await import("pinia-plugin-persistedstate");
+  const { createPersistedState } = await import('pinia-plugin-persistedstate');
   pinia = createPinia();
   const { namespace } = options;
   const ls = new SecureLS({
-    encodingType: "aes",
+    encodingType: 'aes',
     encryptionSecret: import.meta.env.VITE_APP_STORE_SECURE_KEY,
     isCompression: true,
     // @ts-ignore secure-ls does not have a type definition for this
@@ -50,7 +50,7 @@ export async function initStores(app: App, options: InitStoreOptions) {
 
 export function resetAllStores() {
   if (!pinia) {
-    console.error("Pinia is not installed");
+    console.error('Pinia is not installed');
     return;
   }
   const allStores = (pinia as any)._s;

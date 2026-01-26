@@ -1,19 +1,19 @@
 <script lang="ts" setup>
-import type { VNode } from "vue";
+import type { VNode } from 'vue';
 import type {
   RouteLocationNormalizedLoaded,
   RouteLocationNormalizedLoadedGeneric,
-} from "vue-router";
+} from 'vue-router';
 
-import { computed } from "vue";
-import { RouterView } from "vue-router";
+import { computed } from 'vue';
+import { RouterView } from 'vue-router';
 
-import { preferences, usePreferences } from "@vben/preferences";
-import { getTabKey, storeToRefs, useTabbarStore } from "@vben/stores";
+import { preferences, usePreferences } from '@vben/preferences';
+import { getTabKey, storeToRefs, useTabbarStore } from '@vben/stores';
 
-import { IFrameRouterView } from "../../iframe";
+import { IFrameRouterView } from '../../iframe';
 
-defineOptions({ name: "LayoutContent" });
+defineOptions({ name: 'LayoutContent' });
 
 const tabbarStore = useTabbarStore();
 const { keepAlive } = usePreferences();
@@ -66,7 +66,7 @@ function transformComponent(
   // 组件视图未找到，如果有设置后备视图，则返回后备视图，如果没有，则抛出错误
   if (!component) {
     console.error(
-      "Component view not found，please check the route configuration",
+      'Component view not found，please check the route configuration',
     );
     return undefined;
   }
@@ -114,7 +114,7 @@ function transformComponent(
           <component
             :is="transformComponent(Component, route)"
             v-if="renderRouteView"
-            v-show="!route.meta.frameSrc"
+            v-show="!route.meta.iframeSrc"
             :key="getTabKey(route)"
           />
         </KeepAlive>

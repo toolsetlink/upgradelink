@@ -1,4 +1,4 @@
-import type { MenuRecordRaw } from "@vben-core/typings";
+import type { MenuRecordRaw } from '@vben-core/typings';
 
 interface NormalMenuProps {
   /**
@@ -21,7 +21,7 @@ interface NormalMenuProps {
   /**
    * 主题
    */
-  theme?: "dark" | "light";
+  theme?: 'dark' | 'light';
 }
 
 export type { NormalMenuProps };

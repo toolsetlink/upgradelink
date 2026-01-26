@@ -4,22 +4,22 @@
  */
 function updateCSSVariables(
   variables: { [key: string]: string },
-  id = "__vben-styles__",
+  id = '__vben-styles__',
 ): void {
   // 获取或创建内联样式表元素
   const styleElement =
-    document.querySelector(`#${id}`) || document.createElement("style");
+    document.querySelector(`#${id}`) || document.createElement('style');
 
   styleElement.id = id;
 
   // 构建要更新的 CSS 变量的样式文本
-  let cssText = ":root {";
+  let cssText = ':root {';
   for (const key in variables) {
     if (Object.prototype.hasOwnProperty.call(variables, key)) {
       cssText += `${key}: ${variables[key]};`;
     }
   }
-  cssText += "}";
+  cssText += '}';
 
   // 将样式文本赋值给内联样式表
   styleElement.textContent = cssText;

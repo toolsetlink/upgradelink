@@ -1,24 +1,24 @@
 <script lang="ts" setup>
-import type { ThemeModeType } from "@vben/types";
+import type { ThemeModeType } from '@vben/types';
 
-import { MoonStar, Sun, SunMoon } from "@vben/icons";
-import { $t } from "@vben/locales";
+import { MoonStar, Sun, SunMoon } from '@vben/icons';
+import { $t } from '@vben/locales';
 import {
   preferences,
   updatePreferences,
   usePreferences,
-} from "@vben/preferences";
+} from '@vben/preferences';
 
 import {
   ToggleGroup,
   ToggleGroupItem,
   VbenTooltip,
-} from "@vben-core/shadcn-ui";
+} from '@vben-core/shadcn-ui';
 
-import ThemeButton from "./theme-button.vue";
+import ThemeButton from './theme-button.vue';
 
 defineOptions({
-  name: "ThemeToggle",
+  name: 'ThemeToggle',
 });
 
 withDefaults(defineProps<{ shouldOnHover?: boolean }>(), {
@@ -27,7 +27,7 @@ withDefaults(defineProps<{ shouldOnHover?: boolean }>(), {
 
 function handleChange(isDark: boolean | undefined) {
   updatePreferences({
-    theme: { mode: isDark ? "dark" : "light" },
+    theme: { mode: isDark ? 'dark' : 'light' },
   });
 }
 
@@ -36,18 +36,18 @@ const { isDark } = usePreferences();
 const PRESETS = [
   {
     icon: Sun,
-    name: "light",
-    title: $t("preferences.theme.light"),
+    name: 'light',
+    title: $t('preferences.theme.light'),
   },
   {
     icon: MoonStar,
-    name: "dark",
-    title: $t("preferences.theme.dark"),
+    name: 'dark',
+    title: $t('preferences.theme.dark'),
   },
   {
     icon: SunMoon,
-    name: "auto",
-    title: $t("preferences.followSystem"),
+    name: 'auto',
+    title: $t('preferences.followSystem'),
   },
 ];
 </script>

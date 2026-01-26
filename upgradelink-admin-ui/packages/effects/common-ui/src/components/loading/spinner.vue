@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { VbenSpinner } from "@vben-core/shadcn-ui";
-import { cn } from "@vben-core/shared/utils";
+import { VbenSpinner } from '@vben-core/shadcn-ui';
+import { cn } from '@vben-core/shared/utils';
 
 interface SpinnerProps {
   class?: string;
@@ -14,7 +14,7 @@ interface SpinnerProps {
    */
   spinning?: boolean;
 }
-defineOptions({ name: "Spinner" });
+defineOptions({ name: 'Spinner' });
 const props = defineProps<SpinnerProps>();
 </script>
 <template>

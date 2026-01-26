@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { CSSProperties } from "vue";
+import type { CSSProperties } from 'vue';
 
 import {
   computed,
@@ -8,11 +8,11 @@ import {
   onUpdated,
   ref,
   watchEffect,
-} from "vue";
+} from 'vue';
 
-import { VbenTooltip } from "@vben-core/shadcn-ui";
+import { VbenTooltip } from '@vben-core/shadcn-ui';
 
-import { useElementSize } from "@vueuse/core";
+import { useElementSize } from '@vueuse/core';
 
 interface Props {
   /**
@@ -34,7 +34,7 @@ interface Props {
    * 提示框位置
    * @default 'top'
    */
-  placement?: "bottom" | "left" | "right" | "top";
+  placement?: 'bottom' | 'left' | 'right' | 'top';
   /**
    * 是否启用文本提示框
    * @default true
@@ -76,21 +76,22 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   expand: false,
   line: 1,
-  maxWidth: "100%",
-  placement: "top",
+  maxWidth: '100%',
+  placement: 'top',
   tooltip: true,
   tooltipWhenEllipsis: false,
   ellipsisThreshold: 3,
-  tooltipBackgroundColor: "",
-  tooltipColor: "",
+  tooltipBackgroundColor: '',
+  tooltipColor: '',
   tooltipFontSize: 14,
   tooltipMaxWidth: undefined,
-  tooltipOverlayStyle: () => ({ textAlign: "justify" }),
+  tooltipOverlayStyle: () => ({ textAlign: 'justify' }),
 });
+
 const emit = defineEmits<{ expandChange: [boolean] }>();
 
 const textMaxWidth = computed(() => {
-  if (typeof props.maxWidth === "number") {
+  if (typeof props.maxWidth === 'number') {
     return `${props.maxWidth}px`;
   }
   return props.maxWidth;
@@ -108,7 +109,7 @@ const checkEllipsis = () => {
 
   const element = ellipsis.value;
 
-  const originalText = element.textContent || "";
+  const originalText = element.textContent || '';
   const originalTrimmed = originalText.trim();
 
   // 对于空文本直接返回 false
@@ -131,7 +132,7 @@ const checkEllipsis = () => {
 let resizeObserver: null | ResizeObserver = null;
 
 onMounted(() => {
-  if (typeof ResizeObserver !== "undefined" && props.tooltipWhenEllipsis) {
+  if (typeof ResizeObserver !== 'undefined' && props.tooltipWhenEllipsis) {
     resizeObserver = new ResizeObserver(() => {
       checkEllipsis();
     });
@@ -166,11 +167,12 @@ watchEffect(
         props.tooltipMaxWidth ?? eleWidth.value + 24;
     }
   },
-  { flush: "post" },
+  { flush: 'post' },
 );
+
 function onExpand() {
   isExpand.value = !isExpand.value;
-  emit("expandChange", isExpand.value);
+  emit('expandChange', isExpand.value);
   if (props.tooltipWhenEllipsis) {
     checkEllipsis();
   }

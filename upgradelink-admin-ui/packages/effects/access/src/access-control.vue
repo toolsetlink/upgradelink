@@ -6,9 +6,9 @@
  3. 支持自定义权限码和角色的判断逻辑
 -->
 <script lang="ts" setup>
-import { computed } from "vue";
+import { computed } from 'vue';
 
-import { useAccess } from "./use-access";
+import { useAccess } from './use-access';
 
 interface Props {
   /**
@@ -21,23 +21,23 @@ interface Props {
    * 通过什么方式来控制组件，如果是 role，则传入角色，如果是 code，则传入权限码
    * @default 'role'
    */
-  type?: "code" | "role";
+  type?: 'code' | 'role';
 }
 
 defineOptions({
-  name: "AccessControl",
+  name: 'AccessControl',
 });
 
 const props = withDefaults(defineProps<Props>(), {
   codes: () => [],
-  type: "role",
+  type: 'role',
 });
 
 const { hasAccessByCodes, hasAccessByRoles } = useAccess();
 
 const hasAuth = computed(() => {
   const { codes, type } = props;
-  return type === "role" ? hasAccessByRoles(codes) : hasAccessByCodes(codes);
+  return type === 'role' ? hasAccessByRoles(codes) : hasAccessByCodes(codes);
 });
 </script>
 

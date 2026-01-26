@@ -1,7 +1,12 @@
-import type { PluginVisualizerOptions } from "rollup-plugin-visualizer";
-import type { ConfigEnv, PluginOption, UserConfig } from "vite";
-import type { PluginOptions } from "vite-plugin-dts";
-import type { Options as PwaPluginOptions } from "vite-plugin-pwa";
+import type { PluginVisualizerOptions } from 'rollup-plugin-visualizer';
+import type {
+  ConfigEnv,
+  PluginOption,
+  UserConfig,
+  UserConfigFnPromise,
+} from 'vite';
+import type { PluginOptions } from 'vite-plugin-dts';
+import type { Options as PwaPluginOptions } from 'vite-plugin-pwa';
 
 /**
  * ImportMap 配置接口
@@ -99,7 +104,7 @@ interface ImportmapPluginOptions {
    * @default 'jspm.io'
    * @description 支持 esm.sh 和 jspm.io 两种 CDN 供应商
    */
-  defaultProvider?: "esm.sh" | "jspm.io";
+  defaultProvider?: 'esm.sh' | 'jspm.io';
   /**
    * ImportMap 配置数组
    * @description 配置需要从 CDN 导入的包
@@ -201,7 +206,7 @@ interface ApplicationPluginOptions extends CommonPluginOptions {
    * @default ['gzip']
    * @description 可选的压缩类型
    */
-  compressTypes?: ("brotli" | "gzip")[];
+  compressTypes?: ('brotli' | 'gzip')[];
   /**
    * 是否抽离配置文件
    * @default false
@@ -259,7 +264,7 @@ interface ApplicationPluginOptions extends CommonPluginOptions {
   /**
    * 打印插件配置
    */
-  printInfoMap?: PrintPluginOptions["infoMap"];
+  printInfoMap?: PrintPluginOptions['infoMap'];
   /**
    * 是否开启 PWA
    * @default false
@@ -327,6 +332,8 @@ type DefineLibraryOptions = (config?: ConfigEnv) => Promise<{
  */
 type DefineConfig = DefineApplicationOptions | DefineLibraryOptions;
 
+type VbenViteConfig = Promise<UserConfig> | UserConfig | UserConfigFnPromise;
+
 export type {
   ApplicationPluginOptions,
   ArchiverPluginOptions,
@@ -340,4 +347,5 @@ export type {
   LibraryPluginOptions,
   NitroMockPluginOptions,
   PrintPluginOptions,
+  VbenViteConfig,
 };

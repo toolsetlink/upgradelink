@@ -2,15 +2,15 @@ import type {
   FormItemDependencies,
   FormSchemaRuleType,
   MaybeComponentProps,
-} from "../types";
+} from '../types';
 
-import { computed, ref, watch } from "vue";
+import { computed, ref, watch } from 'vue';
 
-import { isBoolean, isFunction } from "@vben-core/shared/utils";
+import { isBoolean, isFunction } from '@vben-core/shared/utils';
 
-import { useFormValues } from "vee-validate";
+import { useFormValues } from 'vee-validate';
 
-import { injectRenderFormProps } from "./context";
+import { injectRenderFormProps } from './context';
 
 export default function useDependencies(
   getDependencies: () => FormItemDependencies | undefined,
@@ -23,7 +23,7 @@ export default function useDependencies(
   const formApi = formRenderProps.form!;
 
   if (!values) {
-    throw new Error("useDependencies should be used within <VbenForm>");
+    throw new Error('useDependencies should be used within <VbenForm>');
   }
 
   const isIf = ref(true);

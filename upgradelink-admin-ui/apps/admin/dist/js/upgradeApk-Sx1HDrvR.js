@@ -1,0 +1,1 @@
+import{ba as t}from"./bootstrap-BKq-8Ur9.js";const a=e=>t.post("/upgrade_apk/list",e),r=e=>t.post("/upgrade_apk/create",e),s=e=>t.post("/upgrade_apk/update",e),d=e=>t.post("/upgrade_apk/delete",e);export{r as c,d,a as g,s as u};

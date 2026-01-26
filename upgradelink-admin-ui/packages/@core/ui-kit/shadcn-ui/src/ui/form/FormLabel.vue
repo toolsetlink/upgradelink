@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import type { LabelProps } from "radix-vue";
+import type { LabelProps } from 'reka-ui';
 
-import { cn } from "@vben-core/shared/utils";
+import { cn } from '@vben-core/shared/utils';
 
-import { Label } from "../label";
-import { useFormField } from "./useFormField";
+import { Label } from '../label';
+import { useFormField } from './useFormField';
 
 const props = defineProps<LabelProps & { class?: any }>();
 

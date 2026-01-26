@@ -1,23 +1,23 @@
-import type { DrawerApiOptions, DrawerState } from "./drawer";
+import type { DrawerApiOptions, DrawerState } from './drawer';
 
-import { Store } from "@vben-core/shared/store";
-import { bindMethods, isFunction } from "@vben-core/shared/utils";
+import { Store } from '@vben-core/shared/store';
+import { bindMethods, isFunction } from '@vben-core/shared/utils';
 
 export class DrawerApi {
   // 共享数据
-  public sharedData: Record<"payload", any> = {
+  public sharedData: Record<'payload', any> = {
     payload: {},
   };
   public store: Store<DrawerState>;
 
   private api: Pick<
     DrawerApiOptions,
-    | "onBeforeClose"
-    | "onCancel"
-    | "onClosed"
-    | "onConfirm"
-    | "onOpenChange"
-    | "onOpened"
+    | 'onBeforeClose'
+    | 'onCancel'
+    | 'onClosed'
+    | 'onConfirm'
+    | 'onOpenChange'
+    | 'onOpened'
   >;
 
   // private prevState!: DrawerState;
@@ -36,24 +36,24 @@ export class DrawerApi {
     } = options;
 
     const defaultState: DrawerState = {
-      class: "",
+      class: '',
       closable: true,
-      closeIconPlacement: "right",
+      closeIconPlacement: 'right',
       closeOnClickModal: true,
       closeOnPressEscape: true,
       confirmLoading: false,
-      contentClass: "",
+      contentClass: '',
       footer: true,
       header: true,
       isOpen: false,
       loading: false,
       modal: true,
       openAutoFocus: false,
-      placement: "right",
+      placement: 'right',
       showCancelButton: true,
       showConfirmButton: true,
       submitting: false,
-      title: "",
+      title: '',
     };
 
     this.store = new Store<DrawerState>(

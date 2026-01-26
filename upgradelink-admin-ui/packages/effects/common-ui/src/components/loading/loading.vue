@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { VbenLoading } from "@vben-core/shadcn-ui";
-import { cn } from "@vben-core/shared/utils";
+import { VbenLoading } from '@vben-core/shadcn-ui';
+import { cn } from '@vben-core/shared/utils';
 
 interface LoadingProps {
   class?: string;
@@ -20,7 +20,7 @@ interface LoadingProps {
   text?: string;
 }
 
-defineOptions({ name: "Loading" });
+defineOptions({ name: 'Loading' });
 const props = defineProps<LoadingProps>();
 </script>
 <template>

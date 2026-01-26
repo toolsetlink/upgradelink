@@ -1,9 +1,9 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from 'vitest';
 
-import { StateHandler } from "../state-handler";
+import { StateHandler } from '../state-handler';
 
-describe("stateHandler", () => {
-  it("should resolve when condition is set to true", async () => {
+describe('stateHandler', () => {
+  it('should resolve when condition is set to true', async () => {
     const handler = new StateHandler();
 
     // 模拟异步设置 condition 为 true
@@ -16,7 +16,7 @@ describe("stateHandler", () => {
     expect(handler.isConditionTrue()).toBe(true);
   });
 
-  it("should resolve immediately if condition is already true", async () => {
+  it('should resolve immediately if condition is already true', async () => {
     const handler = new StateHandler();
     handler.setConditionTrue(); // 提前设置为 true
 
@@ -25,7 +25,7 @@ describe("stateHandler", () => {
     expect(handler.isConditionTrue()).toBe(true);
   });
 
-  it("should reject when condition is set to false after waiting", async () => {
+  it('should reject when condition is set to false after waiting', async () => {
     const handler = new StateHandler();
 
     // 模拟异步设置 condition 为 false
@@ -38,7 +38,7 @@ describe("stateHandler", () => {
     expect(handler.isConditionTrue()).toBe(false);
   });
 
-  it("should reset condition to false", () => {
+  it('should reset condition to false', () => {
     const handler = new StateHandler();
     handler.setConditionTrue(); // 设置为 true
     handler.reset(); // 重置为 false
@@ -46,7 +46,7 @@ describe("stateHandler", () => {
     expect(handler.isConditionTrue()).toBe(false);
   });
 
-  it("should resolve when condition is set to true after reset", async () => {
+  it('should resolve when condition is set to true after reset', async () => {
     const handler = new StateHandler();
     handler.reset(); // 确保初始为 false
 

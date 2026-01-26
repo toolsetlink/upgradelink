@@ -1,0 +1,165 @@
+import "../base.api"
+
+type (
+    // The data of upgrade win version information | UpgradeWinVersion信息
+    UpgradeWinVersionInfo {
+        Id        *int    `json:"id,optional"`
+
+        // 应用ID
+        WinId  *int `json:"winId,optional"`
+
+        // 云文件id
+        CloudFileId  *string `json:"cloudFileId,optional"`
+
+        // 云文件下载地址
+        CloudFilePath  *string `json:"cloudFilePath,optional"`
+
+        // 版本名
+        VersionName  *string `json:"versionName,optional"`
+
+        // 版本号
+        VersionCode  *int `json:"versionCode,optional"`
+
+        // 机器架构:x64、ia32 arm64
+        Arch  *string `json:"arch,optional"`
+
+        // 版本文件大小
+        VersionFileSize  *string `json:"versionFileSize,optional"`
+
+        // 描述信息
+        Description  *string `json:"description,optional"`
+
+        // 是否删除 0：正常；1：已删除
+        IsDel  *int32 `json:"isDel,optional"`
+
+        // 创建时间
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+    RespUpgradeWinVersionInfo {
+        Id   *int    `json:"id,optional"`
+
+        // 安卓应用ID
+        WinId  *int `json:"winId,optional"`
+
+        // 文件应用名称
+        WinName  *string `json:"winName,optional"`
+
+        // 云文件id
+        CloudFileId  *string `json:"cloudFileId,optional"`
+
+        // 云文件名称
+        CloudFileName  *string `json:"cloudFileName,optional"`
+
+        // 云文件下载地址
+        CloudFilePath  *string `json:"cloudFilePath,optional"`
+
+        // 版本名
+        VersionName  *string `json:"versionName,optional"`
+
+        // 版本号
+        VersionCode  *int `json:"versionCode,optional"`
+
+        // 机器架构:x64、ia32 arm64
+        Arch  *string `json:"arch,optional"`
+
+        // 版本文件大小
+        VersionFileSize  *string `json:"versionFileSize,optional"`
+
+        // 描述信息
+        Description  *string `json:"description,optional,default="`
+
+        // 是否删除 0：正常；1：已删除
+        IsDel  *int32 `json:"isDel,optional"`
+
+        // 创建时间
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+        // The response data of upgrade win version list | UpgradeWinVersion信息列表数据
+    UpgradeWinVersionListResp {
+        BaseDataInfo
+
+        // The upgrade win version list data | UpgradeWinVersion信息列表数据
+        Data UpgradeWinVersionListInfo `json:"data"`
+    }
+
+        // The upgrade win version list data | UpgradeWinVersion信息列表数据
+    UpgradeWinVersionListInfo {
+        BaseListInfo
+
+        // The upgrade win version list data | UpgradeWinVersion信息列表数据
+        Data  []RespUpgradeWinVersionInfo  `json:"data"`
+    }
+
+        // Get upgrade win version list request params | UpgradeWinVersion信息列表请求参数
+    UpgradeWinVersionListReq {
+        PageInfo
+
+        // 安卓应用ID
+        WinId  *int `json:"winId,optional"`
+
+        // 云文件id
+        CloudFileId  *string `json:"cloudFileId,optional"`
+
+        // 版本名
+        VersionName  *string `json:"versionName,optional"`
+
+        // 版本号
+        VersionCode  *int `json:"versionCode,optional"`
+
+        // 描述信息
+        Description  *string `json:"description,optional"`
+
+        // 是否删除 0：正常；1：已删除
+        IsDel  *int32 `json:"isDel,optional"`
+
+        // 创建时间
+        CreateAt  *int64 `json:"createAt,optional"`
+
+        // 修改时间
+        UpdateAt  *int64 `json:"updateAt,optional"`
+    }
+
+        // The upgrade win version information response | UpgradeWinVersion信息返回体
+    UpgradeWinVersionInfoResp {
+        BaseDataInfo
+
+        // upgrade win version information | UpgradeWinVersion信息数据
+        Data RespUpgradeWinVersionInfo `json:"data"`
+    }
+)
+
+@server(
+    jwt: Auth
+    group: upgrade_win_version
+    middleware: Authority, CompanyData
+)
+
+service Api {
+    // Create upgrade win version information | 创建UpgradeWinVersion信息
+    @handler createUpgradeWinVersion
+    post /upgrade_win_version/create (UpgradeWinVersionInfo) returns (BaseMsgResp)
+
+    // Update upgrade win version information | 更新UpgradeWinVersion信息
+    @handler updateUpgradeWinVersion
+    post /upgrade_win_version/update (UpgradeWinVersionInfo) returns (BaseMsgResp)
+
+    // Delete upgrade win version information | 删除UpgradeWinVersion信息
+    @handler deleteUpgradeWinVersion
+    post /upgrade_win_version/delete (IDsReq) returns (BaseMsgResp)
+
+    // Get upgrade win version list | 获取UpgradeWinVersion信息列表
+    @handler getUpgradeWinVersionList
+    post /upgrade_win_version/list (UpgradeWinVersionListReq) returns (UpgradeWinVersionListResp)
+
+    // Get upgrade win version by ID | 通过ID获取UpgradeWinVersion信息
+    @handler getUpgradeWinVersionById
+    post /upgrade_win_version (IDReq) returns (UpgradeWinVersionInfoResp)
+}

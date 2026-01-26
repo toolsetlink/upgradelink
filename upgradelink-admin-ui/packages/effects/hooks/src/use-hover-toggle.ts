@@ -1,12 +1,12 @@
-import type { Arrayable, MaybeElementRef } from "@vueuse/core";
+import type { Arrayable, MaybeElementRef } from '@vueuse/core';
 
-import type { Ref } from "vue";
+import type { Ref } from 'vue';
 
-import { computed, effectScope, onUnmounted, ref, unref, watch } from "vue";
+import { computed, effectScope, onUnmounted, ref, unref, watch } from 'vue';
 
-import { isFunction } from "@vben/utils";
+import { isFunction } from '@vben/utils';
 
-import { useElementHover } from "@vueuse/core";
+import { useElementHover } from '@vueuse/core';
 
 interface HoverDelayOptions {
   /** 鼠标进入延迟时间 */
@@ -30,7 +30,7 @@ export function useHoverToggle(
 ) {
   // 兼容旧版本API
   const normalizedOptions: HoverDelayOptions =
-    typeof delay === "number" || isFunction(delay)
+    typeof delay === 'number' || isFunction(delay)
       ? { enterDelay: DEFAULT_ENTER_DELAY, leaveDelay: delay }
       : {
           enterDelay: DEFAULT_ENTER_DELAY,

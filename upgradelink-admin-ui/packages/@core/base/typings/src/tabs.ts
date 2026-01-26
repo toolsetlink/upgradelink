@@ -1,4 +1,4 @@
-import type { RouteLocationNormalized } from "vue-router";
+import type { RouteLocationNormalized } from 'vue-router';
 
 export interface TabDefinition extends RouteLocationNormalized {
   /**

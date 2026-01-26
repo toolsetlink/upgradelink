@@ -4,7 +4,7 @@ import type {
   SliderCaptchaActionType,
   SliderRotateVerifyPassingData,
   SliderTranslateCaptchaProps,
-} from "../types";
+} from '../types';
 
 import {
   computed,
@@ -14,19 +14,19 @@ import {
   unref,
   useTemplateRef,
   watch,
-} from "vue";
+} from 'vue';
 
-import { $t } from "@vben/locales";
+import { $t } from '@vben/locales';
 
-import SliderCaptcha from "../slider-captcha/index.vue";
+import SliderCaptcha from '../slider-captcha/index.vue';
 
 const props = withDefaults(defineProps<SliderTranslateCaptchaProps>(), {
-  defaultTip: "",
+  defaultTip: '',
   canvasWidth: 420,
   canvasHeight: 280,
   squareLength: 42,
   circleRadius: 10,
-  src: "",
+  src: '',
   diffDistance: 3,
 });
 
@@ -37,16 +37,16 @@ const emit = defineEmits<{
 const PI: number = Math.PI;
 enum CanvasOpr {
   // eslint-disable-next-line no-unused-vars
-  Clip = "clip",
+  Clip = 'clip',
   // eslint-disable-next-line no-unused-vars
-  Fill = "fill",
+  Fill = 'fill',
 }
 
 const modalValue = defineModel<boolean>({ default: false });
 
-const slideBarRef = useTemplateRef<SliderCaptchaActionType>("slideBarRef");
-const puzzleCanvasRef = useTemplateRef<HTMLCanvasElement>("puzzleCanvasRef");
-const pieceCanvasRef = useTemplateRef<HTMLCanvasElement>("pieceCanvasRef");
+const slideBarRef = useTemplateRef<SliderCaptchaActionType>('slideBarRef');
+const puzzleCanvasRef = useTemplateRef<HTMLCanvasElement>('puzzleCanvasRef');
+const pieceCanvasRef = useTemplateRef<HTMLCanvasElement>('pieceCanvasRef');
 
 const state = reactive({
   dragging: false,
@@ -59,7 +59,7 @@ const state = reactive({
   showTip: false,
 });
 
-const left = ref("0");
+const left = ref('0');
 
 const pieceStyle = computed(() => {
   return {
@@ -73,10 +73,10 @@ function setLeft(val: string) {
 
 const verifyTip = computed(() => {
   return state.isPassing
-    ? $t("ui.captcha.sliderTranslateSuccessTip", [
+    ? $t('ui.captcha.sliderTranslateSuccessTip', [
         ((state.endTime - state.startTime) / 1000).toFixed(1),
       ])
-    : $t("ui.captcha.sliderTranslateFailTip");
+    : $t('ui.captcha.sliderTranslateFailTip');
 });
 function handleStart() {
   state.startTime = Date.now();
@@ -94,7 +94,7 @@ function handleDragEnd() {
   const { diffDistance } = props;
 
   if (Math.abs(pieceX - state.moveDistance) >= (diffDistance || 3)) {
-    setLeft("0");
+    setLeft('0');
     state.moveDistance = 0;
   } else {
     checkPass();
@@ -114,7 +114,7 @@ watch(
     if (isPassing) {
       const { endTime, startTime } = state;
       const time = (endTime - startTime) / 1000;
-      emit("success", { isPassing, time: time.toFixed(1) });
+      emit('success', { isPassing, time: time.toFixed(1) });
     }
     modalValue.value = isPassing;
   },
@@ -126,11 +126,11 @@ function resetCanvas() {
   const pieceCanvas = unref(pieceCanvasRef);
   if (!puzzleCanvas || !pieceCanvas) return;
   pieceCanvas.width = canvasWidth;
-  const puzzleCanvasCtx = puzzleCanvas.getContext("2d");
+  const puzzleCanvasCtx = puzzleCanvas.getContext('2d');
   // Canvas2D: Multiple readback operations using getImageData
   // are faster with the willReadFrequently attribute set to true.
   // See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently (anonymous)
-  const pieceCanvasCtx = pieceCanvas.getContext("2d", {
+  const pieceCanvasCtx = pieceCanvas.getContext('2d', {
     willReadFrequently: true,
   });
   if (!puzzleCanvasCtx || !pieceCanvasCtx) return;
@@ -143,19 +143,19 @@ function initCanvas() {
   const puzzleCanvas = unref(puzzleCanvasRef);
   const pieceCanvas = unref(pieceCanvasRef);
   if (!puzzleCanvas || !pieceCanvas) return;
-  const puzzleCanvasCtx = puzzleCanvas.getContext("2d");
+  const puzzleCanvasCtx = puzzleCanvas.getContext('2d');
   // Canvas2D: Multiple readback operations using getImageData
   // are faster with the willReadFrequently attribute set to true.
   // See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently (anonymous)
-  const pieceCanvasCtx = pieceCanvas.getContext("2d", {
+  const pieceCanvasCtx = pieceCanvas.getContext('2d', {
     willReadFrequently: true,
   });
   if (!puzzleCanvasCtx || !pieceCanvasCtx) return;
   const img = new Image();
   // 解决跨域
-  img.crossOrigin = "Anonymous";
+  img.crossOrigin = 'Anonymous';
   img.src = src;
-  img.addEventListener("load", () => {
+  img.addEventListener('load', () => {
     draw(puzzleCanvasCtx, pieceCanvasCtx);
     puzzleCanvasCtx.drawImage(img, 0, 0, canvasWidth, canvasHeight);
     pieceCanvasCtx.drawImage(img, 0, 0, canvasWidth, canvasHeight);
@@ -170,7 +170,7 @@ function initCanvas() {
     );
     pieceCanvas.width = pieceLength;
     pieceCanvasCtx.putImageData(imageData, 0, sy);
-    setLeft("0");
+    setLeft('0');
   });
 }
 
@@ -230,11 +230,11 @@ function drawPiece(
   );
   ctx.lineTo(x, y);
   ctx.lineWidth = 2;
-  ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
-  ctx.strokeStyle = "rgba(255, 255, 255, 0.7)";
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+  ctx.strokeStyle = 'rgba(255, 255, 255, 0.7)';
   ctx.stroke();
   opr === CanvasOpr.Clip ? ctx.clip() : ctx.fill();
-  ctx.globalCompositeOperation = "destination-over";
+  ctx.globalCompositeOperation = 'destination-over';
 }
 
 function resume() {
@@ -290,7 +290,7 @@ onMounted(() => {
           {{ verifyTip }}
         </div>
         <div v-if="!state.dragging" class="bg-black/30">
-          {{ defaultTip || $t("ui.captcha.sliderTranslateDefaultTip") }}
+          {{ defaultTip || $t('ui.captcha.sliderTranslateDefaultTip') }}
         </div>
       </div>
     </div>

@@ -1,21 +1,21 @@
 <script setup lang="ts">
-import { $t } from "@vben/locales";
+import { $t } from '@vben/locales';
 
-import SwitchItem from "../switch-item.vue";
+import SwitchItem from '../switch-item.vue';
 
 defineOptions({
-  name: "PreferenceAnimation",
+  name: 'PreferenceAnimation',
 });
 
-const transitionProgress = defineModel<boolean>("transitionProgress", {
+const transitionProgress = defineModel<boolean>('transitionProgress', {
   // 默认值
   default: false,
 });
-const transitionName = defineModel<string>("transitionName");
-const transitionEnable = defineModel<boolean>("transitionEnable");
-const transitionLoading = defineModel<boolean>("transitionLoading");
+const transitionName = defineModel<string>('transitionName');
+const transitionEnable = defineModel<boolean>('transitionEnable');
+const transitionLoading = defineModel<boolean>('transitionLoading');
 
-const transitionPreset = ["fade", "fade-slide", "fade-up", "fade-down"];
+const transitionPreset = ['fade', 'fade-slide', 'fade-up', 'fade-down'];
 
 function handleClick(value: string) {
   transitionName.value = value;
@@ -24,13 +24,13 @@ function handleClick(value: string) {
 
 <template>
   <SwitchItem v-model="transitionProgress">
-    {{ $t("preferences.animation.progress") }}
+    {{ $t('preferences.animation.progress') }}
   </SwitchItem>
   <SwitchItem v-model="transitionLoading">
-    {{ $t("preferences.animation.loading") }}
+    {{ $t('preferences.animation.loading') }}
   </SwitchItem>
   <SwitchItem v-model="transitionEnable">
-    {{ $t("preferences.animation.transition") }}
+    {{ $t('preferences.animation.transition') }}
   </SwitchItem>
   <div
     v-if="transitionEnable"

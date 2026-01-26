@@ -1,4 +1,4 @@
-import { openWindow } from "./window";
+import { openWindow } from './window';
 
 interface DownloadOptions<T = string> {
   fileName?: string;
@@ -6,7 +6,7 @@ interface DownloadOptions<T = string> {
   target?: string;
 }
 
-const DEFAULT_FILENAME = "downloaded_file";
+const DEFAULT_FILENAME = 'downloaded_file';
 
 /**
  * 通过 URL 下载文件，支持跨域
@@ -15,17 +15,17 @@ const DEFAULT_FILENAME = "downloaded_file";
 export async function downloadFileFromUrl({
   fileName,
   source,
-  target = "_blank",
+  target = '_blank',
 }: DownloadOptions): Promise<void> {
-  if (!source || typeof source !== "string") {
-    throw new Error("Invalid URL.");
+  if (!source || typeof source !== 'string') {
+    throw new Error('Invalid URL.');
   }
 
-  const isChrome = window.navigator.userAgent.toLowerCase().includes("chrome");
-  const isSafari = window.navigator.userAgent.toLowerCase().includes("safari");
+  const isChrome = window.navigator.userAgent.toLowerCase().includes('chrome');
+  const isSafari = window.navigator.userAgent.toLowerCase().includes('safari');
 
   if (/iP/.test(window.navigator.userAgent)) {
-    console.error("Your browser does not support download!");
+    console.error('Your browser does not support download!');
     return;
   }
 
@@ -33,8 +33,8 @@ export async function downloadFileFromUrl({
     triggerDownload(source, resolveFileName(source, fileName));
     return;
   }
-  if (!source.includes("?")) {
-    source += "?download";
+  if (!source.includes('?')) {
+    source += '?download';
   }
 
   openWindow(source, { target });
@@ -44,8 +44,8 @@ export async function downloadFileFromUrl({
  * 通过 Base64 下载文件
  */
 export function downloadFileFromBase64({ fileName, source }: DownloadOptions) {
-  if (!source || typeof source !== "string") {
-    throw new Error("Invalid Base64 data.");
+  if (!source || typeof source !== 'string') {
+    throw new Error('Invalid Base64 data.');
   }
 
   const resolvedFileName = fileName || DEFAULT_FILENAME;
@@ -71,7 +71,7 @@ export function downloadFileFromBlob({
   source,
 }: DownloadOptions<Blob>): void {
   if (!(source instanceof Blob)) {
-    throw new TypeError("Invalid Blob data.");
+    throw new TypeError('Invalid Blob data.');
   }
 
   const url = URL.createObjectURL(source);
@@ -89,7 +89,7 @@ export function downloadFileFromBlobPart({
   const blob =
     source instanceof Blob
       ? source
-      : new Blob([source], { type: "application/octet-stream" });
+      : new Blob([source], { type: 'application/octet-stream' });
 
   // 创建对象 URL 并触发下载
   const url = URL.createObjectURL(blob);
@@ -102,18 +102,18 @@ export function downloadFileFromBlobPart({
  */
 export function urlToBase64(url: string, mineType?: string): Promise<string> {
   return new Promise((resolve, reject) => {
-    let canvas = document.createElement("CANVAS") as HTMLCanvasElement | null;
-    const ctx = canvas?.getContext("2d");
+    let canvas = document.createElement('CANVAS') as HTMLCanvasElement | null;
+    const ctx = canvas?.getContext('2d');
     const img = new Image();
-    img.crossOrigin = "";
-    img.addEventListener("load", () => {
+    img.crossOrigin = '';
+    img.addEventListener('load', () => {
       if (!canvas || !ctx) {
-        return reject(new Error("Failed to create canvas."));
+        return reject(new Error('Failed to create canvas.'));
       }
       canvas.height = img.height;
       canvas.width = img.width;
       ctx.drawImage(img, 0, 0);
-      const dataURL = canvas.toDataURL(mineType || "image/png");
+      const dataURL = canvas.toDataURL(mineType || 'image/png');
       canvas = null;
       resolve(dataURL);
     });
@@ -132,16 +132,16 @@ export function triggerDownload(
   fileName: string | undefined,
   revokeDelay: number = 100,
 ): void {
-  const defaultFileName = "downloaded_file";
+  const defaultFileName = 'downloaded_file';
   const finalFileName = fileName || defaultFileName;
 
-  const link = document.createElement("a");
+  const link = document.createElement('a');
   link.href = href;
   link.download = finalFileName;
-  link.style.display = "none";
+  link.style.display = 'none';
 
   if (link.download === undefined) {
-    link.setAttribute("target", "_blank");
+    link.setAttribute('target', '_blank');
   }
 
   document.body.append(link);
@@ -153,5 +153,5 @@ export function triggerDownload(
 }
 
 function resolveFileName(url: string, fileName?: string): string {
-  return fileName || url.slice(url.lastIndexOf("/") + 1) || DEFAULT_FILENAME;
+  return fileName || url.slice(url.lastIndexOf('/') + 1) || DEFAULT_FILENAME;
 }

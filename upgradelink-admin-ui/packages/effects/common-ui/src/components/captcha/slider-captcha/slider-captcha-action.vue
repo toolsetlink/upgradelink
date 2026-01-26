@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { CSSProperties } from "vue";
+import type { CSSProperties } from 'vue';
 
-import { computed, ref, useTemplateRef } from "vue";
+import { computed, ref, useTemplateRef } from 'vue';
 
-import { Check, ChevronsRight } from "@vben/icons";
+import { Check, ChevronsRight } from '@vben/icons';
 
-import { Slot } from "@vben-core/shadcn-ui";
+import { Slot } from '@vben-core/shadcn-ui';
 
 const props = defineProps<{
   actionStyle: CSSProperties;
@@ -13,9 +13,9 @@ const props = defineProps<{
   toLeft: boolean;
 }>();
 
-const actionRef = useTemplateRef<HTMLDivElement>("actionRef");
+const actionRef = useTemplateRef<HTMLDivElement>('actionRef');
 
-const left = ref("0");
+const left = ref('0');
 
 const style = computed(() => {
   const { actionStyle } = props;

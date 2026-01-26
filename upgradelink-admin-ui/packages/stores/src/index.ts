@@ -1,3 +1,3 @@
-export * from "./modules";
-export * from "./setup";
-export { defineStore, storeToRefs } from "pinia";
+export * from './modules';
+export * from './setup';
+export { defineStore, storeToRefs } from 'pinia';

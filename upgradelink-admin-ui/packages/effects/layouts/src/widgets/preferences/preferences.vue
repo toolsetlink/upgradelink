@@ -1,15 +1,15 @@
 <script lang="ts" setup>
-import { computed } from "vue";
+import { computed } from 'vue';
 
-import { Settings } from "@vben/icons";
-import { $t, loadLocaleMessages } from "@vben/locales";
-import { preferences, updatePreferences } from "@vben/preferences";
-import { capitalizeFirstLetter } from "@vben/utils";
+import { Settings } from '@vben/icons';
+import { $t, loadLocaleMessages } from '@vben/locales';
+import { preferences, updatePreferences } from '@vben/preferences';
+import { capitalizeFirstLetter } from '@vben/utils';
 
-import { useVbenDrawer } from "@vben-core/popup-ui";
-import { VbenButton } from "@vben-core/shadcn-ui";
+import { useVbenDrawer } from '@vben-core/popup-ui';
+import { VbenButton } from '@vben-core/shadcn-ui';
 
-import PreferencesDrawer from "./preferences-drawer.vue";
+import PreferencesDrawer from './preferences-drawer.vue';
 
 const [Drawer, drawerApi] = useVbenDrawer({
   connectedComponent: PreferencesDrawer,
@@ -36,13 +36,13 @@ const attrs = computed(() => {
 const listen = computed(() => {
   const result: Record<string, any> = {};
   for (const [key, value] of Object.entries(preferences)) {
-    if (typeof value === "object") {
+    if (typeof value === 'object') {
       for (const subKey of Object.keys(value)) {
         result[`update:${key}${capitalizeFirstLetter(subKey)}`] = (
           val: any,
         ) => {
           updatePreferences({ [key]: { [subKey]: val } });
-          if (key === "app" && subKey === "locale") {
+          if (key === 'app' && subKey === 'locale') {
             loadLocaleMessages(val);
           }
         };

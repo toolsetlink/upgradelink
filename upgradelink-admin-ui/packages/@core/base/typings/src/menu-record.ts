@@ -1,14 +1,14 @@
-import type { Component } from "vue";
-import type { RouteRecordRaw } from "vue-router";
+import type { Component } from 'vue';
+import type { RouteRecordRaw } from 'vue-router';
 
 /**
  * 扩展路由原始对象
  */
-type ExRouteRecordRaw = {
+type ExRouteRecordRaw = RouteRecordRaw & {
   parent?: string;
   parents?: string[];
   path?: any;
-} & RouteRecordRaw;
+};
 
 interface MenuRecordBadgeRaw {
   /**
@@ -18,11 +18,11 @@ interface MenuRecordBadgeRaw {
   /**
    * 徽标类型
    */
-  badgeType?: "dot" | "normal";
+  badgeType?: 'dot' | 'normal';
   /**
    * 徽标颜色
    */
-  badgeVariants?: "destructive" | "primary" | string;
+  badgeVariants?: 'destructive' | 'primary' | string;
 }
 
 /**
@@ -51,6 +51,10 @@ interface MenuRecordRaw extends MenuRecordBadgeRaw {
    */
   name: string;
   /**
+   * 排序号
+   */
+  order?: number;
+  /**
    * 父级路径
    */
   parent?: string;
@@ -67,10 +71,6 @@ interface MenuRecordRaw extends MenuRecordBadgeRaw {
    * @default true
    */
   show?: boolean;
-  /**
-   * 排序号
-   */
-  sort?: number;
 }
 
 export type { ExRouteRecordRaw, MenuRecordBadgeRaw, MenuRecordRaw };

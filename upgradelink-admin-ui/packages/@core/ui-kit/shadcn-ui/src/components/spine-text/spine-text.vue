@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import { computed } from "vue";
+import { computed } from 'vue';
 
-const { animationDuration = 2, animationIterationCount = "infinite" } =
+const { animationDuration = 2, animationIterationCount = 'infinite' } =
   defineProps<{
     // 动画持续时间，单位秒
     animationDuration?: number;
     // 动画是否只执行一次
-    animationIterationCount?: "infinite" | number;
+    animationIterationCount?: 'infinite' | number;
   }>();
 
 const style = computed(() => {

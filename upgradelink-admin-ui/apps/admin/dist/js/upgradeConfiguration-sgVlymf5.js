@@ -1,0 +1,1 @@
+import{ba as r}from"./bootstrap-BKq-8Ur9.js";const o=t=>r.post("/upgrade_configuration/list",t),a=t=>r.post("/upgrade_configuration/create",t),n=t=>r.post("/upgrade_configuration/update",t),i=t=>r.post("/upgrade_configuration/delete",t);export{a as c,i as d,o as g,n as u};

@@ -1,16 +1,16 @@
-<script lang="ts" setup>
-import type { SplitterGroupEmits, SplitterGroupProps } from "radix-vue";
+<script setup lang="ts">
+import type { SplitterGroupEmits, SplitterGroupProps } from 'reka-ui';
 
-import type { HTMLAttributes } from "vue";
+import type { HTMLAttributes } from 'vue';
 
-import { computed } from "vue";
+import { computed } from 'vue';
 
-import { cn } from "@vben-core/shared/utils";
+import { cn } from '@vben-core/shared/utils';
 
-import { SplitterGroup, useForwardPropsEmits } from "radix-vue";
+import { SplitterGroup, useForwardPropsEmits } from 'reka-ui';
 
 const props = defineProps<
-  SplitterGroupProps & { class?: HTMLAttributes["class"] }
+  SplitterGroupProps & { class?: HTMLAttributes['class'] }
 >();
 const emits = defineEmits<SplitterGroupEmits>();
 

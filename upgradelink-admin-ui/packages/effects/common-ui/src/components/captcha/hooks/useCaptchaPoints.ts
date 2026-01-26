@@ -1,6 +1,6 @@
-import type { CaptchaPoint } from "../types";
+import type { CaptchaPoint } from '../types';
 
-import { reactive } from "vue";
+import { reactive } from 'vue';
 
 export function useCaptchaPoints() {
   const points = reactive<CaptchaPoint[]>([]);

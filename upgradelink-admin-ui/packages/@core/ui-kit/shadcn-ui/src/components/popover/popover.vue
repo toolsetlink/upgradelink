@@ -3,19 +3,19 @@ import type {
   PopoverContentProps,
   PopoverRootEmits,
   PopoverRootProps,
-} from "radix-vue";
+} from 'reka-ui';
 
-import type { ClassType } from "@vben-core/typings";
+import type { ClassType } from '@vben-core/typings';
 
-import { computed } from "vue";
+import { computed } from 'vue';
 
-import { useForwardPropsEmits } from "radix-vue";
+import { useForwardPropsEmits } from 'reka-ui';
 
 import {
   PopoverContent,
   Popover as PopoverRoot,
   PopoverTrigger,
-} from "../../ui";
+} from '../../ui';
 
 interface Props extends PopoverRootProps {
   class?: ClassType;

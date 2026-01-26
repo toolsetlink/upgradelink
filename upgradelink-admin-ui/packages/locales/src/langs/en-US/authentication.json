@@ -1,7 +1,7 @@
 {
   "welcomeBack": "Welcome Back",
-  "pageTitle": "Upgradelink",
-  "pageDesc": "",
+  "pageTitle": "Full-end support, application upgrade system and application upgrade distribution platform.",
+  "pageDesc": "Provide one-stop application upgrade and distribution solutions for applications. Effectively lower the technical threshold, reduce R&D costs, and assist businesses in quickly building stable and high-quality applications.",
   "loginSuccess": "Login Successful",
   "loginSuccessDesc": "Welcome Back",
   "loginSubtitle": "Enter your account details to manage your projects",
@@ -51,6 +51,10 @@
   "sendCode": "Get Security code",
   "sendText": "Resend in {0}s",
   "thirdPartyLogin": "Or continue with",
+  "weChat": "WeChat",
+  "qq": "QQ",
+  "gitHub": "GitHub",
+  "google": "Google",
   "loginAgainTitle": "Please Log In Again",
   "loginAgainSubTitle": "Your login session has expired. Please log in again to continue.",
   "layout": {

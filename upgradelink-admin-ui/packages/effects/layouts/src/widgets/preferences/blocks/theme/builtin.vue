@@ -1,25 +1,25 @@
 <script setup lang="ts">
-import type { BuiltinThemePreset } from "@vben/preferences";
-import type { BuiltinThemeType } from "@vben/types";
+import type { BuiltinThemePreset } from '@vben/preferences';
+import type { BuiltinThemeType } from '@vben/types';
 
-import { computed, ref, watch } from "vue";
+import { computed, ref, watch } from 'vue';
 
-import { UserRoundPen } from "@vben/icons";
-import { $t } from "@vben/locales";
-import { BUILT_IN_THEME_PRESETS } from "@vben/preferences";
-import { convertToHsl, TinyColor } from "@vben/utils";
+import { UserRoundPen } from '@vben/icons';
+import { $t } from '@vben/locales';
+import { BUILT_IN_THEME_PRESETS } from '@vben/preferences';
+import { convertToHsl, TinyColor } from '@vben/utils';
 
-import { useThrottleFn } from "@vueuse/core";
+import { useThrottleFn } from '@vueuse/core';
 
 defineOptions({
-  name: "PreferenceBuiltinTheme",
+  name: 'PreferenceBuiltinTheme',
 });
 
 const props = defineProps<{ isDark: boolean }>();
 
 const colorInput = ref();
-const modelValue = defineModel<BuiltinThemeType>({ default: "default" });
-const themeColorPrimary = defineModel<string>("themeColorPrimary");
+const modelValue = defineModel<BuiltinThemeType>({ default: 'default' });
+const themeColorPrimary = defineModel<string>('themeColorPrimary');
 
 const updateThemeColorPrimary = useThrottleFn(
   (value: string) => {
@@ -31,7 +31,7 @@ const updateThemeColorPrimary = useThrottleFn(
 );
 
 const inputValue = computed(() => {
-  return new TinyColor(themeColorPrimary.value || "").toHexString();
+  return new TinyColor(themeColorPrimary.value || '').toHexString();
 });
 
 const builtinThemePresets = computed(() => {
@@ -40,51 +40,51 @@ const builtinThemePresets = computed(() => {
 
 function typeView(name: BuiltinThemeType) {
   switch (name) {
-    case "custom": {
-      return $t("preferences.theme.builtin.custom");
+    case 'custom': {
+      return $t('preferences.theme.builtin.custom');
     }
-    case "deep-blue": {
-      return $t("preferences.theme.builtin.deepBlue");
+    case 'deep-blue': {
+      return $t('preferences.theme.builtin.deepBlue');
     }
-    case "deep-green": {
-      return $t("preferences.theme.builtin.deepGreen");
+    case 'deep-green': {
+      return $t('preferences.theme.builtin.deepGreen');
     }
-    case "default": {
-      return $t("preferences.theme.builtin.default");
+    case 'default': {
+      return $t('preferences.theme.builtin.default');
     }
-    case "gray": {
-      return $t("preferences.theme.builtin.gray");
+    case 'gray': {
+      return $t('preferences.theme.builtin.gray');
     }
-    case "green": {
-      return $t("preferences.theme.builtin.green");
+    case 'green': {
+      return $t('preferences.theme.builtin.green');
     }
 
-    case "neutral": {
-      return $t("preferences.theme.builtin.neutral");
+    case 'neutral': {
+      return $t('preferences.theme.builtin.neutral');
     }
-    case "orange": {
-      return $t("preferences.theme.builtin.orange");
+    case 'orange': {
+      return $t('preferences.theme.builtin.orange');
     }
-    case "pink": {
-      return $t("preferences.theme.builtin.pink");
+    case 'pink': {
+      return $t('preferences.theme.builtin.pink');
     }
-    case "rose": {
-      return $t("preferences.theme.builtin.rose");
+    case 'rose': {
+      return $t('preferences.theme.builtin.rose');
     }
-    case "sky-blue": {
-      return $t("preferences.theme.builtin.skyBlue");
+    case 'sky-blue': {
+      return $t('preferences.theme.builtin.skyBlue');
     }
-    case "slate": {
-      return $t("preferences.theme.builtin.slate");
+    case 'slate': {
+      return $t('preferences.theme.builtin.slate');
     }
-    case "violet": {
-      return $t("preferences.theme.builtin.violet");
+    case 'violet': {
+      return $t('preferences.theme.builtin.violet');
     }
-    case "yellow": {
-      return $t("preferences.theme.builtin.yellow");
+    case 'yellow': {
+      return $t('preferences.theme.builtin.yellow');
     }
-    case "zinc": {
-      return $t("preferences.theme.builtin.zinc");
+    case 'zinc': {
+      return $t('preferences.theme.builtin.zinc');
     }
   }
 }
@@ -104,7 +104,7 @@ function selectColor() {
 
 watch(
   () => [modelValue.value, props.isDark] as [BuiltinThemeType, boolean],
-  ([themeType, isDark]) => {
+  ([themeType, isDark], [_, isDarkPrev]) => {
     const theme = builtinThemePresets.value.find(
       (item) => item.type === themeType,
     );
@@ -113,7 +113,9 @@ watch(
         ? theme.darkPrimaryColor || theme.primaryColor
         : theme.primaryColor;
 
-      themeColorPrimary.value = primaryColor || theme.color;
+      if (!(theme.type === 'custom' && isDark !== isDarkPrev)) {
+        themeColorPrimary.value = primaryColor || theme.color;
+      }
     }
   },
 );
@@ -132,14 +134,14 @@ watch(
           <template v-if="theme.type !== 'custom'">
             <div
               :style="{ backgroundColor: theme.color }"
-              class="mx-10 my-2 size-5 rounded-md"
+              class="mx-9 my-2 size-5 rounded-md"
             ></div>
           </template>
           <template v-else>
-            <div class="size-full px-10 py-2" @click.stop="selectColor">
+            <div class="size-full px-9 py-2" @click.stop="selectColor">
               <div class="flex-center relative size-5 rounded-sm">
                 <UserRoundPen
-                  class="absolute z-10 size-5 opacity-60 group-hover:opacity-100"
+                  class="z-1 absolute size-5 opacity-60 group-hover:opacity-100"
                 />
                 <input
                   ref="colorInput"

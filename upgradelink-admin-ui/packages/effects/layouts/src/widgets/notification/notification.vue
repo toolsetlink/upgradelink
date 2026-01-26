@@ -1,17 +1,19 @@
 <script lang="ts" setup>
-import type { NotificationItem } from "./types";
+import type { NotificationItem } from './types';
 
-import { Bell, MailCheck } from "@vben/icons";
-import { $t } from "@vben/locales";
+import { useRouter } from 'vue-router';
+
+import { Bell, CircleCheckBig, CircleX, MailCheck } from '@vben/icons';
+import { $t } from '@vben/locales';
 
 import {
   VbenButton,
   VbenIconButton,
   VbenPopover,
   VbenScrollbar,
-} from "@vben-core/shadcn-ui";
+} from '@vben-core/shadcn-ui';
 
-import { useToggle } from "@vueuse/core";
+import { useToggle } from '@vueuse/core';
 
 interface Props {
   /**
@@ -24,7 +26,7 @@ interface Props {
   notifications?: NotificationItem[];
 }
 
-defineOptions({ name: "NotificationPopup" });
+defineOptions({ name: 'NotificationPopup' });
 
 withDefaults(defineProps<Props>(), {
   dot: false,
@@ -35,9 +37,11 @@ const emit = defineEmits<{
   clear: [];
   makeAll: [];
   read: [NotificationItem];
+  remove: [NotificationItem];
   viewAll: [];
 }>();
 
+const router = useRouter();
 const [open, toggle] = useToggle();
 
 function close() {
@@ -45,20 +49,41 @@ function close() {
 }
 
 function handleViewAll() {
-  emit("viewAll");
+  emit('viewAll');
   close();
 }
 
 function handleMakeAll() {
-  emit("makeAll");
+  emit('makeAll');
 }
 
 function handleClear() {
-  emit("clear");
+  emit('clear');
 }
 
 function handleClick(item: NotificationItem) {
-  emit("read", item);
+  // 如果通知项有链接，点击时跳转
+  if (item.link) {
+    navigateTo(item.link, item.query, item.state);
+  }
+}
+
+function navigateTo(
+  link: string,
+  query?: Record<string, any>,
+  state?: Record<string, any>,
+) {
+  if (link.startsWith('http://') || link.startsWith('https://')) {
+    // 外部链接，在新标签页打开
+    window.open(link, '_blank');
+  } else {
+    // 内部路由链接，支持 query 参数和 state
+    router.push({
+      path: link,
+      query: query || {},
+      state,
+    });
+  }
 }
 </script>
 <template>
@@ -80,7 +105,7 @@ function handleClick(item: NotificationItem) {
 
     <div class="relative">
       <div class="flex items-center justify-between p-4 py-3">
-        <div class="text-foreground">{{ $t("ui.widgets.notifications") }}</div>
+        <div class="text-foreground">{{ $t('ui.widgets.notifications') }}</div>
         <VbenIconButton
           :disabled="notifications.length <= 0"
           :tooltip="$t('ui.widgets.markAllAsRead')"
@@ -91,7 +116,7 @@ function handleClick(item: NotificationItem) {
       </div>
       <VbenScrollbar v-if="notifications.length > 0">
         <ul class="!flex max-h-[360px] w-full flex-col">
-          <template v-for="item in notifications" :key="item.title">
+          <template v-for="item in notifications" :key="item.id ?? item.title">
             <li
               class="hover:bg-accent border-border relative flex w-full cursor-pointer items-start gap-5 border-t px-3 py-3"
               @click="handleClick(item)"
@@ -107,7 +132,6 @@ function handleClick(item: NotificationItem) {
                 <img
                   :src="item.avatar"
                   class="aspect-square h-full w-full object-cover"
-                  role="img"
                 />
               </span>
               <div class="flex flex-col gap-1 leading-none">
@@ -119,6 +143,30 @@ function handleClick(item: NotificationItem) {
                   {{ item.date }}
                 </p>
               </div>
+              <div
+                class="absolute right-3 top-1/2 flex -translate-y-1/2 flex-col gap-2"
+              >
+                <VbenIconButton
+                  v-if="!item.isRead"
+                  size="xs"
+                  variant="ghost"
+                  class="h-6 px-2"
+                  :tooltip="$t('common.confirm')"
+                  @click.stop="emit('read', item)"
+                >
+                  <CircleCheckBig class="size-4" />
+                </VbenIconButton>
+                <VbenIconButton
+                  v-if="item.isRead"
+                  size="xs"
+                  variant="ghost"
+                  class="text-destructive h-6 px-2"
+                  :tooltip="$t('common.delete')"
+                  @click.stop="emit('remove', item)"
+                >
+                  <CircleX class="size-4" />
+                </VbenIconButton>
+              </div>
             </li>
           </template>
         </ul>
@@ -126,7 +174,7 @@ function handleClick(item: NotificationItem) {
 
       <template v-else>
         <div class="flex-center text-muted-foreground min-h-[150px] w-full">
-          {{ $t("common.noData") }}
+          {{ $t('common.noData') }}
         </div>
       </template>
 
@@ -139,10 +187,10 @@ function handleClick(item: NotificationItem) {
           variant="ghost"
           @click="handleClear"
         >
-          {{ $t("ui.widgets.clearNotifications") }}
+          {{ $t('ui.widgets.clearNotifications') }}
         </VbenButton>
         <VbenButton size="sm" @click="handleViewAll">
-          {{ $t("ui.widgets.viewAll") }}
+          {{ $t('ui.widgets.viewAll') }}
         </VbenButton>
       </div>
     </div>

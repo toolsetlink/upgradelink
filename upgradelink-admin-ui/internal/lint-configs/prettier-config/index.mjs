@@ -1,18 +1,18 @@
 export default {
-  endOfLine: "auto",
+  endOfLine: 'auto',
   overrides: [
     {
-      files: ["*.json5"],
+      files: ['*.json5'],
       options: {
-        quoteProps: "preserve",
+        quoteProps: 'preserve',
         singleQuote: false,
       },
     },
   ],
-  plugins: ["prettier-plugin-tailwindcss"],
+  plugins: ['prettier-plugin-tailwindcss'],
   printWidth: 80,
-  proseWrap: "never",
+  proseWrap: 'never',
   semi: true,
   singleQuote: true,
-  trailingComma: "all",
+  trailingComma: 'all',
 };

@@ -7,6 +7,6 @@ import (
 
 type Config struct {
 	rest.RestConf
-	MysqlConfig string          `json:",optional,inherit"`
-	RedisConfig redis.RedisConf `json:",optional,inherit"`
+	MysqlConf string          `json:",optional,inherit"`
+	RedisConf redis.RedisConf `json:",optional,inherit"`
 }

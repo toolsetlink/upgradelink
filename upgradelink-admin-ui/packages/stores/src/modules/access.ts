@@ -1,8 +1,8 @@
-import type { RouteRecordRaw } from "vue-router";
+import type { RouteRecordRaw } from 'vue-router';
 
-import type { MenuRecordRaw } from "@vben-core/typings";
+import type { MenuRecordRaw } from '@vben-core/typings';
 
-import { acceptHMRUpdate, defineStore } from "pinia";
+import { acceptHMRUpdate, defineStore } from 'pinia';
 
 type AccessToken = null | string;
 
@@ -48,7 +48,7 @@ interface AccessState {
 /**
  * @zh_CN 访问权限相关
  */
-export const useAccessStore = defineStore("core-access", {
+export const useAccessStore = defineStore('core-access', {
   actions: {
     getMenuByPath(path: string) {
       function findMenu(
@@ -102,11 +102,11 @@ export const useAccessStore = defineStore("core-access", {
   persist: {
     // 持久化
     pick: [
-      "accessToken",
-      "refreshToken",
-      "accessCodes",
-      "isLockScreen",
-      "lockScreenPassword",
+      'accessToken',
+      'refreshToken',
+      'accessCodes',
+      'isLockScreen',
+      'lockScreenPassword',
     ],
   },
   state: (): AccessState => ({

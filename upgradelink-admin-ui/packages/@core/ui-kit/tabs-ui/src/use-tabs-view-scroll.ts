@@ -1,10 +1,10 @@
-import type { TabsProps } from "./types";
+import type { TabsProps } from './types';
 
-import { nextTick, onMounted, onUnmounted, ref, watch } from "vue";
+import { nextTick, onMounted, onUnmounted, ref, watch } from 'vue';
 
-import { VbenScrollbar } from "@vben-core/shadcn-ui";
+import { VbenScrollbar } from '@vben-core/shadcn-ui';
 
-import { useDebounceFn } from "@vueuse/core";
+import { useDebounceFn } from '@vueuse/core';
 
 type DomElement = Element | null | undefined;
 
@@ -32,7 +32,7 @@ export function useTabsViewScroll(props: TabsProps) {
   }
 
   function scrollDirection(
-    direction: "left" | "right",
+    direction: 'left' | 'right',
     distance: number = 150,
   ) {
     const { scrollbarWidth, scrollViewWidth } = getScrollClientWidth();
@@ -42,9 +42,9 @@ export function useTabsViewScroll(props: TabsProps) {
     if (scrollbarWidth > scrollViewWidth) return;
 
     scrollViewportEl.value?.scrollBy({
-      behavior: "smooth",
+      behavior: 'smooth',
       left:
-        direction === "left"
+        direction === 'left'
           ? -(scrollbarWidth - distance)
           : +(scrollbarWidth - distance),
     });
@@ -59,7 +59,7 @@ export function useTabsViewScroll(props: TabsProps) {
     }
 
     const viewportEl = scrollbarEl?.querySelector(
-      "div[data-radix-scroll-area-viewport]",
+      'div[data-reka-scroll-area-viewport]',
     );
 
     scrollViewportEl.value = viewportEl;
@@ -118,8 +118,8 @@ export function useTabsViewScroll(props: TabsProps) {
     }
 
     requestAnimationFrame(() => {
-      const activeItem = viewportEl?.querySelector(".is-active");
-      activeItem?.scrollIntoView({ behavior: "smooth", inline: "start" });
+      const activeItem = viewportEl?.querySelector('.is-active');
+      activeItem?.scrollIntoView({ behavior: 'smooth', inline: 'start' });
     });
   }
 
@@ -158,7 +158,7 @@ export function useTabsViewScroll(props: TabsProps) {
       // }, 300);
     },
     {
-      flush: "post",
+      flush: 'post',
     },
   );
 

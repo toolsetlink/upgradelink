@@ -1,12 +1,12 @@
-import type { Router, RouteRecordRaw } from "vue-router";
+import type { Router, RouteRecordRaw } from 'vue-router';
 
 import type {
   ExRouteRecordRaw,
   MenuRecordRaw,
   RouteMeta,
-} from "@vben-core/typings";
+} from '@vben-core/typings';
 
-import { filterTree, mapTree } from "@vben-core/shared/utils";
+import { filterTree, mapTree, sortTree } from '@vben-core/shared/utils';
 
 /**
  * 根据 routes 生成菜单列表
@@ -25,7 +25,7 @@ function generateMenus(
 
   let menus = mapTree<ExRouteRecordRaw, MenuRecordRaw>(routes, (route) => {
     // 获取最终的路由路径
-    const path = finalRoutesMap[route.name as string] ?? route.path ?? "";
+    const path = finalRoutesMap[route.name as string] ?? route.path ?? '';
 
     const {
       meta = {} as RouteMeta,
@@ -41,12 +41,12 @@ function generateMenus(
       hideChildrenInMenu = false,
       icon,
       link,
-      sort,
-      title = "",
+      order,
+      title = '',
     } = meta;
 
     // 确保菜单名称不为空
-    const name = (title || routeName || "") as string;
+    const name = (title || routeName || '') as string;
 
     // 处理子菜单
     const resultChildren = hideChildrenInMenu
@@ -71,7 +71,7 @@ function generateMenus(
       badgeVariants,
       icon,
       name,
-      sort,
+      order,
       parent: route.parent,
       parents: route.parents,
       path: resultPath,
@@ -80,8 +80,8 @@ function generateMenus(
     };
   });
 
-  // 对菜单进行排序
-  menus = menus.sort((a, b) => (a?.sort ?? 999) - (b?.sort ?? 999));
+  // 对菜单进行排序，避免order=0时被替换成999的问题
+  menus = sortTree(menus, (a, b) => (a?.order ?? 999) - (b?.order ?? 999));
 
   // 过滤掉隐藏的菜单项
   return filterTree(menus, (menu) => !!menu.show);

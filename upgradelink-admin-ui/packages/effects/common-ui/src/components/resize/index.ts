@@ -1,1 +1,1 @@
-export { default as VResize } from "./resize.vue";
+export { default as VResize } from './resize.vue';

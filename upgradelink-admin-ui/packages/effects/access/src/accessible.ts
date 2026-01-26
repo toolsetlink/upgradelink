@@ -1,12 +1,12 @@
-import type { Component, DefineComponent } from "vue";
+import type { Component, DefineComponent } from 'vue';
 
 import type {
   AccessModeType,
   GenerateMenuAndRoutesOptions,
   RouteRecordRaw,
-} from "@vben/types";
+} from '@vben/types';
 
-import { defineComponent, h } from "vue";
+import { defineComponent, h } from 'vue';
 
 import {
   cloneDeep,
@@ -16,7 +16,7 @@ import {
   isFunction,
   isString,
   mapTree,
-} from "@vben/utils";
+} from '@vben/utils';
 
 async function generateAccessible(
   mode: AccessModeType,
@@ -28,7 +28,7 @@ async function generateAccessible(
   // 生成路由
   const accessibleRoutes = await generateRoutes(mode, options);
 
-  const root = router.getRoutes().find((item) => item.path === "/");
+  const root = router.getRoutes().find((item) => item.path === '/');
 
   // 获取已有的路由名称列表
   const names = root?.children?.map((item) => item.name) ?? [];
@@ -84,11 +84,11 @@ async function generateRoutes(
 
   let resultRoutes: RouteRecordRaw[] = routes;
   switch (mode) {
-    case "backend": {
+    case 'backend': {
       resultRoutes = await generateRoutesByBackend(options);
       break;
     }
-    case "frontend": {
+    case 'frontend': {
       resultRoutes = await generateRoutesByFrontend(
         routes,
         roles || [],
@@ -96,7 +96,7 @@ async function generateRoutes(
       );
       break;
     }
-    case "mixed": {
+    case 'mixed': {
       const [frontend_resultRoutes, backend_resultRoutes] = await Promise.all([
         generateRoutesByFrontend(routes, roles || [], forbiddenComponent),
         generateRoutesByBackend(options),
@@ -136,18 +136,13 @@ async function generateRoutes(
     }
 
     // 如果有redirect或者没有子路由，则直接返回
-    if (
-      route.redirect ||
-      !route.children ||
-      route.children.length === 0 ||
-      (route.meta?.hideChildrenInMenu === true && route.path !== "")
-    ) {
+    if (route.redirect || !route.children || route.children.length === 0) {
       return route;
     }
     const firstChild = route.children[0];
 
     // 如果子路由不是以/开头，则直接返回,这种情况需要计算全部父级的path才能得出正确的path，这里不做处理
-    if (!firstChild?.path || !firstChild.path.startsWith("/")) {
+    if (!firstChild?.path || !firstChild.path.startsWith('/')) {
       return route;
     }
 

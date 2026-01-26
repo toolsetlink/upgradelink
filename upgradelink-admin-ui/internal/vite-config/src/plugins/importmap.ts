@@ -1,20 +1,20 @@
 /**
  * 参考 https://github.com/jspm/vite-plugin-jspm，调整为需要的功能
  */
-import type { GeneratorOptions } from "@jspm/generator";
-import type { Plugin } from "vite";
+import type { GeneratorOptions } from '@jspm/generator';
+import type { Plugin } from 'vite';
 
-import { Generator } from "@jspm/generator";
-import { load } from "cheerio";
-import { minify } from "html-minifier-terser";
+import { Generator } from '@jspm/generator';
+import { load } from 'cheerio';
+import { minify } from 'html-minifier-terser';
 
-const DEFAULT_PROVIDER = "jspm.io";
+const DEFAULT_PROVIDER = 'jspm.io';
 
-type pluginOptions = {
+type pluginOptions = GeneratorOptions & {
   debug?: boolean;
-  defaultProvider?: "esm.sh" | "jsdelivr" | "jspm.io";
+  defaultProvider?: 'esm.sh' | 'jsdelivr' | 'jspm.io';
   importmap?: Array<{ name: string; range?: string }>;
-} & GeneratorOptions;
+};
 
 // async function getLatestVersionOfShims() {
 //   const result = await fetch('https://ga.jspm.io/npm:es-module-shims');
@@ -24,16 +24,16 @@ type pluginOptions = {
 
 async function getShimsUrl(provide: string) {
   // const version = await getLatestVersionOfShims();
-  const version = "1.10.0";
+  const version = '1.10.0';
 
   const shimsSubpath = `dist/es-module-shims.js`;
   const providerShimsMap: Record<string, string> = {
-    "esm.sh": `https://esm.sh/es-module-shims@${version}/${shimsSubpath}`,
+    'esm.sh': `https://esm.sh/es-module-shims@${version}/${shimsSubpath}`,
     // unpkg: `https://unpkg.com/es-module-shims@${version}/${shimsSubpath}`,
     jsdelivr: `https://cdn.jsdelivr.net/npm/es-module-shims@${version}/${shimsSubpath}`,
 
     // 下面两个CDN不稳定，暂时不用
-    "jspm.io": `https://ga.jspm.io/npm:es-module-shims@${version}/${shimsSubpath}`,
+    'jspm.io': `https://ga.jspm.io/npm:es-module-shims@${version}/${shimsSubpath}`,
   };
 
   return providerShimsMap[provide] || providerShimsMap[DEFAULT_PROVIDER];
@@ -55,8 +55,8 @@ async function viteImportMapPlugin(
     {},
     {
       debug: false,
-      defaultProvider: "jspm.io",
-      env: ["production", "browser", "module"],
+      defaultProvider: 'jspm.io',
+      env: ['production', 'browser', 'module'],
       importmap: [],
     },
     pluginOptions,
@@ -99,11 +99,11 @@ async function viteImportMapPlugin(
   return [
     {
       async config(_, { command, isSsrBuild }) {
-        isBuild = command === "build";
+        isBuild = command === 'build';
         isSSR = !!isSsrBuild;
       },
-      enforce: "pre",
-      name: "importmap:external",
+      enforce: 'pre',
+      name: 'importmap:external',
       resolveId(id) {
         if (isSSR || !isBuild) {
           return null;
@@ -116,8 +116,8 @@ async function viteImportMapPlugin(
       },
     },
     {
-      enforce: "post",
-      name: "importmap:install",
+      enforce: 'post',
+      name: 'importmap:install',
       async resolveId() {
         if (isSSR || !isBuild || installed) {
           return null;
@@ -139,11 +139,11 @@ async function viteImportMapPlugin(
         // 未生成importmap时，抛出错误，防止被turbo缓存
         if (!installed && !isSSR) {
           installError && console.error(installError);
-          throw new Error("Importmap installation failed.");
+          throw new Error('Importmap installation failed.');
         }
       },
-      enforce: "post",
-      name: "importmap:html",
+      enforce: 'post',
+      name: 'importmap:html',
       transformIndexHtml: {
         async handler(html) {
           if (isSSR || !isBuild) {
@@ -162,7 +162,7 @@ async function viteImportMapPlugin(
 
           const resultHtml = await injectShimsToHtml(
             html,
-            esModuleShimsSrc || "",
+            esModuleShimsSrc || '',
           );
           html = await minify(resultHtml || html, {
             collapseWhitespace: true,
@@ -176,16 +176,16 @@ async function viteImportMapPlugin(
             tags: [
               {
                 attrs: {
-                  type: "importmap",
+                  type: 'importmap',
                 },
-                injectTo: "head-prepend",
-                tag: "script",
+                injectTo: 'head-prepend',
+                tag: 'script',
                 children: `${JSON.stringify(importmapJson)}`,
               },
             ],
           };
         },
-        order: "post",
+        order: 'post',
       },
     },
   ];
@@ -200,11 +200,11 @@ async function injectShimsToHtml(html: string, esModuleShimUrl: string) {
     return;
   }
 
-  const entry = $script.attr("src");
+  const entry = $script.attr('src');
 
-  $script.removeAttr("type");
-  $script.removeAttr("crossorigin");
-  $script.removeAttr("src");
+  $script.removeAttr('type');
+  $script.removeAttr('crossorigin');
+  $script.removeAttr('src');
   $script.html(`
 if (!HTMLScriptElement.supports || !HTMLScriptElement.supports('importmap')) {
   self.importShim = function () {
@@ -237,8 +237,8 @@ typeof importShim === 'function'
   ? modules.forEach((moduleName) => importShim(moduleName))
   : modules.forEach((moduleName) => import(moduleName));
  `);
-  $("body").after($script);
-  $("head").remove(`script[type='module']`);
+  $('body').after($script);
+  $('head').remove(`script[type='module']`);
   return $.html();
 }
 

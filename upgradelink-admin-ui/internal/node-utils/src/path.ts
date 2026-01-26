@@ -1,4 +1,4 @@
-import { posix } from "node:path";
+import { posix } from 'node:path';
 
 /**
  * 将给定的文件路径转换为 POSIX 风格。

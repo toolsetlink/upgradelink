@@ -1,1 +1,1 @@
-export { default as CheckUpdates } from "./check-updates.vue";
+export { default as CheckUpdates } from './check-updates.vue';

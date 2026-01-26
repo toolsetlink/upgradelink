@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import { toValue } from "vue";
+import { toValue } from 'vue';
 
-import { ErrorMessage } from "vee-validate";
+import { ErrorMessage } from 'vee-validate';
 
-import { useFormField } from "./useFormField";
+import { useFormField } from './useFormField';
 
 const { formMessageId, name } = useFormField();
 </script>
@@ -13,6 +13,6 @@ const { formMessageId, name } = useFormField();
     :id="formMessageId"
     :name="toValue(name)"
     as="p"
-    class="text-destructive text-[0.8rem]"
+    class="text-[0.8rem] text-destructive"
   />
 </template>

@@ -1,8 +1,8 @@
-import type { PluginOption } from "vite";
+import type { PluginOption } from 'vite';
 
-import type { PrintPluginOptions } from "../typing";
+import type { PrintPluginOptions } from '../typing';
 
-import { colors } from "@vben/node-utils";
+import { colors } from '@vben/node-utils';
 
 export const vitePrintPlugin = (
   options: PrintPluginOptions = {},
@@ -17,12 +17,12 @@ export const vitePrintPlugin = (
 
         for (const [key, value] of Object.entries(infoMap)) {
           console.log(
-            `  ${colors.green("➜")}  ${colors.bold(key)}: ${colors.cyan(value)}`,
+            `  ${colors.green('➜')}  ${colors.bold(key)}: ${colors.cyan(value)}`,
           );
         }
       };
     },
-    enforce: "pre",
-    name: "vite:print-info",
+    enforce: 'pre',
+    name: 'vite:print-info',
   };
 };

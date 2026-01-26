@@ -1,10 +1,10 @@
-import type { Component, VNode, VNodeArrayChildren } from "vue";
+import type { Component, VNode, VNodeArrayChildren } from 'vue';
 
-import type { Recordable } from "@vben-core/typings";
+import type { Recordable } from '@vben-core/typings';
 
-import { createContext } from "@vben-core/shadcn-ui";
+import { createContext } from '@vben-core/shadcn-ui';
 
-export type IconType = "error" | "info" | "question" | "success" | "warning";
+export type IconType = 'error' | 'info' | 'question' | 'success' | 'warning';
 
 export type BeforeCloseScope = {
   isConfirm: boolean;
@@ -21,7 +21,7 @@ export type AlertProps = {
    * 按钮对齐方式
    * @default 'end'
    */
-  buttonAlign?: "center" | "end" | "start";
+  buttonAlign?: 'center' | 'end' | 'start';
   /** 取消按钮的标题 */
   cancelText?: string;
   /** 是否居中显示 */
@@ -71,7 +71,7 @@ export type PromptProps<T = any> = {
   defaultValue?: T;
   /** 输入组件的值属性名 */
   modelPropName?: string;
-} & Omit<AlertProps, "beforeClose">;
+} & Omit<AlertProps, 'beforeClose'>;
 
 /**
  * Alert上下文
@@ -84,7 +84,7 @@ export type AlertContext = {
 };
 
 export const [injectAlertContext, provideAlertContext] =
-  createContext<AlertContext>("VbenAlertContext");
+  createContext<AlertContext>('VbenAlertContext');
 
 /**
  * 获取Alert上下文
@@ -93,7 +93,7 @@ export const [injectAlertContext, provideAlertContext] =
 export function useAlertContext() {
   const context = injectAlertContext();
   if (!context) {
-    throw new Error("useAlertContext must be used within an AlertProvider");
+    throw new Error('useAlertContext must be used within an AlertProvider');
   }
   return context;
 }

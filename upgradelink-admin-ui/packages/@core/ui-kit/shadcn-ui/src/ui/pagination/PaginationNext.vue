@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import type { PaginationNextProps } from "radix-vue";
+import type { PaginationNextProps } from 'reka-ui';
 
-import { computed } from "vue";
+import { computed } from 'vue';
 
-import { cn } from "@vben-core/shared/utils";
+import { cn } from '@vben-core/shared/utils';
 
-import { ChevronRight } from "lucide-vue-next";
-import { PaginationNext } from "radix-vue";
+import { ChevronRight } from 'lucide-vue-next';
+import { PaginationNext } from 'reka-ui';
 
-import { Button } from "../button";
+import { Button } from '../button';
 
 const props = withDefaults(
   defineProps<PaginationNextProps & { class?: any }>(),

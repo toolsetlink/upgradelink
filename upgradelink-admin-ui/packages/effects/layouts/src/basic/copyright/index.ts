@@ -1,1 +1,1 @@
-export { default as Copyright } from "./copyright.vue";
+export { default as Copyright } from './copyright.vue';

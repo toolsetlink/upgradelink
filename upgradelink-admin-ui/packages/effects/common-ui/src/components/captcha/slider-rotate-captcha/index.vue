@@ -4,30 +4,30 @@ import type {
   SliderCaptchaActionType,
   SliderRotateCaptchaProps,
   SliderRotateVerifyPassingData,
-} from "../types";
+} from '../types';
 
-import { computed, reactive, unref, useTemplateRef, watch } from "vue";
+import { computed, reactive, unref, useTemplateRef, watch } from 'vue';
 
-import { $t } from "@vben/locales";
+import { $t } from '@vben/locales';
 
-import { useTimeoutFn } from "@vueuse/core";
+import { useTimeoutFn } from '@vueuse/core';
 
-import SliderCaptcha from "../slider-captcha/index.vue";
+import SliderCaptcha from '../slider-captcha/index.vue';
 
 const props = withDefaults(defineProps<SliderRotateCaptchaProps>(), {
-  defaultTip: "",
+  defaultTip: '',
   diffDegree: 20,
   imageSize: 260,
   maxDegree: 300,
   minDegree: 120,
-  src: "",
+  src: '',
 });
 
 const emit = defineEmits<{
   success: [CaptchaVerifyPassingData];
 }>();
 
-const slideBarRef = useTemplateRef<SliderCaptchaActionType>("slideBarRef");
+const slideBarRef = useTemplateRef<SliderCaptchaActionType>('slideBarRef');
 
 const state = reactive({
   currentRotate: 0,
@@ -49,7 +49,7 @@ watch(
     if (isPassing) {
       const { endTime, startTime } = state;
       const time = (endTime - startTime) / 1000;
-      emit("success", { isPassing, time: time.toFixed(1) });
+      emit('success', { isPassing, time: time.toFixed(1) });
     }
     modalValue.value = isPassing;
   },
@@ -67,7 +67,7 @@ const getImgWrapStyleRef = computed(() => {
 const getFactorRef = computed(() => {
   const { maxDegree, minDegree } = props;
   if (minDegree > maxDegree) {
-    console.warn("minDegree should not be greater than maxDegree");
+    console.warn('minDegree should not be greater than maxDegree');
   }
 
   if (minDegree === maxDegree) {
@@ -147,15 +147,15 @@ function resume() {
 }
 
 const imgCls = computed(() => {
-  return state.toOrigin ? ["transition-transform duration-300"] : [];
+  return state.toOrigin ? ['transition-transform duration-300'] : [];
 });
 
 const verifyTip = computed(() => {
   return state.isPassing
-    ? $t("ui.captcha.sliderRotateSuccessTip", [
+    ? $t('ui.captcha.sliderRotateSuccessTip', [
         ((state.endTime - state.startTime) / 1000).toFixed(1),
       ])
-    : $t("ui.captcha.sliderRotateFailTip");
+    : $t('ui.captcha.sliderRotateFailTip');
 });
 
 defineExpose({
@@ -191,7 +191,7 @@ defineExpose({
           {{ verifyTip }}
         </div>
         <div v-if="!state.dragging" class="bg-black/30">
-          {{ defaultTip || $t("ui.captcha.sliderRotateDefaultTip") }}
+          {{ defaultTip || $t('ui.captcha.sliderRotateDefaultTip') }}
         </div>
       </div>
     </div>

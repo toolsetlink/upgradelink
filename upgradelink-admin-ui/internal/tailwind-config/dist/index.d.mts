@@ -1,0 +1,2 @@
+export * from "/Users/songang/LinkProjects/open/upgradelink/upgradelink-admin-ui/internal/tailwind-config/src/index.js";
+export { default } from "/Users/songang/LinkProjects/open/upgradelink/upgradelink-admin-ui/internal/tailwind-config/src/index.js";

@@ -13,4 +13,4 @@ export const ELEMENT_ID_MAIN_CONTENT = `__vben_main_content`;
 /**
  * @zh_CN 默认命名空间
  */
-export const DEFAULT_NAMESPACE = "vben";
+export const DEFAULT_NAMESPACE = 'vben';

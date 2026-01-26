@@ -32,6 +32,7 @@ export {
   Grip,
   GripVertical,
   Menu as IconDefault,
+  Inbox,
   Info,
   InspectionPanel,
   Languages,
@@ -65,4 +66,4 @@ export {
   SwatchBook,
   UserRoundPen,
   X,
-} from "lucide-vue-next";
+} from 'lucide-vue-next';

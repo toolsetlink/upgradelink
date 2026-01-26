@@ -1,12 +1,12 @@
 <script lang="ts">
-import type { Component, PropType } from "vue";
+import type { Component, PropType } from 'vue';
 
-import { defineComponent, h } from "vue";
+import { defineComponent, h } from 'vue';
 
-import { isFunction, isObject, isString } from "@vben-core/shared/utils";
+import { isFunction, isObject, isString } from '@vben-core/shared/utils';
 
 export default defineComponent({
-  name: "RenderContent",
+  name: 'RenderContent',
   props: {
     content: {
       default: undefined as
@@ -29,10 +29,10 @@ export default defineComponent({
         props.content !== null;
       if (!isComponent) {
         if (props.renderBr && isString(props.content)) {
-          const lines = props.content.split("\n");
+          const lines = props.content.split('\n');
           const result = [];
           for (const [i, line] of lines.entries()) {
-            result.push(h("p", { key: i }, line));
+            result.push(h('p', { key: i }, line));
             // if (i < lines.length - 1) {
             //   result.push(h('br'));
             // }

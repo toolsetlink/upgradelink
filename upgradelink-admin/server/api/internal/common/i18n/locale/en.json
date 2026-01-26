@@ -1,0 +1,22 @@
+{
+	"common": {
+		"success": "Successfully",
+		"failed": "Failed",
+		"updateSuccess": "Update successfully",
+		"updateFailed": "Update failed",
+		"createSuccess": "Create successfully",
+		"createFailed": "Create failed",
+		"deleteSuccess": "Delete successfully",
+		"deleteFailed": "Delete failed",
+		"changeStatusSuccess": "Change status successfully",
+		"changeStatusFailed": "Change status failed",
+		"targetNotExist": "Target does not exist",
+		"databaseError": "Database error",
+		"redisError": "Redis error",
+		"permissionDeny": "User does not have permission to access this interface",
+		"constraintError": "Operation failed: Data conflict",
+		"validationError": "Operation failed: Validate failed",
+		"notSingularError": "Operation failed: Data is not unique",
+		"serviceUnavailable": "Service is unavailable, please check if the service is enabled"
+	}
+}

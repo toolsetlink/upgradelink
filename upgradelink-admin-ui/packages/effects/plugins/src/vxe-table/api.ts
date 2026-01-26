@@ -1,24 +1,24 @@
-import type { VxeGridInstance } from "vxe-table";
+import type { VxeGridInstance } from 'vxe-table';
 
-import type { ExtendedFormApi } from "@vben-core/form-ui";
+import type { ExtendedFormApi } from '@vben-core/form-ui';
 
-import type { VxeGridProps } from "./types";
+import type { VxeGridProps } from './types';
 
-import { toRaw } from "vue";
+import { toRaw } from 'vue';
 
-import { Store } from "@vben-core/shared/store";
+import { Store } from '@vben-core/shared/store';
 import {
   bindMethods,
   isBoolean,
   isFunction,
   mergeWithArrayOverride,
   StateHandler,
-} from "@vben-core/shared/utils";
+} from '@vben-core/shared/utils';
 
 function getDefaultState(): VxeGridProps {
   return {
-    class: "",
-    gridClass: "",
+    class: '',
+    gridClass: '',
     gridOptions: {},
     gridEvents: {},
     formOptions: undefined,
@@ -69,21 +69,21 @@ export class VxeGridApi<T extends Record<string, any> = any> {
 
   async query(params: Record<string, any> = {}) {
     try {
-      await this.grid.commitProxy("query", toRaw(params));
+      await this.grid.commitProxy('query', toRaw(params));
     } catch (error) {
-      console.error("Error occurred while querying:", error);
+      console.error('Error occurred while querying:', error);
     }
   }
 
   async reload(params: Record<string, any> = {}) {
     try {
-      await this.grid.commitProxy("reload", toRaw(params));
+      await this.grid.commitProxy('reload', toRaw(params));
     } catch (error) {
-      console.error("Error occurred while reloading:", error);
+      console.error('Error occurred while reloading:', error);
     }
   }
 
-  setGridOptions(options: Partial<VxeGridProps["gridOptions"]>) {
+  setGridOptions(options: Partial<VxeGridProps['gridOptions']>) {
     this.setState({
       gridOptions: options,
     });

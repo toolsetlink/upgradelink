@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import type { VbenFormSchema } from "@vben-core/form-ui";
+import type { VbenFormSchema } from '@vben-core/form-ui';
 
-import { computed, reactive } from "vue";
-import { useRouter } from "vue-router";
+import { computed, reactive } from 'vue';
+import { useRouter } from 'vue-router';
 
-import { $t } from "@vben/locales";
+import { $t } from '@vben/locales';
 
-import { useVbenForm } from "@vben-core/form-ui";
-import { VbenButton } from "@vben-core/shadcn-ui";
+import { useVbenForm } from '@vben-core/form-ui';
+import { VbenButton } from '@vben-core/shadcn-ui';
 
-import Title from "./auth-title.vue";
+import Title from './auth-title.vue';
 
 interface Props {
   formSchema: VbenFormSchema[];
@@ -36,15 +36,15 @@ interface Props {
 }
 
 defineOptions({
-  name: "ForgetPassword",
+  name: 'ForgetPassword',
 });
 
 const props = withDefaults(defineProps<Props>(), {
   loading: false,
-  loginPath: "/auth/login",
-  submitButtonText: "",
-  subTitle: "",
-  title: "",
+  loginPath: '/auth/login',
+  submitButtonText: '',
+  subTitle: '',
+  title: '',
 });
 
 const emit = defineEmits<{
@@ -68,7 +68,7 @@ async function handleSubmit() {
   const { valid } = await formApi.validate();
   const values = await formApi.getValues();
   if (valid) {
-    emit("submit", values);
+    emit('submit', values);
   }
 }
 
@@ -85,11 +85,11 @@ defineExpose({
   <div>
     <Title>
       <slot name="title">
-        {{ title || $t("authentication.forgetPassword") }} 🤦🏻‍♂️
+        {{ title || $t('authentication.forgetPassword') }} 🤦🏻‍♂️
       </slot>
       <template #desc>
         <slot name="subTitle">
-          {{ subTitle || $t("authentication.forgetPasswordSubtitle") }}
+          {{ subTitle || $t('authentication.forgetPasswordSubtitle') }}
         </slot>
       </template>
     </Title>
@@ -105,11 +105,11 @@ defineExpose({
         @click="handleSubmit"
       >
         <slot name="submitButtonText">
-          {{ submitButtonText || $t("authentication.sendResetLink") }}
+          {{ submitButtonText || $t('authentication.sendResetLink') }}
         </slot>
       </VbenButton>
       <VbenButton class="mt-4 w-full" variant="outline" @click="goToLogin()">
-        {{ $t("common.back") }}
+        {{ $t('common.back') }}
       </VbenButton>
     </div>
   </div>

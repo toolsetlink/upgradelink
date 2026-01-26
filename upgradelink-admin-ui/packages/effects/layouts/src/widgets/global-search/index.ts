@@ -1,1 +1,1 @@
-export { default as GlobalSearch } from "./global-search.vue";
+export { default as GlobalSearch } from './global-search.vue';
