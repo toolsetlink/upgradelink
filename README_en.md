@@ -99,7 +99,7 @@ Multiple open-source projects have been integrated, categorized by technical fra
 
 ## Contribution Guide
 We welcome contributions! 
-> Tech Stack: Built with [Go Zero](https://go-zero.dev/) and [simple-admin](https://doc.ryansu.tech/)
+> Tech Stack: Backend built with [Go Zero](https://go-zero.dev/), frontend built with [Vben](https://doc.vben.pro/) (Vue3). Admin backend references permission-related implementations from [simple-admin](https://doc.ryansu.tech/) (microservice architecture not adopted).
 
 
 ## Notifications & Feedback
@@ -120,7 +120,7 @@ We welcome contributions!
 - 🔧 **Automated Deployment**: Add Tauri/Electron Github Action modules to support automated deployment and upgrade
 
 ### v1.x Series
-- 🌱 **Basic Capability Building**: From v1.4.0 to v1.9.0, gradually implement core functions
+- 🌱 **Basic Capability Building**: From v1.0.0 to v1.9.0, gradually implement core functions
 - 📱 **Platform Expansion**: Support Android application upgrade, configuration upgrade and other functions
 - 📊 **Data Statistics**: Add application traffic statistics, revenue module, etc.
 - 🌐 **Global Access**: Application download and distribution pages support global access

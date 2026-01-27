@@ -105,7 +105,7 @@
 ## 贡献指南
 欢迎加入开发！通过 [官方交流群](https://www.toolsetlink.com/upgrade/communication-group.html) 了解贡献流程。
 
-> 技术栈：基于 [Go Zero](https://go-zero.dev/) 与 [simple-admin](https://doc.ryansu.tech/) 开发
+> 技术栈：后端基于 [Go Zero](https://go-zero.dev/) 开发，前端基于 [Vben](https://doc.vben.pro/)（Vue3）开发。Admin 后台参考了 [simple-admin](https://doc.ryansu.tech/) 的权限相关实现（未采用其微服务架构）。
 
 
 ## 通知与反馈
@@ -126,7 +126,7 @@
 - 🔧 **自动化部署**：增加Tauri/Electron Github Action模块，支持自动化部署与升级
 
 ### v1.x 系列
-- 🌱 **基础能力构建**：从v1.4.0到v1.9.0，逐步实现核心功能
+- 🌱 **基础能力构建**：从v1.0.0到v1.9.0，逐步实现核心功能
 - 📱 **平台扩展**：支持安卓应用升级、配置升级等功能
 - 📊 **数据统计**：增加应用使用流量统计、收入模块等
 - 🌐 **全球访问**：应用下载分发页面支持全球访问

@@ -15,6 +15,7 @@ Whether it's a small tool by individual developers or a complex enterprise-level
 - 🌍 **Cross-Platform Coverage**: Supports Windows/Linux/Mac/Android/Tauri/Electron and other full scenarios
 - 💰 **Cost Reduction**: Eliminate R&D investment in server setup and cross-platform adaptation
 - 🔒 **Enterprise-Grade Reliability**: Security protection + flexible strategies, supporting canary release/targeted upgrade
+- 📦 **Flexible Storage Support**: Supports S3 protocol object storage, customizable CDN download address
 
 
 ## Core Features: Full-Scenario Upgrade Solutions
@@ -34,6 +35,10 @@ Whether it's a small tool by individual developers or a complex enterprise-level
 | Configuration Upgrade| Custom JSON configuration with online dynamic updates | Apps requiring dynamic parameter adjustments |
 | File Upgrade         | Upload any files to support resource supplement/replacement | Apps needing to update materials or plugins |
 | URL Upgrade          | Custom download links with self-managed file storage | Apps with existing cloud storage services |
+
+### 3. Flexible Storage and Distribution
+- 📦 **S3 Protocol Support**: All application version files can be stored in S3-compatible object storage services
+- 🌐 **Customizable CDN**: Supports configuring custom CDN download addresses to optimize global user download experience
 
 
 ## 10-Minute Integration Guide 🔧
@@ -93,14 +98,41 @@ Multiple open-source projects have been integrated, categorized by technical fra
 
 
 ## Contribution Guide
-We welcome contributions!
-> Tech Stack: Built with [Go Zero](https://go-zero.dev/) and [simple-admin](https://doc.ryansu.tech/)
+We welcome contributions! 
+> Tech Stack: Backend built with [Go Zero](https://go-zero.dev/), frontend built with [Vben](https://doc.vben.pro/) (Vue3). Admin backend references permission-related implementations from [simple-admin](https://doc.ryansu.tech/) (microservice architecture not adopted).
 
 
 ## Notifications & Feedback
 - Latest Updates: [UpgradeLink Notifications](https://github.com/toolsetlink/upgradelink/issues)
 - Feedback: [Contact Us](https://www.toolsetlink.com/en/upgrade/contact-us.html)
 
+
+## Milestones
+### v3.0.0 (2026-01-26)
+- ⚡ **Second Development Support**: Core new second development support capability, with supporting documentation continuously updated
+- 🔧 **Backend Reconstruction**: Comprehensive reconstruction of admin backend system, merging multiple services into 1 service, reducing 7 project modules to 3
+- 📈 **Reduce Maintenance Cost**: Clean up useless backend modules, significantly reduce project maintenance costs
+
+### v2.0.0 (2025-09-24)
+- 🚀 **Official Open Source**: Project officially open sourced
+- ⚡ **High-Speed Traffic Package**: Support high-speed traffic package to help enterprise users upgrade applications quickly
+- 📦 **Multi-Platform Support**: Support Windows/Linux/Mac application upgrade modules
+- 🔧 **Automated Deployment**: Add Tauri/Electron Github Action modules to support automated deployment and upgrade
+
+### v1.x Series
+- 🌱 **Basic Capability Building**: From v1.0.0 to v1.9.0, gradually implement core functions
+- 📱 **Platform Expansion**: Support Android application upgrade, configuration upgrade and other functions
+- 📊 **Data Statistics**: Add application traffic statistics, revenue module, etc.
+- 🌐 **Global Access**: Application download and distribution pages support global access
+
+## Future Plans
+- 🔄 **Continue to Improve Second Development Documentation**: Based on v3.0.0 second development support capability, iteratively improve development documentation
+- 📱 **More Platform Support**: Expand upgrade capabilities for more application platforms
+- 🎯 **Feature Enhancement**: Implement more advanced functions based on the reconstructed admin system
+- 🌍 **International Promotion**: Improve English translation, support more language versions
+
+## Project Update Records
+View the complete project update records: [UpgradeLink Update Records](https://www.toolsetlink.com/upgrade/update-record.html)
 
 ## Contributors
 <a href="https://github.com/toolsetlink/upgradelink/graphs/contributors">
