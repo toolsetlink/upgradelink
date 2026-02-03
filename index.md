@@ -138,7 +138,3 @@ View the complete project update records: [UpgradeLink Update Records](https://w
 <a href="https://github.com/toolsetlink/upgradelink/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=toolsetlink/upgradelink" />
 </a>
-
-# Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=toolsetlink/upgradelink&type=Date)](https://www.star-history.com/#toolsetlink/upgradelink&Date)

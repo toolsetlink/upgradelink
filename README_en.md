@@ -6,7 +6,7 @@ Cross-Platform App Upgrade & Distribution Platform | Save 90% of the cost in bui
 [![stars](https://gitcode.com/toolsetlink/upgradelink/star/badge.svg)](https://gitcode.com/toolsetlink/upgradelink)
 [![stars](https://gitee.com/toolsetlink/upgradelink/badge/star.svg)](https://gitee.com/toolsetlink/upgradelink)
 
-[English](README.md) | [中文](README_zh.md) | [日本語](README_ja.md)
+[English](README.md) | [中文](README_zh.md) | [日本語](README_ja.md) | [Português](README_pt.md) | [Русский](README_ru.md) | [Español](README_es.md) | [한국어](README_ko.md) | [فارسی](README_fa.md)
 
 
 ## Why Choose UpgradeLink?
@@ -138,7 +138,3 @@ View the complete project update records: [UpgradeLink Update Records](https://w
 <a href="https://github.com/toolsetlink/upgradelink/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=toolsetlink/upgradelink" />
 </a>
-
-# Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=toolsetlink/upgradelink&type=Date)](https://www.star-history.com/#toolsetlink/upgradelink&Date)

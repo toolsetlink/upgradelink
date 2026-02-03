@@ -6,7 +6,7 @@
 [![stars](https://gitcode.com/toolsetlink/upgradelink/star/badge.svg)](https://gitcode.com/toolsetlink/upgradelink)
 [![stars](https://gitee.com/toolsetlink/upgradelink/badge/star.svg)](https://gitee.com/toolsetlink/upgradelink)
 
-[English](README_en.md) | [中文](README.md) | [日本語](README_ja.md)
+[English](README_en.md) | [中文](README.md) | [日本語](README_ja.md) | [Português](README_pt.md) | [Русский](README_ru.md) | [Español](README_es.md) | [한국어](README_ko.md) | [فارسی](README_fa.md)
 
 
 ## UpgradeLink を選ぶ理由？
@@ -144,7 +144,3 @@
 <a href="https://github.com/toolsetlink/upgradelink/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=toolsetlink/upgradelink" />
 </a>
-
-# Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=toolsetlink/upgradelink&type=Date)](https://www.star-history.com/#toolsetlink/upgradelink&Date)
