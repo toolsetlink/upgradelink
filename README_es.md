@@ -53,15 +53,15 @@ Soporta 6 lenguajes principales sin configuración compleja:
 - 🟣 [C# SDK](https://github.com/toolsetlink/upgradelink-api-csharp)
 
 ### Paso 2: Consulta la documentación
-- [Guía de uso completa](https://www.toolsetlink.com/en/upgrade/what-is-upgrade.html)
-- [Tutorial de inicio rápido](https://www.toolsetlink.com/en/upgrade/deploy/quick-start-docker.html)
+- [Guía de uso completa](https://www.toolsetlink.com/es/upgrade/what-is-upgrade.html)
+- [Tutorial de inicio rápido](https://www.toolsetlink.com/es/upgrade/deploy/quick-start-docker.html)
 
 
 ## Métodos de implementación
 Soporta múltiples opciones de implementación para satisfacer tus necesidades:
-- [Inicio rápido autónomo (Docker)](https://www.toolsetlink.com/en/upgrade/deploy/quick-start-docker2.html)
-- [Implementación Docker Compose](https://www.toolsetlink.com/en/upgrade/deploy/docker-compose.html)
-  - [Implementación en clúster](https://www.toolsetlink.com/en/upgrade/deploy/cluster-docker.html)
+- [Inicio rápido autónomo (Docker)](https://www.toolsetlink.com/es/upgrade/deploy/quick-start-docker2.html)
+- [Implementación Docker Compose](https://www.toolsetlink.com/es/upgrade/deploy/docker-compose.html)
+  - [Implementación en clúster](https://www.toolsetlink.com/es/upgrade/deploy/cluster-docker.html)
 
 
 ## ¿Quién está usando?
@@ -102,9 +102,8 @@ Varios proyectos de código abierto ya están integrados, categorizados por fram
 > Stack tecnológico: Backend construido con [Go Zero](https://go-zero.dev/), frontend construido con [Vben](https://doc.vben.pro/) (Vue3). El backend de administración se basa en las implementaciones relacionadas con permisos de [simple-admin](https://doc.ryansu.tech/) (no se adoptó su arquitectura de microservicios).
 
 
-## Notificaciones y retroalimentación
+## Notificaciones
 - Últimas novedades: [Notificaciones de UpgradeLink](https://github.com/toolsetlink/upgradelink/issues)
-- Retroalimentación: [Contáctanos](https://www.toolsetlink.com/en/upgrade/contact-us.html)
 
 
 ## Hitos
@@ -132,7 +131,7 @@ Varios proyectos de código abierto ya están integrados, categorizados por fram
 - 🌍 **Promoción internacional**: Mejorar la traducción al inglés, apoyar más versiones en otros idiomas
 
 ## Registros de actualización del proyecto
-Ver los registros completos de actualización del proyecto: [Registros de Actualización de UpgradeLink](https://www.toolsetlink.com/upgrade/update-record.html)
+Ver los registros completos de actualización del proyecto: [Registros de Actualización de UpgradeLink](https://www.toolsetlink.com/es/upgrade/update-record.html)
 
 ## Contribuidores
 <a href="https://github.com/toolsetlink/upgradelink/graphs/contributors">

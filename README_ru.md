@@ -53,15 +53,15 @@
 - 🟣 [C# SDK](https://github.com/toolsetlink/upgradelink-api-csharp)
 
 ### Шаг 2: Ознакомьтесь с документацией
-- [Полное руководство пользователя](https://www.toolsetlink.com/en/upgrade/what-is-upgrade.html)
-- [Быстрый старт](https://www.toolsetlink.com/en/upgrade/deploy/quick-start-docker.html)
+- [Полное руководство пользователя](https://www.toolsetlink.com/ru/upgrade/what-is-upgrade.html)
+- [Быстрый старт](https://www.toolsetlink.com/ru/upgrade/deploy/quick-start-docker.html)
 
 
 ## Методы развертывания
 Поддерживает несколько вариантов развертывания для ваших потребностей:
-- [Быстрый старт в автономном режиме (Docker)](https://www.toolsetlink.com/en/upgrade/deploy/quick-start-docker2.html)
-- [Развертывание Docker Compose](https://www.toolsetlink.com/en/upgrade/deploy/docker-compose.html)
-  - [Кластерное развертывание](https://www.toolsetlink.com/en/upgrade/deploy/cluster-docker.html)
+- [Быстрый старт в автономном режиме (Docker)](https://www.toolsetlink.com/ru/upgrade/deploy/quick-start-docker2.html)
+- [Развертывание Docker Compose](https://www.toolsetlink.com/ru/upgrade/deploy/docker-compose.html)
+  - [Кластерное развертывание](https://www.toolsetlink.com/ru/upgrade/deploy/cluster-docker.html)
 
 
 ## Кто использует?
@@ -102,9 +102,8 @@
 > Технологический стек: бэкенд построен с помощью [Go Zero](https://go-zero.dev/), фронтенд построен с помощью [Vben](https://doc.vben.pro/) (Vue3). Административный бэкенд использует реализации, связанные с правами, из [simple-admin](https://doc.ryansu.tech/) (микросервисная архитектура не используется).
 
 
-## Уведомления и обратная связь
+## Уведомления 
 - Последние новости: [Уведомления UpgradeLink](https://github.com/toolsetlink/upgradelink/issues)
-- Обратная связь: [Свяжитесь с нами](https://www.toolsetlink.com/en/upgrade/contact-us.html)
 
 
 ## Важные события
@@ -132,7 +131,7 @@
 - 🌍 **Международная промоция**: Улучшение английского перевода, поддержка большего количества языковых версий
 
 ## Записи обновлений проекта
-Просмотрите полные записи обновлений проекта: [Записи обновлений UpgradeLink](https://www.toolsetlink.com/upgrade/update-record.html)
+Просмотрите полные записи обновлений проекта: [Записи обновлений UpgradeLink](https://www.toolsetlink.com/ru/upgrade/update-record.html)
 
 ## Участники
 <a href="https://github.com/toolsetlink/upgradelink/graphs/contributors">

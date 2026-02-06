@@ -102,9 +102,8 @@ We welcome contributions!
 > Tech Stack: Backend built with [Go Zero](https://go-zero.dev/), frontend built with [Vben](https://doc.vben.pro/) (Vue3). Admin backend references permission-related implementations from [simple-admin](https://doc.ryansu.tech/) (microservice architecture not adopted).
 
 
-## Notifications & Feedback
+## Notifications
 - Latest Updates: [UpgradeLink Notifications](https://github.com/toolsetlink/upgradelink/issues)
-- Feedback: [Contact Us](https://www.toolsetlink.com/en/upgrade/contact-us.html)
 
 
 ## Milestones
@@ -132,7 +131,7 @@ We welcome contributions!
 - 🌍 **International Promotion**: Improve English translation, support more language versions
 
 ## Project Update Records
-View the complete project update records: [UpgradeLink Update Records](https://www.toolsetlink.com/upgrade/update-record.html)
+View the complete project update records: [UpgradeLink Update Records](https://www.toolsetlink.com/en/upgrade/update-record.html)
 
 ## Contributors
 <a href="https://github.com/toolsetlink/upgradelink/graphs/contributors">

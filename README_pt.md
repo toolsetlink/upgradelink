@@ -53,15 +53,15 @@ Suporta 6 linguagens principais sem configuração complexa:
 - 🟣 [C# SDK](https://github.com/toolsetlink/upgradelink-api-csharp)
 
 ### Etapa 2: Consulte a documentação
-- [Guia de uso completo](https://www.toolsetlink.com/en/upgrade/what-is-upgrade.html)
-- [Tutorial de início rápido](https://www.toolsetlink.com/en/upgrade/deploy/quick-start-docker.html)
+- [Guia de uso completo](https://www.toolsetlink.com/pt/upgrade/what-is-upgrade.html)
+- [Tutorial de início rápido](https://www.toolsetlink.com/pt/upgrade/deploy/quick-start-docker.html)
 
 
 ## Métodos de implantação
 Suporta múltiplas opções de implantação para atender às suas necessidades:
-- [Início rápido standalone (Docker)](https://www.toolsetlink.com/en/upgrade/deploy/quick-start-docker2.html)
-- [Implantação Docker Compose](https://www.toolsetlink.com/en/upgrade/deploy/docker-compose.html)
-  - [Implantação em cluster](https://www.toolsetlink.com/en/upgrade/deploy/cluster-docker.html)
+- [Início rápido standalone (Docker)](https://www.toolsetlink.com/pt/upgrade/deploy/quick-start-docker2.html)
+- [Implantação Docker Compose](https://www.toolsetlink.com/pt/upgrade/deploy/docker-compose.html)
+  - [Implantação em cluster](https://www.toolsetlink.com/pt/upgrade/deploy/cluster-docker.html)
 
 
 ## Quem está usando?
@@ -102,9 +102,8 @@ Aceitamos contribuições!
 > Pilha tecnológica: Backend construído com [Go Zero](https://go-zero.dev/), frontend construído com [Vben](https://doc.vben.pro/) (Vue3). O backend admin refere-se às implementações relacionadas a permissões do [simple-admin](https://doc.ryansu.tech/) (arquitetura de microsserviços não adotada).
 
 
-## Notificações e feedback
+## Notificações 
 - Últimas atualizações: [Notificações do UpgradeLink](https://github.com/toolsetlink/upgradelink/issues)
-- Feedback: [Contate-nos](https://www.toolsetlink.com/en/upgrade/contact-us.html)
 
 
 ## Marcos
@@ -132,7 +131,7 @@ Aceitamos contribuições!
 - 🌍 **Promoção internacional**: Melhorar a tradução em inglês, suportar mais versões em outros idiomas
 
 ## Registros de atualização do projeto
-Veja os registros completos de atualização do projeto: [Registros de Atualização do UpgradeLink](https://www.toolsetlink.com/upgrade/update-record.html)
+Veja os registros completos de atualização do projeto: [Registros de Atualização do UpgradeLink](https://www.toolsetlink.com/pt/upgrade/update-record.html)
 
 ## Contribuidores
 <a href="https://github.com/toolsetlink/upgradelink/graphs/contributors">

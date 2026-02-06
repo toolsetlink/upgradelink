@@ -53,15 +53,15 @@
 - 🟣 [C# SDK](https://github.com/toolsetlink/upgradelink-api-csharp)
 
 ### مرحله ۲: به مستندات مراجعه کنید
-- [راهنمای استفاده کامل](https://www.toolsetlink.com/en/upgrade/what-is-upgrade.html)
-- [آموزش شروع سریع](https://www.toolsetlink.com/en/upgrade/deploy/quick-start-docker.html)
+- [راهنمای استفاده کامل](https://www.toolsetlink.com/fa/upgrade/what-is-upgrade.html)
+- [آموزش شروع سریع](https://www.toolsetlink.com/fa/upgrade/deploy/quick-start-docker.html)
 
 
 ## روش‌های استقرار
 چندین گزینه استقرار را برای برآورده کردن نیازهای شما پشتیبانی می‌کند:
-- [شروع سریع مستقل (Docker)](https://www.toolsetlink.com/en/upgrade/deploy/quick-start-docker2.html)
-- [استقرار Docker Compose](https://www.toolsetlink.com/en/upgrade/deploy/docker-compose.html)
-  - [استقرار خوشه‌ای](https://www.toolsetlink.com/en/upgrade/deploy/cluster-docker.html)
+- [شروع سریع مستقل (Docker)](https://www.toolsetlink.com/fa/upgrade/deploy/quick-start-docker2.html)
+- [استقرار Docker Compose](https://www.toolsetlink.com/fa/upgrade/deploy/docker-compose.html)
+  - [استقرار خوشه‌ای](https://www.toolsetlink.com/fa/upgrade/deploy/cluster-docker.html)
 
 
 ## چه کسی در حال استفاده است؟
@@ -104,7 +104,6 @@
 
 ## اطلاعیه‌ها و بازخورد
 - آخرین بروزرسانی‌ها: [اطلاعیه‌های UpgradeLink](https://github.com/toolsetlink/upgradelink/issues)
-- بازخورد: [با ما تماس بگیرید](https://www.toolsetlink.com/en/upgrade/contact-us.html)
 
 
 ## نقطه‌های عطف
@@ -132,7 +131,7 @@
 - 🌍 **ترویج بین‌المللی**: بهبود ترجمه انگلیسی، پشتیبانی از نسخه‌های بیشتر در زبان‌های دیگر
 
 ## رکوردهای بروزرسانی پروژه
-برای مشاهده رکوردهای کامل بروزرسانی پروژه: [رکوردهای بروزرسانی UpgradeLink](https://www.toolsetlink.com/upgrade/update-record.html)
+برای مشاهده رکوردهای کامل بروزرسانی پروژه: [رکوردهای بروزرسانی UpgradeLink](https://www.toolsetlink.com/fa/upgrade/update-record.html)
 
 ## مشارکت‌کنندگان
 <a href="https://github.com/toolsetlink/upgradelink/graphs/contributors">

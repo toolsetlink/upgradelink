@@ -53,15 +53,15 @@
 - 🟣 [C# SDK](https://github.com/toolsetlink/upgradelink-api-csharp)
 
 ### ステップ2：ドキュメントを参照
-- [完全な使用ドキュメント](https://www.toolsetlink.com/upgrade/what-is-upgrade.html)
-- [クイックスタートガイド](https://www.toolsetlink.com/upgrade/deploy/quick-start-docker.html)
+- [完全な使用ドキュメント](https://www.toolsetlink.com/ja/upgrade/what-is-upgrade.html)
+- [クイックスタートガイド](https://www.toolsetlink.com/ja/upgrade/deploy/quick-start-docker.html)
 
 
 ## デプロイ方法
 複数のデプロイ方案をサポートし、ニーズに応じて選択可能：
-- [単機クイックスタート（Docker）](https://www.toolsetlink.com/upgrade/deploy/quick-start-docker2.html)
-- [Docker Compose デプロイ](https://www.toolsetlink.com/upgrade/deploy/docker-compose.html)
-- [クラスタ化デプロイ](https://www.toolsetlink.com/upgrade/deploy/cluster-docker.html)
+- [単機クイックスタート（Docker）](https://www.toolsetlink.com/ja/upgrade/deploy/quick-start-docker2.html)
+- [Docker Compose デプロイ](https://www.toolsetlink.com/ja/upgrade/deploy/docker-compose.html)
+- [クラスタ化デプロイ](https://www.toolsetlink.com/ja/upgrade/deploy/cluster-docker.html)
 
 
 ## 誰が使っている？
@@ -99,18 +99,17 @@
 
 
 ## エンタープライズ版
-無料でエンタープライズ級サービスを提供し、デプロイ不要、詳細は [エンタープライズ版無料使用](https://www.toolsetlink.com/upgrade/company/company.html) を参照
+無料でエンタープライズ級サービスを提供し、デプロイ不要、詳細は [エンタープライズ版無料使用](https://www.toolsetlink.com/ja/upgrade/company/company.html) を参照
 
 
 ## 貢献ガイド
-開発に参加することを歓迎します！[公式交流グループ](https://www.toolsetlink.com/upgrade/communication-group.html) を通じて貢献フローを了解してください。
+開発に参加することを歓迎します！[公式交流グループ](https://www.toolsetlink.com/ja/upgrade/communication-group.html) を通じて貢献フローを了解してください。
 
 > 技術スタック：バックエンドは [Go Zero](https://go-zero.dev/) を基盤に開発、フロントエンドは [Vben](https://doc.vben.pro/)（Vue3）を基盤に開発。Admin バックエンドは [simple-admin](https://doc.ryansu.tech/) の権限関連実装を参考にしています（マイクロサービスアーキテクチャは採用していません）。
 
 
-## 通知とフィードバック
+## 通知
 - 最新情報：[UpgradeLink 通知](https://github.com/toolsetlink/upgradelink/issues)
-- 問題フィードバック：[お問い合わせ](https://www.toolsetlink.com/upgrade/contact-us.html)
 
 
 ## マイルストーン
@@ -138,7 +137,7 @@
 - 🌍 **国際化推進**：英語翻訳を改善し、より多くの言語バージョンをサポート
 
 ## プロジェクト更新記録
-完全なプロジェクト更新記録を表示：[UpgradeLink更新記録](https://www.toolsetlink.com/upgrade/update-record.html)
+完全なプロジェクト更新記録を表示：[UpgradeLink更新記録](https://www.toolsetlink.com/ja/upgrade/update-record.html)
 
 ## 貢献者
 <a href="https://github.com/toolsetlink/upgradelink/graphs/contributors">

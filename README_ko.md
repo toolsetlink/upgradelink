@@ -53,15 +53,15 @@
 - 🟣 [C# SDK](https://github.com/toolsetlink/upgradelink-api-csharp)
 
 ### 단계 2: 문서 참조
-- [전체 사용 가이드](https://www.toolsetlink.com/en/upgrade/what-is-upgrade.html)
-- [빠른 시작 튜토리얼](https://www.toolsetlink.com/en/upgrade/deploy/quick-start-docker.html)
+- [전체 사용 가이드](https://www.toolsetlink.com/ko/upgrade/what-is-upgrade.html)
+- [빠른 시작 튜토리얼](https://www.toolsetlink.com/ko/upgrade/deploy/quick-start-docker.html)
 
 
 ## 배포 방법
 여러 배포 옵션을 지원하여 필요에 따라 선택하세요:
-- [독립 실행형 빠른 시작 (Docker)](https://www.toolsetlink.com/en/upgrade/deploy/quick-start-docker2.html)
-- [Docker Compose 배포](https://www.toolsetlink.com/en/upgrade/deploy/docker-compose.html)
-  - [클러스터 배포](https://www.toolsetlink.com/en/upgrade/deploy/cluster-docker.html)
+- [독립 실행형 빠른 시작 (Docker)](https://www.toolsetlink.com/ko/upgrade/deploy/quick-start-docker2.html)
+- [Docker Compose 배포](https://www.toolsetlink.com/ko/upgrade/deploy/docker-compose.html)
+  - [클러스터 배포](https://www.toolsetlink.com/ko/upgrade/deploy/cluster-docker.html)
 
 
 ## 누가 사용하고 있나요?
@@ -102,9 +102,8 @@
 > 기술 스택: 백엔드는 [Go Zero](https://go-zero.dev/) 기반으로 개발, 프론트엔드는 [Vben](https://doc.vben.pro/) (Vue3) 기반으로 개발. Admin 백엔드는 [simple-admin](https://doc.ryansu.tech/)의 권한 관련 구현을 참조 (마이크로서비스 아키텍처는 채택하지 않음).
 
 
-## 알림 및 피드백
+## 알림 
 - 최신 업데이트: [UpgradeLink 알림](https://github.com/toolsetlink/upgradelink/issues)
-- 피드백: [문의하기](https://www.toolsetlink.com/en/upgrade/contact-us.html)
 
 
 ## 마일스톤
@@ -132,7 +131,7 @@
 - 🌍 **국제화 홍보**: 영어 번역 개선, 더 많은 언어 버전 지원
 
 ## 프로젝트 업데이트 기록
-프로젝트 업데이트 기록 전체 보기: [UpgradeLink 업데이트 기록](https://www.toolsetlink.com/upgrade/update-record.html)
+프로젝트 업데이트 기록 전체 보기: [UpgradeLink 업데이트 기록](https://www.toolsetlink.com/ko/upgrade/update-record.html)
 
 ## 기여자
 <a href="https://github.com/toolsetlink/upgradelink/graphs/contributors">
