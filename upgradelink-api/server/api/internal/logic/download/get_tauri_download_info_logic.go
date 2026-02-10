@@ -89,14 +89,6 @@ func (l *GetTauriDownloadInfoLogic) GetTauriDownloadInfo(req *types.GetTauriDown
 		}
 	}
 
-	// 通过文件信息 获取云文件地址 todo
-	cloudFileInfo, err = l.svcCtx.ResourceCtx.GetCloudFileInfoById(l.ctx, tauriVersionInfo.CloudFileId)
-	if err != nil && errors.Is(err, model.ErrNotFound) {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.targetNotExist"), l.svcCtx.Trans.Trans(l.ctx, "common.targetNotExist"))
-	} else if err != nil {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"), l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"))
-	}
-
 	// 插入app 文件下载日志表
 	_, err = l.svcCtx.ResourceCtx.AddAppDownloadReportLog(l.ctx, resource.AddAppDownloadReportLogReq{
 		CompanyId:           tauriInfo.CompanyId,
