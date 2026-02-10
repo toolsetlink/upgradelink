@@ -179,6 +179,7 @@ type (
     jwt: Auth
     group: upgrade_dashboard
     middleware: Authority
+    timeout: 30s
 )
 
 service Api {

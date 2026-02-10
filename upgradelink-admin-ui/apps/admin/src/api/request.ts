@@ -27,6 +27,7 @@ function createRequestClient(baseURL: string, options?: RequestClientOptions) {
   const client = new RequestClient({
     ...options,
     baseURL,
+    timeout: 600_000, // 调整超时时间为600秒
     transformResponse: (data: any, header: AxiosResponseHeaders) => {
       // storeAsString指示将BigInt存储为字符串，设为false则会存储为内置的BigInt类型
       return header.getContentType()?.toString().includes("application/json")

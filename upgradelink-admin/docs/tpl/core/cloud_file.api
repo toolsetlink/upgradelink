@@ -106,21 +106,11 @@ service Api {
 @server(
     jwt: Auth
     group: cloudfile
+    timeout: 300s
 )
 
 service Api {
     // Cloud file upload | 上传文件
     @handler upload
     post /cloud_file/upload returns (CloudFileInfoResp)
-}
-
-
-@server(
-    group: cloudfile
-)
-
-service Api {
-    // Cloud file upload | 内部系统上传文件
-    @handler internalUpload
-    post /cloud_file/internal_upload_fasdadw returns (CloudFileInfoResp)
 }
