@@ -1,3 +1,29 @@
+## 使用构建镜像
+FROM docker.m.daocloud.io/library/node:22.12.0 AS builder
+
+RUN npm config set -g registry http://registry.npmmirror.com
+
+ENV TZ=Asia/Shanghai
+
+ARG registry=http://registry.npmmirror.com
+ARG disturl=https://npm.taobao.org/dist
+
+RUN yarn config set disturl $disturl
+RUN yarn config set registry $registry
+
+## 设置工作目录
+WORKDIR /app
+
+## 复制项目文件到工作目录
+COPY . .
+
+## 安装依赖
+RUN npm i -g corepack && CI=true pnpm install
+
+## 构建项目
+RUN pnpm build:admin
+
+# 使用生产镜像
 FROM toolsetlink/alpine-upgradelink:v2.0.0 AS prod
 
 # 设置工作目录

@@ -1,0 +1,50 @@
+{
+	"common": {
+		"success": "Успешно",
+		"failed": "Не удалось",
+		"updateSuccess": "Обновление успешно",
+		"updateFailed": "Не удалось обновить",
+		"createSuccess": "Создано успешно",
+		"createFailed": "Не удалось создать",
+		"deleteSuccess": "Удалено успешно",
+		"deleteFailed": "Не удалось удалить",
+		"changeStatusSuccess": "Статус изменен успешно",
+		"changeStatusFailed": "Не удалось изменить статус",
+		"targetNotExist": "Цель не существует",
+		"databaseError": "Ошибка базы данных",
+		"redisError": "Ошибка Redis",
+		"permissionDeny": "Пользователь не имеет разрешения на доступ к этому интерфейсу",
+		"constraintError": "Операция не выполнена: конфликт данных",
+		"validationError": "Операция не выполнена: валидация не прошла",
+		"notSingularError": "Операция не выполнена: данные не уникальны",
+		"serviceUnavailable": "Сервис недоступен, проверьте, включен ли сервис",
+		"serviceBusy": "Сервис занят, попробуйте позже",
+		"cacheError": "Ошибка кэша"
+	},
+	"init": {
+		"alreadyInit": "Уже инициализирован",
+		"initializeIsRunning": "Инициализация выполняется"
+	},
+	"sys": {
+		"api": {
+			"apiRequestFailed": "Запрос API не выполнен"
+		}
+	},
+	"upgrade": {
+		"appNameDuplicate": "Дублирование имени приложения",
+		"appPackageNameDuplicate": "Дублирование имени пакета приложения",
+		"appVersionDuplicate": "Дублирование имени текущей версии приложения",
+		"appVersionCodeDuplicate": "Дублирование кода текущей версии приложения",
+		"appVersionHasStrategy": "Версия приложения все еще имеет соответствующую стратегию, не может быть удалена",
+		"taskNameDuplicate": "Дублирование имени задачи",
+		"taskTimeInvalid": "Время начала задачи больше или равно времени окончания",
+		"grayStrategyTimeInvalid": "Стратегия градиента имеет время начала меньше или равно времени окончания",
+		"grayStrategyTimeOverlap": "Стратегия градиента имеет перекрытие времени начала и окончания",
+		"flowStrategyTimeInvalid": "Стратегия потока имеет время начала меньше или равно времени окончания",
+		"flowStrategyTimeOverlap": "Стратегия потока имеет перекрытие времени начала и окончания",
+		"versionFormatError": "Ошибка формата имени версии",
+		"deviceUniqueIdDuplicate": "Дублирование уникального идентификатора устройства",
+		"deviceGroupNameDuplicate": "Дублирование имени группы устройств",
+		"deviceModelNameDuplicate": "Дублирование имени модели устройства"
+	}
+}

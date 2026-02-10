@@ -75,10 +75,10 @@ async function bootstrap(namespace: string) {
     const currentLocale = preferences.app.locale;
     // 只有当语言真正变化时才刷新页面
     if (currentLocale !== initialLocale) {
-      // 延迟一小段时间，确保语言设置已经保存
+      // 延迟一小段时间，确保语言设置已经保存并且语言包已经加载完成
       setTimeout(() => {
         window.location.reload();
-      }, 100);
+      }, 500);
     }
     // 更新初始语言
     initialLocale = currentLocale;

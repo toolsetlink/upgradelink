@@ -2,6 +2,23 @@ import "../base.api"
 
 type (
     // The response data of cloud file information | 云文件信息
+    ReqCloudFileInfo {
+        // Name | 名称
+        Name  *string `json:"name,optional"`
+
+        // Url | 网络地址
+        Url  *string `json:"url,optional"`
+
+        // Size | 文件大小
+        Size  *uint64 `json:"size,optional"`
+
+        // Md5 | 文件大小
+        Md5  *string `json:"md5,optional"`
+
+        // File type | 文件类型
+        FileType  *uint8 `json:"fileType,optional"`
+    }
+
     CloudFileInfo {
         BaseUUIDInfo
 
@@ -14,26 +31,20 @@ type (
         // Url | 网络地址
         Url  *string `json:"url,optional"`
 
-        // RelativeSrc | 相对路径
-        RelativeSrc  *string `json:"relativeSrc,optional"`
-
         // Size | 文件大小
         Size  *uint64 `json:"size,optional"`
 
+        // Md5 | 文件大小
+        Md5  *string `json:"md5,optional"`
+
         // File type | 文件类型
-        FileType  *uint8 `json:"fileType,optional"`
+        FileType  *string `json:"fileType,optional"`
 
         // User ID | 上传用户的 ID
         UserId  *string `json:"userId,optional"`
-
-        // Provider ID | 提供商的 ID
-        ProviderId  *uint64 `json:"providerId,optional"`
-
-        // Tag ID | 标签 ID
-        TagIds []uint64 `json:"tagIds,optional,omitempty"`
     }
 
-    // The response data of cloud file list | 云文件列表数据
+        // The response data of cloud file list | 云文件列表数据
     CloudFileListResp {
         BaseDataInfo
 
@@ -41,7 +52,7 @@ type (
         Data CloudFileListInfo `json:"data"`
     }
 
-    // CloudFile list data | 云文件列表数据
+        // CloudFile list data | 云文件列表数据
     CloudFileListInfo {
         BaseListInfo
 
@@ -49,29 +60,58 @@ type (
         Data  []CloudFileInfo  `json:"data"`
     }
 
-    // Get cloud file list request params | 云文件列表请求参数
+        // Get cloud file list request params | 云文件列表请求参数
     CloudFileListReq {
         PageInfo
 
         // Name | 文件名
         Name  *string `json:"name,optional"`
 
-        // Provider ID | 提供商 ID
-        ProviderId  *uint64 `json:"providerId,optional"`
-
-        // Tag ID | 标签 ID
-        TagIds []uint64 `json:"tagIds,optional"`
-
         // File type | 文件类型
         FileType *uint8 `json:"fileType,optional"`
     }
 
-    // CloudFile information response | 云文件信息返回体
+        // CloudFile information response | 云文件信息返回体
     CloudFileInfoResp {
         BaseDataInfo
 
         // CloudFile information | 云文件数据
         Data CloudFileInfo `json:"data"`
+    }
+
+        // Presigned URL request parameters | 预签名URL请求参数
+    PresignedUrlReq {
+        // File name | 文件名
+        filename string `json:"filename"`
+
+        // Content type | 文件内容类型
+        contentType string `json:"contentType"`
+    }
+
+        // Presigned URL information | 预签名URL信息
+    PresignedUrlInfo {
+        // Presigned URL | 预签名URL
+        presignedUrl string `json:"presignedUrl"`
+
+        // File access URL | 文件访问URL
+        fileUrl string `json:"fileUrl"`
+
+        // File name (without suffix) | 文件名（不含后缀）
+        fileName string `json:"fileName"`
+
+        // File suffix | 文件后缀
+        fileSuffix string `json:"fileSuffix"`
+
+        // File type | 文件类型
+        fileType string `json:"fileType"`
+    }
+
+        // Presigned URL response | 预签名URL响应
+    PresignedUrlResp {
+        BaseDataInfo
+
+        // Presigned URL information | 预签名URL信息
+        Data PresignedUrlInfo `json:"data"`
     }
 )
 
@@ -84,11 +124,11 @@ type (
 service Api {
     // Create cloud file information | 创建云文件
     @handler createCloudFile
-    post /cloud_file/create (CloudFileInfo) returns (BaseMsgResp)
+    post /cloud_file/create (ReqCloudFileInfo) returns (CloudFileInfoResp)
 
     // Update cloud file information | 更新云文件
     @handler updateCloudFile
-    post /cloud_file/update (CloudFileInfo) returns (BaseMsgResp)
+    post /cloud_file/update (ReqCloudFileInfo) returns (BaseMsgResp)
 
     // Delete cloud file information | 删除云文件信息
     @handler deleteCloudFile
@@ -109,8 +149,13 @@ service Api {
     timeout: 300s
 )
 
+
 service Api {
     // Cloud file upload | 上传文件
     @handler upload
     post /cloud_file/upload returns (CloudFileInfoResp)
+
+    // Get presigned URL for direct upload | 获取预签名URL用于直接上传
+    @handler presignedUrl
+    post /cloud_file/presigned_url (PresignedUrlReq) returns (PresignedUrlResp)
 }

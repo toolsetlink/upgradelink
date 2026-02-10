@@ -165,7 +165,7 @@ async function batchDelete(ids: any[]) {
 
 <template>
   <Page auto-content-height>
-    <FormDrawer />
+    <FormDrawer class="w-2/3" />
     <Grid>
       <template #toolbar-buttons>
         <Button

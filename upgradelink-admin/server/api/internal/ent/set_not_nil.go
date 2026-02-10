@@ -513,6 +513,30 @@ func (_m *FmsCloudFileCreate) SetNotNilState(value *bool) *FmsCloudFileCreate {
 }
 
 // set field if value's pointer is not nil.
+func (_m *FmsCloudFileUpdate) SetNotNilIsDel(value *int32) *FmsCloudFileUpdate {
+	if value != nil {
+		return _m.SetIsDel(*value)
+	}
+	return _m
+}
+
+// set field if value's pointer is not nil.
+func (_m *FmsCloudFileUpdateOne) SetNotNilIsDel(value *int32) *FmsCloudFileUpdateOne {
+	if value != nil {
+		return _m.SetIsDel(*value)
+	}
+	return _m
+}
+
+// set field if value's pointer is not nil.
+func (_m *FmsCloudFileCreate) SetNotNilIsDel(value *int32) *FmsCloudFileCreate {
+	if value != nil {
+		return _m.SetIsDel(*value)
+	}
+	return _m
+}
+
+// set field if value's pointer is not nil.
 func (_m *FmsCloudFileUpdate) SetNotNilName(value *string) *FmsCloudFileUpdate {
 	if value != nil {
 		return _m.SetName(*value)

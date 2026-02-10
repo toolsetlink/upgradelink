@@ -3,6 +3,7 @@ package upgrade_file_version
 import (
 	"context"
 	"upgradelink-admin/server/api/internal/common/db_error"
+	"upgradelink-admin/server/api/internal/common/enum"
 	"upgradelink-admin/server/api/internal/common/http_error"
 	"upgradelink-admin/server/api/internal/common/i18n"
 	"upgradelink-admin/server/api/internal/common/jwtctx/companyctx"
@@ -38,7 +39,7 @@ func (l *CreateUpgradeFileVersionLogic) CreateUpgradeFileVersion(req *types.Upgr
 		return nil, err
 	}
 
-	isDel := int32(0)
+	intDelFalse := enum.IsDelFalse
 	_, err = l.svcCtx.DB.UpgradeFileVersion.Create().
 		SetNotNilCompanyID(companyctx.GetCompanyIDPointerFromCtx(l.ctx)).
 		SetNotNilFileID(req.FileId).
@@ -46,7 +47,7 @@ func (l *CreateUpgradeFileVersionLogic) CreateUpgradeFileVersion(req *types.Upgr
 		SetNotNilVersionName(req.VersionName).
 		SetNotNilVersionCode(req.VersionCode).
 		SetNotNilDescription(req.Description).
-		SetNotNilIsDel(&isDel).
+		SetNotNilIsDel(&intDelFalse).
 		SetNotNilCreateAt(pointy.GetTimeMilliPointer(req.CreateAt)).
 		SetNotNilUpdateAt(pointy.GetTimeMilliPointer(req.UpdateAt)).
 		Save(l.ctx)
@@ -71,7 +72,7 @@ func (l *CreateUpgradeFileVersionLogic) CheckCreateUpgradeFileVersion(req *types
 		return err
 	}
 	if count > 0 {
-		return http_error.NewCodeBadRequestError("当前应用版本名重复")
+		return http_error.NewCodeBadRequestError(l.svcCtx.Trans.Trans(l.ctx, i18n.AppVersionDuplicate))
 	}
 
 	// 判断是否重复
@@ -85,7 +86,7 @@ func (l *CreateUpgradeFileVersionLogic) CheckCreateUpgradeFileVersion(req *types
 		return err
 	}
 	if count1 > 0 {
-		return http_error.NewCodeBadRequestError("当前应用版本号重复")
+		return http_error.NewCodeBadRequestError(l.svcCtx.Trans.Trans(l.ctx, i18n.AppVersionCodeDuplicate))
 	}
 
 	return nil

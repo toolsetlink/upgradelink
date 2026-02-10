@@ -31,104 +31,107 @@ import { IconifyIcon } from '@vben/icons';
 import { $t } from '@vben/locales';
 import { isEmpty } from '@vben/utils';
 
-import { 
+import {
   ApiTransfer,
   CodeEditor,
   Editor,
   ImageUpload,
+  JsonEditor,
   RadioButtonGroup,
   SimpleRangePicker,
   SimpleTimePicker,
+  TextMarkdownEditor,
   UploadDragger,
-  UploadDraggerOne 
+  UploadDraggerOne,
+  S3PresignedUpload
 } from '#/components/form';
 
 import { message, notification } from 'ant-design-vue';
 
 const AutoComplete = defineAsyncComponent(
-  () => import('ant-design-vue/es/auto-complete'),
+    () => import('ant-design-vue/es/auto-complete'),
 );
 const Button = defineAsyncComponent(() => import('ant-design-vue/es/button'));
 const Checkbox = defineAsyncComponent(
-  () => import('ant-design-vue/es/checkbox'),
+    () => import('ant-design-vue/es/checkbox'),
 );
 const CheckboxGroup = defineAsyncComponent(() =>
-  import('ant-design-vue/es/checkbox').then((res) => res.CheckboxGroup),
+    import('ant-design-vue/es/checkbox').then((res) => res.CheckboxGroup),
 );
 const DatePicker = defineAsyncComponent(
-  () => import('ant-design-vue/es/date-picker'),
+    () => import('ant-design-vue/es/date-picker'),
 );
 const Divider = defineAsyncComponent(() => import('ant-design-vue/es/divider'));
 const Input = defineAsyncComponent(() => import('ant-design-vue/es/input'));
 const InputNumber = defineAsyncComponent(
-  () => import('ant-design-vue/es/input-number'),
+    () => import('ant-design-vue/es/input-number'),
 );
 const InputPassword = defineAsyncComponent(() =>
-  import('ant-design-vue/es/input').then((res) => res.InputPassword),
+    import('ant-design-vue/es/input').then((res) => res.InputPassword),
 );
 const Mentions = defineAsyncComponent(
-  () => import('ant-design-vue/es/mentions'),
+    () => import('ant-design-vue/es/mentions'),
 );
 
 const Radio = defineAsyncComponent(() => import('ant-design-vue/es/radio'));
 const RadioGroup = defineAsyncComponent(() =>
-  import('ant-design-vue/es/radio').then((res) => res.RadioGroup),
+    import('ant-design-vue/es/radio').then((res) => res.RadioGroup),
 );
 const RangePicker = defineAsyncComponent(() =>
-  import('ant-design-vue/es/date-picker').then((res) => res.RangePicker),
+    import('ant-design-vue/es/date-picker').then((res) => res.RangePicker),
 );
 const Rate = defineAsyncComponent(() => import('ant-design-vue/es/rate'));
 const Select = defineAsyncComponent(() => import('ant-design-vue/es/select'));
 const Space = defineAsyncComponent(() => import('ant-design-vue/es/space'));
 const Switch = defineAsyncComponent(() => import('ant-design-vue/es/switch'));
 const Textarea = defineAsyncComponent(() =>
-  import('ant-design-vue/es/input').then((res) => res.Textarea),
+    import('ant-design-vue/es/input').then((res) => res.Textarea),
 );
 const TimePicker = defineAsyncComponent(
-  () => import('ant-design-vue/es/time-picker'),
+    () => import('ant-design-vue/es/time-picker'),
 );
 const TreeSelect = defineAsyncComponent(
-  () => import('ant-design-vue/es/tree-select'),
+    () => import('ant-design-vue/es/tree-select'),
 );
 const Cascader = defineAsyncComponent(
-  () => import('ant-design-vue/es/cascader'),
+    () => import('ant-design-vue/es/cascader'),
 );
 const Upload = defineAsyncComponent(() => import('ant-design-vue/es/upload'));
 const Image = defineAsyncComponent(() => import('ant-design-vue/es/image'));
 const PreviewGroup = defineAsyncComponent(() =>
-  import('ant-design-vue/es/image').then((res) => res.ImagePreviewGroup),
+    import('ant-design-vue/es/image').then((res) => res.ImagePreviewGroup),
 );
 
 const withDefaultPlaceholder = <T extends Component>(
-  component: T,
-  type: 'input' | 'select',
-  componentProps: Recordable<any> = {},
+    component: T,
+    type: 'input' | 'select',
+    componentProps: Recordable<any> = {},
 ) => {
   return defineComponent({
     name: component.name,
     inheritAttrs: false,
     setup: (props: any, { attrs, expose, slots }) => {
       const placeholder =
-        props?.placeholder ||
-        attrs?.placeholder ||
-        $t(`ui.placeholder.${type}`);
+          props?.placeholder ||
+          attrs?.placeholder ||
+          $t(`ui.placeholder.${type}`);
       // 透传组件暴露的方法
       const innerRef = ref();
       expose(
-        new Proxy(
-          {},
-          {
-            get: (_target, key) => innerRef.value?.[key],
-            has: (_target, key) => key in (innerRef.value || {}),
-          },
-        ),
+          new Proxy(
+              {},
+              {
+                get: (_target, key) => innerRef.value?.[key],
+                has: (_target, key) => key in (innerRef.value || {}),
+              },
+          ),
       );
       return () =>
-        h(
-          component,
-          { ...componentProps, placeholder, ...props, ...attrs, ref: innerRef },
-          slots,
-        );
+          h(
+              component,
+              { ...componentProps, placeholder, ...props, ...attrs, ref: innerRef },
+              slots,
+          );
     },
   });
 };
@@ -136,8 +139,8 @@ const withDefaultPlaceholder = <T extends Component>(
 const withPreviewUpload = () => {
   // 创建默认的上传按钮插槽
   const createDefaultSlotsWithUpload = (
-    listType: string,
-    placeholder: string,
+      listType: string,
+      placeholder: string,
   ) => {
     switch (listType) {
       case 'picture-card': {
@@ -148,25 +151,25 @@ const withPreviewUpload = () => {
       default: {
         return {
           default: () =>
-            h(
-              Button,
-              {
-                icon: h(IconifyIcon, {
-                  icon: 'ant-design:upload-outlined',
-                  class: 'mb-1 size-4',
-                }),
-              },
-              () => placeholder,
-            ),
+              h(
+                  Button,
+                  {
+                    icon: h(IconifyIcon, {
+                      icon: 'ant-design:upload-outlined',
+                      class: 'mb-1 size-4',
+                    }),
+                  },
+                  () => placeholder,
+              ),
         };
       }
     }
   };
   // 构建预览图片组
   const previewImage = async (
-    file: UploadFile,
-    visible: Ref<boolean>,
-    fileList: Ref<UploadProps['fileList']>,
+      file: UploadFile,
+      visible: Ref<boolean>,
+      fileList: Ref<UploadProps['fileList']>,
   ) => {
     // 检查是否为图片文件的辅助函数
     const isImageFile = (file: UploadFile): boolean => {
@@ -217,7 +220,7 @@ const withPreviewUpload = () => {
     };
     // 从fileList中过滤出所有图片文件
     const imageFiles = (unref(fileList) || []).filter((element) =>
-      isImageFile(element),
+        isImageFile(element),
     );
 
     // 为所有没有预览地址的图片生成预览
@@ -237,36 +240,36 @@ const withPreviewUpload = () => {
         return () => {
           if (isUnmounted) return null;
           return h(
-            PreviewGroupComponent,
-            {
-              class: 'hidden',
-              preview: {
-                visible: visible.value,
-                // 设置初始显示的图片索引
-                current: imageFiles.findIndex((f) => f.uid === file.uid),
-                onVisibleChange: (value: boolean) => {
-                  visible.value = value;
-                  if (!value) {
-                    // 延迟清理，确保动画完成
-                    setTimeout(() => {
-                      if (!isUnmounted && container) {
-                        isUnmounted = true;
-                        render(null, container);
-                        container.remove();
-                      }
-                    }, 300);
-                  }
+              PreviewGroupComponent,
+              {
+                class: 'hidden',
+                preview: {
+                  visible: visible.value,
+                  // 设置初始显示的图片索引
+                  current: imageFiles.findIndex((f) => f.uid === file.uid),
+                  onVisibleChange: (value: boolean) => {
+                    visible.value = value;
+                    if (!value) {
+                      // 延迟清理，确保动画完成
+                      setTimeout(() => {
+                        if (!isUnmounted && container) {
+                          isUnmounted = true;
+                          render(null, container);
+                          container.remove();
+                        }
+                      }, 300);
+                    }
+                  },
                 },
               },
-            },
-            () =>
-              // 渲染所有图片文件
-              imageFiles.map((imgFile) =>
-                h(ImageComponent, {
-                  key: imgFile.uid,
-                  src: imgFile.url || imgFile.preview,
-                }),
-              ),
+              () =>
+                  // 渲染所有图片文件
+                  imageFiles.map((imgFile) =>
+                      h(ImageComponent, {
+                        key: imgFile.uid,
+                        src: imgFile.url || imgFile.preview,
+                      }),
+                  ),
           );
         };
       },
@@ -278,8 +281,8 @@ const withPreviewUpload = () => {
     name: Upload.name,
     emits: ['update:modelValue'],
     setup: (
-      props: any,
-      { attrs, slots, emit }: { attrs: any; emit: any; slots: any },
+        props: any,
+        { attrs, slots, emit }: { attrs: any; emit: any; slots: any },
     ) => {
       const previewVisible = ref<boolean>(false);
 
@@ -288,7 +291,7 @@ const withPreviewUpload = () => {
       const listType = attrs?.listType || attrs?.['list-type'] || 'text';
 
       const fileList = ref<UploadProps['fileList']>(
-        attrs?.fileList || attrs?.['file-list'] || [],
+          attrs?.fileList || attrs?.['file-list'] || [],
       );
 
       const handleBeforeUpload = (file: UploadFile) => {
@@ -302,11 +305,11 @@ const withPreviewUpload = () => {
 
       const handleChange = async (event: UploadChangeParam) => {
         fileList.value = event.fileList.filter(
-          (file) => file.status !== 'removed',
+            (file) => file.status !== 'removed',
         );
         emit(
-          'update:modelValue',
-          event.fileList?.length ? fileList.value : undefined,
+            'update:modelValue',
+            event.fileList?.length ? fileList.value : undefined,
         );
       };
 
@@ -325,74 +328,77 @@ const withPreviewUpload = () => {
 
         // 否则渲染默认上传按钮
         return isEmpty(slots)
-          ? createDefaultSlotsWithUpload(listType, placeholder)
-          : slots;
+            ? createDefaultSlotsWithUpload(listType, placeholder)
+            : slots;
       };
 
       // 可以监听到表单API设置的值
       watch(
-        () => attrs.modelValue,
-        (res) => {
-          fileList.value = res;
-        },
+          () => attrs.modelValue,
+          (res) => {
+            fileList.value = res;
+          },
       );
 
       return () =>
-        h(
-          Upload,
-          {
-            ...props,
-            ...attrs,
-            fileList: fileList.value,
-            beforeUpload: handleBeforeUpload,
-            onChange: handleChange,
-            onPreview: handlePreview,
-          },
-          renderUploadButton(),
-        );
+          h(
+              Upload,
+              {
+                ...props,
+                ...attrs,
+                fileList: fileList.value,
+                beforeUpload: handleBeforeUpload,
+                onChange: handleChange,
+                onPreview: handlePreview,
+              },
+              renderUploadButton(),
+          );
     },
   });
 };
 
 // 这里需要自行根据业务组件库进行适配，需要用到的组件都需要在这里类型说明
 export type ComponentType =
-  | 'ApiCascader'
-  | 'ApiSelect'
-  | 'ApiTreeSelect'
-  | 'ApiTransfer'
-  | 'AutoComplete'
-  | 'Cascader'
-  | 'Checkbox'
-  | 'CheckboxGroup'
-  | 'CodeEditor'
-  | 'DatePicker'
-  | 'DefaultButton'
-  | 'Divider'
-  | 'Editor'
-  | 'IconPicker'
-  | 'ImageUpload'
-  | 'Input'
-  | 'InputNumber'
-  | 'InputPassword'
-  | 'Mentions'
-  | 'PrimaryButton'
-  | 'Radio'
-  | 'RadioGroup'
-  | 'RadioButtonGroup'
-  | 'RangePicker'
-  | 'Rate'
-  | 'Select'
-  | 'SimpleRangePicker'
-  | 'SimpleTimePicker'
-  | 'Space'
-  | 'Switch'
-  | 'Textarea'
-  | 'TimePicker'
-  | 'TreeSelect'
-  | 'Upload'
-  | 'UploadDragger'
-  | 'UploadDraggerOne'
-  | BaseFormComponentType;
+    | 'ApiCascader'
+    | 'ApiSelect'
+    | 'ApiTreeSelect'
+    | 'ApiTransfer'
+    | 'AutoComplete'
+    | 'Cascader'
+    | 'Checkbox'
+    | 'CheckboxGroup'
+    | 'CodeEditor'
+    | 'DatePicker'
+    | 'DefaultButton'
+    | 'Divider'
+    | 'Editor'
+    | 'IconPicker'
+    | 'ImageUpload'
+    | 'Input'
+    | 'InputNumber'
+    | 'InputPassword'
+    | 'JsonEditor'
+    | 'Mentions'
+    | 'PrimaryButton'
+    | 'Radio'
+    | 'RadioGroup'
+    | 'RadioButtonGroup'
+    | 'RangePicker'
+    | 'Rate'
+    | 'Select'
+    | 'SimpleRangePicker'
+    | 'SimpleTimePicker'
+    | 'Space'
+    | 'Switch'
+    | 'Textarea'
+    | 'TextMarkdownEditor'
+    | 'TimePicker'
+    | 'TreeSelect'
+    | 'Upload'
+    | 'UploadDragger'
+    | 'UploadDraggerOne'
+    | 'S3PresignedUpload'
+    | BaseFormComponentType;
 
 async function initComponentAdapter() {
   const components: Partial<Record<ComponentType, Component>> = {
@@ -407,32 +413,32 @@ async function initComponentAdapter() {
       visibleEvent: 'onVisibleChange',
     }),
     ApiSelect: withDefaultPlaceholder(
-      {
-        ...ApiComponent,
-        name: 'ApiSelect',
-      },
-      'select',
-      {
-        component: Select,
-        loadingSlot: 'suffixIcon',
-        visibleEvent: 'onDropdownVisibleChange',
-        modelPropName: 'value',
-      },
+        {
+          ...ApiComponent,
+          name: 'ApiSelect',
+        },
+        'select',
+        {
+          component: Select,
+          loadingSlot: 'suffixIcon',
+          visibleEvent: 'onDropdownVisibleChange',
+          modelPropName: 'value',
+        },
     ),
     ApiTreeSelect: withDefaultPlaceholder(
-      {
-        ...ApiComponent,
-        name: 'ApiTreeSelect',
-      },
-      'select',
-      {
-        component: TreeSelect,
-        fieldNames: { label: 'label', value: 'value', children: 'children' },
-        loadingSlot: 'suffixIcon',
-        modelPropName: 'value',
-        optionsPropName: 'treeData',
-        visibleEvent: 'onVisibleChange',
-      },
+        {
+          ...ApiComponent,
+          name: 'ApiTreeSelect',
+        },
+        'select',
+        {
+          component: TreeSelect,
+          fieldNames: { label: 'label', value: 'value', children: 'children' },
+          loadingSlot: 'suffixIcon',
+          modelPropName: 'value',
+          optionsPropName: 'treeData',
+          visibleEvent: 'onVisibleChange',
+        },
     ),
     AutoComplete,
     Cascader,
@@ -470,11 +476,14 @@ async function initComponentAdapter() {
     Upload: withPreviewUpload(),
     UploadDragger,
     UploadDraggerOne,
+    S3PresignedUpload,
     RadioButtonGroup,
     ApiTransfer,
     CodeEditor,
     Editor,
     ImageUpload,
+    JsonEditor,
+    TextMarkdownEditor,
     SimpleRangePicker,
     SimpleTimePicker,
   };

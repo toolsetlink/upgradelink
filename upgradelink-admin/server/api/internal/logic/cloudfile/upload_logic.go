@@ -98,10 +98,6 @@ func (l *UploadLogic) Upload() (resp *types.CloudFileInfoResp, err error) {
 		return nil, err
 	}
 
-	if l.svcCtx.Config.UploadConf.CdnUrl != "" {
-		url = fmt.Sprintf("%s%s", l.svcCtx.Config.UploadConf.CdnUrl, relativeSrc)
-	}
-
 	// store to database
 	query := l.svcCtx.DB.FmsCloudFile.Create().
 		SetID(fileUUID.String()).
@@ -128,13 +124,12 @@ func (l *UploadLogic) Upload() (resp *types.CloudFileInfoResp, err error) {
 				Id:        pointy.GetPointer(data.ID),
 				CreatedAt: pointy.GetPointer(data.CreatedAt.UnixMilli()),
 			},
-			State:       pointy.GetPointer(data.State),
-			Name:        pointy.GetPointer(data.Name),
-			Url:         pointy.GetPointer(data.URL),
-			RelativeSrc: pointy.GetPointer(relativeSrc),
-			Size:        pointy.GetPointer(data.Size),
-			FileType:    pointy.GetPointer(data.FileType),
-			UserId:      pointy.GetPointer(data.UserID),
+			State:    pointy.GetPointer(data.State),
+			Name:     pointy.GetPointer(data.Name),
+			Url:      pointy.GetPointer(data.URL),
+			Size:     pointy.GetPointer(data.Size),
+			FileType: pointy.GetPointer(fileType),
+			UserId:   pointy.GetPointer(data.UserID),
 		},
 	}, nil
 }

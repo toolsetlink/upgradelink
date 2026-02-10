@@ -3,6 +3,7 @@ package upgrade_dev
 import (
 	"context"
 	"upgradelink-admin/server/api/internal/common/db_error"
+	"upgradelink-admin/server/api/internal/common/enum"
 	"upgradelink-admin/server/api/internal/common/http_error"
 	"upgradelink-admin/server/api/internal/common/i18n"
 	"upgradelink-admin/server/api/internal/common/jwtctx/companyctx"
@@ -42,11 +43,11 @@ func (l *CreateUpgradeDevLogic) CreateUpgradeDev(req *types.UpgradeDevInfo) (*ty
 	// 开启事务
 	if err := entx.WithTx(l.ctx, l.svcCtx.DB, func(tx *ent.Tx) error {
 
-		isDel := int32(0)
+		intDelFalse := enum.IsDelFalse
 		info, err := l.svcCtx.DB.UpgradeDev.Create().
 			SetNotNilCompanyID(companyctx.GetCompanyIDPointerFromCtx(l.ctx)).
 			SetNotNilKey(req.Key).
-			SetNotNilIsDel(&isDel).
+			SetNotNilIsDel(&intDelFalse).
 			SetNotNilCreateAt(pointy.GetTimeMilliPointer(req.CreateAt)).
 			SetNotNilUpdateAt(pointy.GetTimeMilliPointer(req.UpdateAt)).
 			Save(l.ctx)
@@ -61,7 +62,7 @@ func (l *CreateUpgradeDevLogic) CreateUpgradeDev(req *types.UpgradeDevInfo) (*ty
 				_, err = l.svcCtx.DB.UpgradeDevGroupRelation.Create().
 					SetNotNilDevID(&info.ID).
 					SetDevGroupID(int(groupId)).
-					SetNotNilIsDel(&isDel).
+					SetNotNilIsDel(&intDelFalse).
 					Save(l.ctx)
 				if err != nil {
 					return err
@@ -89,7 +90,7 @@ func (l *CreateUpgradeDevLogic) CheckCreateUpgradeDevReq(req *types.UpgradeDevIn
 		return err
 	}
 	if count > 0 {
-		return http_error.NewCodeBadRequestError("设备唯一标识重复")
+		return http_error.NewCodeBadRequestError(l.svcCtx.Trans.Trans(l.ctx, i18n.DeviceUniqueIdDuplicate))
 	}
 
 	return nil

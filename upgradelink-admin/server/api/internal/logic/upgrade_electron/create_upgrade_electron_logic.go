@@ -5,6 +5,7 @@ import (
 	"crypto/rand"
 	"encoding/base64"
 	"upgradelink-admin/server/api/internal/common/db_error"
+	"upgradelink-admin/server/api/internal/common/enum"
 	"upgradelink-admin/server/api/internal/common/http_error"
 	"upgradelink-admin/server/api/internal/common/i18n"
 	"upgradelink-admin/server/api/internal/common/jwtctx/companyctx"
@@ -45,14 +46,14 @@ func (l *CreateUpgradeElectronLogic) CreateUpgradeElectron(req *types.UpgradeEle
 	_, _ = rand.Read(fileBytes)
 	fileKey := base64.RawURLEncoding.EncodeToString(fileBytes)
 
-	isDel := int32(0)
+	intDelFalse := enum.IsDelFalse
 	_, err = l.svcCtx.DB.UpgradeElectron.Create().
 		SetNotNilCompanyID(companyctx.GetCompanyIDPointerFromCtx(l.ctx)).
 		SetNotNilKey(&fileKey).
 		SetNotNilName(req.Name).
 		SetNotNilDescription(req.Description).
 		SetNotNilGithubURL(req.GithubUrl).
-		SetNotNilIsDel(&isDel).
+		SetNotNilIsDel(&intDelFalse).
 		SetNotNilCreateAt(pointy.GetTimeMilliPointer(req.CreateAt)).
 		SetNotNilUpdateAt(pointy.GetTimeMilliPointer(req.UpdateAt)).
 		Save(l.ctx)
@@ -75,7 +76,7 @@ func (l *CreateUpgradeElectronLogic) CheckCreateUpgrade(req *types.UpgradeElectr
 		return err
 	}
 	if count > 0 {
-		return http_error.NewCodeBadRequestError("应用名称重复")
+		return http_error.NewCodeBadRequestError(l.svcCtx.Trans.Trans(l.ctx, i18n.AppNameDuplicate))
 	}
 
 	return nil

@@ -8,6 +8,7 @@ import (
 	"upgradelink-admin/server/api/internal/common/db_error"
 	"upgradelink-admin/server/api/internal/common/i18n"
 	"upgradelink-admin/server/api/internal/common/jwtctx/companyctx"
+	"upgradelink-admin/server/api/internal/common/utils/cdn"
 	"upgradelink-admin/server/api/internal/ent/predicate"
 	"upgradelink-admin/server/api/internal/ent/upgrademacversion"
 	"upgradelink-admin/server/api/internal/svc"
@@ -87,6 +88,15 @@ func (l *GetUpgradeMacVersionListLogic) GetUpgradeMacVersionList(req *types.Upgr
 		// 文件大小
 		fileSize := common.BytesToMBString(cloudFileData.Size)
 
+		cloudFilePath := ""
+		// cdn 连接
+		if l.svcCtx.Config.UploadConf.CdnUrl != "" {
+			cloudFilePath, err = cdn.ReturnCdnUrl(l.svcCtx.Config.UploadConf.CdnUrl, cloudFileData.URL)
+			if err != nil {
+				return nil, db_error.DefaultEntError(l.Logger, err, req)
+			}
+		}
+		
 		resp.Data.Data = append(resp.Data.Data,
 			types.RespUpgradeMacVersionInfo{
 				Id:              &v.ID,
@@ -94,7 +104,7 @@ func (l *GetUpgradeMacVersionListLogic) GetUpgradeMacVersionList(req *types.Upgr
 				MacName:         &fileData.Name,
 				CloudFileId:     &v.CloudFileID,
 				CloudFileName:   &cloudFileData.Name,
-				CloudFilePath:   &cloudFileData.URL,
+				CloudFilePath:   &cloudFilePath,
 				VersionName:     &v.VersionName,
 				VersionCode:     &v.VersionCode,
 				Arch:            &v.Arch,

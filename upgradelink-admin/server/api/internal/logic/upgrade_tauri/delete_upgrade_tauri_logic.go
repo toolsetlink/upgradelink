@@ -3,6 +3,7 @@ package upgrade_tauri
 import (
 	"context"
 	"upgradelink-admin/server/api/internal/common/db_error"
+	"upgradelink-admin/server/api/internal/common/enum"
 	"upgradelink-admin/server/api/internal/common/i18n"
 	"upgradelink-admin/server/api/internal/ent/upgradetauri"
 	"upgradelink-admin/server/api/internal/svc"
@@ -27,7 +28,7 @@ func NewDeleteUpgradeTauriLogic(ctx context.Context, svcCtx *svc.ServiceContext)
 
 func (l *DeleteUpgradeTauriLogic) DeleteUpgradeTauri(req *types.IDsReq) (*types.BaseMsgResp, error) {
 
-	intDel := int32(1)
+	intDelTrue := enum.IsDelTrue
 
 	var Ids []int
 	for _, id := range req.Ids {
@@ -36,7 +37,7 @@ func (l *DeleteUpgradeTauriLogic) DeleteUpgradeTauri(req *types.IDsReq) (*types.
 
 	err := l.svcCtx.DB.UpgradeTauri.Update().
 		Where(upgradetauri.IDIn(Ids...)).
-		SetNotNilIsDel(&intDel).
+		SetNotNilIsDel(&intDelTrue).
 		Exec(l.ctx)
 
 	if err != nil {

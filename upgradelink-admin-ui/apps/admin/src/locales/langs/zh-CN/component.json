@@ -92,6 +92,7 @@
     "uploaded": "已上传",
     "operating": "操作",
     "del": "删除",
+    "uploadFailed": "上传失败",
     "download": "下载",
     "saveWarn": "请等待文件上传后，保存!",
     "saveError": "没有上传成功的文件，无法保存!",
@@ -124,5 +125,30 @@
     "redoTip": "点击图片可刷新",
     "dragText": "请按住滑块拖动",
     "successText": "验证通过"
+  },
+  "jsonEditor": {
+    "pleaseInputJson": "请先输入 JSON 内容",
+    "beautifySuccess": "JSON 格式美化成功",
+    "beautifyError": "JSON 格式错误，无法美化",
+    "noContentToCopy": "没有内容可复制",
+    "copySuccess": "已复制到剪贴板",
+    "copyError": "复制失败",
+    "editorReset": "编辑器已重置",
+    "jsonValid": "JSON 格式正确",
+    "jsonInvalid": "JSON 格式错误",
+    "jsonFormatError": "JSON 格式错误",
+    "jsonFormatValid": "JSON 格式正确",
+    "beautifyJsonFormat": "美化 JSON 格式",
+    "validateJsonFormat": "验证 JSON 格式",
+    "copyToClipboard": "复制到剪贴板",
+    "resetEditor": "重置编辑器"
+  },
+  "markdownEditor": {
+    "markdownEditor": "Markdown 编辑器",
+    "markdownDescription": "支持 Markdown 语法，如 # 标题、**粗体**、*斜体* 等",
+    "textEditor": "文本编辑器",
+    "textDescription": "纯文本编辑模式，适合简单的文本输入",
+    "switchToMarkdown": "切换到 Markdown 编辑器",
+    "switchToText": "切换到文本编辑器"
   }
 }

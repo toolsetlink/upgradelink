@@ -3,6 +3,7 @@ package upgrade_win_version
 import (
 	"context"
 	"upgradelink-admin/server/api/internal/common/db_error"
+	"upgradelink-admin/server/api/internal/common/enum"
 	"upgradelink-admin/server/api/internal/common/http_error"
 	"upgradelink-admin/server/api/internal/common/i18n"
 	"upgradelink-admin/server/api/internal/common/jwtctx/companyctx"
@@ -37,7 +38,7 @@ func (l *CreateUpgradeWinVersionLogic) CreateUpgradeWinVersion(req *types.Upgrad
 		return nil, err
 	}
 
-	isDel := int32(0)
+	intDelFalse := enum.IsDelFalse
 	_, err = l.svcCtx.DB.UpgradeWinVersion.Create().
 		SetNotNilCompanyID(companyctx.GetCompanyIDPointerFromCtx(l.ctx)).
 		SetNotNilWinID(req.WinId).
@@ -46,7 +47,7 @@ func (l *CreateUpgradeWinVersionLogic) CreateUpgradeWinVersion(req *types.Upgrad
 		SetNotNilVersionCode(req.VersionCode).
 		SetNotNilArch(req.Arch).
 		SetNotNilDescription(req.Description).
-		SetNotNilIsDel(&isDel).
+		SetNotNilIsDel(&intDelFalse).
 		SetNotNilCreateAt(pointy.GetTimeMilliPointer(req.CreateAt)).
 		SetNotNilUpdateAt(pointy.GetTimeMilliPointer(req.UpdateAt)).
 		Save(l.ctx)
@@ -70,7 +71,7 @@ func (l *CreateUpgradeWinVersionLogic) CheckCreateUpgradeWinVersion(req *types.U
 		return err
 	}
 	if count > 0 {
-		return http_error.NewCodeBadRequestError("当前应用版本名重复")
+		return http_error.NewCodeBadRequestError(l.svcCtx.Trans.Trans(l.ctx, i18n.AppVersionDuplicate))
 	}
 
 	// 判断是否重复
@@ -84,7 +85,7 @@ func (l *CreateUpgradeWinVersionLogic) CheckCreateUpgradeWinVersion(req *types.U
 		return err
 	}
 	if count1 > 0 {
-		return http_error.NewCodeBadRequestError("当前应用版本号重复")
+		return http_error.NewCodeBadRequestError(l.svcCtx.Trans.Trans(l.ctx, i18n.AppVersionCodeDuplicate))
 	}
 
 	return nil

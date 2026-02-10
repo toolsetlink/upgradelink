@@ -92,6 +92,7 @@
     "uploaded": "Uploaded",
     "operating": "Operating",
     "del": "Delete",
+    "uploadFailed": "Upload failed",
     "download": "download",
     "saveWarn": "Please wait for the file to upload and save!",
     "saveError": "There is no file successfully uploaded and cannot be saved!",
@@ -124,5 +125,30 @@
     "redoTip": "Click the picture to refresh",
     "dragText": "Hold down the slider and drag",
     "successText": "Verified"
+  },
+  "jsonEditor": {
+    "pleaseInputJson": "Please input JSON content first",
+    "beautifySuccess": "JSON format beautified successfully",
+    "beautifyError": "JSON format error, cannot beautify",
+    "noContentToCopy": "No content to copy",
+    "copySuccess": "Copied to clipboard",
+    "copyError": "Copy failed",
+    "editorReset": "Editor has been reset",
+    "jsonValid": "JSON format is correct",
+    "jsonInvalid": "JSON format error",
+    "jsonFormatError": "JSON format error",
+    "jsonFormatValid": "JSON format is correct",
+    "beautifyJsonFormat": "Beautify JSON format",
+    "validateJsonFormat": "Validate JSON format",
+    "copyToClipboard": "Copy to clipboard",
+    "resetEditor": "Reset editor"
+  },
+  "markdownEditor": {
+    "markdownEditor": "Markdown Editor",
+    "markdownDescription": "Supports Markdown syntax, such as # heading, **bold**, *italic*, etc.",
+    "textEditor": "Text Editor",
+    "textDescription": "Plain text editing mode, suitable for simple text input",
+    "switchToMarkdown": "Switch to Markdown Editor",
+    "switchToText": "Switch to Text Editor"
   }
 }

@@ -11,7 +11,8 @@ export interface CloudFileInfo {
   name?: string;
   url?: string;
   size?: number;
-  fileType?: number;
+  md5?: string;
+  fileType?: string;
   userId?: string;
   providerId?: number;
   tagIds?: number[];

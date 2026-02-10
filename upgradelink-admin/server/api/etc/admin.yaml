@@ -7,6 +7,13 @@ MaxBytes: 1073741824 # max content length : 1 gb | 所有类型单个文件最�
 Mode: dev
 EnvMode: dev
 
+DevServer:
+  Enabled: true
+  Port: 6470
+  HealthPath: /ping
+  MetricsPath: /metrics
+  EnableMetrics: true
+  
 CROSConf:
   Address: '*'    # if it is *, allow all ip and address. e.g. http://example.com
 

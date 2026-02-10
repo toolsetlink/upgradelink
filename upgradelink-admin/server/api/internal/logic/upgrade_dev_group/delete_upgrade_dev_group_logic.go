@@ -3,6 +3,7 @@ package upgrade_dev_group
 import (
 	"context"
 	"upgradelink-admin/server/api/internal/common/db_error"
+	"upgradelink-admin/server/api/internal/common/enum"
 	"upgradelink-admin/server/api/internal/common/i18n"
 	"upgradelink-admin/server/api/internal/common/utils/entx"
 	"upgradelink-admin/server/api/internal/ent"
@@ -38,10 +39,10 @@ func (l *DeleteUpgradeDevGroupLogic) DeleteUpgradeDevGroup(req *types.IDsReq) (*
 			Ids = append(Ids, int(id))
 		}
 
-		intDel := int32(1)
+		intDelTrue := enum.IsDelTrue
 		err := l.svcCtx.DB.UpgradeDevGroup.Update().
 			Where(upgradedevgroup.IDIn(Ids...)).
-			SetNotNilIsDel(&intDel).
+			SetNotNilIsDel(&intDelTrue).
 			Exec(l.ctx)
 		if err != nil {
 			return err
@@ -50,7 +51,7 @@ func (l *DeleteUpgradeDevGroupLogic) DeleteUpgradeDevGroup(req *types.IDsReq) (*
 		// 删除关联关系
 		err = l.svcCtx.DB.UpgradeDevGroupRelation.Update().
 			Where(upgradedevgrouprelation.DevGroupIDIn(Ids...)).
-			SetNotNilIsDel(&intDel).
+			SetNotNilIsDel(&intDelTrue).
 			Exec(l.ctx)
 		if err != nil {
 			return err

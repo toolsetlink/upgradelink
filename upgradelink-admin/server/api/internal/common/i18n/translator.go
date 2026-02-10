@@ -20,11 +20,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/fs"
-	"net/http"
 	"path/filepath"
 	"strings"
-	"upgradelink-admin/server/api/internal/common/http_error"
-
 	"upgradelink-admin/server/api/internal/common/utils/parse"
 
 	"github.com/nicksnyder/go-i18n/v2/i18n"
@@ -61,7 +58,20 @@ func (l *Translator) AddBundleFromFile(path string) error {
 // AddLanguageSupport adds supports for new language
 func (l *Translator) AddLanguageSupport(lang language.Tag) {
 	l.supportLangs = append(l.supportLangs, lang)
+	// Store the original tag
 	l.localizer[lang] = i18n.NewLocalizer(l.bundle, lang.String())
+	// Also store with just the language code (e.g., "ja" instead of "ja-JP")
+	langStr := lang.String()
+	// Extract base language code (first part before '-')
+	baseLangStr := langStr
+	if idx := strings.Index(langStr, "-"); idx > 0 {
+		baseLangStr = langStr[:idx]
+	}
+	// If base language is different from full language, store it
+	if baseLangStr != langStr {
+		baseLangTag := language.Make(baseLangStr)
+		l.localizer[baseLangTag] = i18n.NewLocalizer(l.bundle, baseLangStr)
+	}
 }
 
 // Trans used to translate any i18n string.
@@ -85,24 +95,9 @@ func (l *Translator) Trans(ctx context.Context, msgId string) string {
 	return message
 }
 
-// TransError translates the error message
-func (l *Translator) TransError(ctx context.Context, err error) error {
-	lang := ctx.Value("lang").(string)
-
-	if apiErr, ok := err.(*http_error.LinkError); ok {
-		fmt.Println("TransError 进入了提示报错")
-		message, e := l.MatchLocalizer(lang).LocalizeMessage(&i18n.Message{ID: apiErr.Error()})
-		if e != nil {
-			message = apiErr.Error()
-		}
-		return http_error.NewApiError(apiErr.Code, message)
-	}
-
-	return http_error.NewApiError(http.StatusInternalServerError, err.Error())
-}
-
 // MatchLocalizer used to matcher the localizer in map
 func (l *Translator) MatchLocalizer(lang string) *i18n.Localizer {
+	// First try to parse Accept-Language header
 	tags := parse.ParseTags(lang)
 	for _, v := range tags {
 		if val, ok := l.localizer[v]; ok {
@@ -110,14 +105,21 @@ func (l *Translator) MatchLocalizer(lang string) *i18n.Localizer {
 		}
 	}
 
+	// If not found, try direct language tag matching
+	if lang != "" {
+		tag := language.Make(lang)
+		if val, ok := l.localizer[tag]; ok {
+			return val
+		}
+	}
+
 	return l.localizer[language.Chinese]
 }
 
-// NewTranslator returns a translator by I18n Conf.
-// If Conf.Dir is empty, it will load paths in embedded FS.
-// If Conf.Dir is not empty, it will load paths joined with Dir path.
-// e.g. trans = i18n.NewTranslator(c.I18nConf, i18n2.LocaleFS)
-func NewTranslator(conf Conf, efs embed.FS) *Translator {
+// NewTranslator returns a translator by embedded FS.
+// It loads translation files from embedded file system.
+// e.g. trans = i18n.NewTranslator(i18n2.LocaleFS)
+func NewTranslator(efs embed.FS) *Translator {
 	trans := &Translator{}
 	trans.localizer = make(map[language.Tag]*i18n.Localizer)
 	bundle := i18n.NewBundle(language.Chinese)
@@ -125,51 +127,27 @@ func NewTranslator(conf Conf, efs embed.FS) *Translator {
 	trans.bundle = bundle
 
 	var files []string
-	if conf.Dir == "" {
-		if err := fs.WalkDir(efs, ".", func(path string, d fs.DirEntry, err error) error {
-			if d == nil {
-				logx.Must(fmt.Errorf("wrong directory path: %s", conf.Dir))
-			}
-			if !d.IsDir() {
-				files = append(files, path)
-			}
-
-			return err
-		}); err != nil {
-			logx.Must(fmt.Errorf("failed to get any files in dir: %s, error: %v", conf.Dir, err))
+	if err := fs.WalkDir(efs, ".", func(path string, d fs.DirEntry, err error) error {
+		if d == nil {
+			logx.Must(fmt.Errorf("wrong directory path"))
+		}
+		if !d.IsDir() {
+			files = append(files, path)
 		}
 
-		for _, v := range files {
-			languageName := strings.TrimSuffix(filepath.Base(v), ".json")
-			trans.AddLanguageSupport(parse.ParseTags(languageName)[0])
-			err := trans.AddBundleFromEmbeddedFS(efs, v)
-			if err != nil {
-				logx.Must(fmt.Errorf("failed to load files from %s for i18n, please check the "+
-					"configuration, error: %s", v, err.Error()))
-			}
-		}
-	} else {
-		if err := filepath.WalkDir(conf.Dir, func(path string, d fs.DirEntry, err error) error {
-			if d == nil {
-				logx.Must(fmt.Errorf("wrong directory path: %s", conf.Dir))
-			}
-			if !d.IsDir() {
-				files = append(files, path)
-			}
+		return err
+	}); err != nil {
+		logx.Must(fmt.Errorf("failed to get any files from embedded FS, error: %v", err))
+	}
 
-			return err
-		}); err != nil {
-			logx.Must(fmt.Errorf("failed to get any files in dir: %s, error: %v", conf.Dir, err))
-		}
-
-		for _, v := range files {
-			languageName := strings.TrimSuffix(filepath.Base(v), ".json")
-			trans.AddLanguageSupport(parse.ParseTags(languageName)[0])
-			err := trans.AddBundleFromFile(v)
-			if err != nil {
-				logx.Must(fmt.Errorf("failed to load files from %s for i18n, please check the "+
-					"configuration, error: %s", filepath.Join(conf.Dir, v), err.Error()))
-			}
+	for _, v := range files {
+		languageName := strings.TrimSuffix(filepath.Base(v), ".json")
+		// Use language.Make to parse single language code directly
+		langTag := language.Make(languageName)
+		trans.AddLanguageSupport(langTag)
+		err := trans.AddBundleFromEmbeddedFS(efs, v)
+		if err != nil {
+			logx.Must(fmt.Errorf("failed to load files from %s for i18n, error: %s", v, err.Error()))
 		}
 	}
 

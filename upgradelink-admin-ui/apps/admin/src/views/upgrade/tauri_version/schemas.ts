@@ -220,11 +220,9 @@ export const dataFormSchemas: VbenFormProps = {
       fieldName: "installCloudFileId",
       label: $t("upgrade.upgradeTauriVersion.installFileName"),
       help: $t("upgrade.upgradeTauriVersion.installCloudFileNameHelp"),
-      component: "UploadDraggerOne",
+      component: "S3PresignedUpload",
       // rules: "required",
       componentProps: {
-        multiple: false,
-        provider: "cloud-default",
         accept: [".exe", ".msi", ".dmg", ".AppImage", "deb"],
       },
       dependencies: {
@@ -251,11 +249,9 @@ export const dataFormSchemas: VbenFormProps = {
       fieldName: "cloudFileId",
       label: $t("upgrade.upgradeTauriVersion.editFileName"),
       help: $t("upgrade.upgradeTauriVersion.cloudFileNameHelp"),
-      component: "UploadDraggerOne",
+      component: "S3PresignedUpload",
       rules: "required",
       componentProps: {
-        multiple: false,
-        provider: "cloud-default",
         accept: [".msi", ".gz", ".AppImage", "deb"],
       },
       dependencies: {
@@ -276,10 +272,10 @@ export const dataFormSchemas: VbenFormProps = {
     {
       fieldName: "description",
       label: $t("upgrade.upgradeTauriVersion.description"),
-      component: "Textarea",
+      component: "TextMarkdownEditor",
       componentProps: {
-        autoSize: { minRows: 10 }, // 自动调整高度（可选）
-        // showCount: true, // 显示字数统计（可选）
+        placeholder: "请输入描述信息",
+        autoSize: { minRows: 3 },
       },
     },
   ],

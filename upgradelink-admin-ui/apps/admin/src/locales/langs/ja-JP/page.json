@@ -1,0 +1,29 @@
+{
+  "auth": {
+    "login": "ログイン",
+    "register": "登録",
+    "codeLogin": "コードログイン",
+    "qrcodeLogin": "QRコードログイン",
+    "forgetPassword": "パスワードを忘れた",
+    "sendingCode": "SMSコードを送信中...",
+    "codeSentTo": "コードが{0}に送信されました"
+  },
+  "dashboard": {
+    "title": "ダッシュボード",
+    "analytics": "分析",
+    "workspace": "ワークスペース",
+    "yesterdayDownloadCount": "昨日のダウンロード数",
+    "totalDownloadCount": "総ダウンロード数",
+    "yesterdayUpgradeReqCount": "昨日のアップグレードリクエスト数",
+    "totalUpgradeReqCount": "総アップグレードリクエスト数",
+    "yesterdayUpgradeCount": "昨日のアップグレード数",
+    "totalUpgradeCount": "総アップグレード数",
+    "yesterdayStartCount": "昨日の起動数",
+    "totalStartCount": "総起動数",
+    "trafficUsage7Day": "過去7日間のトラフィック使用量（G）",
+    "downloadCount7Day": "過去7日間のダウンロード数",
+    "upgradeReqCount7Day": "過去7日間のアップグレードリクエスト数",
+    "upgradeCount7Day": "過去7日間のアップグレード数",
+    "startCount7Day": "過去7日間の起動数"
+  }
+}

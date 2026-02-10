@@ -1,0 +1,67 @@
+{
+  "emailProvider": {
+    "name": "プロバイダ名",
+    "authType": "認証タイプ",
+    "emailAddr": "メールアドレス",
+    "password": "パスワード",
+    "hostName": "ホスト名",
+    "identify": "識別子",
+    "secret": "シークレット",
+    "port": "ポート",
+    "tls": "TLS",
+    "isDefault": "デフォルトプロバイダ",
+    "addEmailProvider": "メールプロバイダを追加",
+    "editEmailProvider": "メールプロバイダを編集",
+    "emailProviderList": "メールプロバイダ一覧",
+    "authTypeHelp": "通常はplainを選択",
+    "passwordHelp": "認証コードを入力"
+  },
+  "smsProvider": {
+    "name": "プロバイダ名",
+    "secretId": "シークレットID",
+    "secretKey": "シークレットキー",
+    "region": "リージョン",
+    "isDefault": "デフォルトプロバイダ",
+    "addSmsProvider": "SMSプロバイダを追加",
+    "editSmsProvider": "SMSプロバイダを編集",
+    "smsProviderList": "SMSプロバイダ一覧",
+    "tencent": "テンセントクラウド",
+    "aliyun": "アリババクラウド",
+    "uni": "ユニSMS",
+    "smsbao": "SMSバオ"
+  },
+  "smsLog": {
+    "phoneNumber": "電話番号",
+    "content": "内容",
+    "sendStatus": "送信ステータス",
+    "provider": "プロバイダ",
+    "addSmsLog": "SMSログを追加",
+    "editSmsLog": "SMSログを編集",
+    "smsLogList": "SMSログ一覧"
+  },
+  "emailLog": {
+    "target": "送信先メールアドレス",
+    "subject": "件名",
+    "content": "内容",
+    "sendStatus": "送信ステータス",
+    "provider": "プロバイダ",
+    "addEmailLog": "メールログを追加",
+    "editEmailLog": "メールログを編集",
+    "emailLogList": "メールログ一覧"
+  },
+  "email": {
+    "sendEmail": "メールを送信",
+    "targetAddress": "受信者",
+    "subject": "件名",
+    "content": "内容"
+  },
+  "sms": {
+    "phoneNumber": "電話番号",
+    "params": "パラメータ",
+    "templateId": "テンプレートID",
+    "signName": "署名",
+    "sendSms": "SMSを送信",
+    "paramsHelp": "カンマで区切る",
+    "templateIdHelp": "テンプレートIDが空の場合、デフォルトの設定が使用されます。署名とサービスプロバイダも設定する必要はありません"
+  }
+}

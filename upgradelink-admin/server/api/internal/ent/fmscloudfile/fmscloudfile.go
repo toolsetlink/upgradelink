@@ -17,6 +17,8 @@ const (
 	FieldUpdatedAt = "updated_at"
 	// FieldState holds the string denoting the state field in the database.
 	FieldState = "state"
+	// FieldIsDel holds the string denoting the is_del field in the database.
+	FieldIsDel = "is_del"
 	// FieldName holds the string denoting the name field in the database.
 	FieldName = "name"
 	// FieldURL holds the string denoting the url field in the database.
@@ -39,6 +41,7 @@ var Columns = []string{
 	FieldCreatedAt,
 	FieldUpdatedAt,
 	FieldState,
+	FieldIsDel,
 	FieldName,
 	FieldURL,
 	FieldSize,
@@ -78,6 +81,11 @@ func ByUpdatedAt(opts ...sql.OrderTermOption) OrderOption {
 // ByState orders the results by the state field.
 func ByState(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldState, opts...).ToFunc()
+}
+
+// ByIsDel orders the results by the is_del field.
+func ByIsDel(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldIsDel, opts...).ToFunc()
 }
 
 // ByName orders the results by the name field.

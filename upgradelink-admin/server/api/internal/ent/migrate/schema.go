@@ -80,6 +80,7 @@ var (
 		{Name: "created_at", Type: field.TypeTime, Nullable: true, Comment: "Create Time | 创建日期"},
 		{Name: "updated_at", Type: field.TypeTime, Nullable: true, Comment: "Update Time | 修改日期"},
 		{Name: "state", Type: field.TypeBool, Nullable: true, Comment: "State true: normal false: ban | 状态 true 正常 false 禁用"},
+		{Name: "is_del", Type: field.TypeInt32, Nullable: true, Comment: "是否删除 0：正常；1：已删除"},
 		{Name: "name", Type: field.TypeString, Comment: "The file's name | 文件名"},
 		{Name: "url", Type: field.TypeString, Comment: "The file's url | 文件地址"},
 		{Name: "size", Type: field.TypeUint64, Comment: "The file's size | 文件大小"},
@@ -96,12 +97,12 @@ var (
 			{
 				Name:    "fmscloudfile_file_type",
 				Unique:  false,
-				Columns: []*schema.Column{FmsCloudFilesColumns[8]},
+				Columns: []*schema.Column{FmsCloudFilesColumns[9]},
 			},
 			{
 				Name:    "fmscloudfile_name",
 				Unique:  false,
-				Columns: []*schema.Column{FmsCloudFilesColumns[4]},
+				Columns: []*schema.Column{FmsCloudFilesColumns[5]},
 			},
 		},
 	}

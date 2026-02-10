@@ -144,15 +144,13 @@ type ChangePasswordReq struct {
 
 type CloudFileInfo struct {
 	BaseUUIDInfo
-	State       *bool    `json:"state,optional"`
-	Name        *string  `json:"name,optional"`
-	Url         *string  `json:"url,optional"`
-	RelativeSrc *string  `json:"relativeSrc,optional"`
-	Size        *uint64  `json:"size,optional"`
-	FileType    *uint8   `json:"fileType,optional"`
-	UserId      *string  `json:"userId,optional"`
-	ProviderId  *uint64  `json:"providerId,optional"`
-	TagIds      []uint64 `json:"tagIds,optional,omitempty"`
+	State    *bool   `json:"state,optional"`
+	Name     *string `json:"name,optional"`
+	Url      *string `json:"url,optional"`
+	Size     *uint64 `json:"size,optional"`
+	Md5      *string `json:"md5,optional"`
+	FileType *string `json:"fileType,optional"`
+	UserId   *string `json:"userId,optional"`
 }
 
 type CloudFileInfoResp struct {
@@ -167,10 +165,8 @@ type CloudFileListInfo struct {
 
 type CloudFileListReq struct {
 	PageInfo
-	Name       *string  `json:"name,optional"`
-	ProviderId *uint64  `json:"providerId,optional"`
-	TagIds     []uint64 `json:"tagIds,optional"`
-	FileType   *uint8   `json:"fileType,optional"`
+	Name     *string `json:"name,optional"`
+	FileType *uint8  `json:"fileType,optional"`
 }
 
 type CloudFileListResp struct {
@@ -492,6 +488,24 @@ type PermCodeResp struct {
 	Data []string `json:"data"`
 }
 
+type PresignedUrlInfo struct {
+	PresignedUrl string `json:"presignedUrl"`
+	FileUrl      string `json:"fileUrl"`
+	FileName     string `json:"fileName"`
+	FileSuffix   string `json:"fileSuffix"`
+	FileType     string `json:"fileType"`
+}
+
+type PresignedUrlReq struct {
+	Filename    string `json:"filename"`
+	ContentType string `json:"contentType"`
+}
+
+type PresignedUrlResp struct {
+	BaseDataInfo
+	Data PresignedUrlInfo `json:"data"`
+}
+
 type ProfileInfo struct {
 	Nickname *string `json:"nickname" validate:"omitempty,alphanumunicode,max=10"`
 	Avatar   *string `json:"avatar" validate:"omitempty,max=300"`
@@ -534,6 +548,14 @@ type RegisterReq struct {
 	CaptchaId string `json:"captchaId" validate:"required,len=20"`
 	Captcha   string `json:"captcha" validate:"required,len=5"`
 	Email     string `json:"email" validate:"required,email,max=100"`
+}
+
+type ReqCloudFileInfo struct {
+	Name     *string `json:"name,optional"`
+	Url      *string `json:"url,optional"`
+	Size     *uint64 `json:"size,optional"`
+	Md5      *string `json:"md5,optional"`
+	FileType *uint8  `json:"fileType,optional"`
 }
 
 type ReqCount7Day struct {

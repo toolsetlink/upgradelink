@@ -79,6 +79,11 @@ func State(v bool) predicate.FmsCloudFile {
 	return predicate.FmsCloudFile(sql.FieldEQ(FieldState, v))
 }
 
+// IsDel applies equality check predicate on the "is_del" field. It's identical to IsDelEQ.
+func IsDel(v int32) predicate.FmsCloudFile {
+	return predicate.FmsCloudFile(sql.FieldEQ(FieldIsDel, v))
+}
+
 // Name applies equality check predicate on the "name" field. It's identical to NameEQ.
 func Name(v string) predicate.FmsCloudFile {
 	return predicate.FmsCloudFile(sql.FieldEQ(FieldName, v))
@@ -227,6 +232,56 @@ func StateIsNil() predicate.FmsCloudFile {
 // StateNotNil applies the NotNil predicate on the "state" field.
 func StateNotNil() predicate.FmsCloudFile {
 	return predicate.FmsCloudFile(sql.FieldNotNull(FieldState))
+}
+
+// IsDelEQ applies the EQ predicate on the "is_del" field.
+func IsDelEQ(v int32) predicate.FmsCloudFile {
+	return predicate.FmsCloudFile(sql.FieldEQ(FieldIsDel, v))
+}
+
+// IsDelNEQ applies the NEQ predicate on the "is_del" field.
+func IsDelNEQ(v int32) predicate.FmsCloudFile {
+	return predicate.FmsCloudFile(sql.FieldNEQ(FieldIsDel, v))
+}
+
+// IsDelIn applies the In predicate on the "is_del" field.
+func IsDelIn(vs ...int32) predicate.FmsCloudFile {
+	return predicate.FmsCloudFile(sql.FieldIn(FieldIsDel, vs...))
+}
+
+// IsDelNotIn applies the NotIn predicate on the "is_del" field.
+func IsDelNotIn(vs ...int32) predicate.FmsCloudFile {
+	return predicate.FmsCloudFile(sql.FieldNotIn(FieldIsDel, vs...))
+}
+
+// IsDelGT applies the GT predicate on the "is_del" field.
+func IsDelGT(v int32) predicate.FmsCloudFile {
+	return predicate.FmsCloudFile(sql.FieldGT(FieldIsDel, v))
+}
+
+// IsDelGTE applies the GTE predicate on the "is_del" field.
+func IsDelGTE(v int32) predicate.FmsCloudFile {
+	return predicate.FmsCloudFile(sql.FieldGTE(FieldIsDel, v))
+}
+
+// IsDelLT applies the LT predicate on the "is_del" field.
+func IsDelLT(v int32) predicate.FmsCloudFile {
+	return predicate.FmsCloudFile(sql.FieldLT(FieldIsDel, v))
+}
+
+// IsDelLTE applies the LTE predicate on the "is_del" field.
+func IsDelLTE(v int32) predicate.FmsCloudFile {
+	return predicate.FmsCloudFile(sql.FieldLTE(FieldIsDel, v))
+}
+
+// IsDelIsNil applies the IsNil predicate on the "is_del" field.
+func IsDelIsNil() predicate.FmsCloudFile {
+	return predicate.FmsCloudFile(sql.FieldIsNull(FieldIsDel))
+}
+
+// IsDelNotNil applies the NotNil predicate on the "is_del" field.
+func IsDelNotNil() predicate.FmsCloudFile {
+	return predicate.FmsCloudFile(sql.FieldNotNull(FieldIsDel))
 }
 
 // NameEQ applies the EQ predicate on the "name" field.

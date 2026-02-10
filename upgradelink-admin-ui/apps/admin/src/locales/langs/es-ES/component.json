@@ -1,0 +1,154 @@
+{
+  "app": {
+    "searchNotData": "Todavía no hay resultados de búsqueda",
+    "toSearch": "buscar",
+    "toNavigate": "navegar"
+  },
+  "countdown": {
+    "normalText": "Obtener código",
+    "sendText": "Volver a obtener en {0}s"
+  },
+  "cropper": {
+    "selectImage": "Seleccionar imagen",
+    "uploadSuccess": "¡Subido exitosamente!",
+    "modalTitle": "Subida de avatar",
+    "okText": "Confirmar y subir",
+    "btn_reset": "Restablecer",
+    "btn_rotate_left": "Rotación antihoraria",
+    "btn_rotate_right": "Rotación horaria",
+    "btn_scale_x": "Voltear horizontalmente",
+    "btn_scale_y": "Voltear verticalmente",
+    "btn_zoom_in": "Ampliar",
+    "btn_zoom_out": "Reducir",
+    "preview": "Vista previa"
+  },
+  "drawer": {
+    "loadingText": "Cargando...",
+    "cancelText": "Cerrar",
+    "okText": "Confirmar"
+  },
+  "excel": {
+    "exportModalTitle": "Exportar datos",
+    "fileType": "Tipo de archivo",
+    "fileName": "Nombre del archivo"
+  },
+  "form": {
+    "putAway": "Guardar",
+    "unfold": "Desplegar",
+    "maxTip": "El número de caracteres debe ser menor que {0}",
+    "apiSelectNotFound": "Espere a que la carga de datos se complete..."
+  },
+  "icon": {
+    "placeholder": "Haz clic para seleccionar el icono",
+    "search": "Buscar icono",
+    "copy": "¡Icono copiado exitosamente!"
+  },
+  "menu": {
+    "search": "Búsqueda de menú"
+  },
+  "modal": {
+    "cancelText": "Cerrar",
+    "okText": "Confirmar",
+    "close": "Cerrar",
+    "maximize": "Maximizar",
+    "restore": "Restaurar"
+  },
+  "table": {
+    "settingDens": "Densidad",
+    "settingDensDefault": "Predeterminado",
+    "settingDensMiddle": "Medio",
+    "settingDensSmall": "Compacto",
+    "settingColumn": "Configuración de columnas",
+    "settingColumnShow": "Visualización de columnas",
+    "settingIndexColumnShow": "Columna de índice",
+    "settingSelectColumnShow": "Columna de selección",
+    "settingFixedLeft": "Fijo a la izquierda",
+    "settingFixedRight": "Fijo a la derecha",
+    "settingFullScreen": "Pantalla completa",
+    "index": "Índice",
+    "total": "total de {total}"
+  },
+  "time": {
+    "before": " atrás",
+    "after": " después",
+    "just": "justo ahora",
+    "seconds": " segundos",
+    "minutes": " minutos",
+    "hours": " horas",
+    "days": " días"
+  },
+  "tree": {
+    "selectAll": "Seleccionar todo",
+    "unSelectAll": "Cancelar selección",
+    "expandAll": "Expandir todo",
+    "unExpandAll": "Contraer todo",
+    "checkStrictly": "Asociación jerárquica",
+    "checkUnStrictly": "Independencia jerárquica"
+  },
+  "upload": {
+    "save": "Guardar",
+    "upload": "Subir",
+    "imgUpload": "Subida de imagen",
+    "uploaded": "Subido",
+    "operating": "Operando",
+    "del": "Eliminar",
+    "uploadFailed": "Error al subir",
+    "download": "descargar",
+    "saveWarn": "¡Espere a que el archivo se suba y guarde!",
+    "saveError": "¡No hay archivos subidos exitosamente y no se puede guardar!",
+    "preview": "Vista previa",
+    "choose": "Seleccionar el archivo",
+    "accept": "Soporta formato {0}",
+    "acceptUpload": "Solo subir archivos en formato {0}",
+    "maxSize": "Un solo archivo no excede {0}MB ",
+    "maxSizeMultiple": "¡Solo subir archivos de hasta {0}MB!",
+    "maxNumber": "Solo subir hasta {0} archivos",
+    "legend": "Leyenda",
+    "fileName": "Nombre del archivo",
+    "fileSize": "Tamaño del archivo",
+    "fileStatue": "Estado del archivo",
+    "startUpload": "Iniciar subida",
+    "uploadSuccess": "Subido exitosamente",
+    "uploadError": "Error al subir",
+    "uploading": "Subiendo",
+    "uploadWait": "Espere a que termine la subida del archivo",
+    "reUploadFailed": "Volver a subir archivos fallidos",
+    "pending": "Pendiente",
+    "uploadHelpMessage": "Haz clic o arrastra el archivo a esta área para subirlo",
+    "supportAnyFormat": "Soporta cualquier tipo de archivo, admite subidas de múltiples archivos",
+    "supportAnyFormatOne": "Soporta cualquier tipo de archivo",
+    "supportFormat": "Soporta archivo en formato {0}"
+  },
+  "verify": {
+    "error": "¡Verificación fallida!",
+    "time": "¡La verificación fue exitosa y tardó {time} segundos!",
+    "redoTip": "Haz clic en la imagen para actualizar",
+    "dragText": "Mantén presionado el control deslizante y arrastra",
+    "successText": "Verificado"
+  },
+  "jsonEditor": {
+    "pleaseInputJson": "Primero introduzca el contenido JSON",
+    "beautifySuccess": "Formato JSON embellecido exitosamente",
+    "beautifyError": "Error de formato JSON, no se puede embellecer",
+    "noContentToCopy": "No hay contenido para copiar",
+    "copySuccess": "Copiado al portapapeles",
+    "copyError": "Error al copiar",
+    "editorReset": "El editor ha sido restablecido",
+    "jsonValid": "El formato JSON es correcto",
+    "jsonInvalid": "Error de formato JSON",
+    "jsonFormatError": "Error de formato JSON",
+    "jsonFormatValid": "El formato JSON es correcto",
+    "beautifyJsonFormat": "Embellecer formato JSON",
+    "validateJsonFormat": "Validar formato JSON",
+    "copyToClipboard": "Copiar al portapapeles",
+    "resetEditor": "Restablecer editor"
+  },
+  "markdownEditor": {
+    "markdownEditor": "Editor Markdown",
+    "markdownDescription": "Soporta sintaxis Markdown, como # título, **negrita**, *cursiva*, etc.",
+    "textEditor": "Editor de texto",
+    "textDescription": "Modo de edición de texto plano, adecuado para entrada de texto simple",
+    "switchToMarkdown": "Cambiar al Editor Markdown",
+    "switchToText": "Cambiar al Editor de Texto"
+  }
+}

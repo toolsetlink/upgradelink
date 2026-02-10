@@ -3,6 +3,7 @@ package upgrade_file
 import (
 	"context"
 	"upgradelink-admin/server/api/internal/common/db_error"
+	"upgradelink-admin/server/api/internal/common/enum"
 	"upgradelink-admin/server/api/internal/common/i18n"
 	"upgradelink-admin/server/api/internal/ent/upgradefile"
 	"upgradelink-admin/server/api/internal/svc"
@@ -27,14 +28,14 @@ func NewDeleteUpgradeFileLogic(ctx context.Context, svcCtx *svc.ServiceContext) 
 
 func (l *DeleteUpgradeFileLogic) DeleteUpgradeFile(req *types.IDsReq) (*types.BaseMsgResp, error) {
 
-	intDel := int32(1)
+	intDelTrue := enum.IsDelTrue
 	var Ids []int
 	for _, id := range req.Ids {
 		Ids = append(Ids, int(id))
 	}
 	err := l.svcCtx.DB.UpgradeFile.Update().
 		Where(upgradefile.IDIn(Ids...)).
-		SetNotNilIsDel(&intDel).
+		SetNotNilIsDel(&intDelTrue).
 		Exec(l.ctx)
 
 	if err != nil {

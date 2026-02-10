@@ -103,7 +103,7 @@ export const dataFormSchemas: VbenFormProps = {
     {
       fieldName: "content",
       label: $t("upgrade.upgradeConfigurationVersion.content"),
-      component: "CodeEditor",
+      component: "JsonEditor",
       rules: "required",
     },
     {
@@ -132,10 +132,10 @@ export const dataFormSchemas: VbenFormProps = {
     {
       fieldName: "description",
       label: $t("upgrade.upgradeConfigurationVersion.description"),
-      component: "Textarea",
+      component: "TextMarkdownEditor",
       componentProps: {
-        autoSize: { minRows: 3 }, // 自动调整高度（可选）
-        // showCount: true, // 显示字数统计（可选）
+        placeholder: "请输入描述信息",
+        autoSize: { minRows: 3 },
       },
     },
   ],

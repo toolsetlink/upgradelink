@@ -17,6 +17,34 @@
 		"constraintError": "操作失败: 数据冲突",
 		"validationError": "操作失败: 校验失败",
 		"notSingularError": "操作失败: 数据不唯一",
-		"serviceUnavailable": "服务不可用，请检查服务是否已启用"
+		"serviceUnavailable": "服务不可用，请检查服务是否已启用",
+		"serviceBusy": "服务繁忙，请稍后重试",
+		"cacheError": "缓存错误"
+	},
+	"init": {
+		"alreadyInit": "已经初始化",
+		"initializeIsRunning": "初始化正在运行中"
+	},
+	"sys": {
+		"api": {
+			"apiRequestFailed": "API 请求失败"
+		}
+	},
+	"upgrade": {
+		"appNameDuplicate": "应用名称重复",
+		"appPackageNameDuplicate": "应用包名名称重复",
+		"appVersionDuplicate": "当前应用版本名重复",
+		"appVersionCodeDuplicate": "当前应用版本号重复",
+		"appVersionHasStrategy": "应用版本还存在对应的策略，不能删除",
+		"taskNameDuplicate": "任务名称重复",
+		"taskTimeInvalid": "任务开始时间大于或等于结束时间",
+		"grayStrategyTimeInvalid": "灰度策略存在开始时间小于或等于结束时间",
+		"grayStrategyTimeOverlap": "灰度策略存在开始时间与结束时间存在交集",
+		"flowStrategyTimeInvalid": "流控策略存在开始时间小于或等于结束时间",
+		"flowStrategyTimeOverlap": "流控策略存在开始时间与结束时间存在交集",
+		"versionFormatError": "版本名称格式错误",
+		"deviceUniqueIdDuplicate": "设备唯一标识重复",
+		"deviceGroupNameDuplicate": "设备分组名称重复",
+		"deviceModelNameDuplicate": "设备机型名称重复"
 	}
 }

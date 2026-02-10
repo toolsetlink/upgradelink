@@ -3,6 +3,7 @@ package upgrade_url
 import (
 	"context"
 	"upgradelink-admin/server/api/internal/common/db_error"
+	"upgradelink-admin/server/api/internal/common/enum"
 	"upgradelink-admin/server/api/internal/common/i18n"
 	"upgradelink-admin/server/api/internal/ent/upgradeurl"
 	"upgradelink-admin/server/api/internal/svc"
@@ -27,7 +28,7 @@ func NewDeleteUpgradeUrlLogic(ctx context.Context, svcCtx *svc.ServiceContext) *
 
 func (l *DeleteUpgradeUrlLogic) DeleteUpgradeUrl(req *types.IDsReq) (*types.BaseMsgResp, error) {
 
-	intDel := int32(1)
+	intDelTrue := enum.IsDelTrue
 	var ids []int
 	for _, id := range req.Ids {
 		ids = append(ids, int(id))
@@ -35,7 +36,7 @@ func (l *DeleteUpgradeUrlLogic) DeleteUpgradeUrl(req *types.IDsReq) (*types.Base
 
 	err := l.svcCtx.DB.UpgradeUrl.Update().
 		Where(upgradeurl.IDIn(ids...)).
-		SetNotNilIsDel(&intDel).
+		SetNotNilIsDel(&intDelTrue).
 		Exec(l.ctx)
 
 	if err != nil {

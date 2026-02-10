@@ -3,6 +3,7 @@ package upgrade_configuration_version
 import (
 	"context"
 	"upgradelink-admin/server/api/internal/common/db_error"
+	"upgradelink-admin/server/api/internal/common/enum"
 	"upgradelink-admin/server/api/internal/common/http_error"
 	"upgradelink-admin/server/api/internal/common/i18n"
 	"upgradelink-admin/server/api/internal/common/jwtctx/companyctx"
@@ -49,14 +50,14 @@ func (l *DeleteUpgradeConfigurationVersionLogic) DeleteUpgradeConfigurationVersi
 		}
 	}
 
-	intDel := int32(1) // 删除状态
+	intDelTrue := enum.IsDelTrue // 删除状态
 	var Ids []int
 	for _, id := range req.Ids {
 		Ids = append(Ids, int(id))
 	}
 	err := l.svcCtx.DB.UpgradeConfigurationVersion.Update().
 		Where(upgradeconfigurationversion.IDIn(Ids...), upgradeconfigurationversion.CompanyIDIn(companyctx.GetCompanyIDFromCtx(l.ctx))).
-		SetNotNilIsDel(&intDel).
+		SetNotNilIsDel(&intDelTrue).
 		Exec(l.ctx)
 
 	if err != nil {

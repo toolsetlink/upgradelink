@@ -17,7 +17,7 @@ import { isPlainObject } from "remeda";
 import { useVbenVxeGrid } from "#/adapter/vxe-table";
 import { deleteCloudFile, getCloudFileList } from "#/api/sys/cloudFile";
 import { TableAction } from "#/components/table/table-action";
-import { UploadDraggerOne } from "#/components/form";
+import { S3PresignedUpload } from "#/components/form";
 
 import CloudFileForm from "./form.vue";
 import { searchFormSchemas, tableColumns } from "./schemas";
@@ -72,39 +72,39 @@ const gridOptions: VxeGridProps<CloudFileInfo> = {
       field: "action",
       slots: {
         default: ({ row }) =>
-          h(TableAction, {
-            actions: [
-              {
-                type: "link",
-                icon: "ant-design:cloud-download-outlined",
-                tooltip: $t("fms.file.download"),
-                onClick: handleDownload.bind(null, row),
-              },
-              {
-                type: "link",
-                icon: "ant-design:copy-outlined",
-                tooltip: $t("fms.file.copyURL"),
-                onClick: handleCopyPath.bind(null, row),
-              },
-              {
-                type: "link",
-                icon: "clarity:note-edit-line",
-                tooltip: $t("common.edit"),
-                onClick: openFormModal.bind(null, row),
-              },
-              {
-                icon: "ant-design:delete-outlined",
-                type: "link",
-                color: "error",
-                tooltip: $t("common.delete"),
-                popConfirm: {
-                  title: $t("common.deleteConfirm"),
-                  placement: "left",
-                  confirm: batchDelete.bind(null, [row.id]),
+            h(TableAction, {
+              actions: [
+                {
+                  type: "link",
+                  icon: "ant-design:cloud-download-outlined",
+                  tooltip: $t("fms.file.download"),
+                  onClick: handleDownload.bind(null, row),
                 },
-              },
-            ] as ActionItem[],
-          }),
+                {
+                  type: "link",
+                  icon: "ant-design:copy-outlined",
+                  tooltip: $t("fms.file.copyURL"),
+                  onClick: handleCopyPath.bind(null, row),
+                },
+                {
+                  type: "link",
+                  icon: "clarity:note-edit-line",
+                  tooltip: $t("common.edit"),
+                  onClick: openFormModal.bind(null, row),
+                },
+                {
+                  icon: "ant-design:delete-outlined",
+                  type: "link",
+                  color: "error",
+                  tooltip: $t("common.delete"),
+                  popConfirm: {
+                    title: $t("common.deleteConfirm"),
+                    placement: "left",
+                    confirm: batchDelete.bind(null, [row.id]),
+                  },
+                },
+              ] as ActionItem[],
+            }),
       },
     },
   ],
@@ -304,10 +304,10 @@ async function handleDownload(record: any) {
     <Grid>
       <template #toolbar-buttons>
         <Button
-          v-show="showDeleteButton"
-          danger
-          type="primary"
-          @click="handleBatchDelete"
+            v-show="showDeleteButton"
+            danger
+            type="primary"
+            @click="handleBatchDelete"
         >
           {{ $t("common.delete") }}
         </Button>
@@ -322,11 +322,9 @@ async function handleDownload(record: any) {
     </Grid>
     <UploadModal>
       <div style="padding: 20px;">
-        <UploadDraggerOne
-          v-model="uploadedFileId"
-          :provider="'cloud'"
-          :multiple="false"
-          @update:value="handleUploadChange"
+        <S3PresignedUpload
+            v-model="uploadedFileId"
+            @update:value="handleUploadChange"
         />
       </div>
     </UploadModal>

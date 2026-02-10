@@ -2307,6 +2307,8 @@ type FmsCloudFileMutation struct {
 	created_at    *time.Time
 	updated_at    *time.Time
 	state         *bool
+	is_del        *int32
+	addis_del     *int32
 	name          *string
 	url           *string
 	size          *uint64
@@ -2570,6 +2572,76 @@ func (m *FmsCloudFileMutation) StateCleared() bool {
 func (m *FmsCloudFileMutation) ResetState() {
 	m.state = nil
 	delete(m.clearedFields, fmscloudfile.FieldState)
+}
+
+// SetIsDel sets the "is_del" field.
+func (m *FmsCloudFileMutation) SetIsDel(i int32) {
+	m.is_del = &i
+	m.addis_del = nil
+}
+
+// IsDel returns the value of the "is_del" field in the mutation.
+func (m *FmsCloudFileMutation) IsDel() (r int32, exists bool) {
+	v := m.is_del
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldIsDel returns the old "is_del" field's value of the FmsCloudFile entity.
+// If the FmsCloudFile object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *FmsCloudFileMutation) OldIsDel(ctx context.Context) (v int32, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldIsDel is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldIsDel requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldIsDel: %w", err)
+	}
+	return oldValue.IsDel, nil
+}
+
+// AddIsDel adds i to the "is_del" field.
+func (m *FmsCloudFileMutation) AddIsDel(i int32) {
+	if m.addis_del != nil {
+		*m.addis_del += i
+	} else {
+		m.addis_del = &i
+	}
+}
+
+// AddedIsDel returns the value that was added to the "is_del" field in this mutation.
+func (m *FmsCloudFileMutation) AddedIsDel() (r int32, exists bool) {
+	v := m.addis_del
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// ClearIsDel clears the value of the "is_del" field.
+func (m *FmsCloudFileMutation) ClearIsDel() {
+	m.is_del = nil
+	m.addis_del = nil
+	m.clearedFields[fmscloudfile.FieldIsDel] = struct{}{}
+}
+
+// IsDelCleared returns if the "is_del" field was cleared in this mutation.
+func (m *FmsCloudFileMutation) IsDelCleared() bool {
+	_, ok := m.clearedFields[fmscloudfile.FieldIsDel]
+	return ok
+}
+
+// ResetIsDel resets all changes to the "is_del" field.
+func (m *FmsCloudFileMutation) ResetIsDel() {
+	m.is_del = nil
+	m.addis_del = nil
+	delete(m.clearedFields, fmscloudfile.FieldIsDel)
 }
 
 // SetName sets the "name" field.
@@ -2875,7 +2947,7 @@ func (m *FmsCloudFileMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *FmsCloudFileMutation) Fields() []string {
-	fields := make([]string, 0, 9)
+	fields := make([]string, 0, 10)
 	if m.created_at != nil {
 		fields = append(fields, fmscloudfile.FieldCreatedAt)
 	}
@@ -2884,6 +2956,9 @@ func (m *FmsCloudFileMutation) Fields() []string {
 	}
 	if m.state != nil {
 		fields = append(fields, fmscloudfile.FieldState)
+	}
+	if m.is_del != nil {
+		fields = append(fields, fmscloudfile.FieldIsDel)
 	}
 	if m.name != nil {
 		fields = append(fields, fmscloudfile.FieldName)
@@ -2917,6 +2992,8 @@ func (m *FmsCloudFileMutation) Field(name string) (ent.Value, bool) {
 		return m.UpdatedAt()
 	case fmscloudfile.FieldState:
 		return m.State()
+	case fmscloudfile.FieldIsDel:
+		return m.IsDel()
 	case fmscloudfile.FieldName:
 		return m.Name()
 	case fmscloudfile.FieldURL:
@@ -2944,6 +3021,8 @@ func (m *FmsCloudFileMutation) OldField(ctx context.Context, name string) (ent.V
 		return m.OldUpdatedAt(ctx)
 	case fmscloudfile.FieldState:
 		return m.OldState(ctx)
+	case fmscloudfile.FieldIsDel:
+		return m.OldIsDel(ctx)
 	case fmscloudfile.FieldName:
 		return m.OldName(ctx)
 	case fmscloudfile.FieldURL:
@@ -2985,6 +3064,13 @@ func (m *FmsCloudFileMutation) SetField(name string, value ent.Value) error {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
 		m.SetState(v)
+		return nil
+	case fmscloudfile.FieldIsDel:
+		v, ok := value.(int32)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetIsDel(v)
 		return nil
 	case fmscloudfile.FieldName:
 		v, ok := value.(string)
@@ -3036,6 +3122,9 @@ func (m *FmsCloudFileMutation) SetField(name string, value ent.Value) error {
 // this mutation.
 func (m *FmsCloudFileMutation) AddedFields() []string {
 	var fields []string
+	if m.addis_del != nil {
+		fields = append(fields, fmscloudfile.FieldIsDel)
+	}
 	if m.addsize != nil {
 		fields = append(fields, fmscloudfile.FieldSize)
 	}
@@ -3050,6 +3139,8 @@ func (m *FmsCloudFileMutation) AddedFields() []string {
 // was not set, or was not defined in the schema.
 func (m *FmsCloudFileMutation) AddedField(name string) (ent.Value, bool) {
 	switch name {
+	case fmscloudfile.FieldIsDel:
+		return m.AddedIsDel()
 	case fmscloudfile.FieldSize:
 		return m.AddedSize()
 	case fmscloudfile.FieldFileType:
@@ -3063,6 +3154,13 @@ func (m *FmsCloudFileMutation) AddedField(name string) (ent.Value, bool) {
 // type.
 func (m *FmsCloudFileMutation) AddField(name string, value ent.Value) error {
 	switch name {
+	case fmscloudfile.FieldIsDel:
+		v, ok := value.(int32)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.AddIsDel(v)
+		return nil
 	case fmscloudfile.FieldSize:
 		v, ok := value.(int64)
 		if !ok {
@@ -3094,6 +3192,9 @@ func (m *FmsCloudFileMutation) ClearedFields() []string {
 	if m.FieldCleared(fmscloudfile.FieldState) {
 		fields = append(fields, fmscloudfile.FieldState)
 	}
+	if m.FieldCleared(fmscloudfile.FieldIsDel) {
+		fields = append(fields, fmscloudfile.FieldIsDel)
+	}
 	if m.FieldCleared(fmscloudfile.FieldMd5) {
 		fields = append(fields, fmscloudfile.FieldMd5)
 	}
@@ -3120,6 +3221,9 @@ func (m *FmsCloudFileMutation) ClearField(name string) error {
 	case fmscloudfile.FieldState:
 		m.ClearState()
 		return nil
+	case fmscloudfile.FieldIsDel:
+		m.ClearIsDel()
+		return nil
 	case fmscloudfile.FieldMd5:
 		m.ClearMd5()
 		return nil
@@ -3139,6 +3243,9 @@ func (m *FmsCloudFileMutation) ResetField(name string) error {
 		return nil
 	case fmscloudfile.FieldState:
 		m.ResetState()
+		return nil
+	case fmscloudfile.FieldIsDel:
+		m.ResetIsDel()
 		return nil
 	case fmscloudfile.FieldName:
 		m.ResetName()

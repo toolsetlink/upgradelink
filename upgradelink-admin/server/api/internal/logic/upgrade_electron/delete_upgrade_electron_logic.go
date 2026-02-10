@@ -3,6 +3,7 @@ package upgrade_electron
 import (
 	"context"
 	"upgradelink-admin/server/api/internal/common/db_error"
+	"upgradelink-admin/server/api/internal/common/enum"
 	"upgradelink-admin/server/api/internal/common/i18n"
 	"upgradelink-admin/server/api/internal/ent/upgradeelectron"
 	"upgradelink-admin/server/api/internal/svc"
@@ -27,14 +28,14 @@ func NewDeleteUpgradeElectronLogic(ctx context.Context, svcCtx *svc.ServiceConte
 
 func (l *DeleteUpgradeElectronLogic) DeleteUpgradeElectron(req *types.IDsReq) (*types.BaseMsgResp, error) {
 
-	intDel := int32(1)
+	intDelTrue := enum.IsDelTrue
 	var Ids []int
 	for _, id := range req.Ids {
 		Ids = append(Ids, int(id))
 	}
 	err := l.svcCtx.DB.UpgradeElectron.Update().
 		Where(upgradeelectron.IDIn(Ids...)).
-		SetNotNilIsDel(&intDel).
+		SetNotNilIsDel(&intDelTrue).
 		Exec(l.ctx)
 
 	if err != nil {

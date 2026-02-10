@@ -9,6 +9,7 @@ import { useVModel } from "@vueuse/core";
 import { Editor, Toolbar } from "@wangeditor-next/editor-for-vue";
 
 import "@wangeditor-next/editor/dist/css/style.css";
+import {$t} from "@vben/locales";
 
 defineOptions({ name: "Editor" });
 
@@ -31,18 +32,18 @@ const state = useVModel(props, "value", emits, {
 
 const editorRef = shallowRef();
 const provider =
-  props.uploadProvider === "local" || props.uploadProvider === "cloud-default"
-    ? ""
-    : props.uploadProvider;
+    props.uploadProvider === "local" || props.uploadProvider === "cloud-default"
+        ? ""
+        : props.uploadProvider;
 const accessStore = useAccessStore();
 const serverUrl =
-  props.uploadProvider === "local"
-    ? "/fms-api/upload"
-    : "/fms-api/cloud_file/upload";
+    props.uploadProvider === "local"
+        ? "/fms-api/upload"
+        : "/fms-api/cloud_file/upload";
 
 const toolbarConfig = {};
 const editorConfig: Partial<IEditorConfig> = {
-  placeholder: "请输入内容...",
+  placeholder: $t("component.editor.placeholder"),
   MENU_CONF: {},
 };
 
@@ -100,15 +101,15 @@ const handleCreated = (editor: any) => {
 <template>
   <div style="border: 1px solid #ccc">
     <Toolbar
-      :default-config="toolbarConfig"
-      :editor="editorRef"
-      style="border-bottom: 1px solid #ccc"
+        :default-config="toolbarConfig"
+        :editor="editorRef"
+        style="border-bottom: 1px solid #ccc"
     />
     <Editor
-      v-model="state"
-      :default-config="editorConfig"
-      style="height: 500px; overflow-y: hidden"
-      @on-created="handleCreated"
+        v-model="state"
+        :default-config="editorConfig"
+        style="height: 500px; overflow-y: hidden"
+        @on-created="handleCreated"
     />
   </div>
 </template>

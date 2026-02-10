@@ -89,6 +89,33 @@ func (_u *FmsCloudFileUpdate) ClearState() *FmsCloudFileUpdate {
 	return _u
 }
 
+// SetIsDel sets the "is_del" field.
+func (_u *FmsCloudFileUpdate) SetIsDel(v int32) *FmsCloudFileUpdate {
+	_u.mutation.ResetIsDel()
+	_u.mutation.SetIsDel(v)
+	return _u
+}
+
+// SetNillableIsDel sets the "is_del" field if the given value is not nil.
+func (_u *FmsCloudFileUpdate) SetNillableIsDel(v *int32) *FmsCloudFileUpdate {
+	if v != nil {
+		_u.SetIsDel(*v)
+	}
+	return _u
+}
+
+// AddIsDel adds value to the "is_del" field.
+func (_u *FmsCloudFileUpdate) AddIsDel(v int32) *FmsCloudFileUpdate {
+	_u.mutation.AddIsDel(v)
+	return _u
+}
+
+// ClearIsDel clears the value of the "is_del" field.
+func (_u *FmsCloudFileUpdate) ClearIsDel() *FmsCloudFileUpdate {
+	_u.mutation.ClearIsDel()
+	return _u
+}
+
 // SetName sets the "name" field.
 func (_u *FmsCloudFileUpdate) SetName(v string) *FmsCloudFileUpdate {
 	_u.mutation.SetName(v)
@@ -258,6 +285,15 @@ func (_u *FmsCloudFileUpdate) sqlSave(ctx context.Context) (_node int, err error
 	if _u.mutation.StateCleared() {
 		_spec.ClearField(fmscloudfile.FieldState, field.TypeBool)
 	}
+	if value, ok := _u.mutation.IsDel(); ok {
+		_spec.SetField(fmscloudfile.FieldIsDel, field.TypeInt32, value)
+	}
+	if value, ok := _u.mutation.AddedIsDel(); ok {
+		_spec.AddField(fmscloudfile.FieldIsDel, field.TypeInt32, value)
+	}
+	if _u.mutation.IsDelCleared() {
+		_spec.ClearField(fmscloudfile.FieldIsDel, field.TypeInt32)
+	}
 	if value, ok := _u.mutation.Name(); ok {
 		_spec.SetField(fmscloudfile.FieldName, field.TypeString, value)
 	}
@@ -364,6 +400,33 @@ func (_u *FmsCloudFileUpdateOne) SetNillableState(v *bool) *FmsCloudFileUpdateOn
 // ClearState clears the value of the "state" field.
 func (_u *FmsCloudFileUpdateOne) ClearState() *FmsCloudFileUpdateOne {
 	_u.mutation.ClearState()
+	return _u
+}
+
+// SetIsDel sets the "is_del" field.
+func (_u *FmsCloudFileUpdateOne) SetIsDel(v int32) *FmsCloudFileUpdateOne {
+	_u.mutation.ResetIsDel()
+	_u.mutation.SetIsDel(v)
+	return _u
+}
+
+// SetNillableIsDel sets the "is_del" field if the given value is not nil.
+func (_u *FmsCloudFileUpdateOne) SetNillableIsDel(v *int32) *FmsCloudFileUpdateOne {
+	if v != nil {
+		_u.SetIsDel(*v)
+	}
+	return _u
+}
+
+// AddIsDel adds value to the "is_del" field.
+func (_u *FmsCloudFileUpdateOne) AddIsDel(v int32) *FmsCloudFileUpdateOne {
+	_u.mutation.AddIsDel(v)
+	return _u
+}
+
+// ClearIsDel clears the value of the "is_del" field.
+func (_u *FmsCloudFileUpdateOne) ClearIsDel() *FmsCloudFileUpdateOne {
+	_u.mutation.ClearIsDel()
 	return _u
 }
 
@@ -565,6 +628,15 @@ func (_u *FmsCloudFileUpdateOne) sqlSave(ctx context.Context) (_node *FmsCloudFi
 	}
 	if _u.mutation.StateCleared() {
 		_spec.ClearField(fmscloudfile.FieldState, field.TypeBool)
+	}
+	if value, ok := _u.mutation.IsDel(); ok {
+		_spec.SetField(fmscloudfile.FieldIsDel, field.TypeInt32, value)
+	}
+	if value, ok := _u.mutation.AddedIsDel(); ok {
+		_spec.AddField(fmscloudfile.FieldIsDel, field.TypeInt32, value)
+	}
+	if _u.mutation.IsDelCleared() {
+		_spec.ClearField(fmscloudfile.FieldIsDel, field.TypeInt32)
 	}
 	if value, ok := _u.mutation.Name(); ok {
 		_spec.SetField(fmscloudfile.FieldName, field.TypeString, value)

@@ -10,3 +10,8 @@ const (
 	// DefaultInvalidRoleId used to judge whether the token belongs to core, if it is DefaultInvalidRoleId, it belongs to mms
 	DefaultInvalidRoleId uint64 = 1000000
 )
+
+const (
+	IsDelFalse int32 = 0
+	IsDelTrue  int32 = 1
+)

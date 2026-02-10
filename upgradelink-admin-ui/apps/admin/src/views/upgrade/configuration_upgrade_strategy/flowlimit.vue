@@ -4,6 +4,7 @@ import { ref, watch } from "vue";
 import { $t } from "@vben/locales";
 
 import { InputNumber, Select, TimePicker } from "ant-design-vue";
+import { PlusOutlined, MinusOutlined } from "@ant-design/icons-vue";
 import dayjs from "dayjs";
 
 const props = defineProps({
@@ -168,16 +169,18 @@ function handleTimePickerChange(
       <button
         v-if="index > 0"
         @click="removeInputGroup(index)"
-        class="px-2 py-1 bg-red-500 text-white rounded"
+        class="px-2 py-1 bg-red-500 text-white rounded flex items-center justify-center"
+        :title="$t('upgrade.base.del')"
       >
-        {{ $t('upgrade.base.del') }}
+        <MinusOutlined />
       </button>
       <button
         v-if="index === 0"
         @click="addInputGroup"
-        class="px-2 py-1 bg-blue-500 text-white rounded"
+        class="px-2 py-1 bg-blue-500 text-white rounded flex items-center justify-center"
+        :title="$t('upgrade.base.add')"
       >
-        {{ $t('upgrade.base.add') }}
+        <PlusOutlined />
       </button>
     </div>
   </div>

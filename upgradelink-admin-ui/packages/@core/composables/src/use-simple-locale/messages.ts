@@ -1,4 +1,4 @@
-export type Locale = 'en-US' | 'zh-CN';
+export type Locale = 'en-US' | 'zh-CN' | 'ja-JP' | 'pt-BR' | 'ru-RU' | 'es-ES' | 'ko-KR' | 'fa-IR';
 
 export const messages: Record<Locale, Record<string, string>> = {
   'en-US': {
@@ -19,6 +19,60 @@ export const messages: Record<Locale, Record<string, string>> = {
     reset: '重置',
     submit: '提交',
   },
+  'ja-JP': {
+    cancel: 'キャンセル',
+    collapse: '折りたたむ',
+    confirm: '確認',
+    expand: '展開',
+    prompt: 'プロンプト',
+    reset: 'リセット',
+    submit: '送信',
+  },
+  'pt-BR': {
+    cancel: 'Cancelar',
+    collapse: 'Recolher',
+    confirm: 'Confirmar',
+    expand: 'Expandir',
+    prompt: 'Prompt',
+    reset: 'Redefinir',
+    submit: 'Enviar',
+  },
+  'ru-RU': {
+    cancel: 'Отменить',
+    collapse: 'Свернуть',
+    confirm: 'Подтвердить',
+    expand: 'Развернуть',
+    prompt: 'Подсказка',
+    reset: 'Сбросить',
+    submit: 'Отправить',
+  },
+  'es-ES': {
+    cancel: 'Cancelar',
+    collapse: 'Colapsar',
+    confirm: 'Confirmar',
+    expand: 'Expandir',
+    prompt: 'Prompt',
+    reset: 'Restablecer',
+    submit: 'Enviar',
+  },
+  'ko-KR': {
+    cancel: '취소',
+    collapse: '접기',
+    confirm: '확인',
+    expand: '펼치기',
+    prompt: '프롬프트',
+    reset: '초기화',
+    submit: '제출',
+  },
+  'fa-IR': {
+    cancel: 'لغو',
+    collapse: 'بستن',
+    confirm: 'تایید',
+    expand: 'باز کردن',
+    prompt: 'پیام',
+    reset: 'ریست',
+    submit: 'ارسال',
+  },
 };
 
-export const getMessages = (locale: Locale) => messages[locale];
+export const getMessages = (locale: Locale) => messages[locale] || messages['en-US'];

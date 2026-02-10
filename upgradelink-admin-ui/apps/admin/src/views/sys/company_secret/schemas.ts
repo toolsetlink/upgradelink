@@ -24,10 +24,12 @@ export const tableColumns: VxeGridProps = {
     {
       title: $t("sys.companySecret.accessKey"),
       field: "accessKey",
+      width: 200,
     },
     {
       title: $t("sys.companySecret.secretKey"),
       field: "secretKey",
+      width: 400,
     },
     {
       title: $t("sys.companySecret.enable"),
@@ -60,16 +62,16 @@ export const tableColumns: VxeGridProps = {
       slots: {
         default: (e) => {
           return e.row.ruleDataUrl.length === 0 &&
-            e.row.ruleDataFile.length === 0 &&
-            e.row.ruleDataConfiguration.length === 0 &&
-            e.row.ruleDataTauri.length === 0 &&
-            e.row.ruleDataElectron.length === 0 &&
-            e.row.ruleDataApk.length === 0 &&
-            e.row.ruleDataMac.length === 0 &&
-            e.row.ruleDataWin.length === 0 &&
-            e.row.ruleDataLnx.length === 0
-            ? $t("sys.companySecret.unlimited")
-            : $t("common.yes");
+          e.row.ruleDataFile.length === 0 &&
+          e.row.ruleDataConfiguration.length === 0 &&
+          e.row.ruleDataTauri.length === 0 &&
+          e.row.ruleDataElectron.length === 0 &&
+          e.row.ruleDataApk.length === 0 &&
+          e.row.ruleDataMac.length === 0 &&
+          e.row.ruleDataWin.length === 0 &&
+          e.row.ruleDataLnx.length === 0
+              ? $t("sys.companySecret.unlimited")
+              : $t("common.yes");
         },
       },
     },

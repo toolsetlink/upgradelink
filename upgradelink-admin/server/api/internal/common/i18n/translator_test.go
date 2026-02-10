@@ -23,11 +23,8 @@ import (
 )
 
 func TestTranslator(t *testing.T) {
-	c := Conf{
-		Dir: "",
-	}
 
-	trans := NewTranslator(c, LocaleFS)
+	trans := NewTranslator(LocaleFS)
 
 	res := trans.Trans(context.WithValue(context.Background(), "lang", "zh"), "common.success")
 	assert.Equal(t, "成功", res)

@@ -5,6 +5,7 @@ import (
 	"strconv"
 	"strings"
 	"upgradelink-admin/server/api/internal/common/db_error"
+	"upgradelink-admin/server/api/internal/common/enum"
 	"upgradelink-admin/server/api/internal/common/i18n"
 	"upgradelink-admin/server/api/internal/common/utils/entx"
 	"upgradelink-admin/server/api/internal/ent"
@@ -43,14 +44,14 @@ func (l *DeleteUpgradeTauriUpgradeStrategyLogic) DeleteUpgradeTauriUpgradeStrate
 				return err
 			}
 
-			intDel := int32(1)
+			intDelTrue := enum.IsDelTrue
 			// 删除相关的灰度策略及流量限制策略
 			grayIds := make([]int, 0)
 			grayIds, _ = splitStringToIntSlice(strategyData.GrayData)
 			for i := 0; i < len(grayIds); i++ {
 				err = l.svcCtx.DB.UpgradeTauriUpgradeStrategyGrayStrategy.Update().
 					Where(upgradetauriupgradestrategygraystrategy.IDEQ(grayIds[i])).
-					SetNotNilIsDel(&intDel).
+					SetNotNilIsDel(&intDelTrue).
 					Exec(l.ctx)
 				if err != nil {
 					return err
@@ -62,7 +63,7 @@ func (l *DeleteUpgradeTauriUpgradeStrategyLogic) DeleteUpgradeTauriUpgradeStrate
 			for i := 0; i < len(flowLimitIds); i++ {
 				err = l.svcCtx.DB.UpgradeTauriUpgradeStrategy.Update().
 					Where(upgradetauriupgradestrategy.IDEQ(flowLimitIds[i])).
-					SetNotNilIsDel(&intDel).
+					SetNotNilIsDel(&intDelTrue).
 					Exec(l.ctx)
 				if err != nil {
 					return err
@@ -76,7 +77,7 @@ func (l *DeleteUpgradeTauriUpgradeStrategyLogic) DeleteUpgradeTauriUpgradeStrate
 			}
 			err = l.svcCtx.DB.UpgradeTauriUpgradeStrategy.Update().
 				Where(upgradetauriupgradestrategy.IDIn(Ids...)).
-				SetNotNilIsDel(&intDel).
+				SetNotNilIsDel(&intDelTrue).
 				Exec(l.ctx)
 			if err != nil {
 				return err

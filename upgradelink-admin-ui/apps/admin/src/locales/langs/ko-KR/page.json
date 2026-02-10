@@ -1,0 +1,29 @@
+{
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "codeLogin": "Code Login",
+    "qrcodeLogin": "Qr Code Login",
+    "forgetPassword": "Forget Password",
+    "sendingCode": "SMS Code is sending...",
+    "codeSentTo": "Code has been sent to {0}"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "analytics": "Analytics",
+    "workspace": "Workspace",
+    "yesterdayDownloadCount": "Yesterday Download Count",
+    "totalDownloadCount": "Total Download Count",
+    "yesterdayUpgradeReqCount": "Yesterday Upgrade Request Count",
+    "totalUpgradeReqCount": "Total Upgrade Request Count",
+    "yesterdayUpgradeCount": "Yesterday Upgrade Count",
+    "totalUpgradeCount": "Total Upgrade Count",
+    "yesterdayStartCount": "Yesterday Start Count",
+    "totalStartCount": "Total Start Count",
+    "trafficUsage7Day": "Traffic Usage (G) in Last 7 Days",
+    "downloadCount7Day": "Download Count in Last 7 Days",
+    "upgradeReqCount7Day": "Upgrade Request Count in Last 7 Days",
+    "upgradeCount7Day": "Upgrade Count in Last 7 Days",
+    "startCount7Day": "Start Count in Last 7 Days"
+  }
+}

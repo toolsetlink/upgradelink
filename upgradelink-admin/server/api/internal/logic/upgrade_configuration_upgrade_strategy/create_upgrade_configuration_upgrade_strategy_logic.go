@@ -6,6 +6,7 @@ import (
 	"strings"
 	"upgradelink-admin/server/api/internal/common"
 	"upgradelink-admin/server/api/internal/common/db_error"
+	"upgradelink-admin/server/api/internal/common/enum"
 	"upgradelink-admin/server/api/internal/common/http_error"
 	"upgradelink-admin/server/api/internal/common/i18n"
 	"upgradelink-admin/server/api/internal/common/jwtctx/companyctx"
@@ -45,7 +46,7 @@ func (l *CreateUpgradeConfigurationUpgradeStrategyLogic) CreateUpgradeConfigurat
 	// 开启事务
 	if err := entx.WithTx(l.ctx, l.svcCtx.DB, func(tx *ent.Tx) error {
 
-		isDel := int32(0)
+		intDelFalse := enum.IsDelFalse
 		// 创建相关灰度及流控策略
 		updateGrayIds := make([]int, 0)
 		if *req.IsGray == 1 {
@@ -58,7 +59,7 @@ func (l *CreateUpgradeConfigurationUpgradeStrategyLogic) CreateUpgradeConfigurat
 					SetNotNilBeginDatetime(grayBeginTime).
 					SetNotNilEndDatetime(grayEndTime).
 					SetNotNilLimit(req.GrayDataInfo[i].Limit).
-					SetNotNilIsDel(&isDel).
+					SetNotNilIsDel(&intDelFalse).
 					SetNotNilCreateAt(pointy.GetTimeMilliPointer(req.CreateAt)).
 					SetNotNilUpdateAt(pointy.GetTimeMilliPointer(req.UpdateAt)).
 					Save(l.ctx)
@@ -79,7 +80,7 @@ func (l *CreateUpgradeConfigurationUpgradeStrategyLogic) CreateUpgradeConfigurat
 					SetEndTime(*req.FlowLimitDataInfo[i].Endtime).
 					SetNotNilDimension(req.FlowLimitDataInfo[i].Dimension).
 					SetNotNilLimit(req.FlowLimitDataInfo[i].Limit).
-					SetNotNilIsDel(&isDel).
+					SetNotNilIsDel(&intDelFalse).
 					SetNotNilCreateAt(pointy.GetTimeMilliPointer(req.CreateAt)).
 					SetNotNilUpdateAt(pointy.GetTimeMilliPointer(req.UpdateAt)).
 					Save(l.ctx)
@@ -147,7 +148,7 @@ func (l *CreateUpgradeConfigurationUpgradeStrategyLogic) CreateUpgradeConfigurat
 			SetNotNilGrayData(&updateGrayIdsStr).
 			SetNotNilIsFlowLimit(req.IsFlowLimit).
 			SetNotNilFlowLimitData(&updateFlowLimitIdsStr).
-			SetNotNilIsDel(&isDel).
+			SetNotNilIsDel(&intDelFalse).
 			SetNotNilCreateAt(pointy.GetTimeMilliPointer(req.CreateAt)).
 			SetNotNilUpdateAt(pointy.GetTimeMilliPointer(req.UpdateAt)).
 			Save(l.ctx)
@@ -174,12 +175,12 @@ func (l *CreateUpgradeConfigurationUpgradeStrategyLogic) CheckCreateUpgradeConfi
 		return err
 	}
 	if count > 0 {
-		return http_error.NewCodeBadRequestError("任务名称重复")
+		return http_error.NewCodeBadRequestError(l.svcCtx.Trans.Trans(l.ctx, i18n.TaskNameDuplicate))
 	}
 
 	// 判断任务的开始时间是否大于结束时间
 	if !common.IsStartTimeBeforeEndTime(*req.BeginDatetime, *req.EndDatetime) {
-		return http_error.NewCodeBadRequestError("任务开始时间大于或等于结束时间")
+		return http_error.NewCodeBadRequestError(l.svcCtx.Trans.Trans(l.ctx, i18n.TaskTimeInvalid))
 	}
 
 	// 判断灰度策略的开始时间是否大于结束时间
@@ -188,7 +189,7 @@ func (l *CreateUpgradeConfigurationUpgradeStrategyLogic) CheckCreateUpgradeConfi
 			// 判断为启用状态的数据
 			if *req.GrayDataInfo[i].Enable == 1 {
 				if !common.IsStartTimeBeforeEndTime(*req.GrayDataInfo[i].BeginDatetime, *req.GrayDataInfo[i].EndDatetime) {
-					return http_error.NewCodeBadRequestError("灰度策略存在开始时间小于或等于结束时间")
+					return http_error.NewCodeBadRequestError(l.svcCtx.Trans.Trans(l.ctx, i18n.GrayStrategyTimeInvalid))
 				}
 			}
 
@@ -203,7 +204,7 @@ func (l *CreateUpgradeConfigurationUpgradeStrategyLogic) CheckCreateUpgradeConfi
 					if *req.GrayDataInfo[j].Enable == 1 {
 						if common.IsStartTimeBeforeEndTime(*req.GrayDataInfo[i].BeginDatetime, *req.GrayDataInfo[j].EndDatetime) &&
 							common.IsStartTimeBeforeEndTime(*req.GrayDataInfo[j].BeginDatetime, *req.GrayDataInfo[i].EndDatetime) {
-							return http_error.NewCodeBadRequestError("灰度策略存在开始时间与结束时间存在交集")
+							return http_error.NewCodeBadRequestError(l.svcCtx.Trans.Trans(l.ctx, i18n.GrayStrategyTimeOverlap))
 						}
 					}
 				}
@@ -216,8 +217,8 @@ func (l *CreateUpgradeConfigurationUpgradeStrategyLogic) CheckCreateUpgradeConfi
 		for i := 0; i < len(req.FlowLimitDataInfo); i++ {
 			// 判断为启用状态的数据
 			if *req.FlowLimitDataInfo[i].Enable == 1 {
-				if !common.IsStartTimeBeforeEndTime("2023-12-01 "+*req.FlowLimitDataInfo[i].Begintime, "2023-12-01 "+*req.FlowLimitDataInfo[i].Endtime) {
-					return http_error.NewCodeBadRequestError("流控策略存在开始时间小于或等于结束时间")
+				if !common.IsStartTimeBeforeEndTime("2006-01-02 "+*req.FlowLimitDataInfo[i].Begintime, "2006-01-02 "+*req.FlowLimitDataInfo[i].Endtime) {
+					return http_error.NewCodeBadRequestError(l.svcCtx.Trans.Trans(l.ctx, i18n.FlowStrategyTimeInvalid))
 				}
 			}
 		}
@@ -229,9 +230,9 @@ func (l *CreateUpgradeConfigurationUpgradeStrategyLogic) CheckCreateUpgradeConfi
 				for j := i + 1; j < len(req.FlowLimitDataInfo); j++ {
 					// 判断为启用状态的数据
 					if *req.FlowLimitDataInfo[j].Enable == 1 {
-						if common.IsStartTimeBeforeEndTime("2023-12-01 "+*req.FlowLimitDataInfo[i].Begintime, "2023-12-01 "+*req.FlowLimitDataInfo[j].Endtime) &&
-							common.IsStartTimeBeforeEndTime("2023-12-01 "+*req.FlowLimitDataInfo[j].Begintime, "2023-12-01 "+*req.FlowLimitDataInfo[i].Endtime) {
-							return http_error.NewCodeBadRequestError("流控策略存在开始时间与结束时间存在交集")
+						if common.IsStartTimeBeforeEndTime("2006-01-02 "+*req.FlowLimitDataInfo[i].Begintime, "2006-01-02 "+*req.FlowLimitDataInfo[j].Endtime) &&
+							common.IsStartTimeBeforeEndTime("2006-01-02 "+*req.FlowLimitDataInfo[j].Begintime, "2006-01-02 "+*req.FlowLimitDataInfo[i].Endtime) {
+							return http_error.NewCodeBadRequestError(l.svcCtx.Trans.Trans(l.ctx, i18n.FlowStrategyTimeOverlap))
 						}
 					}
 				}

@@ -245,7 +245,7 @@ func (l *UpdateUpgradeWinUpgradeStrategyLogic) CheckUpdateUpgradeWinUpgradeStrat
 		for i := 0; i < len(req.FlowLimitDataInfo); i++ {
 			// 判断为启用状态的数据
 			if *req.FlowLimitDataInfo[i].Enable == 1 {
-				if !common.IsStartTimeBeforeEndTime("2023-12-01 "+*req.FlowLimitDataInfo[i].Begintime, "2023-12-01 "+*req.FlowLimitDataInfo[i].Endtime) {
+				if !common.IsStartTimeBeforeEndTime("2006-01-02 "+*req.FlowLimitDataInfo[i].Begintime, "2006-01-02 "+*req.FlowLimitDataInfo[i].Endtime) {
 					return http_error.NewCodeBadRequestError("流控策略存在开始时间小于或等于结束时间")
 				}
 			}
@@ -258,8 +258,8 @@ func (l *UpdateUpgradeWinUpgradeStrategyLogic) CheckUpdateUpgradeWinUpgradeStrat
 				for j := i + 1; j < len(req.FlowLimitDataInfo); j++ {
 					// 判断为启用状态的数据
 					if *req.FlowLimitDataInfo[j].Enable == 1 {
-						if common.IsStartTimeBeforeEndTime("2023-12-01 "+*req.FlowLimitDataInfo[i].Begintime, "2023-12-01 "+*req.FlowLimitDataInfo[j].Endtime) &&
-							common.IsStartTimeBeforeEndTime("2023-12-01 "+*req.FlowLimitDataInfo[j].Begintime, "2023-12-01 "+*req.FlowLimitDataInfo[i].Endtime) {
+						if common.IsStartTimeBeforeEndTime("2006-01-02 "+*req.FlowLimitDataInfo[i].Begintime, "2006-01-02 "+*req.FlowLimitDataInfo[j].Endtime) &&
+							common.IsStartTimeBeforeEndTime("2006-01-02 "+*req.FlowLimitDataInfo[j].Begintime, "2006-01-02 "+*req.FlowLimitDataInfo[i].Endtime) {
 							return http_error.NewCodeBadRequestError("流控策略存在开始时间与结束时间存在交集")
 						}
 					}

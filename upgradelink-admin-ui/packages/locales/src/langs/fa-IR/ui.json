@@ -1,0 +1,114 @@
+{
+  "formRules": {
+    "required": "لطفاً {0} را وارد کنید",
+    "selectRequired": "لطفاً {0} را انتخاب کنید",
+    "minLength": "{0} باید حداقل {1} کاراکتر داشته باشد",
+    "maxLength": "{0} می‌تواند حداکثر {1} کاراکتر داشته باشد",
+    "length": "{0} باید {1} کاراکتر طول داشته باشد",
+    "alreadyExists": "{0} `{1}` قبلاً وجود دارد",
+    "startWith": "{0} باید با `{1}` شروع شود",
+    "invalidURL": "لطفاً URL معتبر وارد کنید",
+    "sizeLimit": "اندازه فایل نمی‌تواند از {0}MB بیشتر باشد",
+    "previewWarning": "امکان باز کردن فایل وجود ندارد، URL یا آدرس پیش‌نمایشی در دسترس نیست"
+  },
+  "actionTitle": {
+    "edit": "{0} را ویرایش کنید",
+    "create": "{0} را ایجاد کنید",
+    "delete": "{0} را حذف کنید",
+    "view": "{0} را ببینید"
+  },
+  "actionMessage": {
+    "deleteConfirm": "آیا مطمئنید که می‌خواهید {0} را حذف کنید؟",
+    "deleting": "در حال حذف {0} ...",
+    "deleteSuccess": "{0} با موفقیت حذف شد",
+    "operationSuccess": "عملیات موفق",
+    "operationFailed": "عملیات ناموفق"
+  },
+  "placeholder": {
+    "input": "لطفاً وارد کنید",
+    "select": "لطفاً انتخاب کنید",
+    "upload": "برای آپلود کلیک کنید"
+  },
+  "captcha": {
+    "title": "لطفاً تأیید امنیتی را تکمیل کنید",
+    "sliderSuccessText": "گذشته",
+    "sliderDefaultText": "اسلایدر را بکشید",
+    "alt": "مقدار ویژگی src تگ img را پشتیبانی می‌کند",
+    "sliderRotateDefaultTip": "برای تازه‌سازی روی تصویر کلیک کنید",
+    "sliderTranslateDefaultTip": "برای تازه‌سازی روی تصویر کلیک کنید",
+    "sliderRotateFailTip": "تأیید ناموفق",
+    "sliderRotateSuccessTip": "تأیید موفق، زمان {0} ثانیه",
+    "sliderTranslateFailTip": "تأیید ناموفق",
+    "sliderTranslateSuccessTip": "تأیید موفق، زمان {0} ثانیه",
+    "refreshAriaLabel": "تازه‌سازی کپچا",
+    "confirmAriaLabel": "تأیید انتخاب",
+    "confirm": "تأیید",
+    "pointAriaLabel": "نقطه را کلیک کنید",
+    "clickInOrder": "لطفاً به ترتیب کلیک کنید"
+  },
+  "iconPicker": {
+    "placeholder": "یک آیکون انتخاب کنید",
+    "search": "آیکون را جستجو کنید..."
+  },
+  "jsonViewer": {
+    "copy": "کپی",
+    "copied": "کپی شد"
+  },
+  "fallback": {
+    "pageNotFound": "اوه! صفحه پیدا نشد",
+    "pageNotFoundDesc": "با عرض پوزش، صفحه‌ای که دنبال آن بودید پیدا نشد.",
+    "forbidden": "اوه! دسترسی منع شده",
+    "forbiddenDesc": "با عرض پوزش، اما شما مجوز دسترسی به این صفحه را ندارید.",
+    "internalError": "اوه! مشکلی پیش آمد",
+    "internalErrorDesc": "با عرض پوزش، اما سرور با خطایی مواجه شد.",
+    "offline": "صفحه آفلاین",
+    "offlineError": "اوه! خطای شبکه",
+    "offlineErrorDesc": "با عرض پوزش، نمی‌توان به اینترنت متصل شد. اتصال خود را بررسی کنید.",
+    "comingSoon": "به زودی",
+    "http": {
+      "requestTimeout": "درخواست مهلت خود را از دست داد. لطفاً بعداً دوباره تلاش کنید.",
+      "networkError": "یک خطای شبکه رخ داده است. لطفاً اتصال اینترنت خود را بررسی کنید و دوباره تلاش کنید.",
+      "badRequest": "درخواست نادرست. لطفاً ورودی خود را بررسی کنید و دوباره تلاش کنید.",
+      "unauthorized": "غیرمجاز. لطفاً برای ادامه وارد شوید.",
+      "forbidden": "ممنوع. شما مجوز دسترسی به این منبع را ندارید.",
+      "notFound": "یافت نشد. منبعی که درخواست داده شد پیدا نشد.",
+      "internalServerError": "خطای داخلی سرور. مشکلی در سمت ما پیش آمد. لطفاً بعداً دوباره تلاش کنید."
+    }
+  },
+  "widgets": {
+    "document": "سند",
+    "qa": "پرسش و پاسخ",
+    "setting": "تنظیمات",
+    "logoutTip": "آیا می‌خواهید خارج شوید؟",
+    "viewAll": "نمایش تمام پیام‌ها",
+    "notifications": "اطلاع‌رسانی‌ها",
+    "markAllAsRead": "همه را به عنوان خوانده شده علامت بزنید",
+    "clearNotifications": "پاک کردن",
+    "checkUpdatesTitle": "نسخه جدید در دسترس است",
+    "checkUpdatesDescription": "برای تازه‌سازی و دریافت آخرین نسخه کلیک کنید",
+    "search": {
+      "title": "جستجو",
+      "searchNavigate": "ناوبری جستجو",
+      "select": "انتخاب",
+      "navigate": "ناوبری",
+      "close": "بستن",
+      "noResults": "هیچ نتیجه جستجو پیدا نشد",
+      "noRecent": "هیچ تاریخچه جستجو وجود ندارد",
+      "recent": "تاریخچه جستجو"
+    },
+    "lockScreen": {
+      "title": "قفل صفحه",
+      "screenButton": "قفل کردن",
+      "password": "رمز عبور",
+      "placeholder": "لطفاً رمز عبور را وارد کنید",
+      "unlock": "برای باز کردن قفل کلیک کنید",
+      "errorPasswordTip": "خطا در رمز عبور، لطفاً دوباره وارد کنید",
+      "backToLogin": "بازگشت به صفحه ورود",
+      "entry": "ورود به سیستم"
+    },
+    "timezone": {
+      "setTimezone": " تنظیم منطقه زمانی",
+      "setSuccess": "منطقه زمانی با موفقیت تنظیم شد"
+    }
+  }
+}

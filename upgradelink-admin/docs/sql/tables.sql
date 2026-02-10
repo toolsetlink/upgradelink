@@ -364,6 +364,7 @@ CREATE TABLE `fms_cloud_files` (
 `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Create Time | 创建日期',
 `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Update Time | 修改日期',
 `state` tinyint(1) DEFAULT '1' COMMENT 'State true: normal false: ban | 状态 true 正常 false 禁用',
+`is_del` int NOT NULL DEFAULT '0' COMMENT '是否删除 0：正常；1：已删除',
 `name` varchar(255) COLLATE utf8mb4_bin NOT NULL COMMENT 'The file''s name | 文件名',
 `url` varchar(255) COLLATE utf8mb4_bin NOT NULL COMMENT 'The file''s url | 文件地址',
 `size` bigint unsigned NOT NULL COMMENT 'The file''s size | 文件大小',

@@ -22,6 +22,7 @@ enum Api {
   GetCloudFileList = "/cloud_file/list",
   UpdateCloudFile = "/cloud_file/update",
   uploadFile = "/cloud_file/upload",
+  GetPresignedUrl = "/cloud_file/presigned_url",
 }
 
 /**
@@ -30,8 +31,8 @@ enum Api {
 
 export const getCloudFileList = (params: BaseListReq) => {
   return requestClient.post<BaseDataResp<CloudFileListResp>>(
-    Api.GetCloudFileList,
-    params,
+      Api.GetCloudFileList,
+      params,
   );
 };
 
@@ -39,7 +40,7 @@ export const getCloudFileList = (params: BaseListReq) => {
  *  @description: Create a new cloud file
  */
 export const createCloudFile = (params: CloudFileInfo) => {
-  return requestClient.post<BaseResp>(Api.CreateCloudFile, params);
+  return requestClient.post<BaseDataResp<CloudFileInfo>>(Api.CreateCloudFile, params);
 };
 
 /**
@@ -61,16 +62,56 @@ export const deleteCloudFile = (params: BaseUUIDsReq) => {
  */
 export const getCloudFileById = (params: BaseUUIDReq) => {
   return requestClient.post<BaseDataResp<CloudFileInfo>>(
-    Api.GetCloudFileById,
-    params,
+      Api.GetCloudFileById,
+      params,
   );
 };
 
 /**
- * @description: Upload interface
+ * @description: Get presigned URL for direct upload
  */
-export function uploadCloudFile(file: File, provider: string = "") {
-  return requestClient.upload(Api.uploadFile, { file, provider });
+export function getPresignedUrl(filename: string, contentType: string) {
+  return requestClient.post<BaseDataResp<{
+    presignedUrl: string;
+    fileUrl: string;
+    fileName: string;
+    fileSuffix: string;
+    fileType: string;
+  }>>(Api.GetPresignedUrl, { filename, contentType });
+}
+
+/**
+ * @description: Upload file directly to S3 using presigned URL
+ */
+export async function uploadCloudFile(file: File, provider: string = "") {
+  // First get presigned URL
+  const presignedUrlResponse = await getPresignedUrl(file.name, file.type);
+  const presignedUrlData = presignedUrlResponse.data;
+
+  // Upload file directly to S3 using presigned URL
+  const uploadResponse = await fetch(presignedUrlData.presignedUrl, {
+    method: 'PUT',
+    body: file,
+    headers: {
+      'Content-Type': file.type
+    }
+  });
+
+  if (!uploadResponse.ok) {
+    throw new Error('Failed to upload file to S3');
+  }
+
+  // Return the same structure as before for backward compatibility
+  return {
+    code: 0,
+    msg: 'success',
+    data: {
+      name: presignedUrlData.fileName,
+      url: presignedUrlData.fileUrl,
+      size: file.size,
+      fileType: presignedUrlData.fileType,
+    }
+  };
 }
 
 /**

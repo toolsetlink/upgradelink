@@ -1,0 +1,154 @@
+{
+  "app": {
+    "searchNotData": "Ainda sem resultados de busca",
+    "toSearch": "para buscar",
+    "toNavigate": "para navegar"
+  },
+  "countdown": {
+    "normalText": "Obter código",
+    "sendText": "Reobter em {0}s"
+  },
+  "cropper": {
+    "selectImage": "Selecionar Imagem",
+    "uploadSuccess": "Upload bem-sucedido!",
+    "modalTitle": "Upload de avatar",
+    "okText": "Confirmar e fazer upload",
+    "btn_reset": "Resetar",
+    "btn_rotate_left": "Rotação anti-horária",
+    "btn_rotate_right": "Rotação horária",
+    "btn_scale_x": "Inverter horizontalmente",
+    "btn_scale_y": "Inverter verticalmente",
+    "btn_zoom_in": "Ampliar",
+    "btn_zoom_out": "Reduzir",
+    "preview": "Pré-visualizar"
+  },
+  "drawer": {
+    "loadingText": "Carregando...",
+    "cancelText": "Fechar",
+    "okText": "Confirmar"
+  },
+  "excel": {
+    "exportModalTitle": "Exportar dados",
+    "fileType": "Tipo de arquivo",
+    "fileName": "Nome do arquivo"
+  },
+  "form": {
+    "putAway": "Recolher",
+    "unfold": "Expandir",
+    "maxTip": "O número de caracteres deve ser menor que {0}",
+    "apiSelectNotFound": "Aguarde o carregamento dos dados ser concluído..."
+  },
+  "icon": {
+    "placeholder": "Clique para selecionar o ícone",
+    "search": "Buscar ícone",
+    "copy": "Ícone copiado com sucesso!"
+  },
+  "menu": {
+    "search": "Busca de menu"
+  },
+  "modal": {
+    "cancelText": "Fechar",
+    "okText": "Confirmar",
+    "close": "Fechar",
+    "maximize": "Maximizar",
+    "restore": "Restaurar"
+  },
+  "table": {
+    "settingDens": "Densidade",
+    "settingDensDefault": "Padrão",
+    "settingDensMiddle": "Médio",
+    "settingDensSmall": "Compacto",
+    "settingColumn": "Configurações de coluna",
+    "settingColumnShow": "Exibição de coluna",
+    "settingIndexColumnShow": "Coluna de Índice",
+    "settingSelectColumnShow": "Coluna de Seleção",
+    "settingFixedLeft": "Fixo à Esquerda",
+    "settingFixedRight": "Fixo à Direita",
+    "settingFullScreen": "Tela Cheia",
+    "index": "Índice",
+    "total": "total de {total}"
+  },
+  "time": {
+    "before": " atrás",
+    "after": " depois",
+    "just": "agora mesmo",
+    "seconds": " segundos",
+    "minutes": " minutos",
+    "hours": " horas",
+    "days": " dias"
+  },
+  "tree": {
+    "selectAll": "Selecionar Todos",
+    "unSelectAll": "Cancelar Seleção",
+    "expandAll": "Expandir Todos",
+    "unExpandAll": "Recolher Todos",
+    "checkStrictly": "Associação hierárquica",
+    "checkUnStrictly": "Independência hierárquica"
+  },
+  "upload": {
+    "save": "Salvar",
+    "upload": "Upload",
+    "imgUpload": "Upload de Imagem",
+    "uploaded": "Enviado",
+    "operating": "Operando",
+    "del": "Excluir",
+    "uploadFailed": "Upload falhou",
+    "download": "baixar",
+    "saveWarn": "Aguarde o upload e salvamento do arquivo!",
+    "saveError": "Não há arquivo enviado com sucesso e não pode ser salvo!",
+    "preview": "Pré-visualizar",
+    "choose": "Selecionar o arquivo",
+    "accept": "Suporta formato {0}",
+    "acceptUpload": "Apenas faça upload de arquivos no formato {0}",
+    "maxSize": "Um único arquivo não excede {0}MB ",
+    "maxSizeMultiple": "Apenas faça upload de arquivos de até {0}MB!",
+    "maxNumber": "Apenas faça upload de até {0} arquivos",
+    "legend": "Legenda",
+    "fileName": "Nome do arquivo",
+    "fileSize": "Tamanho do arquivo",
+    "fileStatue": "Status do arquivo",
+    "startUpload": "Iniciar upload",
+    "uploadSuccess": "Upload bem-sucedido",
+    "uploadError": "Upload falhou",
+    "uploading": "Enviando",
+    "uploadWait": "Aguarde o término do upload do arquivo",
+    "reUploadFailed": "Reenviar arquivos com falha",
+    "pending": "Pendente",
+    "uploadHelpMessage": "Clique ou arraste o arquivo para esta área para fazer upload",
+    "supportAnyFormat": "Suporta qualquer tipo de arquivo, suporta upload de múltiplos arquivos",
+    "supportAnyFormatOne": "Suporta qualquer tipo de arquivo",
+    "supportFormat": "Suporta arquivo no formato {0}"
+  },
+  "verify": {
+    "error": "verificação falhou!",
+    "time": "A verificação foi bem-sucedida e levou {time} segundos!",
+    "redoTip": "Clique na imagem para atualizar",
+    "dragText": "Pressione o slider e arraste",
+    "successText": "Verificado"
+  },
+  "jsonEditor": {
+    "pleaseInputJson": "Primeiro insira o conteúdo JSON",
+    "beautifySuccess": "Formato JSON beautificado com sucesso",
+    "beautifyError": "Erro no formato JSON, não pode ser beautificado",
+    "noContentToCopy": "Nenhum conteúdo para copiar",
+    "copySuccess": "Copiado para a área de transferência",
+    "copyError": "Falha ao copiar",
+    "editorReset": "O editor foi redefinido",
+    "jsonValid": "O formato JSON está correto",
+    "jsonInvalid": "Erro no formato JSON",
+    "jsonFormatError": "Erro no formato JSON",
+    "jsonFormatValid": "O formato JSON está correto",
+    "beautifyJsonFormat": "Beautificar formato JSON",
+    "validateJsonFormat": "Validar formato JSON",
+    "copyToClipboard": "Copiar para a área de transferência",
+    "resetEditor": "Redefinir editor"
+  },
+  "markdownEditor": {
+    "markdownEditor": "Editor Markdown",
+    "markdownDescription": "Suporta sintaxe Markdown, como # título, **negrito**, *itálico*, etc.",
+    "textEditor": "Editor de Texto",
+    "textDescription": "Modo de edição de texto simples, adequado para entrada de texto simples",
+    "switchToMarkdown": "Mudar para Editor Markdown",
+    "switchToText": "Mudar para Editor de Texto"
+  }
+}

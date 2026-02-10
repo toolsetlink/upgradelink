@@ -1,0 +1,154 @@
+{
+  "app": {
+    "searchNotData": "아직 검색 결과가 없습니다",
+    "toSearch": "검색",
+    "toNavigate": "탐색"
+  },
+  "countdown": {
+    "normalText": "코드 받기",
+    "sendText": "{0}초 후에 다시 받기"
+  },
+  "cropper": {
+    "selectImage": "이미지 선택",
+    "uploadSuccess": "업로드 성공!",
+    "modalTitle": "아바타 업로드",
+    "okText": "확인하고 업로드",
+    "btn_reset": "초기화",
+    "btn_rotate_left": "반시계 방향 회전",
+    "btn_rotate_right": "시계 방향 회전",
+    "btn_scale_x": "수평 뒤집기",
+    "btn_scale_y": "수직 뒤집기",
+    "btn_zoom_in": "확대",
+    "btn_zoom_out": "축소",
+    "preview": "미리보기"
+  },
+  "drawer": {
+    "loadingText": "로딩 중...",
+    "cancelText": "닫기",
+    "okText": "확인"
+  },
+  "excel": {
+    "exportModalTitle": "데이터 내보내기",
+    "fileType": "파일 유형",
+    "fileName": "파일 이름"
+  },
+  "form": {
+    "putAway": "접기",
+    "unfold": "펼치기",
+    "maxTip": "문자 수는 {0}보다 작아야 합니다",
+    "apiSelectNotFound": "데이터 로딩이 완료될 때까지 기다려 주세요..."
+  },
+  "icon": {
+    "placeholder": "아이콘을 선택하려면 클릭",
+    "search": "아이콘 검색",
+    "copy": "아이콘 복사 성공!"
+  },
+  "menu": {
+    "search": "메뉴 검색"
+  },
+  "modal": {
+    "cancelText": "닫기",
+    "okText": "확인",
+    "close": "닫기",
+    "maximize": "최대화",
+    "restore": "복원"
+  },
+  "table": {
+    "settingDens": "밀도",
+    "settingDensDefault": "기본",
+    "settingDensMiddle": "중간",
+    "settingDensSmall": "컴팩트",
+    "settingColumn": "열 설정",
+    "settingColumnShow": "열 표시",
+    "settingIndexColumnShow": "인덱스 열",
+    "settingSelectColumnShow": "선택 열",
+    "settingFixedLeft": "왼쪽 고정",
+    "settingFixedRight": "오른쪽 고정",
+    "settingFullScreen": "전체 화면",
+    "index": "인덱스",
+    "total": "총 {total}"
+  },
+  "time": {
+    "before": " 전",
+    "after": " 후",
+    "just": "방금",
+    "seconds": " 초",
+    "minutes": " 분",
+    "hours": " 시간",
+    "days": " 일"
+  },
+  "tree": {
+    "selectAll": "전체 선택",
+    "unSelectAll": "선택 취소",
+    "expandAll": "전체 확장",
+    "unExpandAll": "전체 접기",
+    "checkStrictly": "계층적 연관",
+    "checkUnStrictly": "계층적 독립"
+  },
+  "upload": {
+    "save": "저장",
+    "upload": "업로드",
+    "imgUpload": "이미지 업로드",
+    "uploaded": "업로드됨",
+    "operating": "작업 중",
+    "del": "삭제",
+    "uploadFailed": "업로드 실패",
+    "download": "다운로드",
+    "saveWarn": "파일 업로드 및 저장이 완료될 때까지 기다려 주세요!",
+    "saveError": "성공적으로 업로드된 파일이 없어 저장할 수 없습니다!",
+    "preview": "미리보기",
+    "choose": "파일 선택",
+    "accept": "{0} 형식을 지원",
+    "acceptUpload": "{0} 형식의 파일만 업로드 가능",
+    "maxSize": "단일 파일은 {0}MB를 초과할 수 없습니다 ",
+    "maxSizeMultiple": "최대 {0}MB 크기의 파일만 업로드 가능!",
+    "maxNumber": "최대 {0}개의 파일만 업로드 가능",
+    "legend": "범례",
+    "fileName": "파일 이름",
+    "fileSize": "파일 크기",
+    "fileStatue": "파일 상태",
+    "startUpload": "업로드 시작",
+    "uploadSuccess": "업로드 성공",
+    "uploadError": "업로드 실패",
+    "uploading": "업로드 중",
+    "uploadWait": "파일 업로드가 완료될 때까지 기다려 주세요",
+    "reUploadFailed": "실패한 파일 다시 업로드",
+    "pending": "대기 중",
+    "uploadHelpMessage": "이 영역에 파일을 클릭하거나 끌어다 놓아 업로드",
+    "supportAnyFormat": "모든 유형의 파일을 지원하며, 여러 파일 업로드를 지원",
+    "supportAnyFormatOne": "모든 유형의 파일을 지원",
+    "supportFormat": "{0} 형식 파일 지원"
+  },
+  "verify": {
+    "error": "검증 실패!",
+    "time": "검증 성공했으며 소요 시간: {time}초!",
+    "redoTip": "이미지를 클릭하여 새로고침",
+    "dragText": "슬라이더를 잡고 드래그",
+    "successText": "검증 완료"
+  },
+  "jsonEditor": {
+    "pleaseInputJson": "먼저 JSON 내용을 입력해 주세요",
+    "beautifySuccess": "JSON 형식이 성공적으로 정리되었습니다",
+    "beautifyError": "JSON 형식 오류로 정리할 수 없습니다",
+    "noContentToCopy": "복사할 내용이 없습니다",
+    "copySuccess": "클립보드에 복사되었습니다",
+    "copyError": "복사 실패",
+    "editorReset": "편집기가 초기화되었습니다",
+    "jsonValid": "JSON 형식이 올바릅니다",
+    "jsonInvalid": "JSON 형식 오류",
+    "jsonFormatError": "JSON 형식 오류",
+    "jsonFormatValid": "JSON 형식이 올바릅니다",
+    "beautifyJsonFormat": "JSON 형식 정리",
+    "validateJsonFormat": "JSON 형식 검증",
+    "copyToClipboard": "클립보드에 복사",
+    "resetEditor": "편집기 초기화"
+  },
+  "markdownEditor": {
+    "markdownEditor": "마크다운 편집기",
+    "markdownDescription": "# 제목, **굵게**, *기울임* 등과 같은 마크다운 구문을 지원",
+    "textEditor": "텍스트 편집기",
+    "textDescription": "단순한 텍스트 입력에 적합한 일반 텍스트 편집 모드",
+    "switchToMarkdown": "마크다운 편집기로 전환",
+    "switchToText": "텍스트 편집기로 전환"
+  }
+}

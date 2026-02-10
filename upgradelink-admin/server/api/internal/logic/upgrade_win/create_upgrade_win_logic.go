@@ -5,6 +5,7 @@ import (
 	"crypto/rand"
 	"encoding/base64"
 	"upgradelink-admin/server/api/internal/common/db_error"
+	"upgradelink-admin/server/api/internal/common/enum"
 	"upgradelink-admin/server/api/internal/common/http_error"
 	"upgradelink-admin/server/api/internal/common/i18n"
 	"upgradelink-admin/server/api/internal/common/jwtctx/companyctx"
@@ -45,14 +46,14 @@ func (l *CreateUpgradeWinLogic) CreateUpgradeWin(req *types.UpgradeWinInfo) (*ty
 	_, _ = rand.Read(winBytes)
 	winKey := base64.RawURLEncoding.EncodeToString(winBytes)
 
-	isDel := int32(0)
+	intDelFalse := enum.IsDelFalse
 	_, err = l.svcCtx.DB.UpgradeWin.Create().
 		SetNotNilCompanyID(companyctx.GetCompanyIDPointerFromCtx(l.ctx)).
 		SetNotNilKey(&winKey).
 		SetNotNilName(req.Name).
 		SetNotNilPackageName(req.PackageName).
 		SetNotNilDescription(req.Description).
-		SetNotNilIsDel(&isDel).
+		SetNotNilIsDel(&intDelFalse).
 		SetNotNilCreateAt(pointy.GetTimeMilliPointer(req.CreateAt)).
 		SetNotNilUpdateAt(pointy.GetTimeMilliPointer(req.UpdateAt)).
 		Save(l.ctx)
@@ -75,7 +76,7 @@ func (l *CreateUpgradeWinLogic) CheckCreateUpgrade(req *types.UpgradeWinInfo) er
 		return err
 	}
 	if count > 0 {
-		return http_error.NewCodeBadRequestError("应用名称重复")
+		return http_error.NewCodeBadRequestError(l.svcCtx.Trans.Trans(l.ctx, i18n.AppNameDuplicate))
 	}
 
 	// 判断是否重复
@@ -88,7 +89,7 @@ func (l *CreateUpgradeWinLogic) CheckCreateUpgrade(req *types.UpgradeWinInfo) er
 		return err
 	}
 	if count1 > 0 {
-		return http_error.NewCodeBadRequestError("应用包名名称重复")
+		return http_error.NewCodeBadRequestError(l.svcCtx.Trans.Trans(l.ctx, i18n.AppPackageNameDuplicate))
 	}
 
 	return nil

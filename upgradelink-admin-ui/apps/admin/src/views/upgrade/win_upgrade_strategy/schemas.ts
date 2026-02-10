@@ -277,9 +277,12 @@ export const dataFormSchemas: VbenFormProps = {
     {
       fieldName: "promptUpgradeContent",
       label: $t("upgrade.upgradeWinUpgradeStrategy.promptUpgradeContent"),
-      component: "Textarea",
+      component: "TextMarkdownEditor",
       componentProps: {
-        autoSize: { minRows: 5 }, // 自动调整高度（可选）
+        placeholder: "请输入描述信息",
+        autoSize: { minRows: 3 },
+        show: false,
+        triggerFields: ["upgradeType"],
       },
       // dependencies: {
       //   show: (values) => [1].includes(values.upgradeType),

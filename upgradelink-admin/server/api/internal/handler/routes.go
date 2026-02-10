@@ -182,6 +182,11 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 		[]rest.Route{
 			{
 				Method:  http.MethodPost,
+				Path:    "/cloud_file/presigned_url",
+				Handler: cloudfile.PresignedUrlHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
 				Path:    "/cloud_file/upload",
 				Handler: cloudfile.UploadHandler(serverCtx),
 			},

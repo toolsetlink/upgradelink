@@ -4,6 +4,7 @@ import (
 	"context"
 	"upgradelink-admin/server/api/internal/common"
 	"upgradelink-admin/server/api/internal/common/db_error"
+	"upgradelink-admin/server/api/internal/common/enum"
 	"upgradelink-admin/server/api/internal/common/i18n"
 	"upgradelink-admin/server/api/internal/common/utils/entx"
 	"upgradelink-admin/server/api/internal/ent"
@@ -42,14 +43,14 @@ func (l *DeleteUpgradeConfigurationUpgradeStrategyLogic) DeleteUpgradeConfigurat
 				return err
 			}
 
-			intDel := int32(1)
+			intDelTrue := enum.IsDelTrue
 			// 删除相关的灰度策略及流量限制策略
 			grayIds := make([]int, 0)
 			grayIds, _ = common.SplitStringToIntSlice(strategyData.GrayData)
 			for i := 0; i < len(grayIds); i++ {
 				err = l.svcCtx.DB.UpgradeConfigurationUpgradeStrategyGrayStrategy.Update().
 					Where(upgradeconfigurationupgradestrategygraystrategy.IDEQ(grayIds[i])).
-					SetNotNilIsDel(&intDel).
+					SetNotNilIsDel(&intDelTrue).
 					Exec(l.ctx)
 				if err != nil {
 					return err
@@ -61,7 +62,7 @@ func (l *DeleteUpgradeConfigurationUpgradeStrategyLogic) DeleteUpgradeConfigurat
 			for i := 0; i < len(flowLimitIds); i++ {
 				err = l.svcCtx.DB.UpgradeConfigurationUpgradeStrategy.Update().
 					Where(upgradeconfigurationupgradestrategy.IDEQ(flowLimitIds[i])).
-					SetNotNilIsDel(&intDel).
+					SetNotNilIsDel(&intDelTrue).
 					Exec(l.ctx)
 				if err != nil {
 					return err
@@ -75,7 +76,7 @@ func (l *DeleteUpgradeConfigurationUpgradeStrategyLogic) DeleteUpgradeConfigurat
 			}
 			err = l.svcCtx.DB.UpgradeConfigurationUpgradeStrategy.Update().
 				Where(upgradeconfigurationupgradestrategy.IDIn(Ids...)).
-				SetNotNilIsDel(&intDel).
+				SetNotNilIsDel(&intDelTrue).
 				Exec(l.ctx)
 			if err != nil {
 				return err

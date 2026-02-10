@@ -1,5 +1,50 @@
 {
 	"common": {
-		"success": "操作が成功しました"
+		"success": "操作が成功しました",
+		"failed": "操作に失敗しました",
+		"updateSuccess": "更新に成功しました",
+		"updateFailed": "更新に失敗しました",
+		"createSuccess": "作成に成功しました",
+		"createFailed": "作成に失敗しました",
+		"deleteSuccess": "削除に成功しました",
+		"deleteFailed": "削除に失敗しました",
+		"changeStatusSuccess": "ステータスの変更に成功しました",
+		"changeStatusFailed": "ステータスの変更に失敗しました",
+		"targetNotExist": "ターゲットが存在しません",
+		"databaseError": "データベースエラー",
+		"redisError": "Redisエラー",
+		"permissionDeny": "ユーザーにこのインターフェースにアクセスする権限がありません",
+		"constraintError": "操作に失敗しました: データの競合",
+		"validationError": "操作に失敗しました: 検証に失敗しました",
+		"notSingularError": "操作に失敗しました: データが一意ではありません",
+		"serviceUnavailable": "サービスは利用できません、サービスが有効になっているか確認してください",
+		"serviceBusy": "サービスが混雑しています、後でもう一度お試しください",
+		"cacheError": "キャッシュエラー"
+	},
+	"init": {
+		"alreadyInit": "既に初期化されています",
+		"initializeIsRunning": "初期化中です"
+	},
+	"sys": {
+		"api": {
+			"apiRequestFailed": "APIリクエストに失敗しました"
+		}
+	},
+	"upgrade": {
+		"appNameDuplicate": "アプリ名が重複しています",
+		"appPackageNameDuplicate": "アプリパッケージ名が重複しています",
+		"appVersionDuplicate": "現在のアプリバージョン名が重複しています",
+		"appVersionCodeDuplicate": "現在のアプリバージョンコードが重複しています",
+		"appVersionHasStrategy": "アプリバージョンにまだ対応する戦略があります、削除できません",
+		"taskNameDuplicate": "タスク名が重複しています",
+		"taskTimeInvalid": "タスクの開始時間が終了時間以上です",
+		"grayStrategyTimeInvalid": "グレー戦略の開始時間が終了時間以下です",
+		"grayStrategyTimeOverlap": "グレー戦略の開始時間と終了時間に重なりがあります",
+		"flowStrategyTimeInvalid": "フロー戦略の開始時間が終了時間以下です",
+		"flowStrategyTimeOverlap": "フロー戦略の開始時間と終了時間に重なりがあります",
+		"versionFormatError": "バージョン名の形式が正しくありません",
+		"deviceUniqueIdDuplicate": "デバイスの一意識別子が重複しています",
+		"deviceGroupNameDuplicate": "デバイスグループ名が重複しています",
+		"deviceModelNameDuplicate": "デバイスモデル名が重複しています"
 	}
 }

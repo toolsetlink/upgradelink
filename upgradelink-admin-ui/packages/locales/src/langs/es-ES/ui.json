@@ -1,0 +1,114 @@
+{
+  "formRules": {
+    "required": "Por favor, introduzca {0}",
+    "selectRequired": "Por favor, seleccione {0}",
+    "minLength": "{0} debe tener al menos {1} caracteres",
+    "maxLength": "{0} puede tener como máximo {1} caracteres",
+    "length": "{0} debe tener {1} caracteres",
+    "alreadyExists": "{0} `{1}` ya existe",
+    "startWith": "{0} debe comenzar con `{1}`",
+    "invalidURL": "Por favor, introduzca una URL válida",
+    "sizeLimit": "El tamaño del archivo no puede exceder {0}MB",
+    "previewWarning": "No se puede abrir el archivo, no hay URL disponible o dirección de vista previa"
+  },
+  "actionTitle": {
+    "edit": "Modificar {0}",
+    "create": "Crear {0}",
+    "delete": "Eliminar {0}",
+    "view": "Ver {0}"
+  },
+  "actionMessage": {
+    "deleteConfirm": "¿Estás seguro de que quieres eliminar {0}?",
+    "deleting": "Eliminando {0} ...",
+    "deleteSuccess": "{0} eliminado con éxito",
+    "operationSuccess": "Operación exitosa",
+    "operationFailed": "Operación fallida"
+  },
+  "placeholder": {
+    "input": "Por favor, introduzca",
+    "select": "Por favor, seleccione",
+    "upload": "Haz clic para subir"
+  },
+  "captcha": {
+    "title": "Por favor, complete la verificación de seguridad",
+    "sliderSuccessText": "Pasado",
+    "sliderDefaultText": "Deslizador y arrastrar",
+    "alt": "Soporta valor del atributo src de la etiqueta img",
+    "sliderRotateDefaultTip": "Haz clic en la imagen para refrescar",
+    "sliderTranslateDefaultTip": "Haz clic en la imagen para refrescar",
+    "sliderRotateFailTip": "Validación fallida",
+    "sliderRotateSuccessTip": "Validación exitosa, tiempo {0} segundos",
+    "sliderTranslateFailTip": "Validación fallida",
+    "sliderTranslateSuccessTip": "Validación exitosa, tiempo {0} segundos",
+    "refreshAriaLabel": "Refrescar captcha",
+    "confirmAriaLabel": "Confirmar selección",
+    "confirm": "Confirmar",
+    "pointAriaLabel": "Haz clic en el punto",
+    "clickInOrder": "Por favor, haz clic en orden"
+  },
+  "iconPicker": {
+    "placeholder": "Selecciona un icono",
+    "search": "Buscar icono..."
+  },
+  "jsonViewer": {
+    "copy": "Copiar",
+    "copied": "Copiado"
+  },
+  "fallback": {
+    "pageNotFound": "¡Vaya! Página no encontrada",
+    "pageNotFoundDesc": "Lo sentimos, no pudimos encontrar la página que buscabas.",
+    "forbidden": "¡Vaya! Acceso denegado",
+    "forbiddenDesc": "Lo sentimos, pero no tienes permiso para acceder a esta página.",
+    "internalError": "¡Vaya! Algo salió mal",
+    "internalErrorDesc": "Lo sentimos, pero el servidor encontró un error.",
+    "offline": "Página sin conexión",
+    "offlineError": "¡Vaya! Error de red",
+    "offlineErrorDesc": "Lo sentimos, no se puede conectar a internet. Comprueba tu conexión.",
+    "comingSoon": "Próximamente",
+    "http": {
+      "requestTimeout": "La solicitud ha caducado. Por favor, inténtelo de nuevo más tarde.",
+      "networkError": "Se ha producido un error de red. Por favor, comprueba tu conexión a internet e inténtalo de nuevo.",
+      "badRequest": "Solicitud incorrecta. Por favor, comprueba tu entrada e inténtalo de nuevo.",
+      "unauthorized": "No autorizado. Por favor, inicia sesión para continuar.",
+      "forbidden": "Prohibido. No tienes permiso para acceder a este recurso.",
+      "notFound": "No encontrado. El recurso solicitado no pudo ser encontrado.",
+      "internalServerError": "Error interno del servidor. Algo salió mal en nuestro lado. Por favor, inténtelo de nuevo más tarde."
+    }
+  },
+  "widgets": {
+    "document": "Documento",
+    "qa": "Preguntas y respuestas",
+    "setting": "Configuraciones",
+    "logoutTip": "¿Quieres cerrar sesión?",
+    "viewAll": "Ver todos los mensajes",
+    "notifications": "Notificaciones",
+    "markAllAsRead": "Marcar todo como leído",
+    "clearNotifications": "Limpiar",
+    "checkUpdatesTitle": "Nueva versión disponible",
+    "checkUpdatesDescription": "Haz clic para refrescar y obtener la última versión",
+    "search": {
+      "title": "Buscar",
+      "searchNavigate": "Navegación de búsqueda",
+      "select": "Seleccionar",
+      "navigate": "Navegar",
+      "close": "Cerrar",
+      "noResults": "No se encontraron resultados de búsqueda",
+      "noRecent": "No hay historial de búsqueda",
+      "recent": "Historial de búsqueda"
+    },
+    "lockScreen": {
+      "title": "Pantalla de bloqueo",
+      "screenButton": "Bloqueando",
+      "password": "Contraseña",
+      "placeholder": "Por favor, introduzca la contraseña",
+      "unlock": "Haz clic para desbloquear",
+      "errorPasswordTip": "Error de contraseña, por favor, introduzca de nuevo",
+      "backToLogin": "Volver al inicio de sesión",
+      "entry": "Entrar en el sistema"
+    },
+    "timezone": {
+      "setTimezone": "Establecer zona horaria",
+      "setSuccess": "Zona horaria establecida con éxito"
+    }
+  }
+}

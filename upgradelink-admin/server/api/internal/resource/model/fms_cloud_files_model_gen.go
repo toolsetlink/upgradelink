@@ -41,6 +41,7 @@ type (
 		CreatedAt                 time.Time     `db:"created_at"` // Create Time | 创建日期
 		UpdatedAt                 time.Time     `db:"updated_at"` // Update Time | 修改日期
 		State                     int64         `db:"state"`      // State true: normal false: ban | 状态 true 正常 false 禁用
+		IsDel                     int64         `db:"is_del"`     // 是否删除 0：正常；1：已删除
 		Name                      string        `db:"name"`       // The file''s name | 文件名
 		Url                       string        `db:"url"`        // The file''s url | 文件地址
 		Size                      uint64        `db:"size"`       // The file''s size | 文件大小
@@ -79,14 +80,14 @@ func (m *defaultFmsCloudFilesModel) FindOne(ctx context.Context, id string) (*Fm
 }
 
 func (m *defaultFmsCloudFilesModel) Insert(ctx context.Context, data *FmsCloudFiles) (sql.Result, error) {
-	query := fmt.Sprintf("insert into %s (%s) values (?, ?, ?, ?, ?, ?, ?, ?, ?)", m.table, fmsCloudFilesRowsExpectAutoSet)
-	ret, err := m.conn.ExecCtx(ctx, query, data.Id, data.State, data.Name, data.Url, data.Size, data.Md5, data.FileType, data.UserId, data.CloudFileStorageProviders)
+	query := fmt.Sprintf("insert into %s (%s) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", m.table, fmsCloudFilesRowsExpectAutoSet)
+	ret, err := m.conn.ExecCtx(ctx, query, data.Id, data.State, data.IsDel, data.Name, data.Url, data.Size, data.Md5, data.FileType, data.UserId, data.CloudFileStorageProviders)
 	return ret, err
 }
 
 func (m *defaultFmsCloudFilesModel) Update(ctx context.Context, data *FmsCloudFiles) error {
 	query := fmt.Sprintf("update %s set %s where `id` = ?", m.table, fmsCloudFilesRowsWithPlaceHolder)
-	_, err := m.conn.ExecCtx(ctx, query, data.State, data.Name, data.Url, data.Size, data.Md5, data.FileType, data.UserId, data.CloudFileStorageProviders, data.Id)
+	_, err := m.conn.ExecCtx(ctx, query, data.State, data.IsDel, data.Name, data.Url, data.Size, data.Md5, data.FileType, data.UserId, data.CloudFileStorageProviders, data.Id)
 	return err
 }
 

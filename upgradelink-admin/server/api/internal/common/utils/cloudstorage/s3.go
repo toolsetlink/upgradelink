@@ -20,11 +20,11 @@ import (
 
 // S3Config 定义 S3 配置结构体
 type S3Config struct {
-	Bucket   string
-	SecretID string
+	Bucket    string
+	SecretID  string
 	SecretKey string
-	Endpoint string
-	Region   string
+	Endpoint  string
+	Region    string
 }
 
 // S3Service S3 上传服务结构体
@@ -76,7 +76,7 @@ func (s *S3Service) UploadReader(ctx context.Context, reader io.Reader, key stri
 		// 如果已经是 io.ReadSeeker，直接使用
 		return s.uploadReadSeeker(ctx, rs, key)
 	}
-	
+
 	// 否则，我们需要将 io.Reader 转换为 io.ReadSeeker
 	// 这里我们可以将 reader 的内容读取到一个缓冲区，然后使用 bytes.Reader 作为 ReadSeeker
 	buf, err := io.ReadAll(reader)
@@ -84,7 +84,7 @@ func (s *S3Service) UploadReader(ctx context.Context, reader io.Reader, key stri
 		logx.Errorw("failed to read from reader", logx.Field("detail", err), logx.Field("key", key))
 		return "", errors.New("failed to read from reader")
 	}
-	
+
 	return s.uploadReadSeeker(ctx, bytes.NewReader(buf), key)
 }
 
@@ -122,4 +122,25 @@ func (s *S3Service) uploadReadSeeker(ctx context.Context, reader io.ReadSeeker, 
 // buildFileURL 构建文件访问 URL
 func (s *S3Service) buildFileURL(key string) string {
 	return "https://" + s.config.Bucket + "." + s.config.Endpoint + key
+}
+
+// GeneratePresignedURL 生成预签名 URL
+// @param ctx 上下文
+// @param key 存储在 S3 中的键
+// @param expiry 预签名 URL 的过期时间
+// @return 预签名 URL
+// @return 错误信息
+func (s *S3Service) GeneratePresignedURL(ctx context.Context, key string, expiry time.Duration) (string, error) {
+	req, _ := s.client.PutObjectRequest(&s3.PutObjectInput{
+		Bucket: aws.String(s.config.Bucket),
+		Key:    aws.String(key),
+	})
+
+	url, err := req.Presign(expiry)
+	if err != nil {
+		logx.Errorw("failed to generate presigned URL", logx.Field("detail", err), logx.Field("key", key))
+		return "", errors.New("failed to generate presigned URL")
+	}
+
+	return url, nil
 }

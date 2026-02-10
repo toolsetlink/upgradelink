@@ -24,6 +24,8 @@ type FmsCloudFile struct {
 	UpdatedAt time.Time `json:"updated_at,omitempty"`
 	// State true: normal false: ban | 状态 true 正常 false 禁用
 	State bool `json:"state,omitempty"`
+	// 是否删除 0：正常；1：已删除
+	IsDel int32 `json:"is_del,omitempty"`
 	// The file's name | 文件名
 	Name string `json:"name,omitempty"`
 	// The file's url | 文件地址
@@ -46,7 +48,7 @@ func (*FmsCloudFile) scanValues(columns []string) ([]any, error) {
 		switch columns[i] {
 		case fmscloudfile.FieldState:
 			values[i] = new(sql.NullBool)
-		case fmscloudfile.FieldSize, fmscloudfile.FieldFileType:
+		case fmscloudfile.FieldIsDel, fmscloudfile.FieldSize, fmscloudfile.FieldFileType:
 			values[i] = new(sql.NullInt64)
 		case fmscloudfile.FieldID, fmscloudfile.FieldName, fmscloudfile.FieldURL, fmscloudfile.FieldMd5, fmscloudfile.FieldUserID:
 			values[i] = new(sql.NullString)
@@ -90,6 +92,12 @@ func (_m *FmsCloudFile) assignValues(columns []string, values []any) error {
 				return fmt.Errorf("unexpected type %T for field state", values[i])
 			} else if value.Valid {
 				_m.State = value.Bool
+			}
+		case fmscloudfile.FieldIsDel:
+			if value, ok := values[i].(*sql.NullInt64); !ok {
+				return fmt.Errorf("unexpected type %T for field is_del", values[i])
+			} else if value.Valid {
+				_m.IsDel = int32(value.Int64)
 			}
 		case fmscloudfile.FieldName:
 			if value, ok := values[i].(*sql.NullString); !ok {
@@ -171,6 +179,9 @@ func (_m *FmsCloudFile) String() string {
 	builder.WriteString(", ")
 	builder.WriteString("state=")
 	builder.WriteString(fmt.Sprintf("%v", _m.State))
+	builder.WriteString(", ")
+	builder.WriteString("is_del=")
+	builder.WriteString(fmt.Sprintf("%v", _m.IsDel))
 	builder.WriteString(", ")
 	builder.WriteString("name=")
 	builder.WriteString(_m.Name)

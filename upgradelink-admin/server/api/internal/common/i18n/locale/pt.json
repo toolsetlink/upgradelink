@@ -1,0 +1,50 @@
+{
+	"common": {
+		"success": "Com sucesso",
+		"failed": "Falhou",
+		"updateSuccess": "Atualização bem-sucedida",
+		"updateFailed": "Falha na atualização",
+		"createSuccess": "Criado com sucesso",
+		"createFailed": "Falha na criação",
+		"deleteSuccess": "Excluído com sucesso",
+		"deleteFailed": "Falha na exclusão",
+		"changeStatusSuccess": "Status alterado com sucesso",
+		"changeStatusFailed": "Falha ao alterar status",
+		"targetNotExist": "O destino não existe",
+		"databaseError": "Erro no banco de dados",
+		"redisError": "Erro no Redis",
+		"permissionDeny": "O usuário não tem permissão para acessar esta interface",
+		"constraintError": "Falha na operação: conflito de dados",
+		"validationError": "Falha na operação: validação falhou",
+		"notSingularError": "Falha na operação: os dados não são únicos",
+		"serviceUnavailable": "O serviço não está disponível, verifique se o serviço está habilitado",
+		"serviceBusy": "O serviço está ocupado, tente novamente mais tarde",
+		"cacheError": "Erro de cache"
+	},
+	"init": {
+		"alreadyInit": "Já inicializado",
+		"initializeIsRunning": "A inicialização está em andamento"
+	},
+	"sys": {
+		"api": {
+			"apiRequestFailed": "Falha na requisição da API"
+		}
+	},
+	"upgrade": {
+		"appNameDuplicate": "Nome do aplicativo duplicado",
+		"appPackageNameDuplicate": "Nome do pacote do aplicativo duplicado",
+		"appVersionDuplicate": "Nome da versão atual do aplicativo duplicado",
+		"appVersionCodeDuplicate": "Código da versão atual do aplicativo duplicado",
+		"appVersionHasStrategy": "A versão do aplicativo ainda tem estratégia correspondente, não pode ser excluída",
+		"taskNameDuplicate": "Nome da tarefa duplicado",
+		"taskTimeInvalid": "O horário de início da tarefa é maior ou igual ao horário de término",
+		"grayStrategyTimeInvalid": "A estratégia de gradiente tem horário de início menor ou igual ao horário de término",
+		"grayStrategyTimeOverlap": "A estratégia de gradiente tem horário de início e término sobrepostos",
+		"flowStrategyTimeInvalid": "A estratégia de fluxo tem horário de início menor ou igual ao horário de término",
+		"flowStrategyTimeOverlap": "A estratégia de fluxo tem horário de início e término sobrepostos",
+		"versionFormatError": "Erro no formato do nome da versão",
+		"deviceUniqueIdDuplicate": "ID único do dispositivo duplicado",
+		"deviceGroupNameDuplicate": "Nome do grupo de dispositivos duplicado",
+		"deviceModelNameDuplicate": "Nome do modelo do dispositivo duplicado"
+	}
+}

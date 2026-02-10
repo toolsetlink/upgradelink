@@ -3,6 +3,7 @@ package upgrade_dev_model
 import (
 	"context"
 	"upgradelink-admin/server/api/internal/common/db_error"
+	"upgradelink-admin/server/api/internal/common/enum"
 	"upgradelink-admin/server/api/internal/common/i18n"
 	"upgradelink-admin/server/api/internal/ent/upgradedevmodel"
 	"upgradelink-admin/server/api/internal/svc"
@@ -27,14 +28,14 @@ func NewDeleteUpgradeDevModelLogic(ctx context.Context, svcCtx *svc.ServiceConte
 
 func (l *DeleteUpgradeDevModelLogic) DeleteUpgradeDevModel(req *types.IDsReq) (*types.BaseMsgResp, error) {
 
-	intDel := int32(1)
+	intDelTrue := enum.IsDelTrue
 	var Ids []int
 	for _, id := range req.Ids {
 		Ids = append(Ids, int(id))
 	}
 	err := l.svcCtx.DB.UpgradeDevModel.Update().
 		Where(upgradedevmodel.IDIn(Ids...)).
-		SetNotNilIsDel(&intDel).
+		SetNotNilIsDel(&intDelTrue).
 		Exec(l.ctx)
 
 	if err != nil {

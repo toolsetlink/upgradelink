@@ -5,6 +5,7 @@ import (
 	"crypto/rand"
 	"encoding/base64"
 	"upgradelink-admin/server/api/internal/common/db_error"
+	"upgradelink-admin/server/api/internal/common/enum"
 	"upgradelink-admin/server/api/internal/common/http_error"
 	"upgradelink-admin/server/api/internal/common/i18n"
 	"upgradelink-admin/server/api/internal/common/jwtctx/companyctx"
@@ -45,13 +46,13 @@ func (l *CreateUpgradeUrlLogic) CreateUpgradeUrl(req *types.UpgradeUrlInfo) (*ty
 	_, _ = rand.Read(urlBytes)
 	urlKey := base64.RawURLEncoding.EncodeToString(urlBytes)
 
-	isDel := int32(0)
+	intDelFalse := enum.IsDelFalse
 	_, err = l.svcCtx.DB.UpgradeUrl.Create().
 		SetNotNilCompanyID(companyctx.GetCompanyIDPointerFromCtx(l.ctx)).
 		SetNotNilKey(&urlKey).
 		SetNotNilName(req.Name).
 		SetNotNilDescription(req.Description).
-		SetNotNilIsDel(&isDel).
+		SetNotNilIsDel(&intDelFalse).
 		SetNotNilCreateAt(pointy.GetTimeMilliPointer(req.CreateAt)).
 		SetNotNilUpdateAt(pointy.GetTimeMilliPointer(req.UpdateAt)).
 		Save(l.ctx)
@@ -74,7 +75,7 @@ func (l *CreateUpgradeUrlLogic) CheckCreateUpgradeUrl(req *types.UpgradeUrlInfo)
 		return err
 	}
 	if count > 0 {
-		return http_error.NewCodeBadRequestError("应用名称重复")
+		return http_error.NewCodeBadRequestError(l.svcCtx.Trans.Trans(l.ctx, i18n.AppNameDuplicate))
 	}
 
 	return nil

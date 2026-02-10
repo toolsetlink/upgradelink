@@ -2,7 +2,10 @@ package cloudfile
 
 import (
 	"context"
-
+	"upgradelink-admin/server/api/internal/common/db_error"
+	"upgradelink-admin/server/api/internal/common/enum"
+	"upgradelink-admin/server/api/internal/common/i18n"
+	"upgradelink-admin/server/api/internal/ent/fmscloudfile"
 	"upgradelink-admin/server/api/internal/svc"
 	"upgradelink-admin/server/api/internal/types"
 
@@ -24,7 +27,21 @@ func NewDeleteCloudFileLogic(ctx context.Context, svcCtx *svc.ServiceContext) *D
 }
 
 func (l *DeleteCloudFileLogic) DeleteCloudFile(req *types.UUIDsReq) (resp *types.BaseMsgResp, err error) {
-	// todo: add your logic here and delete this line
 
-	return
+	intDelTrue := enum.IsDelTrue
+	var Ids []string
+	for _, id := range req.Ids {
+		Ids = append(Ids, id)
+	}
+
+	err = l.svcCtx.DB.FmsCloudFile.Update().
+		Where(fmscloudfile.IDIn(Ids...)).
+		SetNotNilIsDel(&intDelTrue).
+		Exec(l.ctx)
+
+	if err != nil {
+		return nil, db_error.DefaultEntError(l.Logger, err, req)
+	}
+
+	return &types.BaseMsgResp{Msg: l.svcCtx.Trans.Trans(l.ctx, i18n.DeleteSuccess)}, nil
 }

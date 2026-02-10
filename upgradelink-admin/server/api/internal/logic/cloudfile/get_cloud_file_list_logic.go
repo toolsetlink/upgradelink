@@ -2,9 +2,9 @@ package cloudfile
 
 import (
 	"context"
-	"fmt"
 	"upgradelink-admin/server/api/internal/common/db_error"
 	"upgradelink-admin/server/api/internal/common/i18n"
+	"upgradelink-admin/server/api/internal/common/utils/filex"
 	"upgradelink-admin/server/api/internal/common/utils/pointy"
 	"upgradelink-admin/server/api/internal/ent/fmscloudfile"
 	"upgradelink-admin/server/api/internal/ent/predicate"
@@ -29,7 +29,6 @@ func NewGetCloudFileListLogic(ctx context.Context, svcCtx *svc.ServiceContext) *
 }
 
 func (l *GetCloudFileListLogic) GetCloudFileList(req *types.CloudFileListReq) (resp *types.CloudFileListResp, err error) {
-	fmt.Println("in GetCloudFileList")
 
 	var predicates []predicate.FmsCloudFile
 	if req.Name != nil {
@@ -51,6 +50,8 @@ func (l *GetCloudFileListLogic) GetCloudFileList(req *types.CloudFileListReq) (r
 	resp.Data.Total = data.PageDetails.Total
 
 	for _, v := range data.List {
+		fileType := filex.ConvertUint8ToFileType(v.FileType)
+
 		resp.Data.Data = append(resp.Data.Data,
 			types.CloudFileInfo{
 				BaseUUIDInfo: types.BaseUUIDInfo{
@@ -58,13 +59,13 @@ func (l *GetCloudFileListLogic) GetCloudFileList(req *types.CloudFileListReq) (r
 					CreatedAt: pointy.GetPointer(v.CreatedAt.UnixMilli()),
 					UpdatedAt: pointy.GetPointer(v.UpdatedAt.UnixMilli()),
 				},
-				State:       &v.State,
-				Name:        &v.Name,
-				Url:         &v.URL,
-				Size:        &v.Size,
-				FileType:    &v.FileType,
-				UserId:      &v.UserID,
-				RelativeSrc: &v.URL,
+				State:    &v.State,
+				Name:     &v.Name,
+				Url:      &v.URL,
+				Size:     &v.Size,
+				Md5:      &v.Md5,
+				FileType: &fileType,
+				UserId:   &v.UserID,
 			})
 	}
 

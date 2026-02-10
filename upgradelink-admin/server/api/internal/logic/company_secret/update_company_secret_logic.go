@@ -52,18 +52,55 @@ func (l *UpdateCompanySecretLogic) UpdateCompanySecret(req *types.CompanySecretI
 	// 整理权限数据 判断数据是否都为空，如果都为空的话，字段录入为空字符
 	ruleDataStr := ""
 	if len(req.RuleDataUrl) != 0 || len(req.RuleDataFile) != 0 || len(req.RuleDataConfiguration) != 0 || len(req.RuleDataTauri) != 0 || len(req.RuleDataElectron) != 0 || len(req.RuleDataApk) != 0 || len(req.RuleDataWin) != 0 || len(req.RuleDataMac) != 0 || len(req.RuleDataLnx) != 0 {
+
+		reqRuleDataUrl := []int{}
+		if len(req.RuleDataUrl) != 0 {
+			reqRuleDataUrl = req.RuleDataUrl
+		}
+		reqRuleDataFile := []int{}
+		if len(req.RuleDataFile) != 0 {
+			reqRuleDataFile = req.RuleDataFile
+		}
+		reqRuleDataConfiguration := []int{}
+		if len(req.RuleDataConfiguration) != 0 {
+			reqRuleDataConfiguration = req.RuleDataConfiguration
+		}
+		reqRuleDataTauri := []int{}
+		if len(req.RuleDataTauri) != 0 {
+			reqRuleDataTauri = req.RuleDataTauri
+		}
+		reqRuleDataElectron := []int{}
+		if len(req.RuleDataElectron) != 0 {
+			reqRuleDataElectron = req.RuleDataElectron
+		}
+		reqRuleDataApk := []int{}
+		if len(req.RuleDataApk) != 0 {
+			reqRuleDataApk = req.RuleDataApk
+		}
+		reqRuleDataWin := []int{}
+		if len(req.RuleDataWin) != 0 {
+			reqRuleDataWin = req.RuleDataWin
+		}
+		reqRuleDataMac := []int{}
+		if len(req.RuleDataMac) != 0 {
+			reqRuleDataMac = req.RuleDataMac
+		}
+		reqRuleDataLnx := []int{}
+		if len(req.RuleDataLnx) != 0 {
+			reqRuleDataLnx = req.RuleDataLnx
+		}
 		// struct 转 json 字符串
 		var updateRuleDataInfo UpdateRuleDataInfo
 		updateRuleDataInfo = UpdateRuleDataInfo{
-			Url:           req.RuleDataUrl,
-			File:          req.RuleDataFile,
-			Configuration: req.RuleDataConfiguration,
-			Tauri:         req.RuleDataTauri,
-			Electron:      req.RuleDataElectron,
-			Apk:           req.RuleDataApk,
-			Win:           req.RuleDataWin,
-			Mac:           req.RuleDataMac,
-			Lnx:           req.RuleDataLnx,
+			Url:           reqRuleDataUrl,
+			File:          reqRuleDataFile,
+			Configuration: reqRuleDataConfiguration,
+			Tauri:         reqRuleDataTauri,
+			Electron:      reqRuleDataElectron,
+			Apk:           reqRuleDataApk,
+			Win:           reqRuleDataWin,
+			Mac:           reqRuleDataMac,
+			Lnx:           reqRuleDataLnx,
 		}
 
 		// updateRuleDataInfo 转为 json 字符串
@@ -75,8 +112,6 @@ func (l *UpdateCompanySecretLogic) UpdateCompanySecret(req *types.CompanySecretI
 	}
 
 	err = l.svcCtx.DB.CompanySecret.UpdateOneID(*req.Id).
-		SetNotNilAccessKey(&req.AccessKey).
-		SetNotNilSecretKey(&req.SecretKey).
 		SetNotNilValidityDatetime(pointy.GetTimeMilliPointer(&validityDatetimeInt)).
 		SetNotNilRuleData(&ruleDataStr).
 		SetNotNilEnable(req.Enable).

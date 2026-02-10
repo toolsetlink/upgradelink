@@ -1,24 +1,18 @@
-class GlobalShareState {
-  #components = {};
-  #message = {};
-  /**
-   * 定义框架内部各个场景的消息提示
-   */
-  defineMessage({ copyPreferencesSuccess }) {
-    this.#message = {
-      copyPreferencesSuccess
-    };
-  }
-  getComponents() {
-    return this.#components;
-  }
-  getMessage() {
-    return this.#message;
-  }
-  setComponents(value) {
-    this.#components = value;
-  }
-}
-const globalShareState = new GlobalShareState();
+import { createJiti } from "../../../../../node_modules/.pnpm/jiti@2.6.1/node_modules/jiti/lib/jiti.mjs";
 
-export { globalShareState };
+const jiti = createJiti(import.meta.url, {
+  "interopDefault": true,
+  "alias": {
+    "@vben-core/shared": "/Users/songang/LinkProjects/open/upgradelink/upgradelink-admin-ui/packages/@core/base/shared"
+  },
+  "transformOptions": {
+    "babel": {
+      "plugins": []
+    }
+  }
+})
+
+/** @type {import("/Users/songang/LinkProjects/open/upgradelink/upgradelink-admin-ui/packages/@core/base/shared/src/global-state.js")} */
+const _module = await jiti.import("/Users/songang/LinkProjects/open/upgradelink/upgradelink-admin-ui/packages/@core/base/shared/src/global-state.ts");
+
+export const globalShareState = _module.globalShareState;

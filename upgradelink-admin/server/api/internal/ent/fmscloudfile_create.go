@@ -62,6 +62,20 @@ func (_c *FmsCloudFileCreate) SetNillableState(v *bool) *FmsCloudFileCreate {
 	return _c
 }
 
+// SetIsDel sets the "is_del" field.
+func (_c *FmsCloudFileCreate) SetIsDel(v int32) *FmsCloudFileCreate {
+	_c.mutation.SetIsDel(v)
+	return _c
+}
+
+// SetNillableIsDel sets the "is_del" field if the given value is not nil.
+func (_c *FmsCloudFileCreate) SetNillableIsDel(v *int32) *FmsCloudFileCreate {
+	if v != nil {
+		_c.SetIsDel(*v)
+	}
+	return _c
+}
+
 // SetName sets the "name" field.
 func (_c *FmsCloudFileCreate) SetName(v string) *FmsCloudFileCreate {
 	_c.mutation.SetName(v)
@@ -207,6 +221,10 @@ func (_c *FmsCloudFileCreate) createSpec() (*FmsCloudFile, *sqlgraph.CreateSpec)
 	if value, ok := _c.mutation.State(); ok {
 		_spec.SetField(fmscloudfile.FieldState, field.TypeBool, value)
 		_node.State = value
+	}
+	if value, ok := _c.mutation.IsDel(); ok {
+		_spec.SetField(fmscloudfile.FieldIsDel, field.TypeInt32, value)
+		_node.IsDel = value
 	}
 	if value, ok := _c.mutation.Name(); ok {
 		_spec.SetField(fmscloudfile.FieldName, field.TypeString, value)

@@ -17,14 +17,6 @@ defineOptions({
 });
 
 const props = defineProps({
-  multiple: {
-    type: Boolean,
-    default: false,
-  },
-  provider: {
-    type: String,
-    default: "local",
-  },
   value: {
     type: [Array, Object, String, Number],
     default: undefined,
@@ -140,7 +132,6 @@ watch(
       v-if="!fileList?.length"
       v-model:file-list="fileList"
       :custom-request="handleUpload"
-      :multiple="props.multiple"
       :max-count="1"
       :show-upload-list="false"
       :accept="

@@ -4,6 +4,7 @@ import (
 	"context"
 	"upgradelink-admin/server/api/internal/common"
 	"upgradelink-admin/server/api/internal/common/db_error"
+	"upgradelink-admin/server/api/internal/common/enum"
 	"upgradelink-admin/server/api/internal/common/http_error"
 	"upgradelink-admin/server/api/internal/common/i18n"
 	"upgradelink-admin/server/api/internal/common/jwtctx/companyctx"
@@ -42,7 +43,7 @@ func (l *CreateUpgradeTauriVersionLogic) CreateUpgradeTauriVersion(req *types.Up
 	// versionName转换为versionCode
 	versionCode, err := common.SemVerToInt(*req.VersionName)
 	if err != nil {
-		return nil, http_error.NewCodeBadRequestError("版本名称格式错误")
+		return nil, http_error.NewCodeBadRequestError(l.svcCtx.Trans.Trans(l.ctx, i18n.VersionFormatError))
 	}
 
 	// 判断安装包文件是否传了,如果没有传的话，把升级包信息赋值给安装包信息
@@ -50,7 +51,7 @@ func (l *CreateUpgradeTauriVersionLogic) CreateUpgradeTauriVersion(req *types.Up
 		req.InstallCloudFileId = req.CloudFileId
 	}
 
-	isDel := int32(0)
+	intDelFalse := enum.IsDelFalse
 	_, err = l.svcCtx.DB.UpgradeTauriVersion.Create().
 		SetNotNilCompanyID(companyctx.GetCompanyIDPointerFromCtx(l.ctx)).
 		SetNotNilTauriID(req.TauriId).
@@ -62,7 +63,7 @@ func (l *CreateUpgradeTauriVersionLogic) CreateUpgradeTauriVersion(req *types.Up
 		SetNotNilArch(req.Arch).
 		SetNotNilSignature(req.Signature).
 		SetNotNilDescription(req.Description).
-		SetNotNilIsDel(&isDel).
+		SetNotNilIsDel(&intDelFalse).
 		SetNotNilCreateAt(pointy.GetTimeMilliPointer(req.CreateAt)).
 		SetNotNilUpdateAt(pointy.GetTimeMilliPointer(req.UpdateAt)).
 		Save(l.ctx)
@@ -79,7 +80,7 @@ func (l *CreateUpgradeTauriVersionLogic) CheckCreateUpgradeTauriVersion(req *typ
 	// versionName转换为versionCode
 	versionCode, err := common.SemVerToInt(*req.VersionName)
 	if err != nil {
-		return http_error.NewCodeBadRequestError("版本名称格式错误")
+		return http_error.NewCodeBadRequestError(l.svcCtx.Trans.Trans(l.ctx, i18n.VersionFormatError))
 	}
 
 	// 判断是否重复
@@ -95,7 +96,7 @@ func (l *CreateUpgradeTauriVersionLogic) CheckCreateUpgradeTauriVersion(req *typ
 		return err
 	}
 	if count > 0 {
-		return http_error.NewCodeBadRequestError("当前应用版本名重复")
+		return http_error.NewCodeBadRequestError(l.svcCtx.Trans.Trans(l.ctx, i18n.AppVersionDuplicate))
 	}
 
 	// 判断是否重复
@@ -111,7 +112,7 @@ func (l *CreateUpgradeTauriVersionLogic) CheckCreateUpgradeTauriVersion(req *typ
 		return err
 	}
 	if count1 > 0 {
-		return http_error.NewCodeBadRequestError("当前应用版本号重复")
+		return http_error.NewCodeBadRequestError(l.svcCtx.Trans.Trans(l.ctx, i18n.AppVersionCodeDuplicate))
 	}
 
 	return nil

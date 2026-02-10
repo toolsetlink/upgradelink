@@ -70,7 +70,7 @@ func (l *UpdateUpgradeApkLogic) CheckUpdateUpgradeApk(req *types.UpgradeApkInfo)
 		return err
 	}
 	if count > 0 {
-		return http_error.NewCodeBadRequestError("应用名称重复")
+		return http_error.NewCodeBadRequestError(l.svcCtx.Trans.Trans(l.ctx, i18n.AppNameDuplicate))
 	}
 
 	// 判断是否重复
@@ -84,7 +84,7 @@ func (l *UpdateUpgradeApkLogic) CheckUpdateUpgradeApk(req *types.UpgradeApkInfo)
 		return err
 	}
 	if count1 > 0 {
-		return http_error.NewCodeBadRequestError("应用包名名称重复")
+		return http_error.NewCodeBadRequestError(l.svcCtx.Trans.Trans(l.ctx, i18n.AppPackageNameDuplicate))
 	}
 
 	return nil

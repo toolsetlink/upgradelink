@@ -364,11 +364,8 @@ func uploadPatchToCloud(ctx context.Context, svcCtx *svc.ServiceContext, patch m
 		return updatePatchStatusWithError(ctx, svcCtx, patch, PatchStatusUploadFailed, err)
 	}
 
-	// 7. 如果配置了 CDN URL，使用 CDN URL
+	// 7.
 	finalURL := uploadedURL
-	if svcCtx.Config.UploadConf.CdnUrl != "" {
-		finalURL = fmt.Sprintf("%s%s", svcCtx.Config.UploadConf.CdnUrl, fileName)
-	}
 
 	// 8. 生成云文件 ID
 	cloudFileID := uuidx.NewUUID().String()

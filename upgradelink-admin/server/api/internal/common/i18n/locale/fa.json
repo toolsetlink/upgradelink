@@ -1,0 +1,50 @@
+{
+	"common": {
+		"success": "موفق",
+		"failed": "ناموفق",
+		"updateSuccess": "بروزرسانی موفق",
+		"updateFailed": "بروزرسانی ناموفق",
+		"createSuccess": "ایجاد موفق",
+		"createFailed": "ایجاد ناموفق",
+		"deleteSuccess": "حذف موفق",
+		"deleteFailed": "حذف ناموفق",
+		"changeStatusSuccess": "تغییر وضعیت موفق",
+		"changeStatusFailed": "تغییر وضعیت ناموفق",
+		"targetNotExist": "هدف وجود ندارد",
+		"databaseError": "خطای پایگاه داده",
+		"redisError": "خطای Redis",
+		"permissionDeny": "کاربر مجوز دسترسی به این رابط را ندارد",
+		"constraintError": "عملکرد ناموفق: تعارض داده",
+		"validationError": "عملکرد ناموفق: اعتبارسنجی ناموفق",
+		"notSingularError": "عملکرد ناموفق: داده ها منحصر به فرد نیستند",
+		"serviceUnavailable": "سرویس در دسترس نیست، بررسی کنید که آیا سرویس فعال است",
+		"serviceBusy": "سرویس مشغول است، لطفاً بعداً تلاش کنید",
+		"cacheError": "خطای حافظه نهان"
+	},
+	"init": {
+		"alreadyInit": "قبلاً مقداردهی اولیه شده",
+		"initializeIsRunning": "مقداردهی اولیه در حال اجرا است"
+	},
+	"sys": {
+		"api": {
+			"apiRequestFailed": "درخواست API ناموفق"
+		}
+	},
+	"upgrade": {
+		"appNameDuplicate": "تکرار نام اپلیکیشن",
+		"appPackageNameDuplicate": "تکرار نام بسته اپلیکیشن",
+		"appVersionDuplicate": "تکرار نام نسخه فعلی اپلیکیشن",
+		"appVersionCodeDuplicate": "تکرار کد نسخه فعلی اپلیکیشن",
+		"appVersionHasStrategy": "نسخه اپلیکیشن هنوز استراتژی مربوطه را دارد، نمی تواند حذف شود",
+		"taskNameDuplicate": "تکرار نام کار",
+		"taskTimeInvalid": "زمان شروع کار بزرگتر یا مساوی با زمان پایان است",
+		"grayStrategyTimeInvalid": "استراتژی خاکستری زمان شروع کمتر یا مساوی با زمان پایان دارد",
+		"grayStrategyTimeOverlap": "استراتژی خاکستری دارای همپوشانی زمان شروع و پایان است",
+		"flowStrategyTimeInvalid": "استراتژی جریان زمان شروع کمتر یا مساوی با زمان پایان دارد",
+		"flowStrategyTimeOverlap": "استراتژی جریان دارای همپوشانی زمان شروع و پایان است",
+		"versionFormatError": "خطای فرمت نام نسخه",
+		"deviceUniqueIdDuplicate": "تکرار شناسه منحصر به فرد دستگاه",
+		"deviceGroupNameDuplicate": "تکرار نام گروه دستگاه",
+		"deviceModelNameDuplicate": "تکرار نام مدل دستگاه"
+	}
+}

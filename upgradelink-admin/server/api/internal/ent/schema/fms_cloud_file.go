@@ -18,6 +18,7 @@ func (FmsCloudFile) Fields() []ent.Field {
 		field.Time("created_at").Optional().Comment("Create Time | 创建日期"),
 		field.Time("updated_at").Optional().Comment("Update Time | 修改日期"),
 		field.Bool("state").Optional().Comment("State true: normal false: ban | 状态 true 正常 false 禁用"),
+		field.Int32("is_del").Optional().Comment("是否删除 0：正常；1：已删除"),
 		field.String("name").Comment("The file's name | 文件名"),
 		field.String("url").Comment("The file's url | 文件地址"),
 		field.Uint64("size").Comment("The file's size | 文件大小"),

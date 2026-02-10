@@ -3,6 +3,7 @@ package upgrade_win
 import (
 	"context"
 	"upgradelink-admin/server/api/internal/common/db_error"
+	"upgradelink-admin/server/api/internal/common/enum"
 	"upgradelink-admin/server/api/internal/common/i18n"
 	"upgradelink-admin/server/api/internal/common/jwtctx/companyctx"
 
@@ -29,7 +30,7 @@ func NewDeleteUpgradeWinLogic(ctx context.Context, svcCtx *svc.ServiceContext) *
 
 func (l *DeleteUpgradeWinLogic) DeleteUpgradeWin(req *types.IDsReq) (*types.BaseMsgResp, error) {
 
-	intDel := int32(1)
+	intDelTrue := enum.IsDelTrue
 	var Ids []int
 	for _, id := range req.Ids {
 		Ids = append(Ids, int(id))
@@ -37,7 +38,7 @@ func (l *DeleteUpgradeWinLogic) DeleteUpgradeWin(req *types.IDsReq) (*types.Base
 
 	err := l.svcCtx.DB.UpgradeWin.Update().
 		Where(upgradewin.IDIn(Ids...), upgradewin.CompanyIDIn(companyctx.GetCompanyIDFromCtx(l.ctx))).
-		SetNotNilIsDel(&intDel).
+		SetNotNilIsDel(&intDelTrue).
 		Exec(l.ctx)
 
 	if err != nil {

@@ -1,0 +1,154 @@
+{
+  "app": {
+    "searchNotData": "Пока нет результатов поиска",
+    "toSearch": "поиск",
+    "toNavigate": "навигация"
+  },
+  "countdown": {
+    "normalText": "Получить код",
+    "sendText": "Получить снова через {0}с"
+  },
+  "cropper": {
+    "selectImage": "Выбрать изображение",
+    "uploadSuccess": "Загружено успешно!",
+    "modalTitle": "Загрузка аватара",
+    "okText": "Подтвердить и загрузить",
+    "btn_reset": "Сбросить",
+    "btn_rotate_left": "Поворот против часовой стрелки",
+    "btn_rotate_right": "Поворот по часовой стрелке",
+    "btn_scale_x": "Отразить по горизонтали",
+    "btn_scale_y": "Отразить по вертикали",
+    "btn_zoom_in": "Увеличить",
+    "btn_zoom_out": "Уменьшить",
+    "preview": "Предпросмотр"
+  },
+  "drawer": {
+    "loadingText": "Загрузка...",
+    "cancelText": "Закрыть",
+    "okText": "Подтвердить"
+  },
+  "excel": {
+    "exportModalTitle": "Экспорт данных",
+    "fileType": "Тип файла",
+    "fileName": "Имя файла"
+  },
+  "form": {
+    "putAway": "Свернуть",
+    "unfold": "Развернуть",
+    "maxTip": "Количество символов должно быть меньше {0}",
+    "apiSelectNotFound": "Подождите, пока загрузка данных не завершится..."
+  },
+  "icon": {
+    "placeholder": "Нажмите, чтобы выбрать иконку",
+    "search": "Поиск иконки",
+    "copy": "Иконка скопирована успешно!"
+  },
+  "menu": {
+    "search": "Поиск в меню"
+  },
+  "modal": {
+    "cancelText": "Закрыть",
+    "okText": "Подтвердить",
+    "close": "Закрыть",
+    "maximize": "Развернуть",
+    "restore": "Восстановить"
+  },
+  "table": {
+    "settingDens": "Плотность",
+    "settingDensDefault": "По умолчанию",
+    "settingDensMiddle": "Средняя",
+    "settingDensSmall": "Компактная",
+    "settingColumn": "Настройки столбцов",
+    "settingColumnShow": "Отображение столбцов",
+    "settingIndexColumnShow": "Столбец индексов",
+    "settingSelectColumnShow": "Столбец выбора",
+    "settingFixedLeft": "Зафиксировать слева",
+    "settingFixedRight": "Зафиксировать справа",
+    "settingFullScreen": "Полноэкранный режим",
+    "index": "Индекс",
+    "total": "всего {total}"
+  },
+  "time": {
+    "before": " назад",
+    "after": " после",
+    "just": "только что",
+    "seconds": " секунд",
+    "minutes": " минут",
+    "hours": " часов",
+    "days": " дней"
+  },
+  "tree": {
+    "selectAll": "Выбрать все",
+    "unSelectAll": "Отменить выбор",
+    "expandAll": "Развернуть все",
+    "unExpandAll": "Свернуть все",
+    "checkStrictly": "Иерархическая ассоциация",
+    "checkUnStrictly": "Иерархическая независимость"
+  },
+  "upload": {
+    "save": "Сохранить",
+    "upload": "Загрузить",
+    "imgUpload": "Загрузка изображения",
+    "uploaded": "Загружено",
+    "operating": "Операция",
+    "del": "Удалить",
+    "uploadFailed": "Загрузка не удалась",
+    "download": "скачать",
+    "saveWarn": "Подождите, пока файл загрузится и сохранится!",
+    "saveError": "Нет успешно загруженных файлов, невозможно сохранить!",
+    "preview": "Предпросмотр",
+    "choose": "Выбрать файл",
+    "accept": "Поддерживает формат {0}",
+    "acceptUpload": "Загружать только файлы формата {0}",
+    "maxSize": "Один файл не превышает {0}МБ ",
+    "maxSizeMultiple": "Загружать только файлы до {0}МБ!",
+    "maxNumber": "Загружать не более {0} файлов",
+    "legend": "Легенда",
+    "fileName": "Имя файла",
+    "fileSize": "Размер файла",
+    "fileStatue": "Статус файла",
+    "startUpload": "Начать загрузку",
+    "uploadSuccess": "Загружено успешно",
+    "uploadError": "Загрузка не удалась",
+    "uploading": "Загрузка",
+    "uploadWait": "Подождите, пока загрузка файла не завершится",
+    "reUploadFailed": "Повторить загрузку неудачных файлов",
+    "pending": "В ожидании",
+    "uploadHelpMessage": "Нажмите или перетащите файл в эту область для загрузки",
+    "supportAnyFormat": "Поддерживает любой тип файла, поддерживает загрузку нескольких файлов",
+    "supportAnyFormatOne": "Поддерживает любой тип файла",
+    "supportFormat": "Поддерживает файл формата {0}"
+  },
+  "verify": {
+    "error": "Проверка не удалась!",
+    "time": "Проверка прошла успешно, время: {time} секунд!",
+    "redoTip": "Нажмите на изображение, чтобы обновить",
+    "dragText": "Зажмите ползунок и перетащите",
+    "successText": "Проверено"
+  },
+  "jsonEditor": {
+    "pleaseInputJson": "Сначала введите содержимое JSON",
+    "beautifySuccess": "Формат JSON успешно отформатирован",
+    "beautifyError": "Ошибка формата JSON, невозможно отформатировать",
+    "noContentToCopy": "Нет содержимого для копирования",
+    "copySuccess": "Скопировано в буфер обмена",
+    "copyError": "Копирование не удалось",
+    "editorReset": "Редактор сброшен",
+    "jsonValid": "Формат JSON корректен",
+    "jsonInvalid": "Ошибка формата JSON",
+    "jsonFormatError": "Ошибка формата JSON",
+    "jsonFormatValid": "Формат JSON корректен",
+    "beautifyJsonFormat": "Отформатировать формат JSON",
+    "validateJsonFormat": "Проверить формат JSON",
+    "copyToClipboard": "Скопировать в буфер обмена",
+    "resetEditor": "Сбросить редактор"
+  },
+  "markdownEditor": {
+    "markdownEditor": "Редактор Markdown",
+    "markdownDescription": "Поддерживает синтаксис Markdown, например # заголовок, **жирный**, *курсив*, и т.д.",
+    "textEditor": "Текстовый редактор",
+    "textDescription": "Режим редактирования простого текста, удобный для ввода простого текста",
+    "switchToMarkdown": "Переключиться на редактор Markdown",
+    "switchToText": "Переключиться на текстовый редактор"
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "app": {
+    "searchNotData": "まだ検索結果がありません",
+    "toSearch": "検索する",
+    "toNavigate": "ナビゲートする"
+  },
+  "countdown": {
+    "normalText": "コードを取得",
+    "sendText": "{0}秒後に再取得"
+  },
+  "cropper": {
+    "selectImage": "画像を選択",
+    "uploadSuccess": "アップロード成功！",
+    "modalTitle": "アバターアップロード",
+    "okText": "確認してアップロード",
+    "btn_reset": "リセット",
+    "btn_rotate_left": "反時計回りに回転",
+    "btn_rotate_right": "時計回りに回転",
+    "btn_scale_x": "水平方向に反転",
+    "btn_scale_y": "垂直方向に反転",
+    "btn_zoom_in": "拡大",
+    "btn_zoom_out": "縮小",
+    "preview": "プレビュー"
+  },
+  "drawer": {
+    "loadingText": "読み込み中...",
+    "cancelText": "閉じる",
+    "okText": "確認"
+  },
+  "excel": {
+    "exportModalTitle": "データをエクスポート",
+    "fileType": "ファイル形式",
+    "fileName": "ファイル名"
+  },
+  "form": {
+    "putAway": "折りたたむ",
+    "unfold": "展開する",
+    "maxTip": "文字数は{0}未満にしてください",
+    "apiSelectNotFound": "データのロードが完了するのを待ってください..."
+  },
+  "icon": {
+    "placeholder": "アイコンを選択するにはクリック",
+    "search": "アイコンを検索",
+    "copy": "アイコンをコピーしました！"
+  },
+  "menu": {
+    "search": "メニュー検索"
+  },
+  "modal": {
+    "cancelText": "閉じる",
+    "okText": "確認",
+    "close": "閉じる",
+    "maximize": "最大化",
+    "restore": "元に戻す"
+  },
+  "table": {
+    "settingDens": "密度",
+    "settingDensDefault": "デフォルト",
+    "settingDensMiddle": "中",
+    "settingDensSmall": "コンパクト",
+    "settingColumn": "列設定",
+    "settingColumnShow": "列表示",
+    "settingIndexColumnShow": "インデックス列",
+    "settingSelectColumnShow": "選択列",
+    "settingFixedLeft": "左に固定",
+    "settingFixedRight": "右に固定",
+    "settingFullScreen": "全画面",
+    "index": "インデックス",
+    "total": "合計 {total}"
+  },
+  "time": {
+    "before": " 前",
+    "after": " 後",
+    "just": "たった今",
+    "seconds": " 秒",
+    "minutes": " 分",
+    "hours": " 時間",
+    "days": " 日"
+  },
+  "tree": {
+    "selectAll": "すべて選択",
+    "unSelectAll": "選択をキャンセル",
+    "expandAll": "すべて展開",
+    "unExpandAll": "すべて折りたたむ",
+    "checkStrictly": "階層的関連付け",
+    "checkUnStrictly": "階層的独立性"
+  },
+  "upload": {
+    "save": "保存",
+    "upload": "アップロード",
+    "imgUpload": "画像アップロード",
+    "uploaded": "アップロード済み",
+    "operating": "操作中",
+    "del": "削除",
+    "uploadFailed": "アップロードに失敗",
+    "download": "ダウンロード",
+    "saveWarn": "ファイルのアップロードと保存を待ってください！",
+    "saveError": "正常にアップロードされたファイルがないため、保存できません！",
+    "preview": "プレビュー",
+    "choose": "ファイルを選択",
+    "accept": "{0}形式をサポート",
+    "acceptUpload": "{0}形式のファイルのみアップロード可能",
+    "maxSize": "単一ファイルは{0}MBを超えない",
+    "maxSizeMultiple": "{0}MB以下のファイルのみアップロード可能！",
+    "maxNumber": "最大{0}ファイルまでアップロード可能",
+    "legend": "凡例",
+    "fileName": "ファイル名",
+    "fileSize": "ファイルサイズ",
+    "fileStatue": "ファイルステータス",
+    "startUpload": "アップロードを開始",
+    "uploadSuccess": "アップロード成功",
+    "uploadError": "アップロード失敗",
+    "uploading": "アップロード中",
+    "uploadWait": "ファイルのアップロードが終了するのを待ってください",
+    "reUploadFailed": "失敗したファイルを再アップロード",
+    "pending": "保留中",
+    "uploadHelpMessage": "このエリアにファイルをクリックまたはドラッグしてアップロード",
+    "supportAnyFormat": "任意の種類のファイルをサポートし、複数ファイルのアップロードをサポート",
+    "supportAnyFormatOne": "任意の種類のファイルをサポート",
+    "supportFormat": "{0}形式のファイルをサポート"
+  },
+  "verify": {
+    "error": "検証に失敗！",
+    "time": "検証に成功しました。所要時間：{time}秒！",
+    "redoTip": "画像をクリックして更新",
+    "dragText": "スライダーを押してドラッグ",
+    "successText": "検証済み"
+  },
+  "jsonEditor": {
+    "pleaseInputJson": "まずJSONコンテンツを入力してください",
+    "beautifySuccess": "JSON形式を正常に整形しました",
+    "beautifyError": "JSON形式エラー、整形できません",
+    "noContentToCopy": "コピーするコンテンツがありません",
+    "copySuccess": "クリップボードにコピーしました",
+    "copyError": "コピーに失敗",
+    "editorReset": "エディターがリセットされました",
+    "jsonValid": "JSON形式が正しい",
+    "jsonInvalid": "JSON形式エラー",
+    "jsonFormatError": "JSON形式エラー",
+    "jsonFormatValid": "JSON形式が正しい",
+    "beautifyJsonFormat": "JSON形式を整形",
+    "validateJsonFormat": "JSON形式を検証",
+    "copyToClipboard": "クリップボードにコピー",
+    "resetEditor": "エディターをリセット"
+  },
+  "markdownEditor": {
+    "markdownEditor": "Markdownエディター",
+    "markdownDescription": "#見出し、**太字**、*斜体*などのMarkdown構文をサポート",
+    "textEditor": "テキストエディター",
+    "textDescription": "プレーンテキスト編集モード、シンプルなテキスト入力に適し",
+    "switchToMarkdown": "Markdownエディターに切り替え",
+    "switchToText": "テキストエディターに切り替え"
+  }
+}

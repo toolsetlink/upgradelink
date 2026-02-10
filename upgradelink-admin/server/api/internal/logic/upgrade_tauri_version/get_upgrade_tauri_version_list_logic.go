@@ -8,6 +8,7 @@ import (
 	"upgradelink-admin/server/api/internal/common/db_error"
 	"upgradelink-admin/server/api/internal/common/i18n"
 	"upgradelink-admin/server/api/internal/common/jwtctx/companyctx"
+	"upgradelink-admin/server/api/internal/common/utils/cdn"
 	"upgradelink-admin/server/api/internal/ent/predicate"
 	"upgradelink-admin/server/api/internal/ent/upgradetauriversion"
 	"upgradelink-admin/server/api/internal/svc"
@@ -99,6 +100,15 @@ func (l *GetUpgradeTauriVersionListLogic) GetUpgradeTauriVersionList(req *types.
 		// 升级包文件大小
 		upgradeFileSize := common.BytesToMBString(InstallCloudFileData.Size)
 
+		installCloudFilePath := ""
+		// cdn 连接
+		if l.svcCtx.Config.UploadConf.CdnUrl != "" {
+			installCloudFilePath, err = cdn.ReturnCdnUrl(l.svcCtx.Config.UploadConf.CdnUrl, InstallCloudFileData.URL)
+			if err != nil {
+				return nil, db_error.DefaultEntError(l.Logger, err, req)
+			}
+		}
+
 		resp.Data.Data = append(resp.Data.Data,
 			types.RespUpgradeTauriVersionInfo{
 				Id:                     &v.ID,
@@ -108,7 +118,7 @@ func (l *GetUpgradeTauriVersionListLogic) GetUpgradeTauriVersionList(req *types.
 				CloudFileName:          &cloudFileData.Name,
 				InstallCloudFileId:     &v.InstallCloudFileID,
 				InstallCloudFileName:   &InstallCloudFileData.Name,
-				InstallCloudFilePath:   &InstallCloudFileData.URL,
+				InstallCloudFilePath:   &installCloudFilePath,
 				VersionName:            &v.VersionName,
 				VersionCode:            &v.VersionCode,
 				InstallVersionFileSize: &installFileSize,

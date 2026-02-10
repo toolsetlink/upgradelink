@@ -37,4 +37,21 @@ const (
 	CacheError         = "common.cacheError"
 
 	ApiRequestFailed = "sys.api.apiRequestFailed"
+
+	// Upgrade related error messages
+	AppNameDuplicate        = "upgrade.appNameDuplicate"
+	AppPackageNameDuplicate = "upgrade.appPackageNameDuplicate"
+	AppVersionDuplicate     = "upgrade.appVersionDuplicate"
+	AppVersionCodeDuplicate = "upgrade.appVersionCodeDuplicate"
+	AppVersionHasStrategy   = "upgrade.appVersionHasStrategy"
+	TaskNameDuplicate       = "upgrade.taskNameDuplicate"
+	TaskTimeInvalid         = "upgrade.taskTimeInvalid"
+	GrayStrategyTimeInvalid = "upgrade.grayStrategyTimeInvalid"
+	GrayStrategyTimeOverlap = "upgrade.grayStrategyTimeOverlap"
+	FlowStrategyTimeInvalid = "upgrade.flowStrategyTimeInvalid"
+	FlowStrategyTimeOverlap = "upgrade.flowStrategyTimeOverlap"
+	VersionFormatError      = "upgrade.versionFormatError"
+	DeviceUniqueIdDuplicate = "upgrade.deviceUniqueIdDuplicate"
+	DeviceGroupNameDuplicate = "upgrade.deviceGroupNameDuplicate"
+	DeviceModelNameDuplicate = "upgrade.deviceModelNameDuplicate"
 )

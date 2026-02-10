@@ -1,0 +1,154 @@
+{
+  "app": {
+    "searchNotData": "هنوز نتیجه جستجو وجود ندارد",
+    "toSearch": "جستجو",
+    "toNavigate": "گردش"
+  },
+  "countdown": {
+    "normalText": "دریافت کد",
+    "sendText": "دوباره دریافت در {0}ثانیه"
+  },
+  "cropper": {
+    "selectImage": "انتخاب تصویر",
+    "uploadSuccess": "بارگذاری موفق!",
+    "modalTitle": "بارگذاری آواتار",
+    "okText": "تایید و بارگذاری",
+    "btn_reset": "ریست",
+    "btn_rotate_left": "چرخش خلاف جهت گشتار ساعت",
+    "btn_rotate_right": "چرخش در جهت گشتار ساعت",
+    "btn_scale_x": "معکوس افقی",
+    "btn_scale_y": "معکوس عمودی",
+    "btn_zoom_in": "بزرگ کردن",
+    "btn_zoom_out": "کوچک کردن",
+    "preview": "پیش‌نمایش"
+  },
+  "drawer": {
+    "loadingText": "در حال بارگذاری...",
+    "cancelText": "بستن",
+    "okText": "تایید"
+  },
+  "excel": {
+    "exportModalTitle": "صادرات داده‌ها",
+    "fileType": "نوع فایل",
+    "fileName": "نام فایل"
+  },
+  "form": {
+    "putAway": "بستن",
+    "unfold": "باز کردن",
+    "maxTip": "تعداد کاراکترها باید کمتر از {0} باشد",
+    "apiSelectNotFound": "انتظار تا بارگذاری داده‌ها کامل شود..."
+  },
+  "icon": {
+    "placeholder": "برای انتخاب آیکون کلیک کنید",
+    "search": "جستجوی آیکون",
+    "copy": "آیکون با موفقیت کپی شد!"
+  },
+  "menu": {
+    "search": "جستجوی منو"
+  },
+  "modal": {
+    "cancelText": "بستن",
+    "okText": "تایید",
+    "close": "بستن",
+    "maximize": "حداکثر کردن",
+    "restore": "بازگردانی"
+  },
+  "table": {
+    "settingDens": "چگالی",
+    "settingDensDefault": "پیش‌فرض",
+    "settingDensMiddle": "متوسط",
+    "settingDensSmall": "فشرده",
+    "settingColumn": "تنظیمات ستون",
+    "settingColumnShow": "نمایش ستون",
+    "settingIndexColumnShow": "ستون شاخص",
+    "settingSelectColumnShow": "ستون انتخاب",
+    "settingFixedLeft": "ثابت در چپ",
+    "settingFixedRight": "ثابت در راست",
+    "settingFullScreen": "صفحه کامل",
+    "index": "شاخص",
+    "total": "مجموع {total}"
+  },
+  "time": {
+    "before": " پیش",
+    "after": " بعد",
+    "just": "اکنون",
+    "seconds": " ثانیه",
+    "minutes": " دقیقه",
+    "hours": " ساعت",
+    "days": " روز"
+  },
+  "tree": {
+    "selectAll": "انتخاب همه",
+    "unSelectAll": "لغو انتخاب",
+    "expandAll": "باز کردن همه",
+    "unExpandAll": "بستن همه",
+    "checkStrictly": "ارتباط سلسله‌مراتبی",
+    "checkUnStrictly": "انزوا سلسله‌مراتبی"
+  },
+  "upload": {
+    "save": "ذخیره",
+    "upload": "بارگذاری",
+    "imgUpload": "بارگذاری تصویر",
+    "uploaded": "بارگذاری شده",
+    "operating": "در حال عملیات",
+    "del": "حذف",
+    "uploadFailed": "بارگذاری ناموفق",
+    "download": "دانلود",
+    "saveWarn": "لطفاً تا بارگذاری و ذخیره فایل منتظر بمانید!",
+    "saveError": "فایلی با موفقیت بارگذاری نشده و نمی‌تواند ذخیره شود!",
+    "preview": "پیش‌نمایش",
+    "choose": "انتخاب فایل",
+    "accept": "از فرمت {0} پشتیبانی می‌کند",
+    "acceptUpload": "فقط فایل‌های با فرمت {0} را بارگذاری کنید",
+    "maxSize": "یک فایل 단독 از {0}MB تجاوز نمی‌کند ",
+    "maxSizeMultiple": "فقط فایل‌های تا {0}MB را بارگذاری کنید!",
+    "maxNumber": "فقط تا {0} فایل بارگذاری کنید",
+    "legend": "فهرست",
+    "fileName": "نام فایل",
+    "fileSize": "اندازه فایل",
+    "fileStatue": "وضعیت فایل",
+    "startUpload": "شروع بارگذاری",
+    "uploadSuccess": "بارگذاری موفق",
+    "uploadError": "بارگذاری ناموفق",
+    "uploading": "در حال بارگذاری",
+    "uploadWait": "لطفاً تا اتمام بارگذاری فایل منتظر بمانید",
+    "reUploadFailed": "بارگذاری مجدد فایل‌های ناموفق",
+    "pending": "در انتظار",
+    "uploadHelpMessage": "برای بارگذاری، فایل را کلیک کنید یا به این منطقه بکشید",
+    "supportAnyFormat": "از هر نوع فایل پشتیبانی می‌کند، بارگذاری چندین فایل را پشتیبانی می‌کند",
+    "supportAnyFormatOne": "از هر نوع فایل پشتیبانی می‌کند",
+    "supportFormat": "از فایل‌های فرمت {0} پشتیبانی می‌کند"
+  },
+  "verify": {
+    "error": "تایید ناموفق!",
+    "time": "تایید موفق بوده و {time}ثانیه طول کشیده است!",
+    "redoTip": "برای بروزرسانی روی تصویر کلیک کنید",
+    "dragText": "برای کشیدن، بر روی کنترل გადریب نگه دارید",
+    "successText": "تایید شده"
+  },
+  "jsonEditor": {
+    "pleaseInputJson": "ابتدا محتوای JSON را وارد کنید",
+    "beautifySuccess": "قالب JSON با موفقیت بهتر شد",
+    "beautifyError": "خطای فرمت JSON، نمی‌تواند بهتر شود",
+    "noContentToCopy": "محتوایی برای کپی وجود ندارد",
+    "copySuccess": "به حافظه کپی شد",
+    "copyError": "کپی ناموفق",
+    "editorReset": "ویرایشگر ریست شده است",
+    "jsonValid": "قالب JSON صحیح است",
+    "jsonInvalid": "خطای فرمت JSON",
+    "jsonFormatError": "خطای فرمت JSON",
+    "jsonFormatValid": "قالب JSON صحیح است",
+    "beautifyJsonFormat": "بهتر کردن فرمت JSON",
+    "validateJsonFormat": "اعتبارسنجی فرمت JSON",
+    "copyToClipboard": "کپی به حافظه",
+    "resetEditor": "ریست ویرایشگر"
+  },
+  "markdownEditor": {
+    "markdownEditor": "ویرایشگر Markdown",
+    "markdownDescription": "از синтакسی Markdown پشتیبانی می‌کند، مانند #标题，**粗体**，*斜体*، و غیره",
+    "textEditor": "ویرایشگر متن",
+    "textDescription": "حالت ویرایش متن ساده، مناسب برای ورود متن ساده",
+    "switchToMarkdown": "تبدیل به ویرایشگر Markdown",
+    "switchToText": "تبدیل به ویرایشگر متن"
+  }
+}

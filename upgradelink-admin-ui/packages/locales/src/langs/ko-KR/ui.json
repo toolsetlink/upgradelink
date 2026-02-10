@@ -1,0 +1,114 @@
+{
+  "formRules": {
+    "required": "{0}을 입력하세요",
+    "selectRequired": "{0}을 선택하세요",
+    "minLength": "{0}은 최소 {1}자 이상이어야 합니다",
+    "maxLength": "{0}은 최대 {1}자 이하이어야 합니다",
+    "length": "{0}은 {1}자여야 합니다",
+    "alreadyExists": "{0} `{1}`이 이미 존재합니다",
+    "startWith": "{0}은 `{1}`로 시작해야 합니다",
+    "invalidURL": "유효한 URL을 입력하세요",
+    "sizeLimit": "파일 크기는 {0}MB를 초과할 수 없습니다",
+    "previewWarning": "파일을 열 수 없습니다. 사용 가능한 URL 또는 미리보기 주소가 없습니다"
+  },
+  "actionTitle": {
+    "edit": "{0} 수정",
+    "create": "{0} 생성",
+    "delete": "{0} 삭제",
+    "view": "{0} 보기"
+  },
+  "actionMessage": {
+    "deleteConfirm": "{0}을 삭제하시겠습니까?",
+    "deleting": "{0} 삭제 중 ...",
+    "deleteSuccess": "{0}이 성공적으로 삭제되었습니다",
+    "operationSuccess": "작업 성공",
+    "operationFailed": "작업 실패"
+  },
+  "placeholder": {
+    "input": "입력하세요",
+    "select": "선택하세요",
+    "upload": "업로드하려면 클릭하세요"
+  },
+  "captcha": {
+    "title": "보안 인증을 완료하세요",
+    "sliderSuccessText": "통과",
+    "sliderDefaultText": "슬라이더를 드래그하세요",
+    "alt": "img 태그 src 속성 값을 지원합니다",
+    "sliderRotateDefaultTip": "이미지를 클릭하여 새로고침하세요",
+    "sliderTranslateDefaultTip": "이미지를 클릭하여 새로고침하세요",
+    "sliderRotateFailTip": "인증 실패",
+    "sliderRotateSuccessTip": "인증 성공, 시간 {0}초",
+    "sliderTranslateFailTip": "인증 실패",
+    "sliderTranslateSuccessTip": "인증 성공, 시간 {0}초",
+    "refreshAriaLabel": "캡챠 새로고침",
+    "confirmAriaLabel": "선택 확인",
+    "confirm": "확인",
+    "pointAriaLabel": "점 클릭",
+    "clickInOrder": "순서대로 클릭하세요"
+  },
+  "iconPicker": {
+    "placeholder": "아이콘을 선택하세요",
+    "search": "아이콘 검색..."
+  },
+  "jsonViewer": {
+    "copy": "복사",
+    "copied": "복사됨"
+  },
+  "fallback": {
+    "pageNotFound": "Ops! 페이지를 찾을 수 없습니다",
+    "pageNotFoundDesc": "죄송합니다. 찾고자 하는 페이지를 찾을 수 없습니다.",
+    "forbidden": "Ops! 접근이 거부되었습니다",
+    "forbiddenDesc": "죄송합니다. 이 페이지에 접근할 권한이 없습니다.",
+    "internalError": "Ops! 뭔가 잘못되었습니다",
+    "internalErrorDesc": "죄송합니다. 서버에 오류가 발생했습니다.",
+    "offline": "오프라인 페이지",
+    "offlineError": "Ops! 네트워크 오류",
+    "offlineErrorDesc": "죄송합니다. 인터넷에 연결할 수 없습니다. 연결을 확인하세요.",
+    "comingSoon": "곧 출시 예정",
+    "http": {
+      "requestTimeout": "요청 시간이 초과되었습니다. 나중에 다시 시도하세요.",
+      "networkError": "네트워크 오류가 발생했습니다. 인터넷 연결을 확인하고 다시 시도하세요.",
+      "badRequest": "잘못된 요청입니다. 입력을 확인하고 다시 시도하세요.",
+      "unauthorized": "인증되지 않았습니다. 계속하려면 로그인하세요.",
+      "forbidden": "금지됨. 이 리소스에 접근할 권한이 없습니다.",
+      "notFound": "찾을 수 없음. 요청한 리소스를 찾을 수 없습니다.",
+      "internalServerError": "내부 서버 오류. 우리 쪽에 문제가 발생했습니다. 나중에 다시 시도하세요."
+    }
+  },
+  "widgets": {
+    "document": "문서",
+    "qa": "질문 및 답변",
+    "setting": "설정",
+    "logoutTip": "로그아웃하시겠습니까?",
+    "viewAll": "모든 메시지 보기",
+    "notifications": "알림",
+    "markAllAsRead": "모두 읽음으로 표시",
+    "clearNotifications": "지우기",
+    "checkUpdatesTitle": "새 버전이 사용 가능합니다",
+    "checkUpdatesDescription": "새로고침하여 최신 버전을 받으세요",
+    "search": {
+      "title": "검색",
+      "searchNavigate": "검색 탐색",
+      "select": "선택",
+      "navigate": "이동",
+      "close": "닫기",
+      "noResults": "검색 결과를 찾을 수 없습니다",
+      "noRecent": "검색 기록이 없습니다",
+      "recent": "검색 기록"
+    },
+    "lockScreen": {
+      "title": "화면 잠금",
+      "screenButton": "잠금",
+      "password": "비밀번호",
+      "placeholder": "비밀번호를 입력하세요",
+      "unlock": "잠금 해제하려면 클릭하세요",
+      "errorPasswordTip": "비밀번호 오류, 다시 입력하세요",
+      "backToLogin": "로그인으로 돌아가기",
+      "entry": "시스템에 진입"
+    },
+    "timezone": {
+      "setTimezone": "시간대 설정",
+      "setSuccess": "시간대가 성공적으로 설정되었습니다"
+    }
+  }
+}

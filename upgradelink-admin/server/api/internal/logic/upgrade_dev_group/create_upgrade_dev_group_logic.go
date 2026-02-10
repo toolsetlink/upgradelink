@@ -3,6 +3,7 @@ package upgrade_dev_group
 import (
 	"context"
 	"upgradelink-admin/server/api/internal/common/db_error"
+	"upgradelink-admin/server/api/internal/common/enum"
 	"upgradelink-admin/server/api/internal/common/http_error"
 	"upgradelink-admin/server/api/internal/common/i18n"
 	"upgradelink-admin/server/api/internal/common/jwtctx/companyctx"
@@ -42,11 +43,11 @@ func (l *CreateUpgradeDevGroupLogic) CreateUpgradeDevGroup(req *types.UpgradeDev
 	// 开启事务
 	if err := entx.WithTx(l.ctx, l.svcCtx.DB, func(tx *ent.Tx) error {
 
-		isDel := int32(0)
+		intDelFalse := enum.IsDelFalse
 		_, err = l.svcCtx.DB.UpgradeDevGroup.Create().
 			SetNotNilCompanyID(companyctx.GetCompanyIDPointerFromCtx(l.ctx)).
 			SetNotNilName(req.Name).
-			SetNotNilIsDel(&isDel).
+			SetNotNilIsDel(&intDelFalse).
 			SetNotNilCreateAt(pointy.GetTimeMilliPointer(req.CreateAt)).
 			SetNotNilUpdateAt(pointy.GetTimeMilliPointer(req.UpdateAt)).
 			Save(l.ctx)
@@ -75,7 +76,7 @@ func (l *CreateUpgradeDevGroupLogic) CheckCreateUpgradeDevGroup(req *types.Upgra
 		return err
 	}
 	if count > 0 {
-		return http_error.NewCodeBadRequestError("设备分组名称重复")
+		return http_error.NewCodeBadRequestError(l.svcCtx.Trans.Trans(l.ctx, i18n.DeviceGroupNameDuplicate))
 	}
 
 	return nil

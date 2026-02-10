@@ -1,17 +1,31 @@
-const CSS_VARIABLE_LAYOUT_CONTENT_HEIGHT = `--vben-content-height`;
-const CSS_VARIABLE_LAYOUT_CONTENT_WIDTH = `--vben-content-width`;
-const CSS_VARIABLE_LAYOUT_HEADER_HEIGHT = `--vben-header-height`;
-const CSS_VARIABLE_LAYOUT_FOOTER_HEIGHT = `--vben-footer-height`;
-const ELEMENT_ID_MAIN_CONTENT = `__vben_main_content`;
-const DEFAULT_NAMESPACE = "vben";
+import { createJiti } from "../../../../../../node_modules/.pnpm/jiti@2.6.1/node_modules/jiti/lib/jiti.mjs";
 
-const VBEN_GITHUB_URL = "https://github.com/vbenjs/vue-vben-admin";
-const VBEN_DOC_URL = "https://doc.vben.pro";
-const VBEN_LOGO_URL = "https://unpkg.com/@vbenjs/static-source@0.1.7/source/logo-v1.webp";
-const VBEN_PREVIEW_URL = "https://www.vben.pro";
-const VBEN_ELE_PREVIEW_URL = "https://ele.vben.pro";
-const VBEN_NAIVE_PREVIEW_URL = "https://naive.vben.pro";
-const VBEN_ANT_PREVIEW_URL = "https://ant.vben.pro";
-const VBEN_TD_PREVIEW_URL = "https://tdesign.vben.pro";
+const jiti = createJiti(import.meta.url, {
+  "interopDefault": true,
+  "alias": {
+    "@vben-core/shared": "/Users/songang/LinkProjects/open/upgradelink/upgradelink-admin-ui/packages/@core/base/shared"
+  },
+  "transformOptions": {
+    "babel": {
+      "plugins": []
+    }
+  }
+})
 
-export { CSS_VARIABLE_LAYOUT_CONTENT_HEIGHT, CSS_VARIABLE_LAYOUT_CONTENT_WIDTH, CSS_VARIABLE_LAYOUT_FOOTER_HEIGHT, CSS_VARIABLE_LAYOUT_HEADER_HEIGHT, DEFAULT_NAMESPACE, ELEMENT_ID_MAIN_CONTENT, VBEN_ANT_PREVIEW_URL, VBEN_DOC_URL, VBEN_ELE_PREVIEW_URL, VBEN_GITHUB_URL, VBEN_LOGO_URL, VBEN_NAIVE_PREVIEW_URL, VBEN_PREVIEW_URL, VBEN_TD_PREVIEW_URL };
+/** @type {import("/Users/songang/LinkProjects/open/upgradelink/upgradelink-admin-ui/packages/@core/base/shared/src/constants/index.js")} */
+const _module = await jiti.import("/Users/songang/LinkProjects/open/upgradelink/upgradelink-admin-ui/packages/@core/base/shared/src/constants/index.ts");
+
+export const CSS_VARIABLE_LAYOUT_CONTENT_HEIGHT = _module.CSS_VARIABLE_LAYOUT_CONTENT_HEIGHT;
+export const CSS_VARIABLE_LAYOUT_CONTENT_WIDTH = _module.CSS_VARIABLE_LAYOUT_CONTENT_WIDTH;
+export const CSS_VARIABLE_LAYOUT_HEADER_HEIGHT = _module.CSS_VARIABLE_LAYOUT_HEADER_HEIGHT;
+export const CSS_VARIABLE_LAYOUT_FOOTER_HEIGHT = _module.CSS_VARIABLE_LAYOUT_FOOTER_HEIGHT;
+export const ELEMENT_ID_MAIN_CONTENT = _module.ELEMENT_ID_MAIN_CONTENT;
+export const DEFAULT_NAMESPACE = _module.DEFAULT_NAMESPACE;
+export const VBEN_GITHUB_URL = _module.VBEN_GITHUB_URL;
+export const VBEN_DOC_URL = _module.VBEN_DOC_URL;
+export const VBEN_LOGO_URL = _module.VBEN_LOGO_URL;
+export const VBEN_PREVIEW_URL = _module.VBEN_PREVIEW_URL;
+export const VBEN_ELE_PREVIEW_URL = _module.VBEN_ELE_PREVIEW_URL;
+export const VBEN_NAIVE_PREVIEW_URL = _module.VBEN_NAIVE_PREVIEW_URL;
+export const VBEN_ANT_PREVIEW_URL = _module.VBEN_ANT_PREVIEW_URL;
+export const VBEN_TD_PREVIEW_URL = _module.VBEN_TD_PREVIEW_URL;
