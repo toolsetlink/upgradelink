@@ -35,23 +35,23 @@ func (m *AccessKeyMiddleware) Handle(next http.HandlerFunc) http.HandlerFunc {
 		// 签名验证 防篡改
 		xAccessKey := r.Header.Get("X-AccessKey")
 		if xAccessKey == "" {
-			httpx.Error(w, http_handlers.NewLinkErr(context.Background(), http_handlers.ErrHeadInvalid, "Missing X-AccessKey header", ""))
+			httpx.Error(w, http_handlers.NewLinkErr(context.Background(), http_handlers.ErrHeadInvalid, "Missing X-AccessKey header", "Missing X-AccessKey header"))
 			return
 		}
 
 		// 获取 accessKey 对应的 secretKey
 		secretInfo, err := m.serviceCtx.GetCompanySecretByAccessKey(context.Background(), xAccessKey)
 		if err != nil && errors.Is(err, model.ErrNotFound) {
-			httpx.Error(w, http_handlers.NewLinkErr(context.Background(), http_handlers.ErrAuth, "X-AccessKey is error", ""))
+			httpx.Error(w, http_handlers.NewLinkErr(context.Background(), http_handlers.ErrAuth, "X-AccessKey is error", "X-AccessKey is error"))
 			return
 		} else if err != nil {
-			httpx.Error(w, http_handlers.NewLinkErr(context.Background(), http_handlers.ErrInternalServerError, "X-AccessKey is error", ""))
+			httpx.Error(w, http_handlers.NewLinkErr(context.Background(), http_handlers.ErrInternalServerError, "X-AccessKey is error", "X-AccessKey is error"))
 			return
 		}
 
 		// 判断 accessKey 状态 是否为开启状态
 		if secretInfo.Enable == 0 {
-			httpx.Error(w, http_handlers.NewLinkErr(context.Background(), http_handlers.ErrAuth, "X-AccessKey is error", ""))
+			httpx.Error(w, http_handlers.NewLinkErr(context.Background(), http_handlers.ErrAuth, "X-AccessKey is error", "X-AccessKey is error"))
 			return
 		}
 
@@ -59,7 +59,7 @@ func (m *AccessKeyMiddleware) Handle(next http.HandlerFunc) http.HandlerFunc {
 		if secretInfo.ValidityDatetime.UnixMilli() != 1000 {
 			// 判断当前时间 是否过了有效期
 			if time.Now().UnixMilli() > secretInfo.ValidityDatetime.UnixMilli() {
-				httpx.Error(w, http_handlers.NewLinkErr(context.Background(), http_handlers.ErrAuth, "X-AccessKey is error", ""))
+				httpx.Error(w, http_handlers.NewLinkErr(context.Background(), http_handlers.ErrAuth, "X-AccessKey is error", "X-AccessKey is error"))
 				return
 			}
 		}

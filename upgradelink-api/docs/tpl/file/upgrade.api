@@ -93,6 +93,21 @@ type (
 )
 
 
+type (
+
+    FileActionUploadReq {
+        AppKey string `json:"appKey"`
+        Version   string              `json:"version" validate:"required"`
+        Url       string                `json:"url" validate:"required,url"`
+        PromptUpgradeContent     string   `json:"promptUpgradeContent,optional"`
+    }
+
+    FileActionUploadResp {
+        BaseDataInfo
+    }
+)
+
+
 // AccessKey 访问密钥效验
 // RateLimit 流量控制
 // ReplayAttack 防重放攻击
@@ -101,8 +116,8 @@ type (
 @server(
     prefix: /v1/file
     group: file
-    timeout: 30s
-    middleware: AccessKey, RateLimit, ReplayAttack, Signature, Rule
+    timeout: 600s
+    middleware: Lang, AccessKey, RateLimit, ReplayAttack, Signature, Rule
 )
 service api {
     // Get API list | 获取API列表
@@ -112,8 +127,11 @@ service api {
     // 获取 版本信息
     @handler getFileVersionInfo
     post /version (GetFileVersionInfoReq) returns (GetFileVersionInfoResp)
-}
 
+    // action 上传版本信息与配置应用信息
+    @handler fileActionUpload
+    post /aciton/upload (FileActionUploadReq) returns (FileActionUploadResp)
+}
 
 
 type (
@@ -130,7 +148,7 @@ type (
     group: download
     prefix: /v1/file
     timeout: 30s
-    middleware: CdnRateLimit
+    middleware: Lang, CdnRateLimit
 )
 
 service api {

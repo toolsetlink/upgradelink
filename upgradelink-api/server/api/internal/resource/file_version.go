@@ -131,3 +131,22 @@ func (c *Ctx) GetFileVersionInfoById(ctx context.Context,
 
 	return nil, err
 }
+
+type AddFileVersionReq struct {
+	CompanyId   int64  `db:"company_id"`    // 公司ID
+	FileId      int64  `db:"file_id"`       // 文件应用ID
+	CloudFileId string `db:"cloud_file_id"` // 云文件id
+	VersionName string `db:"version_name"`  // 版本名
+	VersionCode int64  `db:"version_code"`  // 版本号
+	Description string `db:"description"`   // 描述信息
+}
+
+func (c *Ctx) AddFileVersion(ctx context.Context, req AddFileVersionReq) (int64, error) {
+	query := fmt.Sprintf("insert into %s (company_id, file_id, cloud_file_id, version_name, version_code, description, is_del) values (?, ?, ?, ?, ?, ?, 0)", "upgrade_file_version")
+	ret, err := c.mysqlConn.ExecCtx(ctx, query, req.CompanyId, req.FileId, req.CloudFileId, req.VersionName, req.VersionCode, req.Description)
+	if err != nil {
+		return 0, err
+	}
+	id, _ := ret.LastInsertId()
+	return id, err
+}

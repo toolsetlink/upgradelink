@@ -85,7 +85,7 @@ type (
     prefix: /v1/app
     group: app
     timeout: 30s
-    middleware: AccessKey, RateLimit, ReplayAttack, Signature, Rule
+    middleware: Lang, AccessKey, RateLimit, ReplayAttack, Signature, Rule
 )
 
 service api {

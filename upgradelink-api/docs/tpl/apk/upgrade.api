@@ -119,6 +119,21 @@ type (
     }
 )
 
+
+type (
+
+    ApkActionUploadReq {
+        AppKey string `json:"appKey"`
+        Version   string              `json:"version" validate:"required"`
+        Url       string                `json:"url" validate:"required,url"`
+        PromptUpgradeContent     string   `json:"promptUpgradeContent,optional"`
+    }
+
+    ApkActionUploadResp {
+        BaseDataInfo
+    }
+)
+
 // AccessKey 访问密钥效验
 // RateLimit 流量控制
 // ReplayAttack 防重放攻击
@@ -127,8 +142,8 @@ type (
 @server(
     prefix: /v1/apk
     group: apk
-    timeout: 30s
-    middleware: AccessKey, RateLimit, ReplayAttack, Signature, Rule
+    timeout: 600s
+    middleware: Lang, AccessKey, RateLimit, ReplayAttack, Signature, Rule
 )
 
 service api {
@@ -139,6 +154,11 @@ service api {
     // 获取 版本信息
     @handler getApkVersionInfo
     post /version (GetApkVersionInfoReq) returns (GetApkVersionInfoResp)
+
+    // action 上传版本信息与配置应用信息
+    @handler apkActionUpload
+    post /aciton/upload (ApkActionUploadReq) returns (ApkActionUploadResp)
+
 }
 
 type (
@@ -150,7 +170,7 @@ type (
         // 指定版本（可空，为空时是最新版本）
         VersionCode int64 `form:"versionCode,optional,default=0"`
         // cloud 文件 唯一标识
-        CloudFileId string `form:"cloudFileId,optional,default=''"`
+        CloudFileId string `form:"cloudFileId,optional,default="`
     }
 )
 
@@ -159,7 +179,7 @@ type (
     group: download
     prefix: /v1/apk
     timeout: 30s
-    middleware: CdnRateLimit
+    middleware: Lang, CdnRateLimit
 )
 service api {
     @handler getApkDownloadInfo

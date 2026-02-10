@@ -1,0 +1,50 @@
+{
+	"common": {
+		"success": "Successfully",
+		"failed": "Failed",
+		"updateSuccess": "Update successfully",
+		"updateFailed": "Update failed",
+		"createSuccess": "Create successfully",
+		"createFailed": "Create failed",
+		"deleteSuccess": "Delete successfully",
+		"deleteFailed": "Delete failed",
+		"changeStatusSuccess": "Change status successfully",
+		"changeStatusFailed": "Change status failed",
+		"targetNotExist": "Target does not exist",
+		"databaseError": "Database error",
+		"redisError": "Redis error",
+		"permissionDeny": "User does not have permission to access this interface",
+		"constraintError": "Operation failed: Data conflict",
+		"validationError": "Operation failed: Validate failed",
+		"notSingularError": "Operation failed: Data is not unique",
+		"serviceUnavailable": "Service is unavailable, please check if the service is enabled",
+		"serviceBusy": "Service is busy, please try again later",
+		"cacheError": "Cache error"
+	},
+	"init": {
+		"alreadyInit": "Already initialized",
+		"initializeIsRunning": "Initialization is running"
+	},
+	"sys": {
+		"api": {
+			"apiRequestFailed": "API request failed"
+		}
+	},
+	"upgrade": {
+		"appNameDuplicate": "App name duplicate",
+		"appPackageNameDuplicate": "App package name duplicate",
+		"appVersionDuplicate": "Current app version name duplicate",
+		"appVersionCodeDuplicate": "Current app version code duplicate",
+		"appVersionHasStrategy": "App version still has corresponding strategy, cannot delete",
+		"taskNameDuplicate": "Task name duplicate",
+		"taskTimeInvalid": "Task start time is greater than or equal to end time",
+		"grayStrategyTimeInvalid": "Gray strategy has start time less than or equal to end time",
+		"grayStrategyTimeOverlap": "Gray strategy has start time and end time overlap",
+		"flowStrategyTimeInvalid": "Flow strategy has start time less than or equal to end time",
+		"flowStrategyTimeOverlap": "Flow strategy has start time and end time overlap",
+		"versionFormatError": "Version name format error",
+		"deviceUniqueIdDuplicate": "Device unique ID duplicate",
+		"deviceGroupNameDuplicate": "Device group name duplicate",
+		"deviceModelNameDuplicate": "Device model name duplicate"
+	}
+}

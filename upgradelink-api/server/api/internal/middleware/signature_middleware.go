@@ -32,31 +32,25 @@ func (m *SignatureMiddleware) Handle(next http.HandlerFunc) http.HandlerFunc {
 		//next(w, r)
 		//return
 
-		// 测试
-		xTest := r.Header.Get("test")
-		if xTest == "test" {
-			next(w, r)
-			return
-		}
-
 		// 签名验证 防篡改
 		xAccessKey := r.Header.Get("X-AccessKey")
 		if xAccessKey == "" {
-			httpx.Error(w, http_handlers.NewLinkErr(context.Background(), http_handlers.ErrHeadInvalid, "Missing X-AccessKey header", ""))
+			httpx.Error(w, http_handlers.NewLinkErr(context.Background(), http_handlers.ErrHeadInvalid, "Missing X-AccessKey header", "Missing X-AccessKey header"))
 			return
 		}
+
 		xSignature := r.Header.Get("X-Signature")
 		if xSignature == "" {
-			httpx.Error(w, http_handlers.NewLinkErr(context.Background(), http_handlers.ErrHeadInvalid, "Missing X-Signature header", ""))
+			httpx.Error(w, http_handlers.NewLinkErr(context.Background(), http_handlers.ErrHeadInvalid, "Missing X-Signature header", "Missing X-Signature header"))
 			return
 		}
 
 		// 获取 accessKey 对应的 secretKey
 		secretInfo, err := m.serviceCtx.GetCompanySecretByAccessKey(context.Background(), xAccessKey)
 		if err != nil && errors.Is(err, model.ErrNotFound) {
-			httpx.Error(w, http_handlers.NewLinkErr(context.Background(), http_handlers.ErrAuth, "X-AccessKey is error", ""))
+			httpx.Error(w, http_handlers.NewLinkErr(context.Background(), http_handlers.ErrAuth, "X-AccessKey is error", "X-AccessKey is error"))
 		} else if err != nil {
-			httpx.Error(w, http_handlers.NewLinkErr(context.Background(), http_handlers.ErrInternalServerError, "X-AccessKey is error", ""))
+			httpx.Error(w, http_handlers.NewLinkErr(context.Background(), http_handlers.ErrInternalServerError, "X-AccessKey is error", "X-AccessKey is error"))
 		}
 
 		xTimestamp := r.Header.Get("X-Timestamp")
@@ -70,7 +64,7 @@ func (m *SignatureMiddleware) Handle(next http.HandlerFunc) http.HandlerFunc {
 			var bodyByte []byte
 			bodyByte, err = io.ReadAll(r.Body)
 			if err != nil {
-				httpx.Error(w, http_handlers.NewLinkErr(context.Background(), http_handlers.ErrAuth, "ReadBody Field", ""))
+				httpx.Error(w, http_handlers.NewLinkErr(context.Background(), http_handlers.ErrAuth, "ReadBody Field", "ReadBody Field"))
 				return
 			}
 			r.Body = io.NopCloser(bytes.NewBuffer(bodyByte))
@@ -82,7 +76,7 @@ func (m *SignatureMiddleware) Handle(next http.HandlerFunc) http.HandlerFunc {
 		// 生成签名并验签
 		sg := GenerateSignature(data)
 		if sg != xSignature {
-			httpx.Error(w, http_handlers.NewLinkErr(context.Background(), http_handlers.ErrSign, "Signature Invalid", ""))
+			httpx.Error(w, http_handlers.NewLinkErr(context.Background(), http_handlers.ErrSign, "Signature Invalid", "Signature Invalid"))
 			return
 		}
 

@@ -1,0 +1,50 @@
+{
+	"common": {
+		"success": "موفق",
+		"failed": "ناموفق",
+		"updateSuccess": "به‌روزرسانی با موفقیت انجام شد",
+		"updateFailed": "به‌روزرسانی ناموفق بود",
+		"createSuccess": "ایجاد با موفقیت انجام شد",
+		"createFailed": "ایجاد ناموفق بود",
+		"deleteSuccess": "حذف با موفقیت انجام شد",
+		"deleteFailed": "حذف ناموفق بود",
+		"changeStatusSuccess": "تغییر وضعیت با موفقیت انجام شد",
+		"changeStatusFailed": "تغییر وضعیت ناموفق بود",
+		"targetNotExist": "هدف وجود ندارد",
+		"databaseError": "خطای پایگاه داده",
+		"redisError": "خطای Redis",
+		"permissionDeny": "کاربر مجوز دسترسی به این رابط را ندارد",
+		"constraintError": "عملیات ناموفق: تضاد داده",
+		"validationError": "عملیات ناموفق: اعتبارسنجی ناموفق",
+		"notSingularError": "عملیات ناموفق: داده یکتا نیست",
+		"serviceUnavailable": "سرویس در دسترس نیست، لطفاً بررسی کنید که سرویس فعال شده است",
+		"serviceBusy": "سرویس مشغول است، لطفاً بعداً دوباره تلاش کنید",
+		"cacheError": "خطای کش"
+	},
+	"init": {
+		"alreadyInit": "قبلاً راه‌اندازی شده",
+		"initializeIsRunning": "راه‌اندازی در حال اجرا است"
+	},
+	"sys": {
+		"api": {
+			"apiRequestFailed": "درخواست API ناموفق بود"
+		}
+	},
+	"upgrade": {
+		"appNameDuplicate": "نام برنامه تکراری است",
+		"appPackageNameDuplicate": "نام بسته برنامه تکراری است",
+		"appVersionDuplicate": "نام نسخه فعلی برنامه تکراری است",
+		"appVersionCodeDuplicate": "کد نسخه فعلی برنامه تکراری است",
+		"appVersionHasStrategy": "نسخه برنامه هنوز استراتژی متناظر دارد، نمی‌تواند حذف شود",
+		"taskNameDuplicate": "نام کار تکراری است",
+		"taskTimeInvalid": "زمان شروع کار بزرگتر یا برابر با زمان پایان است",
+		"grayStrategyTimeInvalid": "استراتژی خاکستری دارای زمان شروع کمتر یا برابر با زمان پایان است",
+		"grayStrategyTimeOverlap": "استراتژی خاکستری دارای تداخل زمان شروع و پایان است",
+		"flowStrategyTimeInvalid": "استراتژی جریان دارای زمان شروع کمتر یا برابر با زمان پایان است",
+		"flowStrategyTimeOverlap": "استراتژی جریان دارای تداخل زمان شروع و پایان است",
+		"versionFormatError": "خطای فرمت نام نسخه",
+		"deviceUniqueIdDuplicate": "شناسه یکتا دستگاه تکراری است",
+		"deviceGroupNameDuplicate": "نام گروه دستگاه تکراری است",
+		"deviceModelNameDuplicate": "نام مدل دستگاه تکراری است"
+	}
+}

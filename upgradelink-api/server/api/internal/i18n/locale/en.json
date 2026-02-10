@@ -1,0 +1,104 @@
+{
+	"common": {
+		"success": "Successfully",
+		"failed": "Failed",
+		"updateSuccess": "Update successfully",
+		"updateFailed": "Update failed",
+		"createSuccess": "Create successfully",
+		"createFailed": "Create failed",
+		"deleteSuccess": "Delete successfully",
+		"deleteFailed": "Delete failed",
+		"changeStatusSuccess": "Change status successfully",
+		"changeStatusFailed": "Change status failed",
+		"targetNotExist": "Target does not exist",
+		"databaseError": "Database error",
+		"redisError": "Redis error",
+		"permissionDeny": "User does not have permission to access this interface",
+		"constraintError": "Operation failed: Data conflict",
+		"validationError": "Operation failed: Validation failed",
+		"notSingularError": "Operation failed: Data not unique",
+		"serviceUnavailable": "Service is unavailable, please check if the service is enabled",
+		"cacheError": "Cache error",
+		"versionFormatError": "Version format error",
+		"deleteOldVersionError": "Failed to delete old version",
+		"processPlatformError": "Failed to process platform task",
+		"downloadFailed": "Download failed",
+		"uploadFailed": "Upload failed",
+		"alreadyLatestVersion": "Already the latest version",
+		"alreadyLatestVersionDocs": "It's already the latest version and no upgrade is required",
+		"newVersionAvailable": "New version available",
+		"tooManyRequests": "Too many requests, please try again later",
+		"tooManyRequestsDocs": "The request flow control policy for the current upgrade task configuration has reached its limit. Please try again later.",
+		"internalError": "Internal service error",
+		"internalErrorDocs": "UpgradeLink internal service error. Please contact us for assistance: https://github.com/toolsetlink/upgradelink/issues",
+		"timeParseError": "Time parse error",
+		"githubTokenError": "GitHub Token verification failed",
+		"noPlatformsToProcess": "No platforms to process"
+	},
+	"electron": {
+		"githubUrlEmpty": "Electron application information must configure GitHub project address",
+		"paramError": "Parameter error",
+		"paramErrorDocs": "Please refer to the documentation: https://www.toolsetlink.com/en/upgrade/api/electron/get-electron-upgrade-strategy.html",
+		"notFound": "Electron application not found",
+		"notFoundDocs": "No application corresponding to the electronKey was found. Please confirm that it has been correctly created in the system. Refer to the documentation: https://www.toolsetlink.com/upgrade/recommend/electron/app.html",
+		"versionNotFound": "Electron version not found",
+		"versionNotFoundDocs": "No corresponding application version was found. Please confirm that it has been correctly created in the system. Refer to the documentation: https://www.toolsetlink.com/upgrade/recommend/electron/app-version.html"
+	},
+	"tauri": {
+		"githubUrlEmpty": "Tauri application information must configure GitHub project address",
+		"paramError": "Parameter error",
+		"paramErrorDocs": "Please refer to the documentation: https://www.toolsetlink.com/en/upgrade/api/tauri/get-tauri-upgrade-strategy.html",
+		"notFound": "Tauri application not found",
+		"notFoundDocs": "No application corresponding to the tauriKey was found. Please confirm that it has been correctly created in the system. Refer to the documentation: https://www.toolsetlink.com/en/upgrade/recommend/tauri/app.html",
+		"versionNotFound": "Tauri version not found",
+		"versionNotFoundDocs": "No corresponding application version was found. Please confirm that it has been correctly created in the system. Refer to the documentation: https://www.toolsetlink.com/en/upgrade/recommend/tauri/app-version.html"
+	},
+	"lnx": {
+		"paramError": "Parameter error",
+		"paramErrorDocs": "Please refer to the documentation: https://www.toolsetlink.com/en/upgrade/api/lnx/get-lnx-upgrade-strategy.html",
+		"notFound": "Linux application not found",
+		"notFoundDocs": "No application corresponding to the lnxKey was found. Please confirm that it has been correctly created in the system. Refer to the documentation: https://www.toolsetlink.com/en/upgrade/recommend/lnx/app.html",
+		"versionNotFound": "Linux version not found",
+		"versionNotFoundDocs": "No corresponding application version was found. Please confirm that it has been correctly created in the system. Refer to the documentation: https://www.toolsetlink.com/en/upgrade/recommend/lnx/app-version.html"
+	},
+	"mac": {
+		"paramError": "Parameter error",
+		"paramErrorDocs": "Please refer to the documentation: https://www.toolsetlink.com/en/upgrade/api/mac/get-mac-upgrade-strategy.html",
+		"notFound": "Mac application not found",
+		"notFoundDocs": "No application corresponding to the macKey was found. Please confirm that it has been correctly created in the system. Refer to the documentation: https://www.toolsetlink.com/en/upgrade/recommend/mac/app.html",
+		"versionNotFound": "Mac version not found",
+		"versionNotFoundDocs": "No corresponding application version was found. Please confirm that it has been correctly created in the system. Refer to the documentation: https://www.toolsetlink.com/en/upgrade/recommend/mac/app-version.html"
+	},
+	"win": {
+		"paramError": "Parameter error",
+		"paramErrorDocs": "Please refer to the documentation: https://www.toolsetlink.com/en/upgrade/api/win/get-win-upgrade-strategy.html",
+		"notFound": "Windows application not found",
+		"notFoundDocs": "No application corresponding to the winKey was found. Please confirm that it has been correctly created in the system. Refer to the documentation: https://www.toolsetlink.com/en/upgrade/recommend/win/app.html",
+		"versionNotFound": "Windows version not found",
+		"versionNotFoundDocs": "No corresponding application version was found. Please confirm that it has been correctly created in the system. Refer to the documentation: https://www.toolsetlink.com/en/upgrade/recommend/win/app-version.html"
+	},
+	"apk": {
+		"paramError": "Parameter error",
+		"paramErrorDocs": "Please refer to the documentation: https://www.toolsetlink.com/en/upgrade/api/apk/get-apk-upgrade-strategy.html",
+		"notFound": "APK application not found",
+		"notFoundDocs": "No application corresponding to the apkKey was found. Please confirm that it has been correctly created in the system. Refer to the documentation: https://www.toolsetlink.com/en/upgrade/recommend/apk/app.html",
+		"versionNotFound": "APK version not found",
+		"versionNotFoundDocs": "No corresponding application version was found. Please confirm that it has been correctly created in the system. Refer to the documentation: https://www.toolsetlink.com/en/upgrade/recommend/apk/app-version.html"
+	},
+	"url": {
+		"paramError": "Parameter error",
+		"paramErrorDocs": "Please refer to the documentation: https://www.toolsetlink.com/en/upgrade/api/url/get-url-upgrade-strategy.html",
+		"notFound": "URL application not found",
+		"notFoundDocs": "No application corresponding to the urlKey was found. Please confirm that it has been correctly created in the system. Refer to the documentation: https://www.toolsetlink.com/en/upgrade/recommend/url/app.html",
+		"versionNotFound": "URL version not found",
+		"versionNotFoundDocs": "No corresponding application version was found. Please confirm that it has been correctly created in the system. Refer to the documentation: https://www.toolsetlink.com/en/upgrade/recommend/url/app-version.html"
+	},
+	"file": {
+		"paramError": "Parameter error",
+		"paramErrorDocs": "Please refer to the documentation: https://www.toolsetlink.com/en/upgrade/api/file/get-file-upgrade-strategy.html",
+		"notFound": "File application not found",
+		"notFoundDocs": "No application corresponding to the fileKey was found. Please confirm that it has been correctly created in the system. Refer to the documentation: https://www.toolsetlink.com/en/upgrade/recommend/file/app.html",
+		"versionNotFound": "File version not found",
+		"versionNotFoundDocs": "No corresponding application version was found. Please confirm that it has been correctly created in the system. Refer to the documentation: https://www.toolsetlink.com/en/upgrade/recommend/file/app-version.html"
+	}
+}

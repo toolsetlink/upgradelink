@@ -3,6 +3,17 @@
 
 package types
 
+type ApkActionUploadReq struct {
+	AppKey               string `json:"appKey"`
+	Version              string `json:"version" validate:"required"`
+	Url                  string `json:"url" validate:"required,url"`
+	PromptUpgradeContent string `json:"promptUpgradeContent,optional"`
+}
+
+type ApkActionUploadResp struct {
+	BaseDataInfo
+}
+
 type AppGetStrategyCount7DaySeriesItem struct {
 	TimeData string `json:"timeData"` // time 时间
 	Data     int    `json:"data"`     // 数据
@@ -31,10 +42,6 @@ type DownloadCount7DaySeriesItem struct {
 	Data     int    `json:"data"`     // 数据
 }
 
-type ElectronPlatformsRequest struct {
-	Url string `json:"url" form:"url" validate:"required,url"`
-}
-
 type EventData struct {
 	VersionCode         int64  `json:"versionCode,optional"`
 	DevModelKey         string `json:"devModelKey,optional"`
@@ -47,11 +54,22 @@ type EventData struct {
 	Code                int64  `json:"code,optional"`
 }
 
+type FileActionUploadReq struct {
+	AppKey               string `json:"appKey"`
+	Version              string `json:"version" validate:"required"`
+	Url                  string `json:"url" validate:"required,url"`
+	PromptUpgradeContent string `json:"promptUpgradeContent,optional"`
+}
+
+type FileActionUploadResp struct {
+	BaseDataInfo
+}
+
 type GetApkDownloadInfoReq struct {
 	DownloadType int64  `form:"downloadType,default=1"`
 	ApkKey       string `form:"apkKey"`
 	VersionCode  int64  `form:"versionCode,optional,default=0"`
-	CloudFileId  string `form:"cloudFileId,optional,default=''"`
+	CloudFileId  string `form:"cloudFileId,optional,default="`
 }
 
 type GetApkUpgradeInfoReq struct {
@@ -146,7 +164,7 @@ type GetElectronDownloadInfoReq struct {
 	ElectronKey  string `form:"electronKey"`
 	Platform     string `form:"platform"`
 	Arch         string `form:"arch"`
-	VersionName  string `form:"versionName,optional,default=''"`
+	VersionName  string `form:"versionName,optional,default="`
 }
 
 type GetElectronUpgradeInfoFileResp struct {
@@ -353,7 +371,7 @@ type GetTauriDownloadInfoReq struct {
 	TauriKey     string `form:"tauriKey"`
 	Target       string `form:"target,optional"`
 	Arch         string `form:"arch,optional"`
-	VersionName  string `form:"versionName,optional,default=''"`
+	VersionName  string `form:"versionName,optional,default="`
 }
 
 type GetTauriUpgradeInfoReq struct {
@@ -510,20 +528,6 @@ type PlatformsRequest struct {
 	WindowsI686    PlatformInfoRequest `json:"windows-i686,optional"`
 }
 
-type PostElectronUploadReq struct {
-	AccessKey            string                   `header:"X-AccessKey"`
-	ElectronKey          string                   `form:"electronKey"`
-	GithubToken          string                   `form:"githubToken"`
-	Version              string                   `json:"version" validate:"required"`
-	PromptUpgradeContent string                   `json:"promptUpgradeContent,optional"`
-	ReleaseDate          string                   `json:"releaseDate,optional"`
-	Platforms            ElectronPlatformsRequest `json:"platforms,optional"`
-}
-
-type PostElectronUploadResp struct {
-	BaseDataInfo
-}
-
 type PostTauriUploadReq struct {
 	AccessKey   string           `header:"X-AccessKey"`
 	TauriKey    string           `form:"tauriKey"`
@@ -571,4 +575,13 @@ type StatisticsReq struct {
 type StatisticsResp struct {
 	BaseDataInfo
 	Data StatisticsData `json:"data"`
+}
+
+type TauriActionUploadReq struct {
+	AppKey        string `json:"appKey"`
+	LatestJsonUrl string `json:"latestJsonUrl"`
+}
+
+type TauriActionUploadResp struct {
+	BaseDataInfo
 }

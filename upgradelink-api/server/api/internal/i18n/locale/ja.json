@@ -1,0 +1,104 @@
+{
+	"common": {
+		"success": "成功",
+		"failed": "失敗",
+		"updateSuccess": "更新成功",
+		"updateFailed": "更新失敗",
+		"createSuccess": "作成成功",
+		"createFailed": "作成失敗",
+		"deleteSuccess": "削除成功",
+		"deleteFailed": "削除失敗",
+		"changeStatusSuccess": "ステータス変更成功",
+		"changeStatusFailed": "ステータス変更失敗",
+		"targetNotExist": "対象が存在しません",
+		"databaseError": "データベースエラー",
+		"redisError": "Redisエラー",
+		"permissionDeny": "ユーザーにこのインターフェースへのアクセス権限がありません",
+		"constraintError": "操作失敗: データ衝突",
+		"validationError": "操作失敗: 検証失敗",
+		"notSingularError": "操作失敗: データが一意でない",
+		"serviceUnavailable": "サービスが利用不可です。サービスが有効になっているか確認してください",
+		"cacheError": "キャッシュエラー",
+		"versionFormatError": "バージョン形式エラー",
+		"deleteOldVersionError": "旧バージョンの削除に失敗しました",
+		"processPlatformError": "プラットフォームタスクの処理に失敗しました",
+		"downloadFailed": "ダウンロード失敗",
+		"uploadFailed": "アップロード失敗",
+		"alreadyLatestVersion": "すでに最新バージョンです",
+		"alreadyLatestVersionDocs": "すでに最新バージョンであり、アップグレードの必要はありません",
+		"newVersionAvailable": "新しいバージョンが利用可能です",
+		"tooManyRequests": "リクエストが多すぎます。後で再試行してください",
+		"tooManyRequestsDocs": "現在のアップグレードタスク設定のリクエストフロー制御ポリシーの制限に達しています。後で再試行してください。",
+		"internalError": "サービス内部エラー",
+		"internalErrorDocs": "UpgradeLink内部サービスエラー。お問い合わせください：https://github.com/toolsetlink/upgradelink/issues",
+		"timeParseError": "時間解析エラー",
+		"githubTokenError": "GitHub Tokenの検証に失敗しました",
+		"noPlatformsToProcess": "処理するプラットフォームがありません"
+	},
+	"electron": {
+		"githubUrlEmpty": "Electronアプリケーション情報にはGitHubプロジェクトのアドレスを設定する必要があります",
+		"paramError": "パラメータエラー",
+		"paramErrorDocs": "ドキュメントを参照してください：https://www.toolsetlink.com/en/upgrade/api/electron/get-electron-upgrade-strategy.html",
+		"notFound": "Electronアプリケーションが見つかりません",
+		"notFoundDocs": "electronKeyに対応するアプリケーションが見つかりません。システムに正しく作成されていることを確認してください。ドキュメントを参照してください：https://www.toolsetlink.com/upgrade/recommend/electron/app.html",
+		"versionNotFound": "Electronバージョンが見つかりません",
+		"versionNotFoundDocs": "対応するアプリケーションバージョンが見つかりません。システムに正しく作成されていることを確認してください。ドキュメントを参照してください：https://www.toolsetlink.com/upgrade/recommend/electron/app-version.html"
+	},
+	"tauri": {
+		"githubUrlEmpty": "Tauriアプリケーション情報にはGitHubプロジェクトのアドレスを設定する必要があります",
+		"paramError": "パラメータエラー",
+		"paramErrorDocs": "ドキュメントを参照してください：https://www.toolsetlink.com/en/upgrade/api/tauri/get-tauri-upgrade-strategy.html",
+		"notFound": "Tauriアプリケーションが見つかりません",
+		"notFoundDocs": "tauriKeyに対応するアプリケーションが見つかりません。システムに正しく作成されていることを確認してください。ドキュメントを参照してください：https://www.toolsetlink.com/en/upgrade/recommend/tauri/app.html",
+		"versionNotFound": "Tauriバージョンが見つかりません",
+		"versionNotFoundDocs": "対応するアプリケーションバージョンが見つかりません。システムに正しく作成されていることを確認してください。ドキュメントを参照してください：https://www.toolsetlink.com/en/upgrade/recommend/tauri/app-version.html"
+	},
+	"lnx": {
+		"paramError": "パラメータエラー",
+		"paramErrorDocs": "ドキュメントを参照してください：https://www.toolsetlink.com/en/upgrade/api/lnx/get-lnx-upgrade-strategy.html",
+		"notFound": "Linuxアプリケーションが見つかりません",
+		"notFoundDocs": "lnxKeyに対応するアプリケーションが見つかりません。システムに正しく作成されていることを確認してください。ドキュメントを参照してください：https://www.toolsetlink.com/en/upgrade/recommend/lnx/app.html",
+		"versionNotFound": "Linuxバージョンが見つかりません",
+		"versionNotFoundDocs": "対応するアプリケーションバージョンが見つかりません。システムに正しく作成されていることを確認してください。ドキュメントを参照してください：https://www.toolsetlink.com/en/upgrade/recommend/lnx/app-version.html"
+	},
+	"mac": {
+		"paramError": "パラメータエラー",
+		"paramErrorDocs": "ドキュメントを参照してください：https://www.toolsetlink.com/en/upgrade/api/mac/get-mac-upgrade-strategy.html",
+		"notFound": "Macアプリケーションが見つかりません",
+		"notFoundDocs": "macKeyに対応するアプリケーションが見つかりません。システムに正しく作成されていることを確認してください。ドキュメントを参照してください：https://www.toolsetlink.com/en/upgrade/recommend/mac/app.html",
+		"versionNotFound": "Macバージョンが見つかりません",
+		"versionNotFoundDocs": "対応するアプリケーションバージョンが見つかりません。システムに正しく作成されていることを確認してください。ドキュメントを参照してください：https://www.toolsetlink.com/en/upgrade/recommend/mac/app-version.html"
+	},
+	"win": {
+		"paramError": "パラメータエラー",
+		"paramErrorDocs": "ドキュメントを参照してください：https://www.toolsetlink.com/en/upgrade/api/win/get-win-upgrade-strategy.html",
+		"notFound": "Windowsアプリケーションが見つかりません",
+		"notFoundDocs": "winKeyに対応するアプリケーションが見つかりません。システムに正しく作成されていることを確認してください。ドキュメントを参照してください：https://www.toolsetlink.com/en/upgrade/recommend/win/app.html",
+		"versionNotFound": "Windowsバージョンが見つかりません",
+		"versionNotFoundDocs": "対応するアプリケーションバージョンが見つかりません。システムに正しく作成されていることを確認してください。ドキュメントを参照してください：https://www.toolsetlink.com/en/upgrade/recommend/win/app-version.html"
+	},
+	"apk": {
+		"paramError": "パラメータエラー",
+		"paramErrorDocs": "ドキュメントを参照してください：https://www.toolsetlink.com/en/upgrade/api/apk/get-apk-upgrade-strategy.html",
+		"notFound": "APKアプリケーションが見つかりません",
+		"notFoundDocs": "apkKeyに対応するアプリケーションが見つかりません。システムに正しく作成されていることを確認してください。ドキュメントを参照してください：https://www.toolsetlink.com/en/upgrade/recommend/apk/app.html",
+		"versionNotFound": "APKバージョンが見つかりません",
+		"versionNotFoundDocs": "対応するアプリケーションバージョンが見つかりません。システムに正しく作成されていることを確認してください。ドキュメントを参照してください：https://www.toolsetlink.com/en/upgrade/recommend/apk/app-version.html"
+	},
+	"url": {
+		"paramError": "パラメータエラー",
+		"paramErrorDocs": "ドキュメントを参照してください：https://www.toolsetlink.com/en/upgrade/api/url/get-url-upgrade-strategy.html",
+		"notFound": "URLアプリケーションが見つかりません",
+		"notFoundDocs": "urlKeyに対応するアプリケーションが見つかりません。システムに正しく作成されていることを確認してください。ドキュメントを参照してください：https://www.toolsetlink.com/en/upgrade/recommend/url/app.html",
+		"versionNotFound": "URLバージョンが見つかりません",
+		"versionNotFoundDocs": "対応するアプリケーションバージョンが見つかりません。システムに正しく作成されていることを確認してください。ドキュメントを参照してください：https://www.toolsetlink.com/en/upgrade/recommend/url/app-version.html"
+	},
+	"file": {
+		"paramError": "パラメータエラー",
+		"paramErrorDocs": "ドキュメントを参照してください：https://www.toolsetlink.com/en/upgrade/api/file/get-file-upgrade-strategy.html",
+		"notFound": "ファイルアプリケーションが見つかりません",
+		"notFoundDocs": "fileKeyに対応するアプリケーションが見つかりません。システムに正しく作成されていることを確認してください。ドキュメントを参照してください：https://www.toolsetlink.com/en/upgrade/recommend/file/app.html",
+		"versionNotFound": "ファイルバージョンが見つかりません",
+		"versionNotFoundDocs": "対応するアプリケーションバージョンが見つかりません。システムに正しく作成されていることを確認してください。ドキュメントを参照してください：https://www.toolsetlink.com/en/upgrade/recommend/file/app-version.html"
+	}
+}

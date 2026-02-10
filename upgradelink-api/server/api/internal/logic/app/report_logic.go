@@ -31,12 +31,12 @@ func (l *ReportLogic) Report(req *types.ReportReq) (resp *types.ReportResp, err 
 	// 获取公司 id
 	companyId, err := l.svcCtx.ResourceCtx.GetCompanyIdByAppKey(l.ctx, req.AppKey)
 	if err != nil {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"), l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"))
 	}
 
 	timestamp, err := common.ParseRFC3339ToTime(req.Timestamp)
 	if err != nil {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.validationError"), l.svcCtx.Trans.Trans(l.ctx, "common.validationError"))
 	}
 
 	// 获取应用版本 id
@@ -52,7 +52,7 @@ func (l *ReportLogic) Report(req *types.ReportReq) (resp *types.ReportResp, err 
 	// 获取应用版本类型
 	appType, err := l.svcCtx.ResourceCtx.GetAppTypeByAppKey(l.ctx, req.AppKey)
 	if err != nil {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"), l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"))
 	}
 
 	var res types.ReportResp
@@ -62,7 +62,7 @@ func (l *ReportLogic) Report(req *types.ReportReq) (resp *types.ReportResp, err 
 
 		launchTime, err := common.ParseRFC3339ToTime(req.EventData.LaunchTime)
 		if err != nil {
-			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.validationError"), l.svcCtx.Trans.Trans(l.ctx, "common.validationError"))
 		}
 
 		_, err = l.svcCtx.ResourceCtx.AddAppStartReportLog(l.ctx, resource.AddAppStartReportLogReq{
@@ -118,6 +118,6 @@ func (l *ReportLogic) Report(req *types.ReportReq) (resp *types.ReportResp, err 
 	}
 
 	res.Code = 0
-	res.Msg = "上报成功"
+	res.Msg = l.svcCtx.Trans.Trans(l.ctx, "common.success")
 	return &res, nil
 }

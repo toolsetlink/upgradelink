@@ -1,0 +1,50 @@
+{
+	"common": {
+		"success": "성공",
+		"failed": "실패",
+		"updateSuccess": "업데이트 성공",
+		"updateFailed": "업데이트 실패",
+		"createSuccess": "생성 성공",
+		"createFailed": "생성 실패",
+		"deleteSuccess": "삭제 성공",
+		"deleteFailed": "삭제 실패",
+		"changeStatusSuccess": "상태 변경 성공",
+		"changeStatusFailed": "상태 변경 실패",
+		"targetNotExist": "대상이 존재하지 않음",
+		"databaseError": "데이터베이스 오류",
+		"redisError": "Redis 오류",
+		"permissionDeny": "사용자는 이 인터페이스에 접근할 권한이 없습니다",
+		"constraintError": "작업 실패: 데이터 충돌",
+		"validationError": "작업 실패: 유효성 검사 실패",
+		"notSingularError": "작업 실패: 데이터가 고유하지 않음",
+		"serviceUnavailable": "서비스를 사용할 수 없음, 서비스가 활성화되어 있는지 확인하십시오",
+		"serviceBusy": "서비스가 바쁨, 나중에 다시 시도하십시오",
+		"cacheError": "캐시 오류"
+	},
+	"init": {
+		"alreadyInit": "이미 초기화됨",
+		"initializeIsRunning": "초기화가 실행 중임"
+	},
+	"sys": {
+		"api": {
+			"apiRequestFailed": "API 요청 실패"
+		}
+	},
+	"upgrade": {
+		"appNameDuplicate": "앱 이름 중복",
+		"appPackageNameDuplicate": "앱 패키지 이름 중복",
+		"appVersionDuplicate": "현재 앱 버전 이름 중복",
+		"appVersionCodeDuplicate": "현재 앱 버전 코드 중복",
+		"appVersionHasStrategy": "앱 버전에 여전히 해당 전략이 있으므로 삭제할 수 없음",
+		"taskNameDuplicate": "작업 이름 중복",
+		"taskTimeInvalid": "작업 시작 시간이 종료 시간보다 크거나 같음",
+		"grayStrategyTimeInvalid": "그레이 전략의 시작 시간이 종료 시간보다 작거나 같음",
+		"grayStrategyTimeOverlap": "그레이 전략의 시작 시간과 종료 시간이 겹침",
+		"flowStrategyTimeInvalid": "흐름 전략의 시작 시간이 종료 시간보다 작거나 같음",
+		"flowStrategyTimeOverlap": "흐름 전략의 시작 시간과 종료 시간이 겹침",
+		"versionFormatError": "버전 이름 형식 오류",
+		"deviceUniqueIdDuplicate": "기기 고유 ID 중복",
+		"deviceGroupNameDuplicate": "기기 그룹 이름 중복",
+		"deviceModelNameDuplicate": "기기 모델 이름 중복"
+	}
+}

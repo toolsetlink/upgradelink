@@ -34,10 +34,10 @@ func (l *GetFileUpgradeInfoLogic) GetFileUpgradeInfo(req *types.GetFileUpgradeIn
 
 	// 请求参数效验
 	if req.FileKey == "" {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrFile1Msg, common.ErrFile1Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, l.svcCtx.Trans.Trans(l.ctx, "file.paramError"), l.svcCtx.Trans.Trans(l.ctx, "file.paramErrorDocs"))
 	}
 	if req.VersionCode < 0 {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrFile1Msg, common.ErrFile1Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, l.svcCtx.Trans.Trans(l.ctx, "file.paramError"), l.svcCtx.Trans.Trans(l.ctx, "file.paramErrorDocs"))
 	}
 
 	var res types.GetFileUpgradeInfoResp
@@ -45,31 +45,31 @@ func (l *GetFileUpgradeInfoLogic) GetFileUpgradeInfo(req *types.GetFileUpgradeIn
 	// 通过唯一标识 获取到对应的应用信息
 	fileInfo, err := l.svcCtx.ResourceCtx.GetFileInfoByKey(l.ctx, req.FileKey)
 	if err != nil && errors.Is(err, model.ErrNotFound) {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, common.ErrFile2Msg, common.ErrFile2Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, l.svcCtx.Trans.Trans(l.ctx, "file.notFound"), l.svcCtx.Trans.Trans(l.ctx, "file.notFoundDocs"))
 	} else if err != nil {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"), l.svcCtx.Trans.Trans(l.ctx, "common.internalErrorDocs"))
 	}
 
 	// 查询应用版本表，判断是否有大于当前版本的  没有的话则代表当前就是最高版本
 	_, err = l.svcCtx.ResourceCtx.GetFileVersionListByFileIdAndVersionCode(l.ctx, fileInfo.Id, req.VersionCode)
 	if err != nil && errors.Is(err, model.ErrNotFound) {
 		res.Code = 0
-		res.Msg = common.AlreadyLatestVersionMsg
-		res.Docs = common.AlreadyLatestVersionDocs
+		res.Msg = l.svcCtx.Trans.Trans(l.ctx, "common.alreadyLatestVersion")
+		res.Docs = l.svcCtx.Trans.Trans(l.ctx, "common.alreadyLatestVersionDocs")
 		return &res, nil
 	} else if err != nil {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"), l.svcCtx.Trans.Trans(l.ctx, "common.internalErrorDocs"))
 	}
 
 	// 推出可使用的最高版本的升级策略
 	fileStrategyInfo, err := l.ReturnUpgradeStrategyInfo(fileInfo.Id, req.VersionCode, req.AppointVersionCode, req.DevModelKey, req.DevKey)
 	if err != nil && errors.Is(err, model.ErrNotFound) {
 		res.Code = 0
-		res.Msg = common.AlreadyLatestVersionMsg
-		res.Docs = common.AlreadyLatestVersionDocs
+		res.Msg = l.svcCtx.Trans.Trans(l.ctx, "common.alreadyLatestVersion")
+		res.Docs = l.svcCtx.Trans.Trans(l.ctx, "common.alreadyLatestVersionDocs")
 		return &res, nil
 	} else if err != nil {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"), l.svcCtx.Trans.Trans(l.ctx, "common.internalErrorDocs"))
 	}
 
 	// 到这个地方的时候 说明前置条件已经都通过了，在这个位置再去判断 策略的频控配置是否符合
@@ -79,23 +79,23 @@ func (l *GetFileUpgradeInfoLogic) GetFileUpgradeInfo(req *types.GetFileUpgradeIn
 	}
 	if !flowLimitOk {
 		// 被频控拦住 返回 429
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrStrategyTooManyReq, common.Err42901Msg, common.Err42901Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrStrategyTooManyReq, l.svcCtx.Trans.Trans(l.ctx, "common.tooManyRequests"), l.svcCtx.Trans.Trans(l.ctx, "common.tooManyRequestsDocs"))
 	}
 
 	// 通过升级版本 id 查询出对应版本信息 获取文件下载地址
 	fileVersionInfo, err := l.svcCtx.ResourceCtx.GetFileVersionInfoById(l.ctx, fileStrategyInfo.FileVersionId)
 	if err != nil && errors.Is(err, model.ErrNotFound) {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.targetNotExist"), l.svcCtx.Trans.Trans(l.ctx, "common.internalErrorDocs"))
 	} else if err != nil {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"), l.svcCtx.Trans.Trans(l.ctx, "common.internalErrorDocs"))
 	}
 
 	// 获取文件信息
 	cloudFileInfo, err := l.svcCtx.ResourceCtx.GetCloudFileInfoById(l.ctx, fileVersionInfo.CloudFileId)
 	if err != nil && errors.Is(err, model.ErrNotFound) {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.targetNotExist"), l.svcCtx.Trans.Trans(l.ctx, "common.internalErrorDocs"))
 	} else if err != nil {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"), l.svcCtx.Trans.Trans(l.ctx, "common.internalErrorDocs"))
 	}
 
 	urlPath := ""
@@ -104,8 +104,9 @@ func (l *GetFileUpgradeInfoLogic) GetFileUpgradeInfo(req *types.GetFileUpgradeIn
 	// 插入获取日志上报
 	timestamp, err := common.ParseRFC3339ToTime(time.Now().Format(time.RFC3339))
 	if err != nil {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"), l.svcCtx.Trans.Trans(l.ctx, "common.internalErrorDocs"))
 	}
+
 	// 获取应用版本 id
 	reqAppVersionId, err := l.svcCtx.ResourceCtx.GetAppVersionIdByReport(l.ctx, resource.GetAppVersionIdByReportReq{
 		AppKey:           fileInfo.Key,
@@ -132,7 +133,7 @@ func (l *GetFileUpgradeInfoLogic) GetFileUpgradeInfo(req *types.GetFileUpgradeIn
 	})
 
 	res.Code = 200
-	res.Msg = common.NewVersionMsg
+	res.Msg = l.svcCtx.Trans.Trans(l.ctx, "common.newVersion")
 	res.Data = types.GetFileUpgradeInfoRespData{
 		FileKey:              fileInfo.Key,
 		VersionName:          fileVersionInfo.VersionName,

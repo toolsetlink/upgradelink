@@ -1,0 +1,104 @@
+{
+	"common": {
+		"success": "성공",
+		"failed": "실패",
+		"updateSuccess": "업데이트 성공",
+		"updateFailed": "업데이트 실패",
+		"createSuccess": "생성 성공",
+		"createFailed": "생성 실패",
+		"deleteSuccess": "삭제 성공",
+		"deleteFailed": "삭제 실패",
+		"changeStatusSuccess": "상태 변경 성공",
+		"changeStatusFailed": "상태 변경 실패",
+		"targetNotExist": "대상이 존재하지 않습니다",
+		"databaseError": "데이터베이스 오류",
+		"redisError": "Redis 오류",
+		"permissionDeny": "사용자에게 이 인터페이스에 접근할 권한이 없습니다",
+		"constraintError": "작업 실패: 데이터 충돌",
+		"validationError": "작업 실패: 유효성 검사 실패",
+		"notSingularError": "작업 실패: 데이터가 고유하지 않음",
+		"serviceUnavailable": "서비스를 사용할 수 없습니다. 서비스가 활성화되어 있는지 확인하세요",
+		"cacheError": "캐시 오류",
+		"versionFormatError": "버전 형식 오류",
+		"deleteOldVersionError": "이전 버전 삭제 실패",
+		"processPlatformError": "플랫폼 작업 처리 실패",
+		"downloadFailed": "다운로드 실패",
+		"uploadFailed": "업로드 실패",
+		"alreadyLatestVersion": "이미 최신 버전입니다",
+		"alreadyLatestVersionDocs": "이미 최신 버전이며 업그레이드가 필요하지 않습니다",
+		"newVersionAvailable": "새 버전이 사용 가능합니다",
+		"tooManyRequests": "요청이 너무 많습니다. 나중에 다시 시도하세요",
+		"tooManyRequestsDocs": "현재 업그레이드 작업 구성의 요청 흐름 제어 정책이 제한에 도달했습니다. 나중에 다시 시도하세요.",
+		"internalError": "서비스 내부 오류",
+		"internalErrorDocs": "UpgradeLink 내부 서비스 오류. 도움을 받으려면 문의하세요: https://github.com/toolsetlink/upgradelink/issues",
+		"timeParseError": "시간 구문 분석 오류",
+		"githubTokenError": "GitHub 토큰 검증 실패",
+		"noPlatformsToProcess": "처리할 플랫폼이 없습니다"
+	},
+	"electron": {
+		"githubUrlEmpty": "Electron 애플리케이션 정보에는 GitHub 프로젝트 주소를 구성해야 합니다",
+		"paramError": "매개변수 오류",
+		"paramErrorDocs": "문서를 참조하세요: https://www.toolsetlink.com/en/upgrade/api/electron/get-electron-upgrade-strategy.html",
+		"notFound": "Electron 애플리케이션을 찾을 수 없습니다",
+		"notFoundDocs": "electronKey에 해당하는 애플리케이션을 찾을 수 없습니다. 시스템에 올바르게 생성되었는지 확인하세요. 문서를 참조하세요: https://www.toolsetlink.com/upgrade/recommend/electron/app.html",
+		"versionNotFound": "Electron 버전을 찾을 수 없습니다",
+		"versionNotFoundDocs": "해당 애플리케이션 버전을 찾을 수 없습니다. 시스템에 올바르게 생성되었는지 확인하세요. 문서를 참조하세요: https://www.toolsetlink.com/upgrade/recommend/electron/app-version.html"
+	},
+	"tauri": {
+		"githubUrlEmpty": "Tauri 애플리케이션 정보에는 GitHub 프로젝트 주소를 구성해야 합니다",
+		"paramError": "매개변수 오류",
+		"paramErrorDocs": "문서를 참조하세요: https://www.toolsetlink.com/en/upgrade/api/tauri/get-tauri-upgrade-strategy.html",
+		"notFound": "Tauri 애플리케이션을 찾을 수 없습니다",
+		"notFoundDocs": "tauriKey에 해당하는 애플리케이션을 찾을 수 없습니다. 시스템에 올바르게 생성되었는지 확인하세요. 문서를 참조하세요: https://www.toolsetlink.com/en/upgrade/recommend/tauri/app.html",
+		"versionNotFound": "Tauri 버전을 찾을 수 없습니다",
+		"versionNotFoundDocs": "해당 애플리케이션 버전을 찾을 수 없습니다. 시스템에 올바르게 생성되었는지 확인하세요. 문서를 참조하세요: https://www.toolsetlink.com/en/upgrade/recommend/tauri/app-version.html"
+	},
+	"lnx": {
+		"paramError": "매개변수 오류",
+		"paramErrorDocs": "문서를 참조하세요: https://www.toolsetlink.com/en/upgrade/api/lnx/get-lnx-upgrade-strategy.html",
+		"notFound": "Linux 애플리케이션을 찾을 수 없습니다",
+		"notFoundDocs": "lnxKey에 해당하는 애플리케이션을 찾을 수 없습니다. 시스템에 올바르게 생성되었는지 확인하세요. 문서를 참조하세요: https://www.toolsetlink.com/en/upgrade/recommend/lnx/app.html",
+		"versionNotFound": "Linux 버전을 찾을 수 없습니다",
+		"versionNotFoundDocs": "해당 애플리케이션 버전을 찾을 수 없습니다. 시스템에 올바르게 생성되었는지 확인하세요. 문서를 참조하세요: https://www.toolsetlink.com/en/upgrade/recommend/lnx/app-version.html"
+	},
+	"mac": {
+		"paramError": "매개변수 오류",
+		"paramErrorDocs": "문서를 참조하세요: https://www.toolsetlink.com/en/upgrade/api/mac/get-mac-upgrade-strategy.html",
+		"notFound": "Mac 애플리케이션을 찾을 수 없습니다",
+		"notFoundDocs": "macKey에 해당하는 애플리케이션을 찾을 수 없습니다. 시스템에 올바르게 생성되었는지 확인하세요. 문서를 참조하세요: https://www.toolsetlink.com/en/upgrade/recommend/mac/app.html",
+		"versionNotFound": "Mac 버전을 찾을 수 없습니다",
+		"versionNotFoundDocs": "해당 애플리케이션 버전을 찾을 수 없습니다. 시스템에 올바르게 생성되었는지 확인하세요. 문서를 참조하세요: https://www.toolsetlink.com/en/upgrade/recommend/mac/app-version.html"
+	},
+	"win": {
+		"paramError": "매개변수 오류",
+		"paramErrorDocs": "문서를 참조하세요: https://www.toolsetlink.com/en/upgrade/api/win/get-win-upgrade-strategy.html",
+		"notFound": "Windows 애플리케이션을 찾을 수 없습니다",
+		"notFoundDocs": "winKey에 해당하는 애플리케이션을 찾을 수 없습니다. 시스템에 올바르게 생성되었는지 확인하세요. 문서를 참조하세요: https://www.toolsetlink.com/en/upgrade/recommend/win/app.html",
+		"versionNotFound": "Windows 버전을 찾을 수 없습니다",
+		"versionNotFoundDocs": "해당 애플리케이션 버전을 찾을 수 없습니다. 시스템에 올바르게 생성되었는지 확인하세요. 문서를 참조하세요: https://www.toolsetlink.com/en/upgrade/recommend/win/app-version.html"
+	},
+	"apk": {
+		"paramError": "매개변수 오류",
+		"paramErrorDocs": "문서를 참조하세요: https://www.toolsetlink.com/en/upgrade/api/apk/get-apk-upgrade-strategy.html",
+		"notFound": "APK 애플리케이션을 찾을 수 없습니다",
+		"notFoundDocs": "apkKey에 해당하는 애플리케이션을 찾을 수 없습니다. 시스템에 올바르게 생성되었는지 확인하세요. 문서를 참조하세요: https://www.toolsetlink.com/en/upgrade/recommend/apk/app.html",
+		"versionNotFound": "APK 버전을 찾을 수 없습니다",
+		"versionNotFoundDocs": "해당 애플리케이션 버전을 찾을 수 없습니다. 시스템에 올바르게 생성되었는지 확인하세요. 문서를 참조하세요: https://www.toolsetlink.com/en/upgrade/recommend/apk/app-version.html"
+	},
+	"url": {
+		"paramError": "매개변수 오류",
+		"paramErrorDocs": "문서를 참조하세요: https://www.toolsetlink.com/en/upgrade/api/url/get-url-upgrade-strategy.html",
+		"notFound": "URL 애플리케이션을 찾을 수 없습니다",
+		"notFoundDocs": "urlKey에 해당하는 애플리케이션을 찾을 수 없습니다. 시스템에 올바르게 생성되었는지 확인하세요. 문서를 참조하세요: https://www.toolsetlink.com/en/upgrade/recommend/url/app.html",
+		"versionNotFound": "URL 버전을 찾을 수 없습니다",
+		"versionNotFoundDocs": "해당 애플리케이션 버전을 찾을 수 없습니다. 시스템에 올바르게 생성되었는지 확인하세요. 문서를 참조하세요: https://www.toolsetlink.com/en/upgrade/recommend/url/app-version.html"
+	},
+	"file": {
+		"paramError": "매개변수 오류",
+		"paramErrorDocs": "문서를 참조하세요: https://www.toolsetlink.com/en/upgrade/api/file/get-file-upgrade-strategy.html",
+		"notFound": "파일 애플리케이션을 찾을 수 없습니다",
+		"notFoundDocs": "fileKey에 해당하는 애플리케이션을 찾을 수 없습니다. 시스템에 올바르게 생성되었는지 확인하세요. 문서를 참조하세요: https://www.toolsetlink.com/en/upgrade/recommend/file/app.html",
+		"versionNotFound": "파일 버전을 찾을 수 없습니다",
+		"versionNotFoundDocs": "해당 애플리케이션 버전을 찾을 수 없습니다. 시스템에 올바르게 생성되었는지 확인하세요. 문서를 참조하세요: https://www.toolsetlink.com/en/upgrade/recommend/file/app-version.html"
+	}
+}

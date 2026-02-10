@@ -34,10 +34,10 @@ func (l *GetWinUpgradeInfoLogic) GetWinUpgradeInfo(req *types.GetWinUpgradeInfoR
 
 	// 请求参数效验
 	if req.WinKey == "" {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrWin1Msg, common.ErrWin1Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, l.svcCtx.Trans.Trans(l.ctx, "win.paramError"), l.svcCtx.Trans.Trans(l.ctx, "win.paramErrorDocs"))
 	}
 	if req.VersionCode == 0 {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrWin1Msg, common.ErrWin1Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, l.svcCtx.Trans.Trans(l.ctx, "win.paramError"), l.svcCtx.Trans.Trans(l.ctx, "win.paramErrorDocs"))
 	}
 
 	var res types.GetWinUpgradeInfoResp
@@ -45,57 +45,57 @@ func (l *GetWinUpgradeInfoLogic) GetWinUpgradeInfo(req *types.GetWinUpgradeInfoR
 	// 通过唯一标识 获取到对应的应用信息
 	winInfo, err := l.svcCtx.ResourceCtx.GetWinInfoByKey(l.ctx, req.WinKey)
 	if err != nil && errors.Is(err, model.ErrNotFound) {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, common.ErrWin2Msg, common.ErrWin2Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, l.svcCtx.Trans.Trans(l.ctx, "win.notFound"), l.svcCtx.Trans.Trans(l.ctx, "win.notFoundDocs"))
 	} else if err != nil {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"), l.svcCtx.Trans.Trans(l.ctx, "common.databaseErrorDocs"))
 	}
 
 	// 查询应用版本表，判断是否有大于当前版本的  没有的话则代表当前就是最高版本
 	_, err = l.svcCtx.ResourceCtx.GetWinVersionListByWinIdAndArchAndVersionCode(l.ctx, winInfo.Id, req.Arch, req.VersionCode)
 	if err != nil && errors.Is(err, model.ErrNotFound) {
 		res.Code = 0
-		res.Msg = common.AlreadyLatestVersionMsg
-		res.Docs = common.AlreadyLatestVersionDocs
+		res.Msg = l.svcCtx.Trans.Trans(l.ctx, "common.alreadyLatestVersion")
+		res.Docs = l.svcCtx.Trans.Trans(l.ctx, "common.alreadyLatestVersionDocs")
 		return &res, nil
 	} else if err != nil {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"), l.svcCtx.Trans.Trans(l.ctx, "common.databaseErrorDocs"))
 	}
 
 	// 推出可使用的最高版本的升级策略
 	winStrategyInfo, err := l.ReturnUpgradeStrategyInfo(winInfo.Id, req.Arch, req.VersionCode, req.AppointVersionCode, req.DevModelKey, req.DevKey)
 	if err != nil && errors.Is(err, model.ErrNotFound) {
 		res.Code = 0
-		res.Msg = common.AlreadyLatestVersionMsg
-		res.Docs = common.AlreadyLatestVersionDocs
+		res.Msg = l.svcCtx.Trans.Trans(l.ctx, "common.alreadyLatestVersion")
+		res.Docs = l.svcCtx.Trans.Trans(l.ctx, "common.alreadyLatestVersionDocs")
 		return &res, nil
 	} else if err != nil {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"), l.svcCtx.Trans.Trans(l.ctx, "common.databaseErrorDocs"))
 	}
 
 	// 到这个地方的时候 说明前置条件已经都通过了，在这个位置再去判断 策略的频控配置是否符合
 	flowLimitOk, err := l.CheckUpgradeStrategyFlowLimit(winStrategyInfo)
 	if err != nil {
-		return nil, err
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"), l.svcCtx.Trans.Trans(l.ctx, "common.databaseErrorDocs"))
 	}
 	if !flowLimitOk {
 		// 被频控拦住 返回 429
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrStrategyTooManyReq, common.Err42901Msg, common.Err42901Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrStrategyTooManyReq, l.svcCtx.Trans.Trans(l.ctx, "common.tooManyRequests"), l.svcCtx.Trans.Trans(l.ctx, "common.tooManyRequestsDocs"))
 	}
 
 	// 通过升级版本 id 查询出对应版本信息 获取文件下载地址
 	winVersionInfo, err := l.svcCtx.ResourceCtx.GetWinVersionInfoById(l.ctx, winStrategyInfo.WinVersionId)
 	if err != nil && errors.Is(err, model.ErrNotFound) {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "win.versionNotFound"), l.svcCtx.Trans.Trans(l.ctx, "win.versionNotFoundDocs"))
 	} else if err != nil {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"), l.svcCtx.Trans.Trans(l.ctx, "common.databaseErrorDocs"))
 	}
 
 	// 通过文件信息
 	cloudFileInfo, err := l.svcCtx.ResourceCtx.GetCloudFileInfoById(l.ctx, winVersionInfo.CloudFileId)
 	if err != nil && errors.Is(err, model.ErrNotFound) {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.targetNotExist"), l.svcCtx.Trans.Trans(l.ctx, "common.targetNotExistDocs"))
 	} else if err != nil {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"), l.svcCtx.Trans.Trans(l.ctx, "common.databaseErrorDocs"))
 	}
 
 	urlPath := ""
@@ -105,7 +105,7 @@ func (l *GetWinUpgradeInfoLogic) GetWinUpgradeInfo(req *types.GetWinUpgradeInfoR
 	// 插入获取日志上报
 	timestamp, err := common.ParseRFC3339ToTime(time.Now().Format(time.RFC3339))
 	if err != nil {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.timeParseError"), l.svcCtx.Trans.Trans(l.ctx, "common.timeParseErrorDocs"))
 	}
 	// 获取应用版本 id
 	appVersionId, err := l.svcCtx.ResourceCtx.GetAppVersionIdByReport(l.ctx, resource.GetAppVersionIdByReportReq{
@@ -133,7 +133,7 @@ func (l *GetWinUpgradeInfoLogic) GetWinUpgradeInfo(req *types.GetWinUpgradeInfoR
 	})
 
 	res.Code = 200
-	res.Msg = common.NewVersionMsg
+	res.Msg = l.svcCtx.Trans.Trans(l.ctx, "common.newVersionAvailable")
 	res.Data = types.GetWinUpgradeInfoRespData{
 		WinKey:               winInfo.Key,
 		PackageName:          winInfo.PackageName,

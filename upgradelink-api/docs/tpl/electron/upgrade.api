@@ -69,36 +69,6 @@ type (
 
 )
 
-
-type (
-
-    // 数据源（入参）
-    ElectronPlatformsRequest {
-        Url       string `json:"url" form:"url" validate:"required,url"`
-    }
-
-    // 版本信息结构体（入参）
-    PostElectronUploadReq {
-        // X-AccessKey
-        AccessKey string `header:"X-AccessKey"`
-        // Electron应用 唯一标识
-        ElectronKey string `form:"electronKey"`
-        // github token
-        GithubToken string `form:"githubToken"`
-
-        Version   string              `json:"version" validate:"required"`
-        PromptUpgradeContent     string   `json:"promptUpgradeContent,optional"`
-        ReleaseDate   string          `json:"releaseDate,optional"`
-        Platforms ElectronPlatformsRequest    `json:"platforms,optional"`
-    }
-
-    PostElectronUploadResp {
-        BaseDataInfo
-    }
-
-)
-
-
 // AccessKey 访问密钥效验
 // RateLimit 流量控制
 // ReplayAttack 防重放攻击  electron升级接口无重放效验
@@ -108,7 +78,7 @@ type (
     prefix: /v1/electron
     group: electron
     timeout: 600s
-    middleware: AccessKey, RateLimit, Rule
+    middleware: Lang, AccessKey, RateLimit, Rule
 )
 
 service api {
@@ -128,9 +98,6 @@ service api {
     @handler getElectronUpgradeInfoByLinuxYml
     get /upgrade/latest-linux.yml (GetElectronUpgradeInfoReq) returns (GetElectronUpgradeInfoResp)
 
-    // 上传Electron版本,并开启升级
-    @handler postElectronUpload
-    post /github-aciton/upload (PostElectronUploadReq) returns (PostElectronUploadResp)
 }
 
 
@@ -189,7 +156,7 @@ type (
     prefix: /v1/electron
     group: electron
     timeout: 30s
-    middleware: AccessKey, RateLimit, ReplayAttack, Signature, Rule
+    middleware: Lang, AccessKey, RateLimit, ReplayAttack, Signature, Rule
 )
 
 service api {
@@ -210,32 +177,16 @@ type (
         // 机器架构
         Arch string `form:"arch"`
         // 应用版本名
-        VersionName string `form:"versionName,optional,default=''"`
+        VersionName string `form:"versionName,optional,default="`
     }
 )
-
-
-//type (
-//    GetElectronDownloadInfoBlockmapReq {
-//        // Electron应用 唯一标识
-//        ElectronKey string `form:"electronKey"`
-//        // platform
-//        Platform string `form:"platform,optional"`
-//        // 机器架构
-//        Arch string `form:"arch,optional"`
-//        // 指定版本（可空，为空时是最新版本）
-//        VersionCode int64 `form:"versionCode,default=0"`
-//        // 指定版本id
-//        VersionId int64 `form:"versionId,default=0"`
-//    }
-//)
 
 // CdnRateLimit 流量控制
 @server(
     group: download
     prefix: /v1/electron
     timeout: 30s
-    middleware: CdnRateLimit
+    middleware: Lang, CdnRateLimit
 )
 
 service api {

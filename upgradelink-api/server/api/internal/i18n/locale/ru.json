@@ -1,0 +1,104 @@
+{
+	"common": {
+		"success": "Успешно",
+		"failed": "Неудачно",
+		"updateSuccess": "Обновлено успешно",
+		"updateFailed": "Ошибка обновления",
+		"createSuccess": "Создано успешно",
+		"createFailed": "Ошибка создания",
+		"deleteSuccess": "Удалено успешно",
+		"deleteFailed": "Ошибка удаления",
+		"changeStatusSuccess": "Статус изменен успешно",
+		"changeStatusFailed": "Ошибка изменения статуса",
+		"targetNotExist": "Цель не существует",
+		"databaseError": "Ошибка базы данных",
+		"redisError": "Ошибка Redis",
+		"permissionDeny": "У пользователя нет разрешения доступа к этому интерфейсу",
+		"constraintError": "Операция не выполнена: Конфликт данных",
+		"validationError": "Операция не выполнена: Ошибка проверки",
+		"notSingularError": "Операция не выполнена: Данные не уникальны",
+		"serviceUnavailable": "Сервис недоступен, проверьте, включен ли сервис",
+		"cacheError": "Ошибка кэша",
+		"versionFormatError": "Ошибка формата версии",
+		"deleteOldVersionError": "Ошибка удаления старой версии",
+		"processPlatformError": "Ошибка обработки задачи платформы",
+		"downloadFailed": "Ошибка загрузки",
+		"uploadFailed": "Ошибка загрузки",
+		"alreadyLatestVersion": "Уже последняя версия",
+		"alreadyLatestVersionDocs": "Это уже последняя версия, обновление не требуется",
+		"newVersionAvailable": "Доступна новая версия",
+		"tooManyRequests": "Слишком много запросов, повторите попытку позже",
+		"tooManyRequestsDocs": "Политика контроля流量 текущей конфигурации задачи обновления достигла лимита. Пожалуйста, повторите попытку позже.",
+		"internalError": "Внутренняя ошибка сервиса",
+		"internalErrorDocs": "Внутренняя ошибка сервиса UpgradeLink. Пожалуйста, свяжитесь с нами для получения помощи: https://github.com/toolsetlink/upgradelink/issues",
+		"timeParseError": "Ошибка парсинга времени",
+		"githubTokenError": "Ошибка проверки токена GitHub",
+		"noPlatformsToProcess": "Нет платформ для обработки"
+	},
+	"electron": {
+		"githubUrlEmpty": "Информация о приложении Electron должна содержать адрес проекта GitHub",
+		"paramError": "Ошибка параметра",
+		"paramErrorDocs": "Пожалуйста, обратитесь к документации: https://www.toolsetlink.com/en/upgrade/api/electron/get-electron-upgrade-strategy.html",
+		"notFound": "Приложение Electron не найдено",
+		"notFoundDocs": "Приложение, соответствующее electronKey, не найдено. Убедитесь, что оно было правильно создано в системе. Смотрите документацию: https://www.toolsetlink.com/upgrade/recommend/electron/app.html",
+		"versionNotFound": "Версия Electron не найдена",
+		"versionNotFoundDocs": "Соответствующая версия приложения не найдена. Убедитесь, что она была правильно создана в системе. Смотрите документацию: https://www.toolsetlink.com/upgrade/recommend/electron/app-version.html"
+	},
+	"tauri": {
+		"githubUrlEmpty": "Информация о приложении Tauri должна содержать адрес проекта GitHub",
+		"paramError": "Ошибка параметра",
+		"paramErrorDocs": "Пожалуйста, обратитесь к документации: https://www.toolsetlink.com/en/upgrade/api/tauri/get-tauri-upgrade-strategy.html",
+		"notFound": "Приложение Tauri не найдено",
+		"notFoundDocs": "Приложение, соответствующее tauriKey, не найдено. Убедитесь, что оно было правильно создано в системе. Смотрите документацию: https://www.toolsetlink.com/en/upgrade/recommend/tauri/app.html",
+		"versionNotFound": "Версия Tauri не найдена",
+		"versionNotFoundDocs": "Соответствующая версия приложения не найдена. Убедитесь, что она была правильно создана в системе. Смотрите документацию: https://www.toolsetlink.com/en/upgrade/recommend/tauri/app-version.html"
+	},
+	"lnx": {
+		"paramError": "Ошибка параметра",
+		"paramErrorDocs": "Пожалуйста, обратитесь к документации: https://www.toolsetlink.com/en/upgrade/api/lnx/get-lnx-upgrade-strategy.html",
+		"notFound": "Приложение Linux не найдено",
+		"notFoundDocs": "Приложение, соответствующее lnxKey, не найдено. Убедитесь, что оно было правильно создано в системе. Смотрите документацию: https://www.toolsetlink.com/en/upgrade/recommend/lnx/app.html",
+		"versionNotFound": "Версия Linux не найдена",
+		"versionNotFoundDocs": "Соответствующая версия приложения не найдена. Убедитесь, что она была правильно создана в системе. Смотрите документацию: https://www.toolsetlink.com/en/upgrade/recommend/lnx/app-version.html"
+	},
+	"mac": {
+		"paramError": "Ошибка параметра",
+		"paramErrorDocs": "Пожалуйста, обратитесь к документации: https://www.toolsetlink.com/en/upgrade/api/mac/get-mac-upgrade-strategy.html",
+		"notFound": "Приложение Mac не найдено",
+		"notFoundDocs": "Приложение, соответствующее macKey, не найдено. Убедитесь, что оно было правильно создано в системе. Смотрите документацию: https://www.toolsetlink.com/en/upgrade/recommend/mac/app.html",
+		"versionNotFound": "Версия Mac не найдена",
+		"versionNotFoundDocs": "Соответствующая версия приложения не найдена. Убедитесь, что она была правильно создана в системе. Смотрите документацию: https://www.toolsetlink.com/en/upgrade/recommend/mac/app-version.html"
+	},
+	"win": {
+		"paramError": "Ошибка параметра",
+		"paramErrorDocs": "Пожалуйста, обратитесь к документации: https://www.toolsetlink.com/en/upgrade/api/win/get-win-upgrade-strategy.html",
+		"notFound": "Приложение Windows не найдено",
+		"notFoundDocs": "Приложение, соответствующее winKey, не найдено. Убедитесь, что оно было правильно создано в системе. Смотрите документацию: https://www.toolsetlink.com/en/upgrade/recommend/win/app.html",
+		"versionNotFound": "Версия Windows не найдена",
+		"versionNotFoundDocs": "Соответствующая версия приложения не найдена. Убедитесь, что она была правильно создана в системе. Смотрите документацию: https://www.toolsetlink.com/en/upgrade/recommend/win/app-version.html"
+	},
+	"apk": {
+		"paramError": "Ошибка параметра",
+		"paramErrorDocs": "Пожалуйста, обратитесь к документации: https://www.toolsetlink.com/en/upgrade/api/apk/get-apk-upgrade-strategy.html",
+		"notFound": "Приложение APK не найдено",
+		"notFoundDocs": "Приложение, соответствующее apkKey, не найдено. Убедитесь, что оно было правильно создано в системе. Смотрите документацию: https://www.toolsetlink.com/en/upgrade/recommend/apk/app.html",
+		"versionNotFound": "Версия APK не найдена",
+		"versionNotFoundDocs": "Соответствующая версия приложения не найдена. Убедитесь, что она была правильно создана в системе. Смотрите документацию: https://www.toolsetlink.com/en/upgrade/recommend/apk/app-version.html"
+	},
+	"url": {
+		"paramError": "Ошибка параметра",
+		"paramErrorDocs": "Пожалуйста, обратитесь к документации: https://www.toolsetlink.com/en/upgrade/api/url/get-url-upgrade-strategy.html",
+		"notFound": "Приложение URL не найдено",
+		"notFoundDocs": "Приложение, соответствующее urlKey, не найдено. Убедитесь, что оно было правильно создано в системе. Смотрите документацию: https://www.toolsetlink.com/en/upgrade/recommend/url/app.html",
+		"versionNotFound": "Версия URL не найдена",
+		"versionNotFoundDocs": "Соответствующая версия приложения не найдена. Убедитесь, что она была правильно создана в системе. Смотрите документацию: https://www.toolsetlink.com/en/upgrade/recommend/url/app-version.html"
+	},
+	"file": {
+		"paramError": "Ошибка параметра",
+		"paramErrorDocs": "Пожалуйста, обратитесь к документации: https://www.toolsetlink.com/en/upgrade/api/file/get-file-upgrade-strategy.html",
+		"notFound": "Приложение файла не найдено",
+		"notFoundDocs": "Приложение, соответствующее fileKey, не найдено. Убедитесь, что оно было правильно создано в системе. Смотрите документацию: https://www.toolsetlink.com/en/upgrade/recommend/file/app.html",
+		"versionNotFound": "Версия файла не найдена",
+		"versionNotFoundDocs": "Соответствующая версия приложения не найдена. Убедитесь, что она была правильно создана в системе. Смотрите документацию: https://www.toolsetlink.com/en/upgrade/recommend/file/app-version.html"
+	}
+}

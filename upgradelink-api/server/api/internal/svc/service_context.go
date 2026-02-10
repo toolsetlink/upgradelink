@@ -2,9 +2,11 @@ package svc
 
 import (
 	"time"
+	"upgradelink-api/server/api/internal/common/i18n"
 
 	"upgradelink-api/server/api/internal/common/http_handlers"
 	"upgradelink-api/server/api/internal/config"
+	i18n2 "upgradelink-api/server/api/internal/i18n"
 	"upgradelink-api/server/api/internal/middleware"
 	"upgradelink-api/server/api/internal/resource"
 	"upgradelink-api/server/api/internal/resource/model"
@@ -25,8 +27,10 @@ type ServiceContext struct {
 	AccessKey    rest.Middleware
 	ReplayAttack rest.Middleware
 	RateLimit    rest.Middleware
+	Lang         rest.Middleware
 	CdnRateLimit rest.Middleware
 	Rule         rest.Middleware
+	Trans        *i18n.Translator
 	ResourceCtx  *resource.Ctx
 }
 
@@ -67,15 +71,20 @@ func NewServiceContext(c config.Config) *ServiceContext {
 	// 注册 model
 	UrlModel := model.NewUpgradeUrlModel(mysqlCli)
 
+	// 5. 注册翻译
+	trans := i18n.NewTranslator(i18n2.LocaleFS)
+
 	resourceCtx := resource.NewCtx(mysqlCli, redisCli, mysqlCacheCli, localCache, UrlModel)
 
 	return &ServiceContext{
 		Config:       c,
 		ResourceCtx:  resourceCtx, // 通用服务 Ctx
+		Trans:        trans,
 		Signature:    middleware.NewSignatureMiddleware(resourceCtx).Handle,
 		ReplayAttack: middleware.NewReplayAttackMiddleware(resourceCtx).Handle,
 		AccessKey:    middleware.NewAccessKeyMiddleware(resourceCtx).Handle,
 		RateLimit:    middleware.NewRateLimitMiddleware(resourceCtx).Handle,
+		Lang:         middleware.NewLangMiddleware(resourceCtx).Handle,
 		CdnRateLimit: middleware.NewCdnRateLimitMiddleware(resourceCtx).Handle,
 		Rule:         middleware.NewRuleMiddleware(resourceCtx).Handle,
 	}

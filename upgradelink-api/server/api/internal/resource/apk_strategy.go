@@ -140,3 +140,26 @@ func (c *Ctx) GetLastApkStrategyInfoByApkIdAndVersion(ctx context.Context, apkId
 	}
 	return nil, err
 }
+
+type AddApkStrategyReq struct {
+	CompanyId            int64     `db:"company_id"`             // 公司ID
+	Enable               int64     `db:"enable"`                 // 是否生效；可通过此控制策略是否生效0：失效；1：生效
+	Name                 string    `db:"name"`                   // 任务名称
+	Description          string    `db:"description"`            // 任务描述信息
+	ApkId                int64     `db:"apk_id"`                 // 安卓应用ID
+	ApkVersionId         int64     `db:"apk_version_id"`         // apk_version_id; 外键apk_version.id
+	BeginDatetime        time.Time `db:"begin_datetime"`         // 升级任务开始时间
+	EndDatetime          time.Time `db:"end_datetime"`           // 升级任务结束时间
+	UpgradeType          int64     `db:"upgrade_type"`           // 升级方式：0：未知方式；1：提示升级；2：静默升级；3: 强制升级
+	PromptUpgradeContent string    `db:"prompt_upgrade_content"` // 提示升级描述内容
+}
+
+func (c *Ctx) AddApkStrategy(ctx context.Context, req AddApkStrategyReq) (int64, error) {
+	query := fmt.Sprintf("insert into %s (company_id, enable, name, description, apk_id, apk_version_id, begin_datetime, end_datetime, upgrade_type, prompt_upgrade_content, upgrade_dev_type, upgrade_dev_data, upgrade_version_type, upgrade_version_data, is_gray, gray_data, is_flow_limit, flow_limit_data, is_del) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, '', 0, '', 0, '', 0, '', 0)", "upgrade_apk_upgrade_strategy")
+	ret, err := c.mysqlConn.ExecCtx(ctx, query, req.CompanyId, req.Enable, req.Name, req.Description, req.ApkId, req.ApkVersionId, req.BeginDatetime, req.EndDatetime, req.UpgradeType, req.PromptUpgradeContent)
+	if err != nil {
+		return 0, err
+	}
+	id, _ := ret.LastInsertId()
+	return id, err
+}

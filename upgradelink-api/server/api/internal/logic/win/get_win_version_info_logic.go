@@ -3,7 +3,6 @@ package win
 import (
 	"context"
 	"errors"
-	"upgradelink-api/server/api/internal/common"
 	"upgradelink-api/server/api/internal/common/http_handlers"
 	"upgradelink-api/server/api/internal/resource/model"
 
@@ -31,10 +30,10 @@ func (l *GetWinVersionInfoLogic) GetWinVersionInfo(req *types.GetWinVersionInfoR
 
 	// 请求参数效验
 	if req.WinKey == "" {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrWin4Msg, common.ErrWin4Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, l.svcCtx.Trans.Trans(l.ctx, "win.paramError"), l.svcCtx.Trans.Trans(l.ctx, "win.paramErrorDocs"))
 	}
 	if req.VersionCode == 0 {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrWin4Msg, common.ErrWin4Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, l.svcCtx.Trans.Trans(l.ctx, "win.paramError"), l.svcCtx.Trans.Trans(l.ctx, "win.paramErrorDocs"))
 	}
 
 	var res types.GetWinVersionInfoResp
@@ -42,16 +41,16 @@ func (l *GetWinVersionInfoLogic) GetWinVersionInfo(req *types.GetWinVersionInfoR
 	// 通过唯一标识 获取到对应的应用信息
 	winInfo, err := l.svcCtx.ResourceCtx.GetWinInfoByKey(l.ctx, req.WinKey)
 	if err != nil && errors.Is(err, model.ErrNotFound) {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, common.ErrWin2Msg, common.ErrWin2Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, l.svcCtx.Trans.Trans(l.ctx, "win.notFound"), l.svcCtx.Trans.Trans(l.ctx, "win.notFoundDocs"))
 	} else if err != nil {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"), l.svcCtx.Trans.Trans(l.ctx, "common.internalErrorDocs"))
 	}
 
 	winVersionInfo, err := l.svcCtx.ResourceCtx.GetWinVersionInfoByWinIdAndArchAndVersionCode(l.ctx, winInfo.Id, req.Arch, req.VersionCode)
 	if err != nil && errors.Is(err, model.ErrNotFound) {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, common.ErrWin3Msg, common.ErrWin3Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, l.svcCtx.Trans.Trans(l.ctx, "win.versionNotFound"), l.svcCtx.Trans.Trans(l.ctx, "win.versionNotFoundDocs"))
 	} else if err != nil {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.ErrWin1Msg, common.ErrWin1Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"), l.svcCtx.Trans.Trans(l.ctx, "common.internalErrorDocs"))
 	}
 
 	res.Code = 200

@@ -1,0 +1,104 @@
+{
+	"common": {
+		"success": "موفق",
+		"failed": "ناموفق",
+		"updateSuccess": "به‌روزرسانی موفق",
+		"updateFailed": "به‌روزرسانی ناموفق",
+		"createSuccess": "ایجاد موفق",
+		"createFailed": "ایجاد ناموفق",
+		"deleteSuccess": "حذف موفق",
+		"deleteFailed": "حذف ناموفق",
+		"changeStatusSuccess": "تغییر وضعیت موفق",
+		"changeStatusFailed": "تغییر وضعیت ناموفق",
+		"targetNotExist": "مقصد وجود ندارد",
+		"databaseError": "خطای پایگاه داده",
+		"redisError": "خطای Redis",
+		"permissionDeny": "کاربر اجازه دسترسی به این رابط را ندارد",
+		"constraintError": "عملکرد ناموفق: ناسازگاری داده‌ها",
+		"validationError": "عملکرد ناموفق: اعتبارسنجی ناموفق",
+		"notSingularError": "عملکرد ناموفق: داده‌ها منحصر به فرد نیستند",
+		"serviceUnavailable": "سرویس در دسترس نیست، لطفا بررسی کنید که سرویس فعال است",
+		"cacheError": "خطای کش",
+		"versionFormatError": "خطای قالب نسخه",
+		"deleteOldVersionError": "حذف نسخه قدیمی ناموفق",
+		"processPlatformError": "پردازش کارمشخصات پلتفرم ناموفق",
+		"downloadFailed": "دانلود ناموفق",
+		"uploadFailed": "بارگذاری ناموفق",
+		"alreadyLatestVersion": "در حال حاضر آخرین نسخه است",
+		"alreadyLatestVersionDocs": "این уже آخرین نسخه است و به‌روزرسانی نیاز ندارد",
+		"newVersionAvailable": "نسخه جدید در دسترس است",
+		"tooManyRequests": "درخواست‌های زیادی، لطفا بعداً دوباره تلاش کنید",
+		"tooManyRequestsDocs": "سیاست کنترل جریان درخواست‌های پیکربندی کارمشخصات به‌روزرسانی فعلی به محدودیت رسیده است. لطفا بعداً دوباره تلاش کنید.",
+		"internalError": "خطای داخلی سرویس",
+		"internalErrorDocs": "خطای داخلی سرویس UpgradeLink. لطفاً برای کمک با ما تماس بگیرید: https://github.com/toolsetlink/upgradelink/issues",
+		"timeParseError": "خطای تجزیه زمان",
+		"githubTokenError": "تایید توکن GitHub ناموفق",
+		"noPlatformsToProcess": "هیچ پلتفرمی برای پردازش وجود ندارد"
+	},
+	"electron": {
+		"githubUrlEmpty": "اطلاعات برنامه Electron باید آدرس پروژه GitHub را پیکربندی کند",
+		"paramError": "خطای پارامتر",
+		"paramErrorDocs": "لطفاً به مستندات مراجعه کنید: https://www.toolsetlink.com/en/upgrade/api/electron/get-electron-upgrade-strategy.html",
+		"notFound": "برنامه Electron یافت نشد",
+		"notFoundDocs": "برنامه‌ای که با electronKey مطابقت دارد یافت نشد. اطمینان حاصل کنید که به‌درستی در سیستم ایجاد شده است. به مستندات مراجعه کنید: https://www.toolsetlink.com/upgrade/recommend/electron/app.html",
+		"versionNotFound": "نسخه Electron یافت نشد",
+		"versionNotFoundDocs": "نسخه برنامه مربوطه یافت نشد. اطمینان حاصل کنید که به‌درستی در سیستم ایجاد شده است. به مستندات مراجعه کنید: https://www.toolsetlink.com/upgrade/recommend/electron/app-version.html"
+	},
+	"tauri": {
+		"githubUrlEmpty": "اطلاعات برنامه Tauri باید آدرس پروژه GitHub را پیکربندی کند",
+		"paramError": "خطای پارامتر",
+		"paramErrorDocs": "لطفاً به مستندات مراجعه کنید: https://www.toolsetlink.com/en/upgrade/api/tauri/get-tauri-upgrade-strategy.html",
+		"notFound": "برنامه Tauri یافت نشد",
+		"notFoundDocs": "برنامه‌ای که با tauriKey مطابقت دارد یافت نشد. اطمینان حاصل کنید که به‌درستی در سیستم ایجاد شده است. به مستندات مراجعه کنید: https://www.toolsetlink.com/en/upgrade/recommend/tauri/app.html",
+		"versionNotFound": "نسخه Tauri یافت نشد",
+		"versionNotFoundDocs": "نسخه برنامه مربوطه یافت نشد. اطمینان حاصل کنید که به‌درستی در سیستم ایجاد شده است. به مستندات مراجعه کنید: https://www.toolsetlink.com/en/upgrade/recommend/tauri/app-version.html"
+	},
+	"lnx": {
+		"paramError": "خطای پارامتر",
+		"paramErrorDocs": "لطفاً به مستندات مراجعه کنید: https://www.toolsetlink.com/en/upgrade/api/lnx/get-lnx-upgrade-strategy.html",
+		"notFound": "برنامه Linux یافت نشد",
+		"notFoundDocs": "برنامه‌ای که با lnxKey مطابقت دارد یافت نشد. اطمینان حاصل کنید که به‌درستی در سیستم ایجاد شده است. به مستندات مراجعه کنید: https://www.toolsetlink.com/en/upgrade/recommend/lnx/app.html",
+		"versionNotFound": "نسخه Linux یافت نشد",
+		"versionNotFoundDocs": "نسخه برنامه مربوطه یافت نشد. اطمینان حاصل کنید که به‌درستی در سیستم ایجاد شده است. به مستندات مراجعه کنید: https://www.toolsetlink.com/en/upgrade/recommend/lnx/app-version.html"
+	},
+	"mac": {
+		"paramError": "خطای پارامتر",
+		"paramErrorDocs": "لطفاً به مستندات مراجعه کنید: https://www.toolsetlink.com/en/upgrade/api/mac/get-mac-upgrade-strategy.html",
+		"notFound": "برنامه Mac یافت نشد",
+		"notFoundDocs": "برنامه‌ای که با macKey مطابقت دارد یافت نشد. اطمینان حاصل کنید که به‌درستی در سیستم ایجاد شده است. به مستندات مراجعه کنید: https://www.toolsetlink.com/en/upgrade/recommend/mac/app.html",
+		"versionNotFound": "نسخه Mac یافت نشد",
+		"versionNotFoundDocs": "نسخه برنامه مربوطه یافت نشد. اطمینان حاصل کنید که به‌درستی در سیستم ایجاد شده است. به مستندات مراجعه کنید: https://www.toolsetlink.com/en/upgrade/recommend/mac/app-version.html"
+	},
+	"win": {
+		"paramError": "خطای پارامتر",
+		"paramErrorDocs": "لطفاً به مستندات مراجعه کنید: https://www.toolsetlink.com/en/upgrade/api/win/get-win-upgrade-strategy.html",
+		"notFound": "برنامه Windows یافت نشد",
+		"notFoundDocs": "برنامه‌ای که با winKey مطابقت دارد یافت نشد. اطمینان حاصل کنید که به‌درستی در سیستم ایجاد شده است. به مستندات مراجعه کنید: https://www.toolsetlink.com/en/upgrade/recommend/win/app.html",
+		"versionNotFound": "نسخه Windows یافت نشد",
+		"versionNotFoundDocs": "نسخه برنامه مربوطه یافت نشد. اطمینان حاصل کنید که به‌درستی در سیستم ایجاد شده است. به مستندات مراجعه کنید: https://www.toolsetlink.com/en/upgrade/recommend/win/app-version.html"
+	},
+	"apk": {
+		"paramError": "خطای پارامتر",
+		"paramErrorDocs": "لطفاً به مستندات مراجعه کنید: https://www.toolsetlink.com/en/upgrade/api/apk/get-apk-upgrade-strategy.html",
+		"notFound": "برنامه APK یافت نشد",
+		"notFoundDocs": "برنامه‌ای که با apkKey مطابقت دارد یافت نشد. اطمینان حاصل کنید که به‌درستی در سیستم ایجاد شده است. به مستندات مراجعه کنید: https://www.toolsetlink.com/en/upgrade/recommend/apk/app.html",
+		"versionNotFound": "نسخه APK یافت نشد",
+		"versionNotFoundDocs": "نسخه برنامه مربوطه یافت نشد. اطمینان حاصل کنید که به‌درستی در سیستم ایجاد شده است. به مستندات مراجعه کنید: https://www.toolsetlink.com/en/upgrade/recommend/apk/app-version.html"
+	},
+	"url": {
+		"paramError": "خطای پارامتر",
+		"paramErrorDocs": "لطفاً به مستندات مراجعه کنید: https://www.toolsetlink.com/en/upgrade/api/url/get-url-upgrade-strategy.html",
+		"notFound": "برنامه URL یافت نشد",
+		"notFoundDocs": "برنامه‌ای که با urlKey مطابقت دارد یافت نشد. اطمینان حاصل کنید که به‌درستی در سیستم ایجاد شده است. به مستندات مراجعه کنید: https://www.toolsetlink.com/en/upgrade/recommend/url/app.html",
+		"versionNotFound": "نسخه URL یافت نشد",
+		"versionNotFoundDocs": "نسخه برنامه مربوطه یافت نشد. اطمینان حاصل کنید که به‌درستی در سیستم ایجاد شده است. به مستندات مراجعه کنید: https://www.toolsetlink.com/en/upgrade/recommend/url/app-version.html"
+	},
+	"file": {
+		"paramError": "خطای پارامتر",
+		"paramErrorDocs": "لطفاً به مستندات مراجعه کنید: https://www.toolsetlink.com/en/upgrade/api/file/get-file-upgrade-strategy.html",
+		"notFound": "برنامه فایل یافت نشد",
+		"notFoundDocs": "برنامه‌ای که با fileKey مطابقت دارد یافت نشد. اطمینان حاصل کنید که به‌درستی در سیستم ایجاد شده است. به مستندات مراجعه کنید: https://www.toolsetlink.com/en/upgrade/recommend/file/app.html",
+		"versionNotFound": "نسخه فایل یافت نشد",
+		"versionNotFoundDocs": "نسخه برنامه مربوطه یافت نشد. اطمینان حاصل کنید که به‌درستی در سیستم ایجاد شده است. به مستندات مراجعه کنید: https://www.toolsetlink.com/en/upgrade/recommend/file/app-version.html"
+	}
+}

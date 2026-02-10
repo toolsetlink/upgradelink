@@ -1,0 +1,104 @@
+{
+	"common": {
+		"success": "成功",
+		"failed": "失败",
+		"updateSuccess": "更新成功",
+		"updateFailed": "更新失败",
+		"createSuccess": "新建成功",
+		"createFailed": "新建失败",
+		"deleteSuccess": "删除成功",
+		"deleteFailed": "删除失败",
+		"changeStatusSuccess": "状态修改成功",
+		"changeStatusFailed": "状态修改失败",
+		"targetNotExist": "目标不存在",
+		"databaseError": "数据库错误",
+		"redisError": "Redis 错误",
+		"permissionDeny": "用户无权限访问此接口",
+		"constraintError": "操作失败: 数据冲突",
+		"validationError": "操作失败: 校验失败",
+		"notSingularError": "操作失败: 数据不唯一",
+		"serviceUnavailable": "服务不可用，请检查服务是否已启用",
+		"cacheError": "缓存出错",
+		"versionFormatError": "版本格式错误",
+		"deleteOldVersionError": "删除旧版本失败",
+		"processPlatformError": "处理平台任务失败",
+		"downloadFailed": "下载失败",
+		"uploadFailed": "上传失败",
+		"alreadyLatestVersion": "已经是最新版本",
+		"alreadyLatestVersionDocs": "已经是最新版本，无需升级",
+		"newVersionAvailable": "有新版本可用",
+		"tooManyRequests": "请求过多，请稍后再试",
+		"tooManyRequestsDocs": "当前升级任务配置的请求流控策略已达限制，请稍后再试",
+		"internalError": "服务内部错误",
+		"internalErrorDocs": "UpgradeLink内部服务错误，请联系我们获取帮助：https://www.toolsetlink.com/upgrade/contact-us.html",
+		"timeParseError": "时间解析错误",
+		"githubTokenError": "GitHub Token 验证失败",
+		"noPlatformsToProcess": "没有需要处理的平台"
+	},
+	"electron": {
+		"githubUrlEmpty": "Electron应用信息请配置GitHub项目地址",
+		"paramError": "参数错误",
+		"paramErrorDocs": "请参考文档：https://www.toolsetlink.com/upgrade/api/electron/get-electron-upgrade-strategy.html",
+		"notFound": "Electron应用未找到",
+		"notFoundDocs": "未找到对应fileKey的应用，请确认已在系统中正确创建。参考文档：https://www.toolsetlink.com/upgrade/recommend/electron/app.html",
+		"versionNotFound": "Electron版本未找到",
+		"versionNotFoundDocs": "未找到对应应用版本，请确认已在系统中正确创建。参考文档：https://www.toolsetlink.com/upgrade/recommend/electron/app-version.html"
+	},
+	"tauri": {
+		"githubUrlEmpty": "Tauri应用信息请配置GitHub项目地址",
+		"paramError": "参数错误",
+		"paramErrorDocs": "请参考文档：https://www.toolsetlink.com/upgrade/api/tauri/get-tauri-upgrade-strategy.html",
+		"notFound": "Tauri应用未找到",
+		"notFoundDocs": "未找到对应tauriKey的应用，请确认已在系统中正确创建。参考文档：https://www.toolsetlink.com/upgrade/recommend/tauri/app.html",
+		"versionNotFound": "Tauri版本未找到",
+		"versionNotFoundDocs": "未找到对应应用版本，请确认已在系统中正确创建。参考文档：https://www.toolsetlink.com/upgrade/recommend/tauri/app-version.html"
+	},
+	"lnx": {
+		"paramError": "参数错误",
+		"paramErrorDocs": "请参考文档：https://www.toolsetlink.com/upgrade/api/lnx/get-lnx-upgrade-strategy.html",
+		"notFound": "Linux应用未找到",
+		"notFoundDocs": "未找到对应lnxKey的应用，请确认已在系统中正确创建。参考文档：https://www.toolsetlink.com/upgrade/recommend/lnx/app.html",
+		"versionNotFound": "Linux版本未找到",
+		"versionNotFoundDocs": "未找到对应应用版本，请确认已在系统中正确创建。参考文档：https://www.toolsetlink.com/upgrade/recommend/lnx/app-version.html"
+	},
+	"mac": {
+		"paramError": "参数错误",
+		"paramErrorDocs": "请参考文档：https://www.toolsetlink.com/upgrade/api/mac/get-mac-upgrade-strategy.html",
+		"notFound": "Mac应用未找到",
+		"notFoundDocs": "未找到对应macKey的应用，请确认已在系统中正确创建。参考文档：https://www.toolsetlink.com/upgrade/recommend/mac/app.html",
+		"versionNotFound": "Mac版本未找到",
+		"versionNotFoundDocs": "未找到对应应用版本，请确认已在系统中正确创建。参考文档：https://www.toolsetlink.com/upgrade/recommend/mac/app-version.html"
+	},
+	"win": {
+		"paramError": "参数错误",
+		"paramErrorDocs": "请参考文档：https://www.toolsetlink.com/upgrade/api/win/get-win-upgrade-strategy.html",
+		"notFound": "Windows应用未找到",
+		"notFoundDocs": "未找到对应winKey的应用，请确认已在系统中正确创建。参考文档：https://www.toolsetlink.com/upgrade/recommend/win/app.html",
+		"versionNotFound": "Windows版本未找到",
+		"versionNotFoundDocs": "未找到对应应用版本，请确认已在系统中正确创建。参考文档：https://www.toolsetlink.com/upgrade/recommend/win/app-version.html"
+	},
+	"apk": {
+		"paramError": "参数错误",
+		"paramErrorDocs": "请参考文档：https://www.toolsetlink.com/upgrade/api/apk/get-apk-upgrade-strategy.html",
+		"notFound": "APK应用未找到",
+		"notFoundDocs": "未找到对应apkKey的应用，请确认已在系统中正确创建。参考文档：https://www.toolsetlink.com/upgrade/recommend/apk/app.html",
+		"versionNotFound": "APK版本未找到",
+		"versionNotFoundDocs": "未找到对应应用版本，请确认已在系统中正确创建。参考文档：https://www.toolsetlink.com/upgrade/recommend/apk/app-version.html"
+	},
+	"url": {
+		"paramError": "参数错误",
+		"paramErrorDocs": "请参考文档：https://www.toolsetlink.com/upgrade/api/url/get-url-upgrade-strategy.html",
+		"notFound": "URL应用未找到",
+		"notFoundDocs": "未找到对应urlKey的应用，请确认已在系统中正确创建。参考文档：https://www.toolsetlink.com/upgrade/recommend/url/app.html",
+		"versionNotFound": "URL版本未找到",
+		"versionNotFoundDocs": "未找到对应应用版本，请确认已在系统中正确创建。参考文档：https://www.toolsetlink.com/upgrade/recommend/url/app-version.html"
+	},
+	"file": {
+		"paramError": "参数错误",
+		"paramErrorDocs": "请参考文档：https://www.toolsetlink.com/upgrade/api/file/get-file-upgrade-strategy.html",
+		"notFound": "文件应用未找到",
+		"notFoundDocs": "未找到对应fileKey的应用，请确认已在系统中正确创建。参考文档：https://www.toolsetlink.com/upgrade/recommend/file/app.html",
+		"versionNotFound": "文件版本未找到",
+		"versionNotFoundDocs": "未找到对应应用版本，请确认已在系统中正确创建。参考文档：https://www.toolsetlink.com/upgrade/recommend/file/app-version.html"
+	}
+}

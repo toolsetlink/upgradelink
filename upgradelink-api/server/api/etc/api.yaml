@@ -2,6 +2,13 @@ Name: api
 Host: 0.0.0.0
 Port: 8888
 
+DevServer:
+  Enabled: true
+  Port: 6470
+  HealthPath: /ping
+  MetricsPath: /metrics
+  EnableMetrics: true
+
 Log:
   ServiceName: upgradelink-api
   Mode: file

@@ -21,28 +21,21 @@ func NewReplayAttackMiddleware(_service *resource.Ctx) *ReplayAttackMiddleware {
 
 func (m *ReplayAttackMiddleware) Handle(next http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		//next(w, r)
-		//return
-
-		// 测试
-		xTest := r.Header.Get("test")
-		if xTest == "test" {
-			next(w, r)
-			return
-		}
 
 		// 时间戳验证 防重放攻击  RFC3339Nano格式
 		xTimestamp := r.Header.Get("X-Timestamp")
 		if xTimestamp == "" {
-			httpx.Error(w, http_handlers.NewLinkErr(context.Background(), http_handlers.ErrHeadInvalid, "Missing X-Timestamp header", ""))
+			httpx.Error(w, http_handlers.NewLinkErr(context.Background(), http_handlers.ErrHeadInvalid, "Missing X-Timestamp header", "Missing X-Timestamp header"))
 			return
 		}
+
 		// 解析时间字符串
 		t, err := time.Parse(time.RFC3339, xTimestamp)
 		if err != nil {
-			httpx.Error(w, http_handlers.NewLinkErr(context.Background(), http_handlers.ErrHeadInvalid, "Invalid X-Timestamp format", ""))
+			httpx.Error(w, http_handlers.NewLinkErr(context.Background(), http_handlers.ErrHeadInvalid, "Invalid X-Timestamp format", "Invalid X-Timestamp format"))
 			return
 		}
+
 		// 允许的时间窗口（例如 ±5 分钟）
 		allowedWindow := time.Minute * 5
 		currentTime := time.Now()
@@ -52,7 +45,7 @@ func (m *ReplayAttackMiddleware) Handle(next http.HandlerFunc) http.HandlerFunc 
 
 		// 检查时间是否在允许的窗口内
 		if t.Before(minTime) || t.After(maxTime) {
-			httpx.Error(w, http_handlers.NewLinkErr(context.Background(), http_handlers.ErrAuth, "Invalid X-Timestamp: timestamp is out of allowed window", ""))
+			httpx.Error(w, http_handlers.NewLinkErr(context.Background(), http_handlers.ErrAuth, "Invalid X-Timestamp: timestamp is out of allowed window", "Invalid X-Timestamp: timestamp is out of allowed window"))
 			return
 		}
 

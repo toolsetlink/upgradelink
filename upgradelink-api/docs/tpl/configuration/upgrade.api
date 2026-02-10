@@ -99,7 +99,7 @@ type (
     prefix: /v1/configuration
     group: configuration
     timeout: 30s
-    middleware: AccessKey, RateLimit, ReplayAttack, Signature, Rule
+    middleware: Lang, AccessKey, RateLimit, ReplayAttack, Signature, Rule
 )
 
 service api {

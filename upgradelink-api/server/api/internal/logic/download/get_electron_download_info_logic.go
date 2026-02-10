@@ -31,7 +31,7 @@ func NewGetElectronDownloadInfoLogic(ctx context.Context, svcCtx *svc.ServiceCon
 func (l *GetElectronDownloadInfoLogic) GetElectronDownloadInfo(req *types.GetElectronDownloadInfoReq) (resp *string, err error) {
 	// 请求参数效验
 	if req.ElectronKey == "" {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrElectron5Msg, common.ErrElectron5Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, l.svcCtx.Trans.Trans(l.ctx, "electron.paramError"), l.svcCtx.Trans.Trans(l.ctx, "electron.paramErrorDocs"))
 	}
 
 	// 客户端windows 系统字段传的值为  win32
@@ -43,16 +43,16 @@ func (l *GetElectronDownloadInfoLogic) GetElectronDownloadInfo(req *types.GetEle
 	if req.VersionName != "" {
 		versionCode, err = common.SemVerToInt64(req.VersionName)
 		if err != nil {
-			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrElectron5Msg, common.ErrElectron5Docs)
+			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, l.svcCtx.Trans.Trans(l.ctx, "electron.paramError"), l.svcCtx.Trans.Trans(l.ctx, "electron.paramErrorDocs"))
 		}
 	}
 
 	// 通过唯一标识 获取到对应的应用信息
 	electronInfo, err := l.svcCtx.ResourceCtx.GetElectronInfoByKey(l.ctx, req.ElectronKey)
 	if err != nil && errors.Is(err, model.ErrNotFound) {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, common.ErrElectron2Msg, common.ErrElectron2Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, l.svcCtx.Trans.Trans(l.ctx, "electron.notFound"), l.svcCtx.Trans.Trans(l.ctx, "electron.notFoundDocs"))
 	} else if err != nil {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"), l.svcCtx.Trans.Trans(l.ctx, "common.databaseErrorDocs"))
 	}
 
 	var electronVersionInfo *model.UpgradeElectronVersion
@@ -61,17 +61,17 @@ func (l *GetElectronDownloadInfoLogic) GetElectronDownloadInfo(req *types.GetEle
 	if versionCode == 0 {
 		electronVersionInfo, err = l.svcCtx.ResourceCtx.GetElectronVersionLastInfoByElectronIdAndPlatformAndArch(l.ctx, electronInfo.Id, req.Platform, req.Arch)
 		if err != nil && errors.Is(err, model.ErrNotFound) {
-			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, common.ErrElectron3Msg, common.ErrElectron3Docs)
+			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, l.svcCtx.Trans.Trans(l.ctx, "electron.versionNotFound"), l.svcCtx.Trans.Trans(l.ctx, "electron.versionNotFoundDocs"))
 		} else if err != nil {
-			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.Err1Msg, common.Err1Docs)
+			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"), l.svcCtx.Trans.Trans(l.ctx, "common.databaseErrorDocs"))
 		}
 
 	} else {
 		electronVersionInfo, err = l.svcCtx.ResourceCtx.GetElectronVersionInfoByElectronIdAndVersionCodeAndPlatformAndArch(l.ctx, electronInfo.Id, versionCode, req.Platform, req.Arch)
 		if err != nil && errors.Is(err, model.ErrNotFound) {
-			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, common.ErrElectron3Msg, common.ErrElectron3Docs)
+			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, l.svcCtx.Trans.Trans(l.ctx, "electron.versionNotFound"), l.svcCtx.Trans.Trans(l.ctx, "electron.versionNotFoundDocs"))
 		} else if err != nil {
-			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.Err1Msg, common.Err1Docs)
+			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"), l.svcCtx.Trans.Trans(l.ctx, "common.databaseErrorDocs"))
 		}
 	}
 
@@ -81,16 +81,16 @@ func (l *GetElectronDownloadInfoLogic) GetElectronDownloadInfo(req *types.GetEle
 	if req.DownloadType == 2 {
 		cloudFileInfo, err = l.svcCtx.ResourceCtx.GetCloudFileInfoById(l.ctx, electronVersionInfo.CloudFileId)
 		if err != nil && errors.Is(err, model.ErrNotFound) {
-			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.targetNotExist"), l.svcCtx.Trans.Trans(l.ctx, "common.targetNotExistDocs"))
 		} else if err != nil {
-			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"), l.svcCtx.Trans.Trans(l.ctx, "common.databaseErrorDocs"))
 		}
 	} else {
 		cloudFileInfo, err = l.svcCtx.ResourceCtx.GetCloudFileInfoById(l.ctx, electronVersionInfo.InstallCloudFileId)
 		if err != nil && errors.Is(err, model.ErrNotFound) {
-			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.targetNotExist"), l.svcCtx.Trans.Trans(l.ctx, "common.targetNotExistDocs"))
 		} else if err != nil {
-			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"), l.svcCtx.Trans.Trans(l.ctx, "common.databaseErrorDocs"))
 		}
 	}
 
@@ -108,7 +108,7 @@ func (l *GetElectronDownloadInfoLogic) GetElectronDownloadInfo(req *types.GetEle
 		DownloadCloudFileId: cloudFileInfo.Id,
 	})
 	if err != nil {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"), l.svcCtx.Trans.Trans(l.ctx, "common.databaseErrorDocs"))
 	}
 
 	// 接口返回文件下载地址

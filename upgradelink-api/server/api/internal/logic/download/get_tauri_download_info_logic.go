@@ -31,23 +31,23 @@ func NewGetTauriDownloadInfoLogic(ctx context.Context, svcCtx *svc.ServiceContex
 func (l *GetTauriDownloadInfoLogic) GetTauriDownloadInfo(req *types.GetTauriDownloadInfoReq) (resp *string, err error) {
 	// 请求参数效验
 	if req.TauriKey == "" {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrTauri5Msg, common.ErrTauri5Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, l.svcCtx.Trans.Trans(l.ctx, "tauri.paramError"), l.svcCtx.Trans.Trans(l.ctx, "tauri.paramErrorDocs"))
 	}
 
 	versionCode := int64(0)
 	if req.VersionName != "" {
 		versionCode, err = common.SemVerToInt64(req.VersionName)
 		if err != nil {
-			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrTauri5Msg, common.ErrTauri5Docs)
+			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, l.svcCtx.Trans.Trans(l.ctx, "tauri.paramError"), l.svcCtx.Trans.Trans(l.ctx, "tauri.paramErrorDocs"))
 		}
 	}
 
 	// 通过唯一标识 获取到对应的应用信息
 	tauriInfo, err := l.svcCtx.ResourceCtx.GetTauriInfoByKey(l.ctx, req.TauriKey)
 	if err != nil && errors.Is(err, model.ErrNotFound) {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, common.ErrTauri2Msg, common.ErrTauri2Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, l.svcCtx.Trans.Trans(l.ctx, "tauri.notFound"), l.svcCtx.Trans.Trans(l.ctx, "tauri.notFoundDocs"))
 	} else if err != nil {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"), l.svcCtx.Trans.Trans(l.ctx, "common.internalErrorDocs"))
 	}
 
 	var tauriVersionInfo *model.UpgradeTauriVersion
@@ -56,17 +56,17 @@ func (l *GetTauriDownloadInfoLogic) GetTauriDownloadInfo(req *types.GetTauriDown
 	if versionCode == 0 {
 		tauriVersionInfo, err = l.svcCtx.ResourceCtx.GetTauriVersionLastInfoByTauriIdAndTargetAndArch(l.ctx, tauriInfo.Id, req.Target, req.Arch)
 		if err != nil && errors.Is(err, model.ErrNotFound) {
-			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, common.ErrTauri3Msg, common.ErrTauri3Docs)
+			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, l.svcCtx.Trans.Trans(l.ctx, "tauri.versionNotFound"), l.svcCtx.Trans.Trans(l.ctx, "tauri.versionNotFoundDocs"))
 		} else if err != nil {
-			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"), l.svcCtx.Trans.Trans(l.ctx, "common.internalErrorDocs"))
 		}
 
 	} else {
 		tauriVersionInfo, err = l.svcCtx.ResourceCtx.GetTauriVersionInfoByTauriIdAndVersionCodeAndTargetAndArch(l.ctx, tauriInfo.Id, versionCode, req.Target, req.Arch)
 		if err != nil && errors.Is(err, model.ErrNotFound) {
-			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, common.ErrTauri3Msg, common.ErrTauri3Docs)
+			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, l.svcCtx.Trans.Trans(l.ctx, "tauri.versionNotFound"), l.svcCtx.Trans.Trans(l.ctx, "tauri.versionNotFoundDocs"))
 		} else if err != nil {
-			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"), l.svcCtx.Trans.Trans(l.ctx, "common.internalErrorDocs"))
 		}
 	}
 
@@ -76,25 +76,25 @@ func (l *GetTauriDownloadInfoLogic) GetTauriDownloadInfo(req *types.GetTauriDown
 	if req.DownloadType == 2 {
 		cloudFileInfo, err = l.svcCtx.ResourceCtx.GetCloudFileInfoById(l.ctx, tauriVersionInfo.CloudFileId)
 		if err != nil && errors.Is(err, model.ErrNotFound) {
-			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.targetNotExist"), l.svcCtx.Trans.Trans(l.ctx, "common.internalErrorDocs"))
 		} else if err != nil {
-			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"), l.svcCtx.Trans.Trans(l.ctx, "common.internalErrorDocs"))
 		}
 	} else {
 		cloudFileInfo, err = l.svcCtx.ResourceCtx.GetCloudFileInfoById(l.ctx, tauriVersionInfo.InstallCloudFileId)
 		if err != nil && errors.Is(err, model.ErrNotFound) {
-			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.targetNotExist"), l.svcCtx.Trans.Trans(l.ctx, "common.internalErrorDocs"))
 		} else if err != nil {
-			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+			return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"), l.svcCtx.Trans.Trans(l.ctx, "common.internalErrorDocs"))
 		}
 	}
 
-	// 通过文件信息 获取云文件地址
+	// 通过文件信息 获取云文件地址 todo
 	cloudFileInfo, err = l.svcCtx.ResourceCtx.GetCloudFileInfoById(l.ctx, tauriVersionInfo.CloudFileId)
 	if err != nil && errors.Is(err, model.ErrNotFound) {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.targetNotExist"), l.svcCtx.Trans.Trans(l.ctx, "common.targetNotExist"))
 	} else if err != nil {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"), l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"))
 	}
 
 	// 插入app 文件下载日志表
@@ -111,7 +111,7 @@ func (l *GetTauriDownloadInfoLogic) GetTauriDownloadInfo(req *types.GetTauriDown
 		DownloadCloudFileId: cloudFileInfo.Id,
 	})
 	if err != nil {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"), l.svcCtx.Trans.Trans(l.ctx, "common.internalErrorDocs"))
 	}
 
 	// 接口返回文件下载地址

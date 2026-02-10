@@ -3,7 +3,6 @@ package configuration
 import (
 	"context"
 	"errors"
-	"upgradelink-api/server/api/internal/common"
 	"upgradelink-api/server/api/internal/common/http_handlers"
 	"upgradelink-api/server/api/internal/resource/model"
 
@@ -30,10 +29,10 @@ func NewGetConfigurationVersionInfoLogic(ctx context.Context, svcCtx *svc.Servic
 func (l *GetConfigurationVersionInfoLogic) GetConfigurationVersionInfo(req *types.GetConfigurationVersionInfoReq) (resp *types.GetConfigurationVersionInfoResp, err error) {
 	// 请求参数效验
 	if req.ConfigurationKey == "" {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrConfiguration4Msg, common.ErrConfiguration4Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, l.svcCtx.Trans.Trans(l.ctx, "configuration.paramError"), l.svcCtx.Trans.Trans(l.ctx, "configuration.paramErrorDocs"))
 	}
 	if req.VersionCode == 0 {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrConfiguration4Msg, common.ErrConfiguration4Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, l.svcCtx.Trans.Trans(l.ctx, "configuration.paramError"), l.svcCtx.Trans.Trans(l.ctx, "configuration.paramErrorDocs"))
 	}
 
 	var res types.GetConfigurationVersionInfoResp
@@ -41,16 +40,16 @@ func (l *GetConfigurationVersionInfoLogic) GetConfigurationVersionInfo(req *type
 	// 通过唯一标识 获取到对应的应用信息
 	configurationInfo, err := l.svcCtx.ResourceCtx.GetConfigurationInfoByKey(l.ctx, req.ConfigurationKey)
 	if err != nil && errors.Is(err, model.ErrNotFound) {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, common.ErrConfiguration2Msg, common.ErrConfiguration2Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, l.svcCtx.Trans.Trans(l.ctx, "configuration.notFound"), l.svcCtx.Trans.Trans(l.ctx, "configuration.notFoundDocs"))
 	} else if err != nil {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"), l.svcCtx.Trans.Trans(l.ctx, "common.internalErrorDocs"))
 	}
 
 	configurationVersionInfo, err := l.svcCtx.ResourceCtx.GetConfigurationVersionInfoByConfigurationIdAndVersionCode(l.ctx, configurationInfo.Id, req.VersionCode)
 	if err != nil && errors.Is(err, model.ErrNotFound) {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, common.ErrConfiguration3Msg, common.ErrConfiguration3Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, l.svcCtx.Trans.Trans(l.ctx, "configuration.versionNotFound"), l.svcCtx.Trans.Trans(l.ctx, "configuration.versionNotFoundDocs"))
 	} else if err != nil {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"), l.svcCtx.Trans.Trans(l.ctx, "common.internalErrorDocs"))
 	}
 
 	res.Code = 200

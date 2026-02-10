@@ -100,6 +100,18 @@ type (
 
 )
 
+type (
+
+    TauriActionUploadReq {
+        AppKey string `json:"appKey"`
+        LatestJsonUrl string `json:"latestJsonUrl"`
+    }
+
+    TauriActionUploadResp {
+        BaseDataInfo
+    }
+)
+
 // AccessKey 访问密钥效验  tauri升级接口无访问密钥效验
 // RateLimit 流量控制
 // ReplayAttack 防重放攻击  tauri升级接口无重放效验
@@ -109,13 +121,17 @@ type (
     prefix: /v1/tauri
     group: tauri
     timeout: 600s
-    middleware: RateLimit
+    middleware: Lang, RateLimit
 )
 
 service api {
     // 获取最新版本
     @handler getTauriUpgradeInfo
     get /upgrade (GetTauriUpgradeInfoReq) returns (GetTauriUpgradeInfoResp)
+
+    // action 上传版本信息与配置应用信息
+    @handler tauriActionUpload
+    post /aciton/upload (TauriActionUploadReq) returns (TauriActionUploadResp)
 }
 
 
@@ -173,7 +189,7 @@ type (
     prefix: /v1/tauri
     group: tauri
     timeout: 30s
-    middleware: AccessKey, RateLimit, ReplayAttack, Signature, Rule
+    middleware: Lang, AccessKey, RateLimit, ReplayAttack, Signature, Rule
 )
 
 service api {
@@ -193,7 +209,7 @@ type (
         // 机器架构
         Arch string `form:"arch,optional"`
         // 应用版本名
-        VersionName string `form:"versionName,optional,default=''"`
+        VersionName string `form:"versionName,optional,default="`
     }
 )
 
@@ -202,7 +218,7 @@ type (
     group: download
     prefix: /v1/tauri
     timeout: 30s
-    middleware: CdnRateLimit
+    middleware: Lang, CdnRateLimit
 )
 
 service api {

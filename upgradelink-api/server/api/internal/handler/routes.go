@@ -26,8 +26,13 @@ import (
 func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 	server.AddRoutes(
 		rest.WithMiddlewares(
-			[]rest.Middleware{serverCtx.AccessKey, serverCtx.RateLimit, serverCtx.ReplayAttack, serverCtx.Signature, serverCtx.Rule},
+			[]rest.Middleware{serverCtx.Lang, serverCtx.AccessKey, serverCtx.RateLimit, serverCtx.ReplayAttack, serverCtx.Signature, serverCtx.Rule},
 			[]rest.Route{
+				{
+					Method:  http.MethodPost,
+					Path:    "/aciton/upload",
+					Handler: apk.ApkActionUploadHandler(serverCtx),
+				},
 				{
 					Method:  http.MethodPost,
 					Path:    "/upgrade",
@@ -41,12 +46,12 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 			}...,
 		),
 		rest.WithPrefix("/v1/apk"),
-		rest.WithTimeout(30000*time.Millisecond),
+		rest.WithTimeout(600000*time.Millisecond),
 	)
 
 	server.AddRoutes(
 		rest.WithMiddlewares(
-			[]rest.Middleware{serverCtx.AccessKey, serverCtx.RateLimit, serverCtx.ReplayAttack, serverCtx.Signature, serverCtx.Rule},
+			[]rest.Middleware{serverCtx.Lang, serverCtx.AccessKey, serverCtx.RateLimit, serverCtx.ReplayAttack, serverCtx.Signature, serverCtx.Rule},
 			[]rest.Route{
 				{
 					Method:  http.MethodPost,
@@ -61,7 +66,7 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 
 	server.AddRoutes(
 		rest.WithMiddlewares(
-			[]rest.Middleware{serverCtx.AccessKey, serverCtx.RateLimit, serverCtx.ReplayAttack, serverCtx.Signature, serverCtx.Rule},
+			[]rest.Middleware{serverCtx.Lang, serverCtx.AccessKey, serverCtx.RateLimit, serverCtx.ReplayAttack, serverCtx.Signature, serverCtx.Rule},
 			[]rest.Route{
 				{
 					Method:  http.MethodGet,
@@ -76,7 +81,7 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 
 	server.AddRoutes(
 		rest.WithMiddlewares(
-			[]rest.Middleware{serverCtx.AccessKey, serverCtx.RateLimit, serverCtx.ReplayAttack, serverCtx.Signature, serverCtx.Rule},
+			[]rest.Middleware{serverCtx.Lang, serverCtx.AccessKey, serverCtx.RateLimit, serverCtx.ReplayAttack, serverCtx.Signature, serverCtx.Rule},
 			[]rest.Route{
 				{
 					Method:  http.MethodPost,
@@ -96,22 +101,7 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 
 	server.AddRoutes(
 		rest.WithMiddlewares(
-			[]rest.Middleware{serverCtx.CdnRateLimit},
-			[]rest.Route{
-				{
-					Method:  http.MethodGet,
-					Path:    "/download",
-					Handler: download.GetUrlDownloadInfoHandler(serverCtx),
-				},
-			}...,
-		),
-		rest.WithPrefix("/v1/url"),
-		rest.WithTimeout(30000*time.Millisecond),
-	)
-
-	server.AddRoutes(
-		rest.WithMiddlewares(
-			[]rest.Middleware{serverCtx.CdnRateLimit},
+			[]rest.Middleware{serverCtx.Lang, serverCtx.CdnRateLimit},
 			[]rest.Route{
 				{
 					Method:  http.MethodGet,
@@ -126,82 +116,7 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 
 	server.AddRoutes(
 		rest.WithMiddlewares(
-			[]rest.Middleware{serverCtx.CdnRateLimit},
-			[]rest.Route{
-				{
-					Method:  http.MethodGet,
-					Path:    "/download",
-					Handler: download.GetWinDownloadInfoHandler(serverCtx),
-				},
-			}...,
-		),
-		rest.WithPrefix("/v1/win"),
-		rest.WithTimeout(30000*time.Millisecond),
-	)
-
-	server.AddRoutes(
-		rest.WithMiddlewares(
-			[]rest.Middleware{serverCtx.CdnRateLimit},
-			[]rest.Route{
-				{
-					Method:  http.MethodGet,
-					Path:    "/download",
-					Handler: download.GetLnxDownloadInfoHandler(serverCtx),
-				},
-			}...,
-		),
-		rest.WithPrefix("/v1/lnx"),
-		rest.WithTimeout(30000*time.Millisecond),
-	)
-
-	server.AddRoutes(
-		rest.WithMiddlewares(
-			[]rest.Middleware{serverCtx.CdnRateLimit},
-			[]rest.Route{
-				{
-					Method:  http.MethodGet,
-					Path:    "/download",
-					Handler: download.GetMacDownloadInfoHandler(serverCtx),
-				},
-			}...,
-		),
-		rest.WithPrefix("/v1/mac"),
-		rest.WithTimeout(30000*time.Millisecond),
-	)
-
-	server.AddRoutes(
-		rest.WithMiddlewares(
-			[]rest.Middleware{serverCtx.CdnRateLimit},
-			[]rest.Route{
-				{
-					Method:  http.MethodGet,
-					Path:    "/download",
-					Handler: download.GetApkDownloadInfoHandler(serverCtx),
-				},
-			}...,
-		),
-		rest.WithPrefix("/v1/apk"),
-		rest.WithTimeout(30000*time.Millisecond),
-	)
-
-	server.AddRoutes(
-		rest.WithMiddlewares(
-			[]rest.Middleware{serverCtx.CdnRateLimit},
-			[]rest.Route{
-				{
-					Method:  http.MethodGet,
-					Path:    "/download",
-					Handler: download.GetTauriDownloadInfoHandler(serverCtx),
-				},
-			}...,
-		),
-		rest.WithPrefix("/v1/tauri"),
-		rest.WithTimeout(30000*time.Millisecond),
-	)
-
-	server.AddRoutes(
-		rest.WithMiddlewares(
-			[]rest.Middleware{serverCtx.CdnRateLimit},
+			[]rest.Middleware{serverCtx.Lang, serverCtx.CdnRateLimit},
 			[]rest.Route{
 				{
 					Method:  http.MethodGet,
@@ -236,13 +151,98 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 
 	server.AddRoutes(
 		rest.WithMiddlewares(
-			[]rest.Middleware{serverCtx.AccessKey, serverCtx.RateLimit, serverCtx.Rule},
+			[]rest.Middleware{serverCtx.Lang, serverCtx.CdnRateLimit},
 			[]rest.Route{
 				{
-					Method:  http.MethodPost,
-					Path:    "/github-aciton/upload",
-					Handler: electron.PostElectronUploadHandler(serverCtx),
+					Method:  http.MethodGet,
+					Path:    "/download",
+					Handler: download.GetApkDownloadInfoHandler(serverCtx),
 				},
+			}...,
+		),
+		rest.WithPrefix("/v1/apk"),
+		rest.WithTimeout(30000*time.Millisecond),
+	)
+
+	server.AddRoutes(
+		rest.WithMiddlewares(
+			[]rest.Middleware{serverCtx.Lang, serverCtx.CdnRateLimit},
+			[]rest.Route{
+				{
+					Method:  http.MethodGet,
+					Path:    "/download",
+					Handler: download.GetTauriDownloadInfoHandler(serverCtx),
+				},
+			}...,
+		),
+		rest.WithPrefix("/v1/tauri"),
+		rest.WithTimeout(30000*time.Millisecond),
+	)
+
+	server.AddRoutes(
+		rest.WithMiddlewares(
+			[]rest.Middleware{serverCtx.Lang, serverCtx.CdnRateLimit},
+			[]rest.Route{
+				{
+					Method:  http.MethodGet,
+					Path:    "/download",
+					Handler: download.GetWinDownloadInfoHandler(serverCtx),
+				},
+			}...,
+		),
+		rest.WithPrefix("/v1/win"),
+		rest.WithTimeout(30000*time.Millisecond),
+	)
+
+	server.AddRoutes(
+		rest.WithMiddlewares(
+			[]rest.Middleware{serverCtx.Lang, serverCtx.CdnRateLimit},
+			[]rest.Route{
+				{
+					Method:  http.MethodGet,
+					Path:    "/download",
+					Handler: download.GetLnxDownloadInfoHandler(serverCtx),
+				},
+			}...,
+		),
+		rest.WithPrefix("/v1/lnx"),
+		rest.WithTimeout(30000*time.Millisecond),
+	)
+
+	server.AddRoutes(
+		rest.WithMiddlewares(
+			[]rest.Middleware{serverCtx.Lang, serverCtx.CdnRateLimit},
+			[]rest.Route{
+				{
+					Method:  http.MethodGet,
+					Path:    "/download",
+					Handler: download.GetMacDownloadInfoHandler(serverCtx),
+				},
+			}...,
+		),
+		rest.WithPrefix("/v1/mac"),
+		rest.WithTimeout(30000*time.Millisecond),
+	)
+
+	server.AddRoutes(
+		rest.WithMiddlewares(
+			[]rest.Middleware{serverCtx.Lang, serverCtx.CdnRateLimit},
+			[]rest.Route{
+				{
+					Method:  http.MethodGet,
+					Path:    "/download",
+					Handler: download.GetUrlDownloadInfoHandler(serverCtx),
+				},
+			}...,
+		),
+		rest.WithPrefix("/v1/url"),
+		rest.WithTimeout(30000*time.Millisecond),
+	)
+
+	server.AddRoutes(
+		rest.WithMiddlewares(
+			[]rest.Middleware{serverCtx.Lang, serverCtx.AccessKey, serverCtx.RateLimit, serverCtx.Rule},
+			[]rest.Route{
 				{
 					Method:  http.MethodGet,
 					Path:    "/upgrade",
@@ -271,7 +271,7 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 
 	server.AddRoutes(
 		rest.WithMiddlewares(
-			[]rest.Middleware{serverCtx.AccessKey, serverCtx.RateLimit, serverCtx.ReplayAttack, serverCtx.Signature, serverCtx.Rule},
+			[]rest.Middleware{serverCtx.Lang, serverCtx.AccessKey, serverCtx.RateLimit, serverCtx.ReplayAttack, serverCtx.Signature, serverCtx.Rule},
 			[]rest.Route{
 				{
 					Method:  http.MethodPost,
@@ -286,8 +286,13 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 
 	server.AddRoutes(
 		rest.WithMiddlewares(
-			[]rest.Middleware{serverCtx.AccessKey, serverCtx.RateLimit, serverCtx.ReplayAttack, serverCtx.Signature, serverCtx.Rule},
+			[]rest.Middleware{serverCtx.Lang, serverCtx.AccessKey, serverCtx.RateLimit, serverCtx.ReplayAttack, serverCtx.Signature, serverCtx.Rule},
 			[]rest.Route{
+				{
+					Method:  http.MethodPost,
+					Path:    "/aciton/upload",
+					Handler: file.FileActionUploadHandler(serverCtx),
+				},
 				{
 					Method:  http.MethodPost,
 					Path:    "/upgrade",
@@ -301,12 +306,12 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 			}...,
 		),
 		rest.WithPrefix("/v1/file"),
-		rest.WithTimeout(30000*time.Millisecond),
+		rest.WithTimeout(600000*time.Millisecond),
 	)
 
 	server.AddRoutes(
 		rest.WithMiddlewares(
-			[]rest.Middleware{serverCtx.AccessKey, serverCtx.RateLimit, serverCtx.ReplayAttack, serverCtx.Signature, serverCtx.Rule},
+			[]rest.Middleware{serverCtx.Lang, serverCtx.AccessKey, serverCtx.RateLimit, serverCtx.ReplayAttack, serverCtx.Signature, serverCtx.Rule},
 			[]rest.Route{
 				{
 					Method:  http.MethodPost,
@@ -326,7 +331,7 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 
 	server.AddRoutes(
 		rest.WithMiddlewares(
-			[]rest.Middleware{serverCtx.AccessKey, serverCtx.RateLimit, serverCtx.ReplayAttack, serverCtx.Signature, serverCtx.Rule},
+			[]rest.Middleware{serverCtx.Lang, serverCtx.AccessKey, serverCtx.RateLimit, serverCtx.ReplayAttack, serverCtx.Signature, serverCtx.Rule},
 			[]rest.Route{
 				{
 					Method:  http.MethodPost,
@@ -346,8 +351,13 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 
 	server.AddRoutes(
 		rest.WithMiddlewares(
-			[]rest.Middleware{serverCtx.RateLimit},
+			[]rest.Middleware{serverCtx.Lang, serverCtx.RateLimit},
 			[]rest.Route{
+				{
+					Method:  http.MethodPost,
+					Path:    "/aciton/upload",
+					Handler: tauri.TauriActionUploadHandler(serverCtx),
+				},
 				{
 					Method:  http.MethodGet,
 					Path:    "/upgrade",
@@ -361,7 +371,7 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 
 	server.AddRoutes(
 		rest.WithMiddlewares(
-			[]rest.Middleware{serverCtx.AccessKey, serverCtx.RateLimit, serverCtx.ReplayAttack, serverCtx.Signature, serverCtx.Rule},
+			[]rest.Middleware{serverCtx.Lang, serverCtx.AccessKey, serverCtx.RateLimit, serverCtx.ReplayAttack, serverCtx.Signature, serverCtx.Rule},
 			[]rest.Route{
 				{
 					Method:  http.MethodPost,
@@ -376,7 +386,7 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 
 	server.AddRoutes(
 		rest.WithMiddlewares(
-			[]rest.Middleware{serverCtx.AccessKey, serverCtx.RateLimit, serverCtx.ReplayAttack, serverCtx.Signature, serverCtx.Rule},
+			[]rest.Middleware{serverCtx.Lang, serverCtx.AccessKey, serverCtx.RateLimit, serverCtx.ReplayAttack, serverCtx.Signature, serverCtx.Rule},
 			[]rest.Route{
 				{
 					Method:  http.MethodPost,
@@ -396,7 +406,7 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 
 	server.AddRoutes(
 		rest.WithMiddlewares(
-			[]rest.Middleware{serverCtx.AccessKey, serverCtx.RateLimit, serverCtx.ReplayAttack, serverCtx.Signature, serverCtx.Rule},
+			[]rest.Middleware{serverCtx.Lang, serverCtx.AccessKey, serverCtx.RateLimit, serverCtx.ReplayAttack, serverCtx.Signature, serverCtx.Rule},
 			[]rest.Route{
 				{
 					Method:  http.MethodPost,

@@ -3,7 +3,6 @@ package lnx
 import (
 	"context"
 	"errors"
-	"upgradelink-api/server/api/internal/common"
 	"upgradelink-api/server/api/internal/common/http_handlers"
 	"upgradelink-api/server/api/internal/resource/model"
 
@@ -31,10 +30,10 @@ func (l *GetLnxVersionInfoLogic) GetLnxVersionInfo(req *types.GetLnxVersionInfoR
 
 	// 请求参数效验
 	if req.LnxKey == "" {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrLnx4Msg, common.ErrLnx4Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, l.svcCtx.Trans.Trans(l.ctx, "lnx.paramError"), l.svcCtx.Trans.Trans(l.ctx, "lnx.paramErrorDocs"))
 	}
-	if req.VersionCode < 0 {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrLnx4Msg, common.ErrLnx4Docs)
+	if req.VersionCode == 0 {
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, l.svcCtx.Trans.Trans(l.ctx, "lnx.paramError"), l.svcCtx.Trans.Trans(l.ctx, "lnx.paramErrorDocs"))
 	}
 
 	var res types.GetLnxVersionInfoResp
@@ -42,16 +41,16 @@ func (l *GetLnxVersionInfoLogic) GetLnxVersionInfo(req *types.GetLnxVersionInfoR
 	// 通过唯一标识 获取到对应的应用信息
 	lnxInfo, err := l.svcCtx.ResourceCtx.GetLnxInfoByKey(l.ctx, req.LnxKey)
 	if err != nil && errors.Is(err, model.ErrNotFound) {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, common.ErrLnx2Msg, common.ErrLnx2Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, l.svcCtx.Trans.Trans(l.ctx, "lnx.notFound"), l.svcCtx.Trans.Trans(l.ctx, "lnx.notFoundDocs"))
 	} else if err != nil {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"), l.svcCtx.Trans.Trans(l.ctx, "common.internalErrorDocs"))
 	}
 
 	lnxVersionInfo, err := l.svcCtx.ResourceCtx.GetLnxVersionInfoByLnxIdAndArchAndVersionCode(l.ctx, lnxInfo.Id, req.Arch, req.VersionCode)
 	if err != nil && errors.Is(err, model.ErrNotFound) {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, common.ErrLnx3Msg, common.ErrLnx3Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, l.svcCtx.Trans.Trans(l.ctx, "lnx.versionNotFound"), l.svcCtx.Trans.Trans(l.ctx, "lnx.versionNotFoundDocs"))
 	} else if err != nil {
-		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+		return nil, http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"), l.svcCtx.Trans.Trans(l.ctx, "common.internalErrorDocs"))
 	}
 
 	res.Code = 200

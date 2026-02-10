@@ -1,0 +1,104 @@
+{
+	"common": {
+		"success": "Éxito",
+		"failed": "Fallido",
+		"updateSuccess": "Actualizado con éxito",
+		"updateFailed": "Error al actualizar",
+		"createSuccess": "Creado con éxito",
+		"createFailed": "Error al crear",
+		"deleteSuccess": "Eliminado con éxito",
+		"deleteFailed": "Error al eliminar",
+		"changeStatusSuccess": "Estado cambiado con éxito",
+		"changeStatusFailed": "Error al cambiar el estado",
+		"targetNotExist": "El objetivo no existe",
+		"databaseError": "Error de base de datos",
+		"redisError": "Error de Redis",
+		"permissionDeny": "El usuario no tiene permiso para acceder a esta interfaz",
+		"constraintError": "Operación fallida: Conflicto de datos",
+		"validationError": "Operación fallida: Validación fallida",
+		"notSingularError": "Operación fallida: Datos no únicos",
+		"serviceUnavailable": "Servicio no disponible, verifique si el servicio está habilitado",
+		"cacheError": "Error de caché",
+		"versionFormatError": "Error de formato de versión",
+		"deleteOldVersionError": "Error al eliminar la versión anterior",
+		"processPlatformError": "Error al procesar la tarea de la plataforma",
+		"downloadFailed": "Error al descargar",
+		"uploadFailed": "Error al subir",
+		"alreadyLatestVersion": "Ya es la versión más reciente",
+		"alreadyLatestVersionDocs": "Ya es la versión más reciente, no se requiere actualización",
+		"newVersionAvailable": "Nueva versión disponible",
+		"tooManyRequests": "Demasiadas solicitudes, inténtelo de nuevo más tarde",
+		"tooManyRequestsDocs": "La política de control de flujo de solicitudes de la configuración de la tarea de actualización actual ha alcanzado su límite. Inténtelo de nuevo más tarde.",
+		"internalError": "Error interno del servicio",
+		"internalErrorDocs": "Error interno del servicio UpgradeLink. Por favor, contáctenos para obtener ayuda: https://github.com/toolsetlink/upgradelink/issues",
+		"timeParseError": "Error al analizar la hora",
+		"githubTokenError": "Error de verificación del token de GitHub",
+		"noPlatformsToProcess": "No hay plataformas para procesar"
+	},
+	"electron": {
+		"githubUrlEmpty": "La información de la aplicación Electron debe configurar la dirección del proyecto GitHub",
+		"paramError": "Error de parámetro",
+		"paramErrorDocs": "Por favor, consulte la documentación: https://www.toolsetlink.com/en/upgrade/api/electron/get-electron-upgrade-strategy.html",
+		"notFound": "Aplicación Electron no encontrada",
+		"notFoundDocs": "No se encontró la aplicación correspondiente a electronKey. Asegúrese de que se haya creado correctamente en el sistema. Consulte la documentación: https://www.toolsetlink.com/upgrade/recommend/electron/app.html",
+		"versionNotFound": "Versión de Electron no encontrada",
+		"versionNotFoundDocs": "No se encontró la versión de la aplicación correspondiente. Asegúrese de que se haya creado correctamente en el sistema. Consulte la documentación: https://www.toolsetlink.com/upgrade/recommend/electron/app-version.html"
+	},
+	"tauri": {
+		"githubUrlEmpty": "La información de la aplicación Tauri debe configurar la dirección del proyecto GitHub",
+		"paramError": "Error de parámetro",
+		"paramErrorDocs": "Por favor, consulte la documentación: https://www.toolsetlink.com/en/upgrade/api/tauri/get-tauri-upgrade-strategy.html",
+		"notFound": "Aplicación Tauri no encontrada",
+		"notFoundDocs": "No se encontró la aplicación correspondiente a tauriKey. Asegúrese de que se haya creado correctamente en el sistema. Consulte la documentación: https://www.toolsetlink.com/en/upgrade/recommend/tauri/app.html",
+		"versionNotFound": "Versión de Tauri no encontrada",
+		"versionNotFoundDocs": "No se encontró la versión de la aplicación correspondiente. Asegúrese de que se haya creado correctamente en el sistema. Consulte la documentación: https://www.toolsetlink.com/en/upgrade/recommend/tauri/app-version.html"
+	},
+	"lnx": {
+		"paramError": "Error de parámetro",
+		"paramErrorDocs": "Por favor, consulte la documentación: https://www.toolsetlink.com/en/upgrade/api/lnx/get-lnx-upgrade-strategy.html",
+		"notFound": "Aplicación Linux no encontrada",
+		"notFoundDocs": "No se encontró la aplicación correspondiente a lnxKey. Asegúrese de que se haya creado correctamente en el sistema. Consulte la documentación: https://www.toolsetlink.com/en/upgrade/recommend/lnx/app.html",
+		"versionNotFound": "Versión de Linux no encontrada",
+		"versionNotFoundDocs": "No se encontró la versión de la aplicación correspondiente. Asegúrese de que se haya creado correctamente en el sistema. Consulte la documentación: https://www.toolsetlink.com/en/upgrade/recommend/lnx/app-version.html"
+	},
+	"mac": {
+		"paramError": "Error de parámetro",
+		"paramErrorDocs": "Por favor, consulte la documentación: https://www.toolsetlink.com/en/upgrade/api/mac/get-mac-upgrade-strategy.html",
+		"notFound": "Aplicación Mac no encontrada",
+		"notFoundDocs": "No se encontró la aplicación correspondiente a macKey. Asegúrese de que se haya creado correctamente en el sistema. Consulte la documentación: https://www.toolsetlink.com/en/upgrade/recommend/mac/app.html",
+		"versionNotFound": "Versión de Mac no encontrada",
+		"versionNotFoundDocs": "No se encontró la versión de la aplicación correspondiente. Asegúrese de que se haya creado correctamente en el sistema. Consulte la documentación: https://www.toolsetlink.com/en/upgrade/recommend/mac/app-version.html"
+	},
+	"win": {
+		"paramError": "Error de parámetro",
+		"paramErrorDocs": "Por favor, consulte la documentación: https://www.toolsetlink.com/en/upgrade/api/win/get-win-upgrade-strategy.html",
+		"notFound": "Aplicación Windows no encontrada",
+		"notFoundDocs": "No se encontró la aplicación correspondiente a winKey. Asegúrese de que se haya creado correctamente en el sistema. Consulte la documentación: https://www.toolsetlink.com/en/upgrade/recommend/win/app.html",
+		"versionNotFound": "Versión de Windows no encontrada",
+		"versionNotFoundDocs": "No se encontró la versión de la aplicación correspondiente. Asegúrese de que se haya creado correctamente en el sistema. Consulte la documentación: https://www.toolsetlink.com/en/upgrade/recommend/win/app-version.html"
+	},
+	"apk": {
+		"paramError": "Error de parámetro",
+		"paramErrorDocs": "Por favor, consulte la documentación: https://www.toolsetlink.com/en/upgrade/api/apk/get-apk-upgrade-strategy.html",
+		"notFound": "Aplicación APK no encontrada",
+		"notFoundDocs": "No se encontró la aplicación correspondiente a apkKey. Asegúrese de que se haya creado correctamente en el sistema. Consulte la documentación: https://www.toolsetlink.com/en/upgrade/recommend/apk/app.html",
+		"versionNotFound": "Versión de APK no encontrada",
+		"versionNotFoundDocs": "No se encontró la versión de la aplicación correspondiente. Asegúrese de que se haya creado correctamente en el sistema. Consulte la documentación: https://www.toolsetlink.com/en/upgrade/recommend/apk/app-version.html"
+	},
+	"url": {
+		"paramError": "Error de parámetro",
+		"paramErrorDocs": "Por favor, consulte la documentación: https://www.toolsetlink.com/en/upgrade/api/url/get-url-upgrade-strategy.html",
+		"notFound": "Aplicación URL no encontrada",
+		"notFoundDocs": "No se encontró la aplicación correspondiente a urlKey. Asegúrese de que se haya creado correctamente en el sistema. Consulte la documentación: https://www.toolsetlink.com/en/upgrade/recommend/url/app.html",
+		"versionNotFound": "Versión de URL no encontrada",
+		"versionNotFoundDocs": "No se encontró la versión de la aplicación correspondiente. Asegúrese de que se haya creado correctamente en el sistema. Consulte la documentación: https://www.toolsetlink.com/en/upgrade/recommend/url/app-version.html"
+	},
+	"file": {
+		"paramError": "Error de parámetro",
+		"paramErrorDocs": "Por favor, consulte la documentación: https://www.toolsetlink.com/en/upgrade/api/file/get-file-upgrade-strategy.html",
+		"notFound": "Aplicación de archivo no encontrada",
+		"notFoundDocs": "No se encontró la aplicación correspondiente a fileKey. Asegúrese de que se haya creado correctamente en el sistema. Consulte la documentación: https://www.toolsetlink.com/en/upgrade/recommend/file/app.html",
+		"versionNotFound": "Versión de archivo no encontrada",
+		"versionNotFoundDocs": "No se encontró la versión de la aplicación correspondiente. Asegúrese de que se haya creado correctamente en el sistema. Consulte la documentación: https://www.toolsetlink.com/en/upgrade/recommend/file/app-version.html"
+	}
+}

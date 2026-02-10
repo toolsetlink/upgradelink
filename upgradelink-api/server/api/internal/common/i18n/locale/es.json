@@ -1,0 +1,50 @@
+{
+	"common": {
+		"success": "Éxito",
+		"failed": "Falló",
+		"updateSuccess": "Actualizado con éxito",
+		"updateFailed": "Falló la actualización",
+		"createSuccess": "Creado con éxito",
+		"createFailed": "Falló la creación",
+		"deleteSuccess": "Eliminado con éxito",
+		"deleteFailed": "Falló la eliminación",
+		"changeStatusSuccess": "Estado cambiado con éxito",
+		"changeStatusFailed": "Falló el cambio de estado",
+		"targetNotExist": "El objetivo no existe",
+		"databaseError": "Error de base de datos",
+		"redisError": "Error de Redis",
+		"permissionDeny": "El usuario no tiene permiso para acceder a esta interfaz",
+		"constraintError": "Operación fallida: Conflicto de datos",
+		"validationError": "Operación fallida: Validación fallida",
+		"notSingularError": "Operación fallida: Los datos no son únicos",
+		"serviceUnavailable": "El servicio no está disponible, verifique si el servicio está habilitado",
+		"serviceBusy": "El servicio está ocupado, por favor inténtelo más tarde",
+		"cacheError": "Error de caché"
+	},
+	"init": {
+		"alreadyInit": "Ya inicializado",
+		"initializeIsRunning": "La inicialización está en progreso"
+	},
+	"sys": {
+		"api": {
+			"apiRequestFailed": "La solicitud de API falló"
+		}
+	},
+	"upgrade": {
+		"appNameDuplicate": "Nombre de aplicación duplicado",
+		"appPackageNameDuplicate": "Nombre de paquete de aplicación duplicado",
+		"appVersionDuplicate": "Nombre de versión actual de la aplicación duplicado",
+		"appVersionCodeDuplicate": "Código de versión actual de la aplicación duplicado",
+		"appVersionHasStrategy": "La versión de la aplicación aún tiene una estrategia correspondiente, no se puede eliminar",
+		"taskNameDuplicate": "Nombre de tarea duplicado",
+		"taskTimeInvalid": "La hora de inicio de la tarea es mayor o igual a la hora de finalización",
+		"grayStrategyTimeInvalid": "La estrategia gris tiene una hora de inicio menor o igual a la hora de finalización",
+		"grayStrategyTimeOverlap": "La estrategia gris tiene superposición entre la hora de inicio y la hora de finalización",
+		"flowStrategyTimeInvalid": "La estrategia de flujo tiene una hora de inicio menor o igual a la hora de finalización",
+		"flowStrategyTimeOverlap": "La estrategia de flujo tiene superposición entre la hora de inicio y la hora de finalización",
+		"versionFormatError": "Error de formato de nombre de versión",
+		"deviceUniqueIdDuplicate": "ID único del dispositivo duplicado",
+		"deviceGroupNameDuplicate": "Nombre de grupo de dispositivos duplicado",
+		"deviceModelNameDuplicate": "Nombre de modelo de dispositivo duplicado"
+	}
+}

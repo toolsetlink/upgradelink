@@ -5,7 +5,8 @@ import (
 	"upgradelink-api/server/api/internal/svc"
 	"upgradelink-api/server/api/internal/types"
 
-	"github.com/suyuan32/simple-admin-common/utils/pointy"
+	"upgradelink-api/server/api/internal/common/utils/pointy"
+
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
@@ -25,6 +26,10 @@ func NewStatisticsLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Statis
 
 func (l *StatisticsLogic) Statistics(req *types.StatisticsReq) (resp *types.StatisticsResp, err error) {
 	var res types.StatisticsResp
+
+	// 设置响应状态码和消息
+	res.Code = 200
+	res.Msg = l.svcCtx.Trans.Trans(l.ctx, "common.success")
 
 	// 获取昨日应用下载量
 	yesterdayAppDownloadCount, err := l.svcCtx.ResourceCtx.GetYesterdayDownloadCount(l.ctx, req.AppKey)

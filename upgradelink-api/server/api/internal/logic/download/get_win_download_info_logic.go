@@ -31,18 +31,18 @@ func NewGetWinDownloadInfoLogic(ctx context.Context, svcCtx *svc.ServiceContext)
 func (l *GetWinDownloadInfoLogic) GetWinDownloadInfo(req *types.GetWinDownloadInfoReq) (resp string, err error) {
 	// 请求参数效验
 	if req.WinKey == "" {
-		return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrWin5Msg, common.ErrWin5Docs)
+		return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, l.svcCtx.Trans.Trans(l.ctx, "win.paramError"), l.svcCtx.Trans.Trans(l.ctx, "win.paramErrorDocs"))
 	}
 	if req.VersionCode < 0 {
-		return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrWin5Msg, common.ErrWin5Docs)
+		return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, l.svcCtx.Trans.Trans(l.ctx, "win.paramError"), l.svcCtx.Trans.Trans(l.ctx, "win.paramErrorDocs"))
 	}
 
 	// 通过唯一标识 获取到对应的应用信息
 	winInfo, err := l.svcCtx.ResourceCtx.GetWinInfoByKey(l.ctx, req.WinKey)
 	if err != nil && errors.Is(err, model.ErrNotFound) {
-		return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, common.ErrWin2Msg, common.ErrWin2Docs)
+		return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, l.svcCtx.Trans.Trans(l.ctx, "win.notFound"), l.svcCtx.Trans.Trans(l.ctx, "win.notFoundDocs"))
 	} else if err != nil {
-		return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.ErrWin5Msg, common.ErrWin5Docs)
+		return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"), l.svcCtx.Trans.Trans(l.ctx, "common.databaseErrorDocs"))
 	}
 
 	var winVersionInfo *model.UpgradeWinVersion
@@ -51,26 +51,26 @@ func (l *GetWinDownloadInfoLogic) GetWinDownloadInfo(req *types.GetWinDownloadIn
 	if req.VersionCode == 0 {
 		winVersionInfo, err = l.svcCtx.ResourceCtx.GetWinVersionLastInfoByWinId(l.ctx, winInfo.Id)
 		if err != nil && errors.Is(err, model.ErrNotFound) {
-			return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, common.ErrWin3Msg, common.ErrWin3Docs)
+			return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, l.svcCtx.Trans.Trans(l.ctx, "win.versionNotFound"), l.svcCtx.Trans.Trans(l.ctx, "win.versionNotFoundDocs"))
 		} else if err != nil {
-			return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+			return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"), l.svcCtx.Trans.Trans(l.ctx, "common.databaseErrorDocs"))
 		}
 
 	} else {
 		winVersionInfo, err = l.svcCtx.ResourceCtx.GetWinVersionInfoByWinIdAndArchAndVersionCode(l.ctx, winInfo.Id, req.Arch, req.VersionCode)
 		if err != nil && errors.Is(err, model.ErrNotFound) {
-			return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, common.ErrWin3Msg, common.ErrWin3Docs)
+			return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, l.svcCtx.Trans.Trans(l.ctx, "win.versionNotFound"), l.svcCtx.Trans.Trans(l.ctx, "win.versionNotFoundDocs"))
 		} else if err != nil {
-			return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+			return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"), l.svcCtx.Trans.Trans(l.ctx, "common.databaseErrorDocs"))
 		}
 	}
 
 	// 通过文件信息 获取云文件地址
 	cloudFileInfo, err := l.svcCtx.ResourceCtx.GetCloudFileInfoById(l.ctx, winVersionInfo.CloudFileId)
 	if err != nil && errors.Is(err, model.ErrNotFound) {
-		return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.ErrWin4Msg, common.ErrWin4Docs)
+		return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.targetNotExist"), l.svcCtx.Trans.Trans(l.ctx, "common.targetNotExistDocs"))
 	} else if err != nil {
-		return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.ErrWin4Msg, common.ErrWin4Docs)
+		return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"), l.svcCtx.Trans.Trans(l.ctx, "common.databaseErrorDocs"))
 	}
 
 	// 插入日志表
@@ -87,7 +87,7 @@ func (l *GetWinDownloadInfoLogic) GetWinDownloadInfo(req *types.GetWinDownloadIn
 		DownloadCloudFileId: cloudFileInfo.Id,
 	})
 	if err != nil {
-		return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+		return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"), l.svcCtx.Trans.Trans(l.ctx, "common.databaseErrorDocs"))
 	}
 
 	// 接口返回文件下载地址

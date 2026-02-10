@@ -31,18 +31,18 @@ func NewGetMacDownloadInfoLogic(ctx context.Context, svcCtx *svc.ServiceContext)
 func (l *GetMacDownloadInfoLogic) GetMacDownloadInfo(req *types.GetMacDownloadInfoReq) (resp string, err error) {
 	// 请求参数效验
 	if req.MacKey == "" {
-		return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrMac5Msg, common.ErrMac5Docs)
+		return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, l.svcCtx.Trans.Trans(l.ctx, "mac.paramError"), l.svcCtx.Trans.Trans(l.ctx, "mac.paramErrorDocs"))
 	}
 	if req.VersionCode < 0 {
-		return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, common.ErrMac5Msg, common.ErrMac5Docs)
+		return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrParamInvalid, l.svcCtx.Trans.Trans(l.ctx, "mac.paramError"), l.svcCtx.Trans.Trans(l.ctx, "mac.paramErrorDocs"))
 	}
 
 	// 通过唯一标识 获取到对应的应用信息
 	macInfo, err := l.svcCtx.ResourceCtx.GetMacInfoByKey(l.ctx, req.MacKey)
 	if err != nil && errors.Is(err, model.ErrNotFound) {
-		return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, common.ErrMac2Msg, common.ErrMac2Docs)
+		return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, l.svcCtx.Trans.Trans(l.ctx, "mac.notFound"), l.svcCtx.Trans.Trans(l.ctx, "mac.notFoundDocs"))
 	} else if err != nil {
-		return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+		return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"), l.svcCtx.Trans.Trans(l.ctx, "common.databaseErrorDocs"))
 	}
 
 	var macVersionInfo *model.UpgradeMacVersion
@@ -50,26 +50,26 @@ func (l *GetMacDownloadInfoLogic) GetMacDownloadInfo(req *types.GetMacDownloadIn
 	if req.VersionCode == 0 {
 		macVersionInfo, err = l.svcCtx.ResourceCtx.GetMacVersionLastInfoByMacId(l.ctx, macInfo.Id)
 		if err != nil && errors.Is(err, model.ErrNotFound) {
-			return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, common.ErrMac3Msg, common.ErrMac3Docs)
+			return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, l.svcCtx.Trans.Trans(l.ctx, "mac.versionNotFound"), l.svcCtx.Trans.Trans(l.ctx, "mac.versionNotFoundDocs"))
 		} else if err != nil {
-			return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+			return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"), l.svcCtx.Trans.Trans(l.ctx, "common.databaseErrorDocs"))
 		}
 
 	} else {
 		macVersionInfo, err = l.svcCtx.ResourceCtx.GetMacVersionInfoByMacIdAndArchAndVersionCode(l.ctx, macInfo.Id, req.Arch, req.VersionCode)
 		if err != nil && errors.Is(err, model.ErrNotFound) {
-			return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, common.ErrMac3Msg, common.ErrMac3Docs)
+			return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrNotFound, l.svcCtx.Trans.Trans(l.ctx, "mac.versionNotFound"), l.svcCtx.Trans.Trans(l.ctx, "mac.versionNotFoundDocs"))
 		} else if err != nil {
-			return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+			return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"), l.svcCtx.Trans.Trans(l.ctx, "common.databaseErrorDocs"))
 		}
 	}
 
 	// 通过文件信息 获取云文件地址
 	cloudFileInfo, err := l.svcCtx.ResourceCtx.GetCloudFileInfoById(l.ctx, macVersionInfo.CloudFileId)
 	if err != nil && errors.Is(err, model.ErrNotFound) {
-		return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.ErrMac4Msg, common.ErrMac4Docs)
+		return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.targetNotExist"), l.svcCtx.Trans.Trans(l.ctx, "common.targetNotExistDocs"))
 	} else if err != nil {
-		return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.ErrLnx4Msg, common.ErrLnx4Docs)
+		return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"), l.svcCtx.Trans.Trans(l.ctx, "common.databaseErrorDocs"))
 	}
 
 	// 插入日志表
@@ -86,7 +86,7 @@ func (l *GetMacDownloadInfoLogic) GetMacDownloadInfo(req *types.GetMacDownloadIn
 		DownloadCloudFileId: cloudFileInfo.Id,
 	})
 	if err != nil {
-		return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, common.Err1Msg, common.Err1Docs)
+		return "", http_handlers.NewLinkErr(l.ctx, http_handlers.ErrInternalServerError, l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"), l.svcCtx.Trans.Trans(l.ctx, "common.databaseError"))
 	}
 
 	// 接口返回文件下载地址

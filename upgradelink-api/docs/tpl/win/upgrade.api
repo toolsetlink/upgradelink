@@ -126,7 +126,7 @@ type (
     prefix: /v1/win
     group: win
     timeout: 30s
-    middleware: AccessKey, RateLimit, ReplayAttack, Signature, Rule
+    middleware: Lang, AccessKey, RateLimit, ReplayAttack, Signature, Rule
 )
 
 service api {
@@ -155,7 +155,7 @@ type (
     group: download
     prefix: /v1/win
     timeout: 30s
-    middleware: CdnRateLimit
+    middleware: Lang, CdnRateLimit
 )
 service api {
     @handler getWinDownloadInfo
