@@ -71,40 +71,40 @@ const gridOptions: VxeGridProps<UserInfo> = {
       field: "action",
       slots: {
         default: ({ row }) =>
-          h(TableAction, {
-            actions: [
-              {
-                label: "",
-                type: "link",
-                size: "small",
-                tooltip: $t("common.edit"),
-                icon: "clarity:note-edit-line",
-                onClick: openFormModal.bind(null, row),
-              },
-              {
-                icon: "bx:log-out-circle",
-                type: "link",
-                color: "error",
-                tooltip: $t("sys.user.forceLoggingOut"),
-                popConfirm: {
-                  title: $t("sys.user.forceLoggingOut"),
-                  placement: "left",
-                  confirm: handleForceLogout.bind(null, row),
+            h(TableAction, {
+              actions: [
+                {
+                  label: "",
+                  type: "link",
+                  size: "small",
+                  tooltip: $t("common.edit"),
+                  icon: "clarity:note-edit-line",
+                  onClick: openFormModal.bind(null, row),
                 },
-              },
-              {
-                icon: "ant-design:delete-outlined",
-                type: "link",
-                color: "error",
-                tooltip: $t("common.delete"),
-                popConfirm: {
-                  title: $t("common.deleteConfirm"),
-                  placement: "left",
-                  confirm: batchDelete.bind(null, [row.id]),
+                {
+                  icon: "bx:log-out-circle",
+                  type: "link",
+                  color: "error",
+                  tooltip: $t("sys.user.forceLoggingOut"),
+                  popConfirm: {
+                    title: $t("sys.user.forceLoggingOut"),
+                    placement: "left",
+                    confirm: handleForceLogout.bind(null, row),
+                  },
                 },
-              },
-            ] as ActionItem[],
-          }),
+                {
+                  icon: "ant-design:delete-outlined",
+                  type: "link",
+                  color: "error",
+                  tooltip: $t("common.delete"),
+                  popConfirm: {
+                    title: $t("common.deleteConfirm"),
+                    placement: "left",
+                    confirm: batchDelete.bind(null, [row.id]),
+                  },
+                },
+              ] as ActionItem[],
+            }),
       },
     },
   ],
@@ -192,10 +192,10 @@ async function handleForceLogout(record: any) {
     <Grid>
       <template #toolbar-buttons>
         <Button
-          v-show="showDeleteButton"
-          danger
-          type="primary"
-          @click="handleBatchDelete"
+            v-show="showDeleteButton"
+            danger
+            type="primary"
+            @click="handleBatchDelete"
         >
           {{ $t("common.delete") }}
         </Button>
