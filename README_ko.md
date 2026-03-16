@@ -39,16 +39,11 @@
 2. **엔터프라이즈 계정 등록** 및 인증 완료
 3. **엔터프라이즈 프로젝트 생성**하여 API 자격 증명 얻기
 
-### 인증 방법
-
-- **API 키 인증**: 요청 헤더에 `Authorization: Bearer <your-api-key>` 추가
-- **OAuth 2.0 인증**: 표준 OAuth 2.0 흐름 지원 (옵션)
-
 ### 사용 흐름
 
 **엔터프라이즈 계정 등록** → **프로젝트 생성** → **자격 증명 얻기** → **SDK 통합** → **애플리케이션 게시**
 
-[지금 등록](https://www.toolsetlink.com) | [문서 보기](https://www.toolsetlink.com/ko/upgrade/deploy/quick-start-docker.html)
+[지금 등록](https://www.toolsetlink.com)
 
 ---
 
@@ -115,16 +110,6 @@
 
 - [완전 사용 문서](https://www.toolsetlink.com/ko/upgrade/what-is-upgrade.html)
 - [빠른 시작 가이드](https://www.toolsetlink.com/ko/upgrade/deploy/quick-start-docker.html)
-
----
-
-## 📦 배포 방법
-
-여러 배포 옵션을 지원, 요구에 따라 선택:
-
-- [단일기 빠른 시작 (Docker)](https://www.toolsetlink.com/ko/upgrade/deploy/quick-start-docker2.html)
-- [Docker Compose 배포](https://www.toolsetlink.com/ko/upgrade/deploy/docker-compose.html)
-- [클러스터 배포](https://www.toolsetlink.com/ko/upgrade/deploy/cluster-docker.html)
 
 ---
 
@@ -209,8 +194,7 @@
 ## 📄 기술 스택
 
 > **백엔드**: [Go Zero](https://go-zero.dev/) 기반 구축  
-> **프론트엔드**: [Vben](https://doc.vben.pro/) (Vue3) 기반 구축  
-> **Admin 백엔드**: [simple-admin](https://doc.ryansu.tech/) 의 권한 관련 구현 참조 (마이크로서비스 아키텍처는 채택하지 않음)
+> **프론트엔드**: [Vben](https://doc.vben.pro/) (Vue3) 기반 구축
 
 ---
 

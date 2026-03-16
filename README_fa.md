@@ -39,16 +39,11 @@
 ۲. **ثبت‌نام حساب شرکتی** و تکمیل تأیید  
 ۳. **ایجاد پروژه شرکتی** برای دریافت اعتبارنامه‌های API
 
-### روش‌های احراز هویت
-
-- **احراز هویت با کلید API**: افزودن `Authorization: Bearer <your-api-key>` در هدرهای درخواست
-- **احراز هویت OAuth 2.0**: پشتیبانی از جریان استاندارد OAuth 2.0 (اختیاری)
-
 ### روند استفاده
 
 **ثبت‌نام حساب شرکتی** → **ایجاد پروژه** → **دریافت اعتبارنامه** → **ادغام SDK** → **انتشار اپلیکیشن**
 
-[همین حالا ثبت‌نام کنید](https://www.toolsetlink.com) | [مشاهده مستندات](https://www.toolsetlink.com/fa/upgrade/deploy/quick-start-docker.html)
+[همین حالا ثبت‌نام کنید](https://www.toolsetlink.com)
 
 ---
 
@@ -115,16 +110,6 @@
 
 - [راهنمای استفاده کامل](https://www.toolsetlink.com/fa/upgrade/what-is-upgrade.html)
 - [آموزش شروع سریع](https://www.toolsetlink.com/fa/upgrade/deploy/quick-start-docker.html)
-
----
-
-## 📦 روش‌های استقرار
-
-چندین گزینه استقرار برای برآورده کردن نیازهای شما پشتیبانی می‌کند:
-
-- [شروع سریع مستقل (Docker)](https://www.toolsetlink.com/fa/upgrade/deploy/quick-start-docker2.html)
-- [استقرار با Docker Compose](https://www.toolsetlink.com/fa/upgrade/deploy/docker-compose.html)
-- [استقرار خوشه‌ای](https://www.toolsetlink.com/fa/upgrade/deploy/cluster-docker.html)
 
 ---
 
@@ -209,8 +194,7 @@
 ## 📄 پشته فناوری
 
 > **بک‌اند**: ساخته شده با [Go Zero](https://go-zero.dev/)  
-> **فرانت‌اند**: ساخته شده با [Vben](https://doc.vben.pro/) (Vue3)  
-> **بک‌اند Admin**: به پیاده‌سازی‌های مرتبط با مجوزهای [simple-admin](https://doc.ryansu.tech/) ارجاع می‌دهد (معماری میکروسرویس اتخاذ نشده است)
+> **فرانت‌اند**: ساخته شده با [Vben](https://doc.vben.pro/) (Vue3)
 
 ---
 

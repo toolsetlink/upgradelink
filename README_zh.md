@@ -39,16 +39,11 @@
 2. **注册企业账号**并完成认证
 3. **创建企业项目**获取 API 密钥
 
-### 认证方式
-
-- **API Key 认证**：在请求头中添加 `Authorization: Bearer <your-api-key>`
-- **OAuth 2.0 认证**：支持标准 OAuth 2.0 流程（可选）
-
 ### 使用流程
 
 **注册企业账号** → **创建项目** → **获取凭证** → **集成 SDK** → **发布应用**
 
-[立即注册](https://www.toolsetlink.com) | [查看文档](https://www.toolsetlink.com/upgrade/deploy/quick-start-docker.html)
+[立即注册](https://www.toolsetlink.com) 
 
 ---
 
@@ -118,15 +113,6 @@
 
 ---
 
-## 📦 部署方式
-
-支持多种部署方案，按需选择：
-
-- [单机快速启动（Docker）](https://www.toolsetlink.com/upgrade/deploy/quick-start-docker2.html)
-- [Docker Compose 部署](https://www.toolsetlink.com/upgrade/deploy/docker-compose.html)
-- [集群化部署](https://www.toolsetlink.com/upgrade/deploy/cluster-docker.html)
-
----
 
 ## 📊 谁在使用？
 
@@ -210,7 +196,6 @@
 
 > **后端**：基于 [Go Zero](https://go-zero.dev/) 开发  
 > **前端**：基于 [Vben](https://doc.vben.pro/)（Vue3）开发  
-> **Admin 后台**：参考了 [simple-admin](https://doc.ryansu.tech/) 的权限相关实现（未采用其微服务架构）
 
 ---
 

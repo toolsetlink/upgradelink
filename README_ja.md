@@ -39,16 +39,11 @@
 2. **エンタープライズアカウントを登録**して認証を完了
 3. **エンタープライズプロジェクトを作成**して API 認証情報を取得
 
-### 認証方法
-
-- **API キー認証**：リクエストヘッダーに `Authorization: Bearer <your-api-key>` を追加
-- **OAuth 2.0 認証**：標準 OAuth 2.0 フローをサポート（オプション）
-
 ### 使用フロー
 
 **エンタープライズアカウントを登録** → **プロジェクトを作成** → **認証情報を取得** → **SDK を統合** → **アプリケーションを公開**
 
-[今すぐ登録](https://www.toolsetlink.com) | [ドキュメントを表示](https://www.toolsetlink.com/ja/upgrade/deploy/quick-start-docker.html)
+[今すぐ登録](https://www.toolsetlink.com)
 
 ---
 
@@ -115,16 +110,6 @@
 
 - [完全な使用ドキュメント](https://www.toolsetlink.com/ja/upgrade/what-is-upgrade.html)
 - [クイックスタートガイド](https://www.toolsetlink.com/ja/upgrade/deploy/quick-start-docker.html)
-
----
-
-## 📦 デプロイ方法
-
-複数のデプロイ方法をサポートし、ニーズに応じて選択可能：
-
-- [単機クイックスタート（Docker）](https://www.toolsetlink.com/ja/upgrade/deploy/quick-start-docker2.html)
-- [Docker Compose デプロイ](https://www.toolsetlink.com/ja/upgrade/deploy/docker-compose.html)
-- [クラスター化デプロイ](https://www.toolsetlink.com/ja/upgrade/deploy/cluster-docker.html)
 
 ---
 
@@ -209,8 +194,7 @@
 ## 📄 技術スタック
 
 > **バックエンド**：[Go Zero](https://go-zero.dev/) を使用して構築  
-> **フロントエンド**：[Vben](https://doc.vben.pro/)（Vue3）を使用して構築  
-> **Admin バックエンド**：[simple-admin](https://doc.ryansu.tech/) の権限関連実装を参照（マイクロサービスアーキテクチャは採用していません）
+> **フロントエンド**：[Vben](https://doc.vben.pro/)（Vue3）を使用して構築
 
 ---
 

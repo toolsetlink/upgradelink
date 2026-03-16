@@ -57,13 +57,6 @@ Supports 6 mainstream languages with no complex configuration:
 - [Quick Start Tutorial](https://www.toolsetlink.com/en/upgrade/deploy/quick-start-docker.html)
 
 
-## Deployment Methods
-Supports multiple deployment options to meet your needs:
-- [Standalone Quick Start (Docker)](https://www.toolsetlink.com/en/upgrade/deploy/quick-start-docker2.html)
-- [Docker Compose Deployment](https://www.toolsetlink.com/en/upgrade/deploy/docker-compose.html)
-  - [Clustered Deployment](https://www.toolsetlink.com/en/upgrade/deploy/cluster-docker.html)
-
-
 ## Who's Using?
 
 Multiple open-source projects have been integrated, categorized by technical framework as follows:
@@ -99,7 +92,7 @@ Multiple open-source projects have been integrated, categorized by technical fra
 
 ## Contribution Guide
 We welcome contributions! 
-> Tech Stack: Backend built with [Go Zero](https://go-zero.dev/), frontend built with [Vben](https://doc.vben.pro/) (Vue3). Admin backend references permission-related implementations from [simple-admin](https://doc.ryansu.tech/) (microservice architecture not adopted).
+> Tech Stack: Backend built with [Go Zero](https://go-zero.dev/), frontend built with [Vben](https://doc.vben.pro/) (Vue3).
 
 
 ## Notifications

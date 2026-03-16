@@ -39,16 +39,11 @@ Seja uma pequena ferramenta de desenvolvedores individuais ou uma aplicação em
 2. **Registrar Conta Empresarial** e completar verificação
 3. **Criar Projeto Empresarial** para obter credenciais de API
 
-### Métodos de Autenticação
-
-- **Autenticação por Chave API**: Adicionar `Authorization: Bearer <your-api-key>` nos cabeçalhos da requisição
-- **Autenticação OAuth 2.0**: Suporta fluxo OAuth 2.0 padrão (opcional)
-
 ### Fluxo de Uso
 
 **Registrar Conta Empresarial** → **Criar Projeto** → **Obter Credenciais** → **Integrar SDK** → **Publicar Aplicação**
 
-[Registrar Agora](https://www.toolsetlink.com) | [Ver Documentação](https://www.toolsetlink.com/pt/upgrade/deploy/quick-start-docker.html)
+[Registrar Agora](https://www.toolsetlink.com)
 
 ---
 
@@ -115,16 +110,6 @@ Suporta 7 linguagens principais sem configuração complexa:
 
 - [Guia de Uso Completo](https://www.toolsetlink.com/pt/upgrade/what-is-upgrade.html)
 - [Tutorial de Início Rápido](https://www.toolsetlink.com/pt/upgrade/deploy/quick-start-docker.html)
-
----
-
-## 📦 Métodos de Implantação
-
-Suporta múltiplas opções de implantação para atender às suas necessidades:
-
-- [Início Rápido Autônomo (Docker)](https://www.toolsetlink.com/pt/upgrade/deploy/quick-start-docker2.html)
-- [Implantação com Docker Compose](https://www.toolsetlink.com/pt/upgrade/deploy/docker-compose.html)
-- [Implantação em Cluster](https://www.toolsetlink.com/pt/upgrade/deploy/cluster-docker.html)
 
 ---
 
@@ -209,8 +194,7 @@ Múltiplos projetos foram integrados, categorizados por framework técnico da se
 ## 📄 Pilha Tecnológica
 
 > **Backend**: Construído com [Go Zero](https://go-zero.dev/)  
-> **Frontend**: Construído com [Vben](https://doc.vben.pro/) (Vue3)  
-> **Backend Admin**: Referencia implementações relacionadas a permissões do [simple-admin](https://doc.ryansu.tech/) (arquitetura de microsserviços não adotada)
+> **Frontend**: Construído com [Vben](https://doc.vben.pro/) (Vue3)
 
 ---
 

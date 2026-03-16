@@ -39,16 +39,11 @@
 2. **Регистрация корпоративной учетной записи** и завершение проверки
 3. **Создание корпоративного проекта** для получения учетных данных API
 
-### Методы аутентификации
-
-- **Аутентификация по API-ключу**: Добавить `Authorization: Bearer <your-api-key>` в заголовки запроса
-- **Аутентификация OAuth 2.0**: Поддерживает стандартный поток OAuth 2.0 (опционально)
-
 ### Процесс использования
 
 **Зарегистрировать корпоративную учетную запись** → **Создать проект** → **Получить учетные данные** → **Интегрировать SDK** → **Опубликовать приложение**
 
-[Зарегистрироваться сейчас](https://www.toolsetlink.com) | [Просмотреть документацию](https://www.toolsetlink.com/ru/upgrade/deploy/quick-start-docker.html)
+[Зарегистрироваться сейчас](https://www.toolsetlink.com)
 
 ---
 
@@ -115,16 +110,6 @@
 
 - [Полное руководство по использованию](https://www.toolsetlink.com/ru/upgrade/what-is-upgrade.html)
 - [Руководство по быстрому запуску](https://www.toolsetlink.com/ru/upgrade/deploy/quick-start-docker.html)
-
----
-
-## 📦 Методы развертывания
-
-Поддерживает несколько вариантов развертывания для удовлетворения ваших потребностей:
-
-- [Быстрый запуск на одном сервере (Docker)](https://www.toolsetlink.com/ru/upgrade/deploy/quick-start-docker2.html)
-- [Развертывание с Docker Compose](https://www.toolsetlink.com/ru/upgrade/deploy/docker-compose.html)
-- [Кластерное развертывание](https://www.toolsetlink.com/ru/upgrade/deploy/cluster-docker.html)
 
 ---
 
@@ -209,8 +194,7 @@
 ## 📄 Технологический стек
 
 > **Бэкенд**: Построено с [Go Zero](https://go-zero.dev/)  
-> **Фронтенд**: Построено с [Vben](https://doc.vben.pro/) (Vue3)  
-> **Бэкенд Admin**: Ссылается на реализации, связанные с разрешениями, из [simple-admin](https://doc.ryansu.tech/) (архитектура микросервисов не принята)
+> **Фронтенд**: Построено с [Vben](https://doc.vben.pro/) (Vue3)
 
 ---
 

@@ -39,16 +39,11 @@ Whether it's a small tool by individual developers or a complex enterprise-level
 2. **Register Enterprise Account** and complete verification
 3. **Create Enterprise Project** to obtain API credentials
 
-### Authentication Methods
-
-- **API Key Authentication**: Add `Authorization: Bearer <your-api-key>` in request headers
-- **OAuth 2.0 Authentication**: Supports standard OAuth 2.0 flow (optional)
-
 ### Usage Flow
 
 **Register Enterprise Account** → **Create Project** → **Get Credentials** → **Integrate SDK** → **Publish Application**
 
-[Register Now](https://www.toolsetlink.com) | [View Documentation](https://www.toolsetlink.com/en/upgrade/deploy/quick-start-docker.html)
+[Register Now](https://www.toolsetlink.com)
 
 ---
 
@@ -115,16 +110,6 @@ Supports 7 mainstream languages with no complex configuration:
 
 - [Complete User Guide](https://www.toolsetlink.com/en/upgrade/what-is-upgrade.html)
 - [Quick Start Tutorial](https://www.toolsetlink.com/en/upgrade/deploy/quick-start-docker.html)
-
----
-
-## 📦 Deployment Methods
-
-Supports multiple deployment options to meet your needs:
-
-- [Standalone Quick Start (Docker)](https://www.toolsetlink.com/en/upgrade/deploy/quick-start-docker2.html)
-- [Docker Compose Deployment](https://www.toolsetlink.com/en/upgrade/deploy/docker-compose.html)
-- [Clustered Deployment](https://www.toolsetlink.com/en/upgrade/deploy/cluster-docker.html)
 
 ---
 
@@ -209,8 +194,7 @@ Multiple projects have been integrated, categorized by technical framework as fo
 ## 📄 Technology Stack
 
 > **Backend**: Built with [Go Zero](https://go-zero.dev/)  
-> **Frontend**: Built with [Vben](https://doc.vben.pro/) (Vue3)  
-> **Admin Backend**: References permission-related implementations from [simple-admin](https://doc.ryansu.tech/) (microservice architecture not adopted)
+> **Frontend**: Built with [Vben](https://doc.vben.pro/) (Vue3)
 
 ---
 
