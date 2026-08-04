@@ -35,7 +35,7 @@
 
 ### 获取企业访问凭证
 
-1. **访问企业控制台**：https://www.toolsetlink.com
+1. **访问企业控制台**：https://upgrade.toolsetlink.com
 2. **注册企业账号**并完成认证
 3. **创建企业项目**获取 API 密钥
 
@@ -43,7 +43,7 @@
 
 **注册企业账号** → **创建项目** → **获取凭证** → **集成 SDK** → **发布应用**
 
-[立即注册](https://www.toolsetlink.com) 
+[立即注册](https://upgrade.toolsetlink.com) 
 
 ---
 
@@ -60,7 +60,7 @@
 > 💡 **提示**：对于绝大多数开发者和中小企业，免费额度完全满足日常使用需求。
 > 如需更高配额或专属服务，请联系商务团队。
 
-**立即开始**：[注册企业账号](https://www.toolsetlink.com) | [查看定价详情](https://www.toolsetlink.com/upgrade/company/company.html)
+**立即开始**：[注册企业账号](https://upgrade.toolsetlink.com) | [查看定价详情](https://upgrade.toolsetlink.com/upgrade/company/company.html)
 
 ---
 
@@ -108,8 +108,8 @@
 
 ### 第二步：参考文档
 
-- [完整使用文档](https://www.toolsetlink.com/upgrade/what-is-upgrade.html)
-- [快速接入教程](https://www.toolsetlink.com/upgrade/deploy/quick-start-docker.html)
+- [完整使用文档](https://upgrade.toolsetlink.com/upgrade/what-is-upgrade.html)
+- [快速接入教程](https://upgrade.toolsetlink.com/upgrade/deploy/quick-start-docker.html)
 
 ---
 
@@ -187,8 +187,8 @@
 ## 📞 通知与反馈
 
 - 最新动态：[UpgradeLink 通知](https://github.com/toolsetlink/upgradelink/issues)
-- 问题反馈：[联系我们](https://www.toolsetlink.com/upgrade/contact-us.html)
-- 项目更新记录：[UpgradeLink 更新记录](https://www.toolsetlink.com/upgrade/update-record.html)
+- 问题反馈：[联系我们](https://upgrade.toolsetlink.com/upgrade/contact-us.html)
+- 项目更新记录：[UpgradeLink 更新记录](https://upgrade.toolsetlink.com/upgrade/update-record.html)
 
 ---
 

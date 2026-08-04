@@ -35,7 +35,7 @@
 
 ### دریافت اعتبارنامه دسترسی شرکتی
 
-۱. **دسترسی به کنسول شرکتی**: https://www.toolsetlink.com  
+۱. **دسترسی به کنسول شرکتی**: https://upgrade.toolsetlink.com  
 ۲. **ثبت‌نام حساب شرکتی** و تکمیل تأیید  
 ۳. **ایجاد پروژه شرکتی** برای دریافت اعتبارنامه‌های API
 
@@ -43,7 +43,7 @@
 
 **ثبت‌نام حساب شرکتی** → **ایجاد پروژه** → **دریافت اعتبارنامه** → **ادغام SDK** → **انتشار اپلیکیشن**
 
-[همین حالا ثبت‌نام کنید](https://www.toolsetlink.com)
+[همین حالا ثبت‌نام کنید](https://upgrade.toolsetlink.com)
 
 ---
 
@@ -60,7 +60,7 @@
 > 💡 **توجه**: برای اکثریت قریب به اتفاق توسعه‌دهندگان و کسب‌وکارهای کوچک و متوسط، سهمیه رایگان به طور کامل نیازهای استفاده روزمره را برآورده می‌کند.  
 > برای سهمیه‌های بالاتر یا خدمات انحصاری، لطفاً با تیم فروش ما تماس بگیرید.
 
-**شروع کنید**: [ثبت‌نام حساب شرکتی](https://www.toolsetlink.com) | [مشاهده جزئیات قیمت‌گذاری](https://www.toolsetlink.com/fa/upgrade/company/company.html)
+**شروع کنید**: [ثبت‌نام حساب شرکتی](https://upgrade.toolsetlink.com) | [مشاهده جزئیات قیمت‌گذاری](https://upgrade.toolsetlink.com/fa/upgrade/company/company.html)
 
 ---
 
@@ -108,8 +108,8 @@
 
 ### مرحله ۲: مراجعه به مستندات
 
-- [راهنمای استفاده کامل](https://www.toolsetlink.com/fa/upgrade/what-is-upgrade.html)
-- [آموزش شروع سریع](https://www.toolsetlink.com/fa/upgrade/deploy/quick-start-docker.html)
+- [راهنمای استفاده کامل](https://upgrade.toolsetlink.com/fa/upgrade/what-is-upgrade.html)
+- [آموزش شروع سریع](https://upgrade.toolsetlink.com/fa/upgrade/deploy/quick-start-docker.html)
 
 ---
 
@@ -186,8 +186,8 @@
 ## 📞 اعلان‌ها و بازخورد
 
 - آخرین اخبار: [اعلان‌های UpgradeLink](https://github.com/toolsetlink/upgradelink/issues)
-- بازخورد: [با ما تماس بگیرید](https://www.toolsetlink.com/fa/upgrade/contact-us.html)
-- سابقه به‌روزرسانی پروژه: [سابقه به‌روزرسانی UpgradeLink](https://www.toolsetlink.com/fa/upgrade/update-record.html)
+- بازخورد: [با ما تماس بگیرید](https://upgrade.toolsetlink.com/fa/upgrade/contact-us.html)
+- سابقه به‌روزرسانی پروژه: [سابقه به‌روزرسانی UpgradeLink](https://upgrade.toolsetlink.com/fa/upgrade/update-record.html)
 
 ---
 

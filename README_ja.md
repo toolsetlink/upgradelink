@@ -35,7 +35,7 @@
 
 ### エンタープライズアクセス認証情報の取得
 
-1. **エンタープライズコンソールにアクセス**：https://www.toolsetlink.com
+1. **エンタープライズコンソールにアクセス**：https://upgrade.toolsetlink.com
 2. **エンタープライズアカウントを登録**して認証を完了
 3. **エンタープライズプロジェクトを作成**して API 認証情報を取得
 
@@ -43,7 +43,7 @@
 
 **エンタープライズアカウントを登録** → **プロジェクトを作成** → **認証情報を取得** → **SDK を統合** → **アプリケーションを公開**
 
-[今すぐ登録](https://www.toolsetlink.com)
+[今すぐ登録](https://upgrade.toolsetlink.com)
 
 ---
 
@@ -60,7 +60,7 @@
 > 💡 **注釈**：绝大多数の開発者および中小企業にとって、無料枠は日常の使用ニーズを完全に満たします。
 > より高い枠または専用サービスが必要な場合は、営業チームにお問い合わせください。
 
-**始める**：[エンタープライズアカウントを登録](https://www.toolsetlink.com) | [価格詳細を表示](https://www.toolsetlink.com/ja/upgrade/company/company.html)
+**始める**：[エンタープライズアカウントを登録](https://upgrade.toolsetlink.com) | [価格詳細を表示](https://upgrade.toolsetlink.com/ja/upgrade/company/company.html)
 
 ---
 
@@ -108,8 +108,8 @@
 
 ### ステップ 2：ドキュメントを参照
 
-- [完全な使用ドキュメント](https://www.toolsetlink.com/ja/upgrade/what-is-upgrade.html)
-- [クイックスタートガイド](https://www.toolsetlink.com/ja/upgrade/deploy/quick-start-docker.html)
+- [完全な使用ドキュメント](https://upgrade.toolsetlink.com/ja/upgrade/what-is-upgrade.html)
+- [クイックスタートガイド](https://upgrade.toolsetlink.com/ja/upgrade/deploy/quick-start-docker.html)
 
 ---
 
@@ -186,8 +186,8 @@
 ## 📞 お知らせとフィードバック
 
 - 最新情報：[UpgradeLink お知らせ](https://github.com/toolsetlink/upgradelink/issues)
-- フィードバック：[お問い合わせ](https://www.toolsetlink.com/ja/upgrade/contact-us.html)
-- プロジェクト更新記録：[UpgradeLink 更新記録](https://www.toolsetlink.com/ja/upgrade/update-record.html)
+- フィードバック：[お問い合わせ](https://upgrade.toolsetlink.com/ja/upgrade/contact-us.html)
+- プロジェクト更新記録：[UpgradeLink 更新記録](https://upgrade.toolsetlink.com/ja/upgrade/update-record.html)
 
 ---
 

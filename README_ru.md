@@ -35,7 +35,7 @@
 
 ### Получение учетных данных корпоративного доступа
 
-1. **Доступ к корпоративной консоли**: https://www.toolsetlink.com
+1. **Доступ к корпоративной консоли**: https://upgrade.toolsetlink.com
 2. **Регистрация корпоративной учетной записи** и завершение проверки
 3. **Создание корпоративного проекта** для получения учетных данных API
 
@@ -43,7 +43,7 @@
 
 **Зарегистрировать корпоративную учетную запись** → **Создать проект** → **Получить учетные данные** → **Интегрировать SDK** → **Опубликовать приложение**
 
-[Зарегистрироваться сейчас](https://www.toolsetlink.com)
+[Зарегистрироваться сейчас](https://upgrade.toolsetlink.com)
 
 ---
 
@@ -60,7 +60,7 @@
 > 💡 **Примечание**: Для подавляющего большинства разработчиков и малых и средних предприятий бесплатной квоты полностью достаточно для ежедневных потребностей.
 > Для более высоких квот или эксклюзивных услуг, пожалуйста, свяжитесь с нашей командой по продажам.
 
-**Начать**: [Зарегистрировать корпоративную учетную запись](https://www.toolsetlink.com) | [Просмотреть детали цен](https://www.toolsetlink.com/ru/upgrade/company/company.html)
+**Начать**: [Зарегистрировать корпоративную учетную запись](https://upgrade.toolsetlink.com) | [Просмотреть детали цен](https://upgrade.toolsetlink.com/ru/upgrade/company/company.html)
 
 ---
 
@@ -108,8 +108,8 @@
 
 ### Шаг 2: Обратиться к документации
 
-- [Полное руководство по использованию](https://www.toolsetlink.com/ru/upgrade/what-is-upgrade.html)
-- [Руководство по быстрому запуску](https://www.toolsetlink.com/ru/upgrade/deploy/quick-start-docker.html)
+- [Полное руководство по использованию](https://upgrade.toolsetlink.com/ru/upgrade/what-is-upgrade.html)
+- [Руководство по быстрому запуску](https://upgrade.toolsetlink.com/ru/upgrade/deploy/quick-start-docker.html)
 
 ---
 
@@ -186,8 +186,8 @@
 ## 📞 Уведомления и обратная связь
 
 - Последние новости: [Уведомления UpgradeLink](https://github.com/toolsetlink/upgradelink/issues)
-- Обратная связь: [Свяжитесь с нами](https://www.toolsetlink.com/ru/upgrade/contact-us.html)
-- Журнал обновлений проекта: [Журнал обновлений UpgradeLink](https://www.toolsetlink.com/ru/upgrade/update-record.html)
+- Обратная связь: [Свяжитесь с нами](https://upgrade.toolsetlink.com/ru/upgrade/contact-us.html)
+- Журнал обновлений проекта: [Журнал обновлений UpgradeLink](https://upgrade.toolsetlink.com/ru/upgrade/update-record.html)
 
 ---
 

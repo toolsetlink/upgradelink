@@ -53,8 +53,8 @@ Supports 6 mainstream languages with no complex configuration:
 - 🟣 [C# SDK](https://github.com/toolsetlink/upgradelink-api-csharp)
 
 ### Step 2: Refer to Documentation
-- [Complete User Guide](https://www.toolsetlink.com/en/upgrade/what-is-upgrade.html)
-- [Quick Start Tutorial](https://www.toolsetlink.com/en/upgrade/deploy/quick-start-docker.html)
+- [Complete User Guide](https://upgrade.toolsetlink.com/en/upgrade/what-is-upgrade.html)
+- [Quick Start Tutorial](https://upgrade.toolsetlink.com/en/upgrade/deploy/quick-start-docker.html)
 
 
 ## Who's Using?
@@ -124,7 +124,7 @@ We welcome contributions!
 - 🌍 **International Promotion**: Improve English translation, support more language versions
 
 ## Project Update Records
-View the complete project update records: [UpgradeLink Update Records](https://www.toolsetlink.com/en/upgrade/update-record.html)
+View the complete project update records: [UpgradeLink Update Records](https://upgrade.toolsetlink.com/en/upgrade/update-record.html)
 
 ## Contributors
 <a href="https://github.com/toolsetlink/upgradelink/graphs/contributors">

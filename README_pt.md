@@ -35,7 +35,7 @@ Seja uma pequena ferramenta de desenvolvedores individuais ou uma aplicação em
 
 ### Obter Credenciais de Acesso Empresarial
 
-1. **Acessar Console Empresarial**: https://www.toolsetlink.com
+1. **Acessar Console Empresarial**: https://upgrade.toolsetlink.com
 2. **Registrar Conta Empresarial** e completar verificação
 3. **Criar Projeto Empresarial** para obter credenciais de API
 
@@ -43,7 +43,7 @@ Seja uma pequena ferramenta de desenvolvedores individuais ou uma aplicação em
 
 **Registrar Conta Empresarial** → **Criar Projeto** → **Obter Credenciais** → **Integrar SDK** → **Publicar Aplicação**
 
-[Registrar Agora](https://www.toolsetlink.com)
+[Registrar Agora](https://upgrade.toolsetlink.com)
 
 ---
 
@@ -60,7 +60,7 @@ Fornecemos serviços de nível empresarial gratuitamente, sem necessidade de aut
 > 💡 **Nota**: Para a grande maioria dos desenvolvedores e pequenas e médias empresas, a cota gratuita atende completamente às necessidades de uso diário.
 > Para cotas mais altas ou serviços exclusivos, entre em contato com nossa equipe comercial.
 
-**Começar**: [Registrar Conta Empresarial](https://www.toolsetlink.com) | [Ver Detalhes de Preços](https://www.toolsetlink.com/pt/upgrade/company/company.html)
+**Começar**: [Registrar Conta Empresarial](https://upgrade.toolsetlink.com) | [Ver Detalhes de Preços](https://upgrade.toolsetlink.com/pt/upgrade/company/company.html)
 
 ---
 
@@ -108,8 +108,8 @@ Suporta 7 linguagens principais sem configuração complexa:
 
 ### Etapa 2: Consultar a Documentação
 
-- [Guia de Uso Completo](https://www.toolsetlink.com/pt/upgrade/what-is-upgrade.html)
-- [Tutorial de Início Rápido](https://www.toolsetlink.com/pt/upgrade/deploy/quick-start-docker.html)
+- [Guia de Uso Completo](https://upgrade.toolsetlink.com/pt/upgrade/what-is-upgrade.html)
+- [Tutorial de Início Rápido](https://upgrade.toolsetlink.com/pt/upgrade/deploy/quick-start-docker.html)
 
 ---
 
@@ -186,8 +186,8 @@ Múltiplos projetos foram integrados, categorizados por framework técnico da se
 ## 📞 Notificações e Feedback
 
 - Últimas Novidades: [Notificações do UpgradeLink](https://github.com/toolsetlink/upgradelink/issues)
-- Feedback: [Fale Conosco](https://www.toolsetlink.com/pt/upgrade/contact-us.html)
-- Registro de Atualizações do Projeto: [Registro de Atualizações do UpgradeLink](https://www.toolsetlink.com/pt/upgrade/update-record.html)
+- Feedback: [Fale Conosco](https://upgrade.toolsetlink.com/pt/upgrade/contact-us.html)
+- Registro de Atualizações do Projeto: [Registro de Atualizações do UpgradeLink](https://upgrade.toolsetlink.com/pt/upgrade/update-record.html)
 
 ---
 

@@ -35,7 +35,7 @@ Ya sea una pequeña herramienta de desarrolladores individuales o una aplicació
 
 ### Obtener Credenciales de Acceso Empresarial
 
-1. **Acceder a la Consola Empresarial**: https://www.toolsetlink.com
+1. **Acceder a la Consola Empresarial**: https://upgrade.toolsetlink.com
 2. **Registrar Cuenta Empresarial** y completar la verificación
 3. **Crear Proyecto Empresarial** para obtener credenciales de API
 
@@ -43,7 +43,7 @@ Ya sea una pequeña herramienta de desarrolladores individuales o una aplicació
 
 **Registrar Cuenta Empresarial** → **Crear Proyecto** → **Obtener Credenciales** → **Integrar SDK** → **Publicar Aplicación**
 
-[Registrarse Ahora](https://www.toolsetlink.com)
+[Registrarse Ahora](https://upgrade.toolsetlink.com)
 
 ---
 
@@ -60,7 +60,7 @@ Proporcionamos servicios de nivel empresarial de forma gratuita, sin necesidad d
 > 💡 **Nota**: Para la gran mayoría de desarrolladores y pequeñas y medianas empresas, la cuota gratuita satisface completamente las necesidades de uso diario.
 > Para cuotas más altas o servicios exclusivos, por favor contacta a nuestro equipo de ventas.
 
-**Comenzar**: [Registrar Cuenta Empresarial](https://www.toolsetlink.com) | [Ver Detalles de Precios](https://www.toolsetlink.com/es/upgrade/company/company.html)
+**Comenzar**: [Registrar Cuenta Empresarial](https://upgrade.toolsetlink.com) | [Ver Detalles de Precios](https://upgrade.toolsetlink.com/es/upgrade/company/company.html)
 
 ---
 
@@ -108,8 +108,8 @@ Soporta 7 lenguajes principales sin configuración compleja:
 
 ### Paso 2: Consultar la Documentación
 
-- [Guía de Uso Completa](https://www.toolsetlink.com/es/upgrade/what-is-upgrade.html)
-- [Tutorial de Inicio Rápido](https://www.toolsetlink.com/es/upgrade/deploy/quick-start-docker.html)
+- [Guía de Uso Completa](https://upgrade.toolsetlink.com/es/upgrade/what-is-upgrade.html)
+- [Tutorial de Inicio Rápido](https://upgrade.toolsetlink.com/es/upgrade/deploy/quick-start-docker.html)
 
 ---
 
@@ -186,8 +186,8 @@ Múltiples proyectos han sido integrados, categorizados por framework técnico d
 ## 📞 Notificaciones y Retroalimentación
 
 - Últimas Novedades: [Notificaciones de UpgradeLink](https://github.com/toolsetlink/upgradelink/issues)
-- Retroalimentación: [Contáctanos](https://www.toolsetlink.com/es/upgrade/contact-us.html)
-- Registro de Actualizaciones del Proyecto: [Registro de Actualizaciones de UpgradeLink](https://www.toolsetlink.com/es/upgrade/update-record.html)
+- Retroalimentación: [Contáctanos](https://upgrade.toolsetlink.com/es/upgrade/contact-us.html)
+- Registro de Actualizaciones del Proyecto: [Registro de Actualizaciones de UpgradeLink](https://upgrade.toolsetlink.com/es/upgrade/update-record.html)
 
 ---
 
